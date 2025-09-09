@@ -1,0 +1,227 @@
+<?php echo $header; ?>
+<section class="bannerOuter paddingless">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="pageTitle"><span>Product listing</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="greyBg paddingtop30">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <ol class="breadcrumb">
+         <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+        <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+        <?php } ?>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+    <?php echo $column_left; ?>
+    <div class="col-xs-12 col-sm-8 col-lg-9 col-md-9">
+      
+      <?php echo $content_top; ?>     
+         <div class="row">
+          <div class="col-xs-12">
+            <div class="theading">
+                  <h1><?php echo $heading_title; ?></h1>
+            </div>
+          </div>
+        </div>
+      <?php if ($thumb || $description) { ?>
+        <div class="row">        
+        <div class="col-xs-12">
+           <?php if ($thumb) { ?>
+        <div class="pthumb"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" class="img-thumbnail" /></div>
+        <?php } ?>
+        <?php if ($description) { 
+				$length = strlen($description) ;
+			?>    
+		  <div class="description <?php echo (isset($length) && $length > 100?'limitContent':'') ;?> "><?php echo $description ; ?> </div>
+		 <?php 
+			if($length > 100){ ?>
+					<p class="moreHere"><a class="morelink" href="">Read more</a></p>
+		<?php } ?>	
+ 		
+		<p class="lessHere"><a class="lesslink" href="">Read Less</a></p>
+		<?php } ?>
+      </div>
+     </div>   
+      <?php } ?>
+    <?php if ($categories) { ?>
+    <div class="row">
+          <div class="col-xs-12">
+            <div class="theading">
+                  <h2><?php echo ($refine_search_text?$refine_search_text:$text_refine) ; ?></h2>
+            </div>
+          </div>
+        </div>     
+      <?php if (count($categories) <= 5) { ?>
+      <div class="row">       
+            <?php foreach ($categories as $category) { ?>
+           <div class="col-md-4 col-sm-6 col-xs-6 full">
+          <div class="columnOuter">
+           <div class="column">
+             <div class="productThumb"><a href="<?php echo $category['href']; ?>"><img src="<?php echo $category['thumb']; ?>" alt="<?php echo $category['name']; ?>" title="<?php echo $category['name']; ?>" class="img-responsive" /></a></div>
+             <div class="desc"><div class="thead"><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></div>             </div>     
+           </div>
+         </div>
+         </div> 
+            <?php } ?>        
+      </div>
+      <?php } else { ?>
+      <div class="row">
+        <?php foreach (array_chunk($categories, ceil(count($categories) / 4)) as $categories) { ?>      
+            <?php foreach ($categories as $category) { ?>          
+          <div class="col-md-4 col-sm-6 col-xs-6 full">
+          <div class="columnOuter">
+           <div class="column">
+             <div class="productThumb"><a href="<?php echo $category['href']; ?>"><img src="<?php echo $category['thumb']; ?>" alt="<?php echo $category['name']; ?>" title="<?php echo $category['name']; ?>" class="img-responsive" /></a></div>
+             <div class="desc"><div class="thead"><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></div>             </div>     
+           </div>
+         </div>
+         </div> 
+            <?php } ?>       
+        <?php } ?>
+      </div>
+      <?php } ?>
+      <?php } ?>
+
+          <div class="row">
+          <div class="col-xs-12">
+            <div class="theading">
+              <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6 full">
+                  <h2><?php echo ($product_listing_text?$product_listing_text:'Product listing') ; ?></h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 full">
+                  <?php if ($products) { ?>
+                  <div class="selectBox">
+                    <label><?php echo $text_limit; ?></label>
+                    <div class="selectBG left">
+                      <select id="input-limit" onchange="location = this.value;">
+                          <?php foreach ($limits as $limits) { ?>
+                        <?php if ($limits['value'] == $limit) { ?>
+                        <option value="<?php echo $limits['href']; ?>" selected="selected"><?php echo $limits['text']; ?></option>
+                        <?php } else { ?>
+                        <option value="<?php echo $limits['href']; ?>"><?php echo $limits['text']; ?></option>
+                        <?php } ?>
+                        <?php } ?>
+                                              
+                      </select>
+                    </div>
+                  </div>
+                  <div class="selectBox">
+                    <label><?php echo $text_sort; ?></label>
+                    <div class="selectBG">
+                      <select id="input-sort" onchange="location = this.value;">
+                      <?php foreach ($sorts as $sorts) { ?>
+                          <?php if ($sorts['value'] == $sort . '-' . $order) { ?>
+                          <option value="<?php echo $sorts['href']; ?>" selected="selected"><?php echo $sorts['text']; ?></option>
+                          <?php } else { ?>
+                          <option value="<?php echo $sorts['href']; ?>"><?php echo $sorts['text']; ?></option>
+                          <?php } ?>
+                          <?php } ?>  
+                      </select>
+                    </div>
+                  </div>
+                  <?php } ?>
+                </div>
+              </div>
+            </div><div id="content"></div>
+          </div>
+        </div>     
+      <?php if ($products) { ?>   
+      <div class="row">
+        <?php foreach ($products as $product) { ?>
+          <div class="col-md-4 col-sm-6 col-xs-6 full">
+          <div class="columnOuter">
+           <div class="column">
+             <div class="productThumb"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
+             <div class="desc"><div class="thead"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+             <div class="cartBox">
+            <?php if ($product['price']) { ?>
+       	    <?php if (!$product['special']) { ?>
+          <p class="price">   
+          <?php echo $product['price']; ?>
+          </p>
+          <?php } else { ?>
+          <p class="price"><?php echo $product['special']; ?> <span class="price-old"><?php echo $product['price']; ?></span></p>
+          <?php } ?> 
+        <?php } ?>
+       <button class="yellowbtn btn-2 btn-2a" onclick="cart.add('<?php echo $product['product_id']; ?>');"><img src="catalog/view/theme/hidlighting/images/cart.png" alt=""><b><?php echo $button_cart; ?></b></button>
+  <button class="yellowbtn combtn Btn1<?php echo $product['product_id']; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"> <b>Add To Compare </b></button>
+       <button class="yellowbtn combtn1 Btn12<?php echo $product['product_id']; ?>" onclick="location.href = '<?php echo $compare; ?>';"  style="display: none;"><b>Compare Now</b></button> 
+             </div>
+             </div>     
+           </div>
+         </div>
+         </div>
+        <?php } ?>
+      </div>
+      <?php if($pagination){?>
+      <div class="row">
+          <div class="col-xs-12">
+            <div class="paginationOuter">
+              <?php echo $pagination; ?>
+            </div>
+          </div>
+        </div>      
+      <?php } } else { ?>
+      <p><?php echo $text_empty; ?></p>
+      <?php } ?>
+      <?php echo $content_bottom; ?></div>
+    <?php echo $column_right; ?></div>
+    </div>   
+</section>
+<?php echo $footer; ?>
+<style>
+a.morelink, a.lesslink {
+    color: rgb(231, 148, 57);
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+}
+.limitContent{
+
+max-height:140px;
+overflow:hidden ;
+
+}
+.lessHere{
+
+display:none;
+
+}
+</style>
+
+<script>
+	
+$(document).ready(function () { 
+	$(".morelink").click(function(e){
+		    e.preventDefault();
+			$(".description").removeClass("limitContent") ;
+			$(".moreHere").css({
+				"display": "none",
+			});
+			$(".lessHere").css({
+				"display"  : "block" ,
+			});	
+				
+	});
+	$(".lesslink").click(function(e){
+		    e.preventDefault();
+			$(".description").addClass("limitContent") ;
+			$(".lessHere").css({
+				"display"  : "none" ,
+			});	
+			$(".moreHere").css({
+				"display": "block",
+			});				
+	});
+});
+
+</script>

@@ -1,0 +1,26 @@
+[11-Apr-2018 17:28:38 America/Denver] PHP Notice:  Use of undefined constant DIR_SYSTEM - assumed 'DIR_SYSTEM' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 116
+[11-Apr-2018 17:28:38 America/Denver] PHP Notice:  Use of undefined constant DIR_MODIFICATION - assumed 'DIR_MODIFICATION' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 70
+[11-Apr-2018 17:28:38 America/Denver] PHP Notice:  Use of undefined constant DIR_APPLICATION - assumed 'DIR_APPLICATION' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 70
+[11-Apr-2018 17:28:38 America/Denver] PHP Notice:  Use of undefined constant DIR_SYSTEM - assumed 'DIR_SYSTEM' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 75
+[11-Apr-2018 17:28:38 America/Denver] PHP Notice:  Use of undefined constant DIR_MODIFICATION - assumed 'DIR_MODIFICATION' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 76
+[11-Apr-2018 17:28:38 America/Denver] PHP Notice:  Use of undefined constant DIR_SYSTEM - assumed 'DIR_SYSTEM' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 76
+[11-Apr-2018 17:28:38 America/Denver] PHP Warning:  require_once(DIR_SYSTEMengine/action.php): failed to open stream: No such file or directory in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 116
+[11-Apr-2018 17:28:38 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'DIR_SYSTEMengine/action.php' (include_path='.:/usr/php/56/usr/lib64:/usr/php/56/usr/share/pear') in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 116
+[24-Nov-2019 20:19:01 UTC] PHP Notice:  Use of undefined constant DIR_SYSTEM - assumed 'DIR_SYSTEM' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 116
+[24-Nov-2019 20:19:01 UTC] PHP Notice:  Use of undefined constant DIR_MODIFICATION - assumed 'DIR_MODIFICATION' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 70
+[24-Nov-2019 20:19:01 UTC] PHP Notice:  Use of undefined constant DIR_APPLICATION - assumed 'DIR_APPLICATION' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 70
+[24-Nov-2019 20:19:01 UTC] PHP Notice:  Use of undefined constant DIR_SYSTEM - assumed 'DIR_SYSTEM' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 75
+[24-Nov-2019 20:19:01 UTC] PHP Notice:  Use of undefined constant DIR_SYSTEM - assumed 'DIR_SYSTEM' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 75
+[24-Nov-2019 20:19:01 UTC] PHP Notice:  Use of undefined constant DIR_MODIFICATION - assumed 'DIR_MODIFICATION' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 76
+[24-Nov-2019 20:19:01 UTC] PHP Notice:  Use of undefined constant DIR_SYSTEM - assumed 'DIR_SYSTEM' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 76
+[24-Nov-2019 20:19:01 UTC] PHP Warning:  require_once(DIR_SYSTEMengine/action.php): failed to open stream: No such file or directory in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 116
+[24-Nov-2019 20:19:01 UTC] PHP Fatal error:  require_once(): Failed opening required 'DIR_SYSTEMengine/action.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 116
+[18-Jul-2020 21:56:56 UTC] PHP Notice:  Use of undefined constant DIR_SYSTEM - assumed 'DIR_SYSTEM' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 116
+[18-Jul-2020 21:56:56 UTC] PHP Notice:  Use of undefined constant DIR_MODIFICATION - assumed 'DIR_MODIFICATION' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 70
+[18-Jul-2020 21:56:56 UTC] PHP Notice:  Use of undefined constant DIR_APPLICATION - assumed 'DIR_APPLICATION' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 70
+[18-Jul-2020 21:56:56 UTC] PHP Notice:  Use of undefined constant DIR_SYSTEM - assumed 'DIR_SYSTEM' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 75
+[18-Jul-2020 21:56:56 UTC] PHP Notice:  Use of undefined constant DIR_SYSTEM - assumed 'DIR_SYSTEM' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 75
+[18-Jul-2020 21:56:56 UTC] PHP Notice:  Use of undefined constant DIR_MODIFICATION - assumed 'DIR_MODIFICATION' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 76
+[18-Jul-2020 21:56:56 UTC] PHP Notice:  Use of undefined constant DIR_SYSTEM - assumed 'DIR_SYSTEM' in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 76
+[18-Jul-2020 21:56:56 UTC] PHP Warning:  require_once(DIR_SYSTEMengine/action.php): failed to open stream: No such file or directory in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 116
+[18-Jul-2020 21:56:56 UTC] PHP Fatal error:  require_once(): Failed opening required 'DIR_SYSTEMengine/action.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home1/hidaustr/public_html/pro-vision-lighting/system/startup.php on line 116

@@ -1,0 +1,179 @@
+{{ header }} 
+<div class="container" id="container">
+  <ul class="breadcrumb qc-breadcrumb">
+    {% for breadcrumb in breadcrumbs %} 
+    <li><a href="{{ breadcrumb.href }} ">{{ breadcrumb.text }} </a></li>
+    {% endfor %} 
+  </ul>
+  {% if error_warning %} 
+  <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }} 
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+  {% endif %} 
+  <div class="row">{{ column_left }} 
+    {% if column_left  and  column_right %} 
+    {% set class = 'col-sm-6' %}
+    {% elseif  column_left  or  column_right %} 
+    {% set class = 'col-sm-9' %}
+     {% else %}   
+    {% set class = 'col-sm-12' %}
+      {% endif %}
+    <div id="content" class="{{ class }} ">{{ content_top }} 
+
+<!-- Quick Checkout v4.0 by Dreamvention.com checkout/quickcheckout -->
+  {{ d_quickcheckout }} 
+{# expose the cost map to JS (keyed by cart key) #}
+    <input type="hidden" id="product_cost_map" value="{{ product_cost_map|json_encode|e('html_attr') }}">
+<input type="hidden" id="currency" value="{{ order_currency }}">
+      {{ content_bottom }} </div>
+    {{ column_right }} </div>
+
+    <input type="hidden" id="total_product_cost" value="{{ total_product_cost_raw|number_format(2, '.', '') }}">
+
+ 
+<input type="hidden" id="ga_customer_json" value="{{ ga_customer|json_encode|e('html_attr') }}"> 
+
+</div> 
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var el  = document.getElementById('product_cost_map');
+  var map = {};
+  try { map = JSON.parse(el ? el.value : '{}'); } catch (e) {}
+
+  if (window.qc && qc.cart && typeof qc.cart.get === 'function') {
+    var prods = qc.cart.get('products') || [];
+    console.log('products',prods);
+    prods.forEach(function (p) {
+      var key = p.key || p.cart_id || p.product_id;
+      var m   = map[key];
+      // Support numeric or {unit: x}
+      var unit = (m && typeof m === 'object' && 'unit' in m) ? +m.unit : +m || 0;
+
+      if (unit) {
+        p.product_cost = unit;
+        p.product_cost_formatted = ''; // (optional) format in JS if you want to display it
+      }
+    });
+
+    qc.cart.set('products', prods);
+    if (qc.cartView && typeof qc.cartView.render === 'function') {
+      qc.cartView.render();
+    }
+  }
+});
+</script>
+
+<script>
+(function(){
+  var fired = false;
+
+  function num(v){ return parseFloat(String(v || '').replace(/[^0-9.\-]/g,'')) || 0; }
+  function readMap(){
+    var el = document.getElementById('product_cost_map');
+    if (!el) return {};
+    try { return JSON.parse(el.value || '{}'); } catch(e){ return {}; }
+  }
+  function readCurrency(){
+    try {
+      if (window.qc && qc.cart && typeof qc.cart.get === 'function') {
+        var c = qc.cart.get('currency');
+        if (c) return c;
+      }
+    } catch(e){}
+    var el = document.getElementById('currency');
+    return (el && el.value) ? el.value : '';
+  }
+  function getOrderValueFromTotals(cart, totals){
+    var grand = 0, found = false;
+    (totals || []).forEach(function(t){
+      var code = (t && t.code) ? String(t.code) : '';
+      if (code === 'total' || /(^|_)total$/i.test(code)) {
+        grand = num(t.value != null ? t.value : t.text);
+        found = true;
+      }
+    });
+    if (!found && (totals || []).length){
+      var last = totals[totals.length - 1];
+      grand = num(last && (last.value != null ? last.value : last.text));
+    }
+    if (!grand && cart && typeof cart.get === 'function') grand = num(cart.get('total'));
+    var hidden = document.getElementById('value');
+    if (!grand && hidden && hidden.value) grand = num(hidden.value);
+    return grand || 0;
+  }
+
+  function buildAndPushBeginCheckout(){
+    if (fired) return;
+
+    var cart = (window.qc && qc.cart && typeof qc.cart.get === 'function') ? qc.cart : null;
+    if (!cart) return;
+
+    var products = cart.get('products') || [];
+    if (!products.length) return;
+
+    var totals   = cart.get('totals') || [];
+    var currency = readCurrency();
+    var costMap  = readMap();
+
+    var items = [];
+    var totalProductCost = 0;
+    var totalGrossProfit = 0;
+
+    products.forEach(function(p){
+      var pid  = +p.product_id || 0;
+      var key  = p.key || p.cart_id || pid;
+      var qty  = +p.quantity || 1;
+
+      var priceNum = num(p.price_value != null ? p.price_value : p.price);
+
+      var unit = 0;
+      if (costMap && Object.prototype.hasOwnProperty.call(costMap, pid))      unit = +costMap[pid] || 0;
+      else if (costMap && Object.prototype.hasOwnProperty.call(costMap, key)) unit = +costMap[key] || 0;
+      else if (p.product_cost != null)                                        unit = +p.product_cost || 0;
+
+      var productCost = unit * qty;
+      var grossProfit = (priceNum - unit) * qty;
+
+      totalProductCost += productCost;
+      totalGrossProfit += grossProfit;
+
+      items.push({
+        item_id:      String(pid || key)+'_au',
+        item_name:    p.name,
+        item_sku:     p.model || '',
+        price:        priceNum,
+        quantity:     qty,
+        product_cost: productCost, 
+        gross_profit: grossProfit 
+      });
+    });
+
+    var orderValue = getOrderValueFromTotals(cart, totals);
+    if (!orderValue) return;
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({ ecommerce: null });
+    dataLayer.push({
+      event: 'begin_checkout',
+      ecommerce: {
+        currency:            currency,
+        value:               orderValue,
+        total_product_cost:  totalProductCost,
+        total_gross_profit:  totalGrossProfit,
+        items:               items
+      }
+    });
+
+    fired = true;
+  }
+
+  document.addEventListener('DOMContentLoaded', buildAndPushBeginCheckout);
+  if (window.qc && qc.event && typeof qc.event.bind === 'function') {
+    qc.event.bind('update', buildAndPushBeginCheckout, this);
+  }
+})();
+</script>
+ 
+  
+{{ footer }} 

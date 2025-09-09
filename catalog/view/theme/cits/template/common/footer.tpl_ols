@@ -1,0 +1,164 @@
+<?php
+$url= 'http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+?>
+<footer>
+  <div class="footertop">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="payments"> <a><img src="catalog/view/theme/hidlighting/images/paypal.png" alt=""></a> <a><img src="catalog/view/theme/hidlighting/images/visa.png" alt=""></a> <a><img src="catalog/view/theme/hidlighting/images/discover.png" alt=""></a> <a><img src="catalog/view/theme/hidlighting/images/mastercard.png" alt=""></a> <a><img src="catalog/view/theme/hidlighting/images/american.png" alt=""></a> </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="footerSearch">
+            <div class="form-inline">
+              <label>Newsletter Signup</label>
+              <div class="input-group" id="subscribe_field">
+                <input type="text" class="form-control footer-input" placeholder="Enter your email" name="sub_email" id="sub_email">               
+                <span class="input-group-btn">
+                <button class="btn" type="button" type="submit" id="subscriber"><i aria-hidden="true" class="fa fa-envelope"></i></button>
+                </span> </div>              
+            </div>
+            <span class="subscribe_msg" id="subscribe_msg" >
+                <span id="error_subscribe" class="error"></span> 
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footerbottom">
+    <div class="container">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="footerListing">
+          <?php if ($informations) { ?>      
+        <ul>
+          <?php foreach ($informations as $information) { ?>
+          <li><a href="<?php echo $information['href']; ?>" title="<?php echo $information['title']; ?>"><?php echo $information['title']; ?></a></li>
+          <?php } ?>
+<li><a href="<?php echo $compare; ?>" title="<?php echo $text_compare; ?>"><?php echo $text_compare; ?></a></li>
+        </ul>     
+      <?php } ?>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="socialicons">
+          <ul>
+            <li class="copyright"><?php echo $powered; ?></li>
+            <li><a href="<?php echo $facebook; ?>" target="_blank"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
+            <li><a href="<?php echo $instagram; ?>" target="_blank"><i aria-hidden="true" class="fa fa-instagram"></i></a></li>
+          </ul>
+        </div>
+      </div>
+   <?php if($url == $base || $url == $home){ ?>  
+  <div class="col-md-12 col-sm-12 col-xs-12">
+     <p class="powered">Powered by Webworld Experts - <a href="http://www.webworldexperts.com/" target="_blank">Web Design Company India</a></p>
+  </div>
+  <?php } ?>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="catalog/view/theme/hidlighting/js/jquery.smartmenus.js"></script>
+<script type="text/javascript" src="catalog/view/theme/hidlighting/js/jquery.smartmenus.bootstrap.js"></script>
+<!--script src="catalog/view/theme/hidlighting/js/jquery.ieresponsify-1.1.js"></script--> 
+<script src="catalog/view/theme/hidlighting/js/core.js"></script>
+<script src="catalog/view/theme/hidlighting/js/menu.js" type="text/javascript"></script>
+<script>
+
+$( ".sidedown" ).click(function() {
+  $( ".categories" ).slideToggle( "slow", function() {
+  });
+});
+</script> 
+
+<script>
+/*$('.categories ul li ul li a ').click(function(){
+	$(".categories ul li ul li.dropdownMenu").addClass("active");
+    $(this).find('i').toggleClass('fa-angle-right fa-angle-down')
+});*/
+$('.categories ul li').click(function(e){
+	$(".categories ul li.dropdown ").addClass("active");
+  	$(this).children('ul').slideToggle(500);
+  	e.stopPropagation();
+});
+/*
+$(document).ready(function () {
+    $('.categories ul li ul li a').click(function(e) {
+		var current =  $(this).parent().prop("class");
+		var $parent = $(this).parent();
+		if(current == 'active')
+		{
+		$(this).parent().removeClass("active");
+		}
+		else
+		{
+		$(this).parent().addClass("active");
+		}
+        /*
+        
+        if (!$parent.hasClass('active')) {
+           
+		}
+        e.preventDefault();
+    });
+});*/
+</script> 
+
+<script>
+$(document).ready(function() {
+	$('.cartBoxTop').click(function(){
+      $('.cartInputBox').slideToggle();
+  });
+});
+
+</script>
+ <script type="text/javascript"><!--
+$('#subscriber').bind('click', function() { <!-- 
+ var email=$("#sub_email").val();
+	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+          if(email == '' || email == "Enter your email") {
+		$("#error_subscribe").html('E-Mail id is required!');
+		return false;
+           }
+	 else if( !emailReg.test( email ) ) {
+		$("#error_subscribe").html('E-Mail id is  not valid!');
+		return false;
+	  }   
+	 $.ajax({
+		url: 'index.php?route=common/footer/subscriber',
+		type: 'post',
+		data: 'email='+email,
+		dataType: 'json',
+		beforeSend: function() { 
+		/*$('#sub_email').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');*/
+		},
+		complete: function() {
+			$('.wait').remove(); 
+		},			
+		success: function(json) { 
+			//$("#subscribe_field").remove(); 
+			if(json['success']==0){
+			 $("#error_subscribe").html('Email address already exists !');
+		}
+		else if(json['success']==2){
+			$("#error_subscribe").html('Error in subscription!');
+		}
+		else if(json['success']==1){
+			$("#subscribe_msg").html('<span class="subscribe_msg">Sucessfully subscribe!</span>');
+		}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {   
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+		});  
+	});
+	$(document).ready(function(e) {
+		$('.responsiveCat button').click(function(e) {
+			$('#column-left').removeClass('hidden-xs');		
+			$('.category-sec .panel-group').slideToggle(700);
+		});	
+	});
+ 
+</script> 
+
+
+</body></html>

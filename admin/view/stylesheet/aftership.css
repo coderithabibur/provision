@@ -1,0 +1,148 @@
+#form-aftership fieldset {
+	margin-bottom: 20px;
+}
+
+#form-aftership .form-group + .form-group {
+	border-top: none;
+}
+
+.aftership-info, .order-track-info {
+	border: 1px solid #e5e5e5;
+	padding: 10px 15px;
+	margin-bottom: 20px; 
+}
+
+.aftership-info .aftership-info-container, .order-track-info .order-track-info-container {
+    display: table;
+    margin: 0 auto;
+    width: auto;
+}
+
+.aftership-info .aftership-info-message {
+    padding-right: 15px;
+	border-right: 1px solid #e5e5e5;
+}
+
+.aftership-info .aftership-info-action {
+	padding-left: 15px;
+}
+
+.aftership-info .aftership-info-message, .aftership-info .aftership-info-action, .order-track-info .order-track-info-courier-logo, .order-track-info .order-track-info-courier-info, .order-track-info .order-track-info-action {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.order-track-info .order-track-info-courier-logo {
+	padding-right: 10px;	
+}
+
+.order-track-info .order-track-info-courier-info {
+	padding-right: 25px;
+}
+
+.order-track-info .order-track-info-courier-info, .order-track-info .order-track-info-tracking-number {
+	border-right: 1px solid #e5e5e5;
+}
+
+.order-track-info .order-track-info-tracking-number {
+	padding-left: 60px;
+	padding-right: 60px;
+	text-align: center;
+}
+
+.order-track-info .order-track-info-tracking-number span.tracking-number {
+	font-size: 16px;
+}
+
+.order-track-info .order-track-info-action {
+	padding-left: 25px;
+}
+
+
+@media only screen and (max-width: 700px) {
+	.aftership-info .aftership-info-message, .aftership-info .aftership-info-action {
+		display: block;
+		text-align: center;
+	}
+	
+	.aftership-info .aftership-info-message {
+		margin-bottom: 10px;
+		padding-right: 0;
+		
+	}
+}
+
+@media only screen and (max-width: 840px) {
+	.order-track-info .order-track-info-courier-info {
+		display: none;
+	}
+	
+	.order-track-info .order-track-info-courier-logo {
+		padding-right: 25px;
+		border-right: 1px solid #e5e5e5;
+	}
+}
+
+@media only screen and (max-width: 680px) {
+	.order-track-info .order-track-info-courier-logo {
+		display: none;
+	}
+	
+	.order-track-info .order-track-info-tracking-number {
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+	
+	.order-track-info .order-track-info-tracking-number span.tracking-number {
+		font-size: 14px;
+	}
+}
+
+@media only screen and (max-width: 530px) {
+	.order-track-info .order-track-info-action {
+		display: block;
+		padding-left: 0;
+		text-align: center;
+	}
+	
+	.order-track-info .order-track-info-tracking-number {
+		padding-left: 0;
+		padding-right: 0;
+		margin-bottom: 10px;	
+		border-right: none;
+	}
+	
+	.order-track-info .order-track-info-tracking-number span.tracking-number {
+		font-size: 12px;
+		font-weight: bold;
+	}	
+}
+
+.bs-callout {
+  border-color: #EEEEEE;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px 1px 1px 5px;
+  margin: 20px 0;
+  padding: 20px;
+}
+
+.bs-callout-info {
+  border-left-color: #1B809E;
+} 
+
+.bs-callout-small {
+  padding: 10px 20px;
+}
+
+/* LOADING */
+.aftership-loading-overlay {
+	min-height: 300px;
+	position: relative;
+}
+
+.aftership-loading-overlay .aftership-loading {
+	position: absolute;
+	top: 125px;
+	left: 45%;
+}

@@ -1,0 +1,19 @@
+.product-question-stats-unread {
+	position: absolute;
+	top: 4px;
+	left: 22px;
+	background-color: #f56b6b;
+	padding: 2px 4px;
+	border-radius: 25%;
+	font-size: 75%;
+	line-height: 1;
+	color: #fff;
+	white-space: nowrap;
+	vertical-align: baseline;
+	display: block !important;
+}
+
+#column-left.active .product-question-stats-unread {
+	left: 15px;
+	padding: 1px 3px;
+}

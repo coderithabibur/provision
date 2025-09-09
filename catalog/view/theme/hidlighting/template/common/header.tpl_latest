@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]><html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title><?php echo $title; ?></title>
+<base href="<?php echo $base; ?>" />
+<?php if ($description) { ?>
+<meta name="description" content="<?php echo $description; ?>" />
+<?php } ?>
+<?php if ($keywords) { ?>
+<meta name="keywords" content= "<?php echo $keywords; ?>" />
+<?php } ?>
+<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+<link href="catalog/view/theme/hidlighting/stylesheet/bootstrap.css" rel="stylesheet" media="screen" />
+<script src="catalog/view/theme/hidlighting/js/bootstrap.min.js" type="text/javascript"></script>
+<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<!--link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" /-->
+
+<link rel="stylesheet" type="text/css" href="catalog/view/theme/hidlighting/stylesheet/core.css">
+<link rel="stylesheet" type="text/css" href="catalog/view/theme/hidlighting/stylesheet/responsive.css">
+<link type="text/css" rel="stylesheet" href="catalog/view/theme/hidlighting/stylesheet/jquery.smartmenus.bootstrap.css">
+<link href="catalog/view/theme/hidlighting/stylesheet/stylesheet.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="catalog/view/theme/hidlighting/js/html5shiv.js"></script>
+      <script src="catalog/view/theme/hidlighting/js/respond.js"></script>
+      <script src="catalog/view/theme/hidlighting/js/i.e-bootstrap.min.js"></script>
+    <![endif]-->
+<?php foreach ($styles as $style) { ?>
+<link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
+<?php }
+?>
+<?php $url= 'http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+?>
+<script src="catalog/view/javascript/common.js" type="text/javascript"></script>
+<?php foreach ($links as $link) { ?>
+<link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
+<?php } ?>
+<?php foreach ($scripts as $script) { ?>
+<script src="<?php echo $script; ?>" type="text/javascript"></script>
+<?php } ?>
+<?php foreach ($analytics as $analytic) { ?>
+<?php echo $analytic; ?>
+<?php } ?>
+</head>
+<body class="<?php echo $class; ?>">
+<header>
+  <div class="topBar on">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-7 col-xs-6 fullblock">
+          <ul class="topleft">
+            <li>Email:<a href="mailto:<?php echo $e_mail;?>"><?php echo $e_mail;?></a></li>
+            <li><?php echo $text_call;?><b><?php //echo $fax;?> <?php echo "+61 2 96982543"; ?></b></li>
+          </ul>
+        </div>
+        <div class="col-md-4 col-sm-5 col-xs-6 fullblock">
+          <ul class="topright">
+            <?php if ($logged) { ?>
+             <li> <a href="<?php echo $logout; ?>"><img src="catalog/view/theme/hidlighting/images/logout.png" alt=""><b><?php echo $text_logout; ?></b></a></li>
+             <li><a href="<?php echo $account; ?>"><img src="catalog/view/theme/hidlighting/images/user.png" alt=""><b><?php echo $text_account; ?></b></a></li>             
+               <?php } else {  ?>
+            <li><a href="<?php echo $login; ?>"><img src="catalog/view/theme/hidlighting/images/login.png" alt=""> <b><?php echo $text_login; ?></b></a></li>
+            <li><a href="<?php echo $register; ?>"><img src="catalog/view/theme/hidlighting/images/register.png" alt=""><b><?php echo $text_register; ?></b></a></li>
+            <?php } ?>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="logo">
+            <?php if ($logo) { ?>
+          <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
+          <?php } else { ?>
+          <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
+          <?php } ?>
+      </div>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="cartTop">
+         <?php echo $cart; ?>
+         <?php echo $search; ?>    
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<section class="navigationOuter">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <nav class="navbar navbar-default">
+          <div class=""> 
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <p class="menu">menu</p>
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            </div>
+            
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                
+                <li class="<?php if($url == $base){ echo "active"; } ?>"><a href="<?php echo $home; ?>" title="Home"><?php echo $text_home; ?></a></li>
+                	<?php foreach ($categories as $category) { ?>				
+					   <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
+                       <?php if ($category['children']) { ?>
+                        <ul class="dropdown-menu">
+                          <?php foreach ($category['children'] as $child) { ?>
+                           <li class="<?php // if ($category['category_id'] == $category_id) { echo 'active'; }?>" id="dropdownMenu">
+								<a href="<?php echo $child['href']; ?>" class="list-group-item1"><?php echo $child['name']; ?>	<?php if ($child['subChild']) { ?><span class="caret"></span><i class="fa fa-angle-right" aria-hidden="true"></i><?php } ?>	
+								</a>
+                               <?php if($child['subChild']){ ?>
+                               		<ul class="dropdown-menu">
+											<?php foreach($child['subChild'] as $sub){ ?>
+												<li>
+													<a href="<?php echo $sub['href']; ?>"><?php echo $sub['name']; ?></a>
+												</li>
+											<?php } ?>
+										</ul>
+								<?php } ?>
+                           </li>
+                          <?php } ?>
+                        </ul>
+                        <?php } ?>
+                        </li>
+					 <?php } ?>
+                              
+                <li><a href="<?php echo $contact; ?>" title="Need Help">Need Help</a></li>
+                <li><a href="<?php echo $special; ?>" title="Special Offer/Today's Offers">Special Offer/Today's Offers</a></li>
+                <li><a href="<?php echo $latest ?>" title="New Arrivals">New Arrivals</a></li>
+                <li class="borderNone"><a href="<?php echo $featured; ?>" title="Featured Products">featured Products</a></li>
+              </ul>
+            </div>
+            <!-- /.navbar-collapse --> 
+          </div>
+          
+          
+          <!-- /.container-fluid --> 
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Google Analytics - Enhanced Ecommerce [3xxx]</name>
+    <version>2.2.0</version>
+    <author>HuntBee OpenCart Services</author>
+    <link>https://www.huntbee.com</link>
+	<code>huntbee_analytics_ecommerce_ocmod</code>
+	
+	<file path="catalog/controller/product/category.php">
+		<operation>
+			<search><![CDATA[$results = $this->model_catalog_product->getProducts($filter_data);]]></search>
+			<add position="after"><![CDATA[
+			   $this->load->model('extension/module/google_ecommerce');
+			   if ($results and isset($data['breadcrumbs'])) {
+			     $data['product_impression_script'] =  $this->model_extension_module_google_ecommerce->build_product_impression($results, $page, $limit, $data['breadcrumbs'], 'Category Page List');
+    		   }else{
+    			  $data['product_impression_script'] = '';
+    		   }
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/controller/product/manufacturer.php">
+		<operation>
+			<search><![CDATA[$results = $this->model_catalog_product->getProducts($filter_data);]]></search>
+			<add position="after"><![CDATA[
+			   $this->load->model('extension/module/google_ecommerce');
+			   if ($results and isset($data['breadcrumbs'])) {
+			     $data['product_impression_script'] =  $this->model_extension_module_google_ecommerce->build_product_impression($results, $page, $limit, $data['breadcrumbs'], 'Brand Page List');
+    		   }else{
+    			  $data['product_impression_script'] = '';
+    		   }
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/controller/product/search.php">
+		<operation>
+			<search><![CDATA[$results = $this->model_catalog_product->getProducts($filter_data);]]></search>
+			<add position="after"><![CDATA[
+			   $this->load->model('extension/module/google_ecommerce');
+			   if ($results and isset($data['breadcrumbs'])) {
+			     $data['product_impression_script'] =  $this->model_extension_module_google_ecommerce->build_product_impression($results, $page, $limit, $data['breadcrumbs'], 'Search Results');
+    		   }else{
+    			  $data['product_impression_script'] = '';
+    		   }
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/controller/product/special.php">
+		<operation>
+			<search><![CDATA[$results = $this->model_catalog_product->getProductSpecials($filter_data);]]></search>
+			<add position="after"><![CDATA[
+			   $this->load->model('extension/module/google_ecommerce');
+			   if ($results and isset($data['breadcrumbs'])) {
+			     $data['product_impression_script'] =  $this->model_extension_module_google_ecommerce->build_product_impression($results, $page, $limit, $data['breadcrumbs'], 'Special Page List');
+    		   }else{
+    			  $data['product_impression_script'] = '';
+    		   }
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/controller/product/product.php">
+		<operation>
+			<search><![CDATA[$product_info = $this->model_catalog_product->getProduct($product_id);]]></search>
+			<add position="after"><![CDATA[
+			   $this->load->model('extension/module/google_ecommerce');
+			   if ($product_info and isset($data['breadcrumbs'])) {
+			     $data['product_view_script'] =  $this->model_extension_module_google_ecommerce->build_product_view($product_info, $data['breadcrumbs']);
+    		   }else{
+    			  $data['product_view_script'] = '';
+    		   }
+			]]></add>
+		</operation>
+	</file>
+
+	<file path="catalog/controller/checkout/cart.php">
+		<operation>
+			<search><![CDATA[$this->cart->remove($this->request->post['key']);]]></search>
+			<add position="before"><![CDATA[
+			if (version_compare(VERSION,'2.1.0.1','>=' )) {
+			    $key = $this->request->post['key'];
+				$cart_query = $this->db->query("SELECT * FROM ".DB_PREFIX."cart WHERE `cart_id` = '".(int)$key."' LIMIT 1");
+				if ($cart_query->row) {
+				    $json['product_id'] = $cart_query->row['product_id'];
+				}else{
+				    $json['product_id'] = 0;
+				}
+			}	
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/controller/checkout/checkout.php">
+		<operation>
+			<search><![CDATA[$products = $this->cart->getProducts();]]></search>
+			<add position="after"><![CDATA[
+			    $this->load->model('extension/module/google_ecommerce');
+			    $data['ecommerce_checkout_script'] =  $this->model_extension_module_google_ecommerce->build_begin_checkout();
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/view/theme/*/template/checkout/checkout.twig">
+        <operation>
+            <search><![CDATA[{{ footer }}]]></search>
+            <add position="before"><![CDATA[
+			    <!--START - GOOGLE ANALYTICS ECOMMERCE TRACKING-->
+			        {% if (ecommerce_checkout_script is defined) %} {{ ecommerce_checkout_script }} {% endif %} 
+			    <!--END - GOOGLE ANALYTICS ECOMMERCE TRACKING-->
+            	]]>
+            </add>
+        </operation>
+    </file>
+	
+	<file path="catalog/controller/checkout/success.php">
+		<operation>
+			<search><![CDATA[$this->load->language('checkout/success');]]></search>
+			<add position="after"><![CDATA[
+			
+			if (isset($this->session->data['order_id'])) {
+		    	$order_id = $this->session->data['order_id'];
+			    $this->load->model('extension/module/google_ecommerce');
+			    $data['ecommerce_tracking_script'] =  $this->model_extension_module_google_ecommerce->build_ecommerce($order_id);
+			} else {
+			    $data['ecommerce_tracking_script'] = '';
+			}
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/view/theme/*/template/common/success.twig">
+        <operation>
+            <search><![CDATA[{{ footer }}]]></search>
+            <add position="before"><![CDATA[
+			    <!--START - GOOGLE ANALYTICS ECOMMERCE TRACKING-->
+			        {% if (ecommerce_tracking_script is defined) %} {{ ecommerce_tracking_script }} {% endif %} 
+			    <!--END - GOOGLE ANALYTICS ECOMMERCE TRACKING-->
+            	]]>
+            </add>
+        </operation>
+    </file>
+    
+    <file path="catalog/view/theme/*/template/product/{category,manufacturer_info,search,special}.twig">
+        <operation>
+            <search><![CDATA[{{ footer }}]]></search>
+            <add position="before"><![CDATA[
+			    <!--START - GOOGLE ANALYTICS ECOMMERCE TRACKING-->
+			        {% if (product_impression_script is defined) %} {{ product_impression_script }} {% endif %}
+			    <!--END - GOOGLE ANALYTICS ECOMMERCE TRACKING-->
+            	]]>
+            </add>
+        </operation>
+    </file>
+    
+    <file path="catalog/view/theme/*/template/product/product.twig">
+        <operation>
+            <search><![CDATA[{{ footer }}]]></search>
+            <add position="before"><![CDATA[
+			    <!--START - GOOGLE ANALYTICS ECOMMERCE TRACKING-->
+			        {{ product_view_script }} 
+			        <script type="text/javascript">
+			           function sendAddProductInfo() {
+    			            $.ajax({
+                    		    url: 'index.php?route=extension/module/google_ecommerce/get_product_info&product_id={{ product_id }}',
+                    	    	type: 'post',
+                    		    dataType: 'json',
+                    		    success: function(json) {
+                    		        if (json['error']) {
+                    		            console.log(json['error']);
+                    		        }else{
+                    		            gtag('event', 'add_to_cart', {
+                                          "items": [
+                                            {
+                                              "id": json.id+'_au',
+                                              "name": json.product_name,
+                                              "list_name": "Product Page",
+                                              "brand": json.brand,
+                                              "category": json.category,
+                                              "price": json.price
+                                            }
+                                          ]
+                                        });
+                    		        }
+                    		    }
+    	                    });
+	                   }
+			        </script>
+			    <!--END - GOOGLE ANALYTICS ECOMMERCE TRACKING-->
+            	]]>
+            </add>
+        </operation>
+        
+        <operation>
+            <search><![CDATA[$('.breadcrumb').after]]></search>
+            <add position="before"><![CDATA[sendAddProductInfo();]]></add>
+        </operation>
+    </file>
+    
+    <file path="admin/view/template/sale/order_info.twig">
+        <operation>
+            <search><![CDATA[{{ footer }}]]></search>
+            <add position="before"><![CDATA[
+			    <script type="text/javascript">
+                    $(document).ready(function() {
+                    	$('#ga-refund-block').html('<center><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i></center>');
+                    	$('#ga-refund-block').load('index.php?route=extension/hbapps/google_ecommerce/ga_refund_block&user_token={{ user_token }}&order_id={{ order_id }}');
+                    });
+                </script>
+            	]]>
+            </add>
+        </operation>
+        
+        <operation>
+            <search><![CDATA[<div id="history"></div>]]></search>
+            <add position="after"><![CDATA[<br><div id="ga-refund-block"></div>]]></add>
+        </operation>
+    </file>
+
+</modification>
