@@ -305,3 +305,9 @@ catalog\controller\extension\d_quickcheckout\payment_address.php
 catalog\controller\extension\d_quickcheckout\shipping_address.php
 catalog\controller\extension\d_quickcheckout\cart.php
 catalog\controller\extension\d_quickcheckout\payment.php
+system\storage\modification\catalog\controller\product\category.php
+catalog\language\english\product\category.php
+system\storage\modification\catalog\view\theme\cits\template\product\category.tpl
+catalog\controller\product\product.php
+catalog\model\catalog\manufacturer.php
+catalog\model\catalog\review.php

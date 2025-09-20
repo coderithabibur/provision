@@ -1,3 +1,39 @@
+
+<?php foreach($products as $product) { ?>
+    <div class="single-product-item">
+      <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
+      <div class="single-product-item-info">
+        <h2><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h2>
+        <div class="best-sellers-item-price">
+          <span><?php echo $product['price'] ?></span>
+          <del>$40.00</del>
+          <div class="save-price">
+            <p>save 5%</p>
+          </div>
+        </div>
+        <div class="single-product-reviews">
+          <ul>
+            <li><i class="fa-solid fa-star"></i></li>
+            <li><i class="fa-solid fa-star"></i></li>
+            <li><i class="fa-solid fa-star"></i></li>
+            <li><i class="fa-solid fa-star"></i></li>
+            <li><i class="fa-solid fa-star"></i></li>
+          </ul>
+          <p><?php echo $product['reviews']; ?></p>
+        </div>
+        
+        <div class="single-product-btn-group">
+          <button type="submit" onclick="cart.add('<?php echo $product['product_id']; ?>');">add to cart</button>
+          <button><i class="fa-solid fa-code-compare"></i></button>
+        </div>
+      </div>
+    </div>
+  <?php } ?>
+
+
+
+
+<!-- 
 <div class="row inline-flex">
   <?php foreach ($products as $product) {
     ?>
@@ -61,4 +97,4 @@
   </div>
   <?php
   } ?>
-</div>
+</div> -->

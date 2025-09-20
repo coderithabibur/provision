@@ -82,6 +82,7 @@
 
   .container {
     max-width: 1440px;
+    width: 100%;
   }
 
   /*****************************************************/
@@ -824,10 +825,12 @@
 
   .single-product-item a {
     overflow: hidden;
+    width: 100%;
   }
 
   .single-product-item a img {
     transition: 0.3s;
+    width: 100%;
   }
 
   .single-product-item:hover a img {

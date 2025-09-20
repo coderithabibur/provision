@@ -197,7 +197,7 @@
       </div>
       <div class="header-top-right">
         <a href="/login">
-          <i class="fa-solid fa-right-to-bracket"></i> Login
+          <i class="fa-solid fa-right-to-bracket"></i> Loginn
         </a>
         <a href="/register">
           <i class="fa-solid fa-user-plus"></i> Register
