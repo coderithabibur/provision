@@ -15,20 +15,10 @@ class ControllerCommonHome extends Controller {
 		$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> 42cf401b553c5b7dd8065787d58297edbc791396
 		// Home page Data
 		$data['categories'] = $this->model_catalog_category->getCategories();
 		$data['buy1get1'] = $this->getProductInfoById(290);
         $data['buy1get12'] = $this->getProductInfoById(251);
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> 42cf401b553c5b7dd8065787d58297edbc791396
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/home.tpl')) {
 			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/common/home.tpl', $data));
 		} else {
@@ -58,20 +48,13 @@ class ControllerCommonHome extends Controller {
                 'model' => $product_info['model'],
                 'image' => $image,
                 'price' => $price,
-<<<<<<< HEAD
                 'href'  => $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
-=======
-                'href'  => $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
->>>>>>> 42cf401b553c5b7dd8065787d58297edbc791396
             );
         }
 
         // Return an empty array if the product is not found
         return array();
     }
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 42cf401b553c5b7dd8065787d58297edbc791396
 }
