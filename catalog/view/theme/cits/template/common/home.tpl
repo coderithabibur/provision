@@ -258,7 +258,7 @@
         <div class="feature-content">
           <h4>Shipping</h4>
           <p>Deliver within 24 hours</p>
-        </div>
+        </div>  
       </div>
       <div class="feature-item">
         <span class="feature-icon"><i class="fa-solid fa-headset"></i></span>
