@@ -269,3 +269,5 @@
       </div>
     </div>
   </section>
+
+  <?php echo $footer; ?>
