@@ -92,7 +92,7 @@
           <p><i class="fa-solid fa-envelope"></i><a href="mailto:Support1234@Orlife">Support1234@Orlife</a></p>
         </div>
       </div>
-    </div>
+    </div>  
 
     <!-- Footer Bottom -->
     <div class="footer-bottom">
