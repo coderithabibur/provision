@@ -311,3 +311,6 @@ system\storage\modification\catalog\view\theme\cits\template\product\category.tp
 catalog\controller\product\product.php
 catalog\model\catalog\manufacturer.php
 catalog\model\catalog\review.php
+catalog\view\theme\cits\template\error\not_found.tpl
+catalog\controller\product\category.php
+catalog\view\theme\cits\template\product\category.tpl

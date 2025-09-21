@@ -231,7 +231,7 @@
             <button type="submit">Submit</button>
           </form>
         </div>
-      </div>
+      </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     </div>
   </section>
 
@@ -469,29 +469,6 @@
         <!-- Add Navigation -->
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="brand-logo-slider">
-    <div class="container">
-      <h2>featured brand</h2>
-      <div class="brand-slider swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="assets/images/logo-1.png" alt="Brand 1"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-2.png" alt="Brand 2"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-3.png" alt="Brand 3"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-4.png" alt="Brand 4"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-5.png" alt="Brand 5"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-6.png" alt="Brand 6"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-1.png" alt="Brand 1"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-2.png" alt="Brand 2"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-3.png" alt="Brand 3"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-4.png" alt="Brand 4"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-5.png" alt="Brand 5"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-6.png" alt="Brand 6"></div>
-        </div>
       </div>
     </div>
   </section>
