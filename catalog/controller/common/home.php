@@ -15,6 +15,7 @@ class ControllerCommonHome extends Controller {
 		$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
+        
 		// Home page Data
 		$data['categories'] = $this->model_catalog_category->getCategories();
 		$data['buy1get1'] = $this->getProductInfoById(290);
