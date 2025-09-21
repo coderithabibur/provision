@@ -15,7 +15,7 @@
           <li><button>LED Headlight Control Modules</button></li>
         </ul>
       </div>
-      <div class="category-product-grid">              
+      <div class="category-product-grid"> 
         <?php echo $column_right; ?>
       </div>
     </div>
