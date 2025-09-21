@@ -1,11 +1,17 @@
 <?php echo $header; ?>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 42cf401b553c5b7dd8065787d58297edbc791396
 <pre>
 <?php print_r($data['categories']);?>
 <?php print_r($data['buy1get1']);?>
 <?php print_r($data['buy1get12']);?>
 </pre>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 42cf401b553c5b7dd8065787d58297edbc791396
   <section class="hero-slider swiper">
     <div class="swiper-wrapper">
 
