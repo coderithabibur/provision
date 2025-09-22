@@ -4,8 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-            <div class="product__carousel">
-                
+            <div class="product__carousel">                
                 <!-- Main Product Gallery -->
                 <div class="swiper-container gallery-top">
                     <div class="swiper-wrapper">
@@ -137,105 +136,29 @@
     </div>
   </section>
 
-  <!-- Product Tabs -->
-  <section class="product-tabs">
-    <div class="container">
-      <ul class="product-tab-nav">
-        <li class="active" data-tab="description">Description</li>
-        <li data-tab="additional">Additional information</li>
-        <li data-tab="reviews">Reviews (0)</li>
-      </ul>
-
-      <!-- Description Tab -->
-      <div class="product-tab-content active" id="description">
-        <?php echo $description; ?>
-      </div>
-
-      <!-- Additional Information Tab -->
-      <div class="product-tab-content" id="additional">
-        <p>Additional information content goes here...</p>
-      </div>
-
-      <!-- Reviews Tab -->
-      <div class="product-tab-content" id="reviews">
-        <div class="reviews-list">
-          <div class="review-item">
-            <div class="review-avatar">
-              <img src="assets/images/user.png">
-            </div>
-            <div class="review-content">
-              <div class="review-rating">★★★☆☆</div>
-              <div class="review-author">Alex — June 12, 2024</div>
-              <p>Full of flavour but with palate cleansing acidity, our kiwifruit are rich in fibre and packed with the
-                enzyme actinidin which are brilliant for digestion.</p>
-            </div>
-          </div>
-
-          <div class="review-item">
-            <div class="review-avatar">
-              <img src="assets/images/user.png">
-            </div>
-            <div class="review-content">
-              <div class="review-rating">★★★★★</div>
-              <div class="review-author">Admin — June 14, 2024</div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae malesuada velit, ac eleifend purus.
-                Cras fermentum dictum massa, sit amet rhoncus purus tincidunt vel.</p>
-            </div>
-          </div>
-
-          <div class="review-item">
-            <div class="review-avatar">
-              <img src="assets/images/user.png">
-            </div>
-            <div class="review-content">
-              <div class="review-rating">★★★★★</div>
-              <div class="review-author">Tony Nguyen — June 14, 2024</div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae malesuada velit, ac eleifend purus.
-                Cras fermentum dictum massa, sit amet rhoncus purus tincidunt vel.</p>
-            </div>
-          </div>
-
-          <div class="review-item">
-            <div class="review-avatar">
-              <img src="assets/images/user.png">
-            </div>
-            <div class="review-content">
-              <div class="review-rating">★★★★★</div>
-              <div class="review-author">Nathan Lee — June 14, 2024</div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae malesuada velit, ac eleifend purus.
-                Cras fermentum dictum massa, sit amet rhoncus purus tincidunt vel.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Add Review Form -->
-        <div class="add-review">
-          <h4>Add a Review</h4>
-          <p>Your email address will not be published. Required fields are marked *</p>
-          <form>
-            <label>Your rating *</label>
-            <div class="rating-stars">
-              <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-            </div>
-            <label>Review Title *</label>
-            <input type="text" required>
-            <label>Name *</label>
-            <input type="text" required>
-            <label>Email *</label>
-            <input type="email" required>
-            <label>Your review *</label>
-            <textarea required></textarea>
-            <label>
-              <input type="checkbox"> Save my name, email, and website in this browser for the next time I comment.
-            </label>
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-      </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+  <section class="product-page-gallery">
+    <div class="pro-left-image">
+      <a href="assets/images/product-1.jpg" class="popup-link">
+        <img src="assets/images/product-1.jpg">
+      </a>
+    </div>
+    <div class="pro-right-images">
+      <a href="assets/images/product-2.jpg" class="popup-link">
+        <img src="assets/images/product-2.jpg">
+      </a>
+      <a href="assets/images/product-3.jpg" class="popup-link">
+        <img src="assets/images/product-3.jpg">
+      </a>
+      <a href="assets/images/product-1.jpg" class="popup-link">
+        <img src="assets/images/product-1.jpg">
+      </a>
+      <a href="assets/images/product-2.jpg" class="popup-link">
+        <img src="assets/images/product-2.jpg">
+      </a>
     </div>
   </section>
 
-  <div class="product-featured-section">
+  <div class="product-featured-section" style="padding-top: 0;">
     <div class="single-product-featured" style="background-image: url(assets/images/img-1.jpg);">
       <div class="container">
         <div class="single-product-featured-content">
@@ -268,6 +191,46 @@
     </div>
   </div>
 
+  <section class="dimensions-area">
+    <div class="container">
+      <img src="assets/images/d3s-01.avif">
+    </div>
+  </section>
+
+  <section class="product-tech-info-area">
+    <div class="container">
+      <div class="product-info-container">
+        <!-- Left Side: Product Features -->
+        <div class="product-features">
+          <div class="section-title">Description</div>
+          <div class="feature-description">
+            <?php echo $description; ?>
+          </div>
+        </div>
+
+        <!-- Right Side: Technical Specifications -->
+        <div class="tech-specs">
+          <div class="section-title">TECH SPECS</div>
+          <ul class="tech-spec-list">
+            <li><span class="tech-spec-label">HOUSING MATERIAL</span><span class="tech-spec-value">6063 Aviation
+                Aluminium</span></li>
+            <li><span class="tech-spec-label">HID TYPE</span><span class="tech-spec-value">Xenon</span></li>
+            <li><span class="tech-spec-label">INPUT POWER</span><span class="tech-spec-value">35W</span></li>
+            <li><span class="tech-spec-label">ACTUAL LUMENS</span><span class="tech-spec-value">2,800Lm</span></li>
+            <li><span class="tech-spec-label">COMPATIBLE VOLTAGE</span><span class="tech-spec-value">DC 12v</span></li>
+            <li><span class="tech-spec-label">LIFESPAN</span><span class="tech-spec-value">3,000 hours</span></li>
+            <li><span class="tech-spec-label">CANBUS</span><span class="tech-spec-value">BUILT-IN</span></li>
+            <li><span class="tech-spec-label">SOCKET TYPE</span><span class="tech-spec-value">D3S</span></li>
+            <li><span class="tech-spec-label">CCT</span><span class="tech-spec-value">5500K</span></li>
+            <li><span class="tech-spec-label">OPERATING TEMP</span><span class="tech-spec-value">-40°C to +80°C</span>
+            </li>
+          </ul>
+          <?php echo $short_description; ?>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="video-hero">
     <video autoplay muted loop playsinline class="video-bg">
       <source src="https://cdn.shopify.com/videos/c/o/v/18c2e078311d40b38447d79e0db19bc8.mp4" type="video/mp4">
@@ -280,6 +243,86 @@
       <h1>NEXT GEN - 8.5" SPOT LIGHT KIT</h1>
       <p>Ranger/Everest Stealth Kit</p>
       <a href="#">Shop now </a>
+    </div>
+  </section>
+
+  <section class="product-reviews-content">
+    <div class="container">
+      <h2>Reviews</h2>
+      <div class="reviews-list">
+        <div class="review-item">
+          <div class="review-avatar">
+            <img src="assets/images/user.png">
+          </div>
+          <div class="review-content">
+            <div class="review-rating">★★★☆☆</div>
+            <div class="review-author">Alex — June 12, 2024</div>
+            <p>Full of flavour but with palate cleansing acidity, our kiwifruit are rich in fibre and packed with
+              the
+              enzyme actinidin which are brilliant for digestion.</p>
+          </div>
+        </div>
+
+        <div class="review-item">
+          <div class="review-avatar">
+            <img src="assets/images/user.png">
+          </div>
+          <div class="review-content">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-author">Admin — June 14, 2024</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae malesuada velit, ac eleifend purus.
+              Cras fermentum dictum massa, sit amet rhoncus purus tincidunt vel.</p>
+          </div>
+        </div>
+
+        <div class="review-item">
+          <div class="review-avatar">
+            <img src="assets/images/user.png">
+          </div>
+          <div class="review-content">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-author">Tony Nguyen — June 14, 2024</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae malesuada velit, ac eleifend purus.
+              Cras fermentum dictum massa, sit amet rhoncus purus tincidunt vel.</p>
+          </div>
+        </div>
+
+        <div class="review-item">
+          <div class="review-avatar">
+            <img src="assets/images/user.png">
+          </div>
+          <div class="review-content">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-author">Nathan Lee — June 14, 2024</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae malesuada velit, ac eleifend purus.
+              Cras fermentum dictum massa, sit amet rhoncus purus tincidunt vel.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Review Form -->
+      <div class="add-review">
+        <h4>Add a Review</h4>
+        <p>Your email address will not be published. Required fields are marked *</p>
+        <form>
+          <label>Your rating *</label>
+          <div class="rating-stars">
+            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+          </div>
+          <label>Review Title *</label>
+          <input type="text" required>
+          <label>Name *</label>
+          <input type="text" required>
+          <label>Email *</label>
+          <input type="email" required>
+          <label>Your review *</label>
+          <textarea required></textarea>
+          <label>
+            <input type="checkbox"> Save my name, email, and website in this browser for the next time I comment.
+          </label>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   </section>
 

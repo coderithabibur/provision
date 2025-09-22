@@ -17,49 +17,48 @@
       </div>
       <div class="category-product-grid"> 
         <?php if ($products) { ?>
-            <?php foreach ($products as $product) { ?>
-              <div class="single-product-item">
-                <a href="<?php echo $product['href']; ?>">
-                  <img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" />
-                </a>
-                <div class="single-product-item-info">
-                  <h2><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h2>
-                  <div class="best-sellers-item-price">
-                    <span><?php echo $product['price']; ?></span>
-                    <del><?php echo $product['special']; ?></del>
-                    <div class="save-price">
-                      <p>save 5%</p>
-                    </div>
-                  </div>
-                  <div class="single-product-reviews">
-                    <ul>
-                      <li><i class="fa-solid fa-star"></i></li>
-                      <li><i class="fa-solid fa-star"></i></li>
-                      <li><i class="fa-solid fa-star"></i></li>
-                      <li><i class="fa-solid fa-star"></i></li>
-                      <li><i class="fa-solid fa-star"></i></li>
-                    </ul>
-                    <p><?php echo $product['reviews']; ?></p>
-                  </div>
-                  <div class="single-product-btn-group">
-                    <button onclick="cart.add('<?php echo $product['product_id']; ?>');">
-                      <?php echo $button_cart; ?>
-                    </button>
-                    <button><i class="fa-solid fa-code-compare"></i></button>
-                  </div>
+        <?php foreach ($products as $product) { ?>
+          <div class="single-product-item">
+            <a href="<?php echo $product['href']; ?>">
+              <img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" />
+            </a>
+            <div class="single-product-item-info">
+              <h2><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h2>
+              <div class="best-sellers-item-price">
+                <span><?php echo $product['price']; ?></span>
+                <del><?php echo $product['special']; ?></del>
+                <div class="save-price">
+                  <p>save 5%</p>
                 </div>
               </div>
-            <?php } ?>
-
-          <div class="pagination">
-            <?php echo $pagination; ?>
-            <span class="results"><?php echo $results; ?></span>
+              <div class="single-product-reviews">
+                <ul>
+                  <li><i class="fa-solid fa-star"></i></li>
+                  <li><i class="fa-solid fa-star"></i></li>
+                  <li><i class="fa-solid fa-star"></i></li>
+                  <li><i class="fa-solid fa-star"></i></li>
+                  <li><i class="fa-solid fa-star"></i></li>
+                </ul>
+                <p><?php echo $product['reviews']; ?></p>
+              </div>
+              <div class="single-product-btn-group">
+                <button onclick="cart.add('<?php echo $product['product_id']; ?>');">
+                  <?php echo $button_cart; ?>
+                </button>
+                <button><i class="fa-solid fa-code-compare"></i></button>
+              </div>
+            </div>
           </div>
-
-        <?php } else { ?>
-          <p><?php echo $text_empty; ?></p>
-        <?php } ?>        
+        <?php } ?>
       </div>
+      <div class="pagination">
+        <?php echo $pagination; ?>
+        <span class="results"><?php echo $results; ?></span>
+      </div>
+
+      <?php } else { ?>
+        <p><?php echo $text_empty; ?></p>
+      <?php } ?>
     </div>
   </section>
 

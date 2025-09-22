@@ -1468,6 +1468,10 @@
     margin-bottom: 20px;
   }
 
+  .pagination {
+    display: block;
+    text-align: center;
+  }
 
   /* Video Section */
 

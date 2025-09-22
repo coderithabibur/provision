@@ -314,3 +314,15 @@ catalog\model\catalog\review.php
 catalog\view\theme\cits\template\error\not_found.tpl
 catalog\controller\product\category.php
 catalog\view\theme\cits\template\product\category.tpl
+admin\language\english\catalog\product.php
+admin\language\english\feed\uksb_google_merchant.php
+admin\model\catalog\recurring.php
+admin\model\localisation\tax_class.php
+admin\model\localisation\stock_status.php
+system\storage\modification\admin\model\catalog\manufacturer.php
+system\storage\modification\admin\model\catalog\category.php
+admin\model\catalog\filter.php
+admin\model\catalog\attribute.php
+admin\model\catalog\option.php
+admin\model\catalog\download.php
+system\storage\modification\admin\view\template\catalog\product_form.tpl
