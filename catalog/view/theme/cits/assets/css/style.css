@@ -1454,9 +1454,13 @@
     margin-bottom: 20px;
   }
 
+  .category-content-area h1 {
+    margin-bottom: 20px;
+  }
+
   .category-content-area h2 {
-    font-size: 25px;
-    line-height: 35px;
+    font-size: 22px;
+    line-height: 32px;
     margin-bottom: 5px;
   }
 
