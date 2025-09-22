@@ -43,8 +43,8 @@
     <div class="footer-main">
       <div class="container footer-grid">
         <div class="footer-about">
-          <a href="#" class="footer-logo">
-            <img src="assets/images/footer-logo.jpg" alt="ProVision Logo">
+          <a href="<?php echo $home; ?>" class="footer-logo">
+            <img src="<?php echo $logo; ?>" alt="<?php echo $name; ?>">
           </a>
           <p>The small round table in the dinette may be great for casual me. Is simply dummy text of the printing.</p>
           <h2>Social Links</h2>
