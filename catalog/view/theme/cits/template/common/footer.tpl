@@ -1,24 +1,22 @@
-<?php $url= 'http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]; ?>
-
   <section class="brand-logo-slider">
     <div class="container">
       <h2>featured brand</h2>
       <div class="brand-slider swiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="assets/images/logo-1.png" alt="Brand 1"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-2.png" alt="Brand 2"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-3.png" alt="Brand 3"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-4.png" alt="Brand 4"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-5.png" alt="Brand 5"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-6.png" alt="Brand 6"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-1.png" alt="Brand 1"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-2.png" alt="Brand 2"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-3.png" alt="Brand 3"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-4.png" alt="Brand 4"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-5.png" alt="Brand 5"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-6.png" alt="Brand 6"></div>
+          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-1.png" alt="Brand 1"></div>
+          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-2.png" alt="Brand 2"></div>
+          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-3.png" alt="Brand 3"></div>
+          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-4.png" alt="Brand 4"></div>
+          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-5.png" alt="Brand 5"></div>
+          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-6.png" alt="Brand 6"></div>
+          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-1.png" alt="Brand 1"></div>
+          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-2.png" alt="Brand 2"></div>
+          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-3.png" alt="Brand 3"></div>
+          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-4.png" alt="Brand 4"></div>
+          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-5.png" alt="Brand 5"></div>
+          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-6.png" alt="Brand 6"></div>
         </div>
-      </div>
+      </div> 
     </div>
   </section>
 
@@ -44,7 +42,7 @@
       <div class="container footer-grid">
         <div class="footer-about">
           <a href="<?php echo $home; ?>" class="footer-logo">
-            <img src="<?php echo $logo; ?>" alt="<?php echo $name; ?>">
+            <img src="catalog/view/theme/cits/assets/images/footer-logo.jpg" alt="<?php echo $name; ?>">
           </a>
           <p>The small round table in the dinette may be great for casual me. Is simply dummy text of the printing.</p>
           <h2>Social Links</h2>
@@ -99,7 +97,7 @@
       <div class="container">
         <p>© ProVision. All Rights Reserved.</p>
         <div class="footer-payments">
-          <img src="assets/images/payment-method.png" alt="MasterCard">
+          <img src="catalog/view/theme/cits/assets/images/payment-method.png" alt="MasterCard">
         </div>
       </div>
     </div>
