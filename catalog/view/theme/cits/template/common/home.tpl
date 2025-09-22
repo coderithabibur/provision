@@ -136,7 +136,7 @@
     <div class="hightlights-content-area">
     <?php if (!empty($data['categories'])) : ?>
       <?php foreach($data['categories'] as $category) : ?>
-        <div class="single-highlights-item" style="https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D1S-Globes/HID-D1S-HID-Xenon-Globes-Australia-450x450.png">
+        <div class="single-highlights-item" style="background-image: url('https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D2R-Globes/D2R-HID-Xenon-Globe-Replacements-Australia-450x450.jpg);">
           <div class="highlights-item-info">
             <span>4 products</span>
             <h2><?php echo $category['name'] ?></h2>
@@ -150,7 +150,7 @@
   <section class="category-based-products">
     <div class="container">
       <div class="single-category-based">
-        <div class="single-category-based-left" style="background-image: url(assets/images/img-1.jpg);">
+        <div class="single-category-based-left" style="background-image: url(https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D2R-Globes/D2R-HID-Xenon-Globe-Replacements-Australia-450x450.jpg);">
           <h2>Flash Sale</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
           <a href="#">shop now</a>
@@ -215,7 +215,7 @@
   <img src="assets/images/review.png" style="width: 100%;">
 
   <!-- Logo Slider -->
-  <section class="brand-logo-slider">
+  <!-- <section class="brand-logo-slider">
     <div class="container">
       <h2>featured brand</h2>
       <div class="brand-slider swiper">
@@ -235,7 +235,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- Features -->
   <section class="section-features">
