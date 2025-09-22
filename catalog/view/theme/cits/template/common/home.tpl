@@ -1,17 +1,11 @@
 <?php echo $header; ?>
-<<<<<<< HEAD
 
-=======
->>>>>>> 42cf401b553c5b7dd8065787d58297edbc791396
-<pre>
-<?php print_r($data['categories']);?>
-<?php print_r($data['buy1get1']);?>
-<?php print_r($data['buy1get12']);?>
-</pre>
-<<<<<<< HEAD
+<!-- <pre>
+  <?php //print_r($data['categories']);?>
+  <?php //print_r($data['buy1get1']);?>
+  <?php //print_r($data['buy1get12']);?>
+</pre> -->
 
-=======
->>>>>>> 42cf401b553c5b7dd8065787d58297edbc791396
   <section class="hero-slider swiper">
     <div class="swiper-wrapper">
 
@@ -93,11 +87,11 @@
         </div>
         <div class="single-buy-get-free">
           <div class="buy-get-free-images">
-            <img src="<?php echo $data['buy1get12']['image'] ?>">
+            <img src="https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D1S-Globes/HID-D1S-HID-Xenon-Globes-Australia-450x450.png">
             <div class="plus-sybol">
               <p>+</p>
             </div>
-            <img src="<?php echo $data['buy1get12']['image'] ?>">
+            <img src="https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D1S-Globes/HID-D1S-HID-Xenon-Globes-Australia-450x450.png">
           </div>
           <h2><a href="<?php echo $data['buy1get1']['href'] ?>"><?php echo $data['buy1get1']['name']; ?></a></h2>
           <div class="best-sellers-item-price">
@@ -119,11 +113,11 @@
         </div>
         <div class="single-buy-get-free">
           <div class="buy-get-free-images">
-            <img src="<?php echo $data['buy1get12']['image'] ?>">
+            <img src="https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D2R-Globes/D2R-HID-Xenon-Globe-Replacements-Australia-450x450.jpg">
             <div class="plus-sybol">
               <p>+</p>
             </div>
-            <img src="<?php echo $data['buy1get12']['image'] ?>">
+            <img src="https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D2R-Globes/D2R-HID-Xenon-Globe-Replacements-Australia-450x450.jpg">
           </div>
           <h2><a href="<?php echo $data['buy1get12']['href'] ?>"><?php echo $data['buy1get12']['name']; ?></a></h2>
           <div class="best-sellers-item-price">
@@ -142,7 +136,7 @@
     <div class="hightlights-content-area">
     <?php if (!empty($data['categories'])) : ?>
       <?php foreach($data['categories'] as $category) : ?>
-        <div class="single-highlights-item" style="image/<?php echo $category['image']; ?>">
+        <div class="single-highlights-item" style="https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D1S-Globes/HID-D1S-HID-Xenon-Globes-Australia-450x450.png">
           <div class="highlights-item-info">
             <span>4 products</span>
             <h2><?php echo $category['name'] ?></h2>
@@ -183,7 +177,7 @@
   <!-- Product Categories -->
   <section class="product-categories">
     <div class="category-grid">
-      <a href="#" class="category-item" style="background-image: url(assets/images/img-1.jpg);">
+      <a href="#" class="category-item" style="background-image: url(https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D1S-Globes/HID-D1S-HID-Xenon-Globes-Australia-450x450.png);">
         <div class="category-content">
           <h4>Driving Lights</h4>
           <h2>Type-X™ EVO</h2>
@@ -191,7 +185,7 @@
           <span>Learn more ></span>
         </div>
       </a>
-      <a href="#" class="category-item" style="background-image: url(assets/images/img-2.jpg);">
+      <a href="#" class="category-item" style="background-image: url(https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D1S-Globes/HID-D1S-HID-Xenon-Globes-Australia-450x450.png);">
         <div class="category-content">
           <p>LED Driving Lights</p>
           <h2>Type-X™ Sport</h2>

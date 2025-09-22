@@ -22,12 +22,6 @@
     <meta name="msvalidate.01" content="63BF2CA10896D52F7D0E3239BF477F37" />
     <link href="catalog/view/theme/cits/stylesheet/bootstrap.css" rel="stylesheet" media="screen" />
     <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <!--link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" /-->
-
-    <!-- <link type="text/css" rel="stylesheet" href="catalog/view/theme/cits/stylesheet/jquery.smartmenus.bootstrap.css"> -->
-    <!-- <link href="catalog/view/theme/cits/stylesheet/stylesheet.css" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" type="text/css" href="catalog/view/theme/cits/stylesheet/core.css"> -->    
-    <!-- <link rel="stylesheet" type="text/css" href="catalog/view/theme/cits/stylesheet/responsive.css"> -->
     <link
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
@@ -57,21 +51,9 @@
     <script  src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script  src="catalog/view/theme/cits/js/bootstrap.min.js" type="text/javascript"></script>
     <script  src="catalog/view/javascript/common.js" type="text/javascript"></script>
-    <!-- <script async type="text/javascript" src="catalog/view/theme/cits/js/jquery.smartmenus.js"></script>
-    <script async type="text/javascript" src="catalog/view/theme/cits/js/jquery.smartmenus.bootstrap.js"></script> -->
-    <!--script src="catalog/view/theme/cits/js/jquery.ieresponsify-1.1.js"></script-->
+
     <script  src="catalog/view/theme/cits/js/core.js"></script>
     <script  src="catalog/view/theme/cits/js/menu.js" type="text/javascript"></script>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script  src="catalog/view/theme/cits/js/html5shiv.js"></script>
-    <script  src="catalog/view/theme/cits/js/respond.js"></script>
-    <script  src="catalog/view/theme/cits/js/i.e-bootstrap.min.js"></script>
-    <![endif]-->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script src="catalog/view/theme/cits/assets/js/script.js"></script>
-    
     
     <script>
     (function(w,d,t,r,u)
@@ -152,7 +134,7 @@
       </div>
       <div class="header-top-right">
         <a href="/login">
-          <i class="fa-solid fa-right-to-bracket"></i> Loginn
+          <i class="fa-solid fa-right-to-bracket"></i> Login
         </a>
         <a href="/register">
           <i class="fa-solid fa-user-plus"></i> Register

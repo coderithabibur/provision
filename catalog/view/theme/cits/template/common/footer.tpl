@@ -103,5 +103,8 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="catalog/view/theme/cits/assets/js/script.js"></script>
+
 </body>
 </html>
