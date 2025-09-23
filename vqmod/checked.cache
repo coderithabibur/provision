@@ -326,3 +326,7 @@ admin\model\catalog\attribute.php
 admin\model\catalog\option.php
 admin\model\catalog\download.php
 system\storage\modification\admin\view\template\catalog\product_form.tpl
+admin\language\english\catalog\category.php
+admin\controller\common\filemanager.php
+admin\language\english\common\filemanager.php
+admin\view\template\common\filemanager.tpl
