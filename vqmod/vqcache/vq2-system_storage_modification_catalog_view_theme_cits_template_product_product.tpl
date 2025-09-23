@@ -91,7 +91,55 @@
 
             <!-- Current Price -->
             <div class="product-current-price"><?php echo $price; ?> <del>$150.00</del></div>
-            <p class="splDes"><?php echo $discount['quantity']; ?><?php echo $text_discount; ?><span><?php echo $discount['price']; ?><span class="eachText"> (<?php echo $txt_each; ?>)</span></span></p>
+
+            <?php if ($discounts) { ?>
+              <?php foreach ($discounts as $discount) { ?>
+              <p class="splDes"><?php echo $discount['quantity']; ?><?php echo $text_discount; ?><span><?php echo $discount['price']; ?><span class="eachText"> (<?php echo $txt_each; ?>)</span></span></p>
+              <?php } ?>
+            <?php } ?>
+
+            <p class="newprice"><?php echo $special; ?><span class="eachText"> (<?php echo $txt_each; ?>)</span>
+              <span class="newprice" style="font-size: 16px;"> - Discount:
+                <?php
+                  $prica = str_replace(',','',$price);
+                  $pricb = str_replace(',','',$special);
+                  $priceInt= str_replace('$','',$prica);
+                  $specialInt= str_replace('$','',$pricb);
+                  $disc = (($priceInt-$specialInt)/$priceInt)*100;
+                  ?>
+                <?php echo round($disc,2);?>% </span>
+            </p>
+
+            <div class="ratingsAndReviews">
+              <?php if ($product['rating']) { ?>
+              <div class="rating">
+                  <?php for ($i = 1; $i <= 5; $i++) { ?>
+                  <?php if ($product['rating'] < $i) { ?>
+                  <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                  <?php } else { ?>
+                  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                  <?php } ?>
+                  <?php } ?>
+              </div>
+              <?php } ?>
+
+              <div class="reviews">
+                  <a href="<?php echo $product['href']; ?>#customerReview"><?php echo $product['reviews']; ?></a>
+                  |
+                  <a href="<?php echo $product['href']; ?>#customerReview"><?php echo $text_write; ?></a>
+              </div>
+
+          </div>
+
+            <?php if ($manufacturer) { ?>
+            <p class="spl"><?php echo $text_manufacturer; ?> <a href="<?php echo $manufacturers; ?>"><?php echo $manufacturer; ?></a></p>
+            <?php } ?>
+            <p class="spl"><?php echo $text_model; ?> <span> <?php echo $model; ?></span></p>
+            <?php if ($reward) { ?>
+            <p class="spl"><?php echo $text_reward; ?> <span><?php echo $reward; ?></span></p>
+            <?php } ?>
+            <p class="spl"><?php echo $text_stock; ?> <span><?php echo $stock; ?></span></p>
+            
             <!-- Quantity & Add to Cart -->
             <div class="product-cart">
               <div class="quantity">
@@ -285,6 +333,68 @@
           </div>
         </div>
       </div>
+
+      <div class="tab-content">
+    <?php if ($review_status) { ?>
+    <div class="tab-pane active" id="tab-review">
+        <form class="form-horizontal" id="form-review">
+            <div id="review"></div>
+            <div class="reviewForm">
+                <div class="panel-box-title">
+                    <h2 class="title-orange"><?php echo $text_write; ?></h2>
+                </div>
+                <?php if ($review_guest) { ?>
+                <div class="fullWidth required">
+                    <div class="halfwidth">
+                        <label for="input-name"><?php echo $entry_name; ?></label>
+                        <input type="text" name="name" value="" id="input-name" placeholder="Enter your name…" class="textfeild" />
+                    </div>
+                </div>
+
+                <div class="fullWidth required">
+                    <div class="halfwidth">
+                        <label for="input-review"><?php echo $entry_review; ?></label>
+                        <textarea name="text" rows="0" cols="0" id="input-review" placeholder="Write Review" class="textareafeild"></textarea>
+                        <!--div class="help-block"><?php //echo $text_note; ?></div-->
+                    </div>
+                </div>
+
+                <div class="fullWidth required">
+                    <label><?php echo $entry_rating; ?></label>
+                    <div class="star-rating">
+                        <input id="star-5" type="radio" name="rating" value="5">
+                        <label for="star-5" title="5 stars"><i class="active fa fa-star" aria-hidden="true"></i></label>
+
+                        <input id="star-4" type="radio" name="rating" value="4">
+                        <label for="star-4" title="4 stars"><i class="active fa fa-star" aria-hidden="true"></i></label>
+
+                        <input id="star-3" type="radio" name="rating" value="3">
+                        <label for="star-3" title="3 stars"><i class="active fa fa-star" aria-hidden="true"></i></label>
+
+                        <input id="star-2" type="radio" name="rating" value="2">
+                        <label for="star-2" title="2 stars"><i class="active fa fa-star" aria-hidden="true"></i></label>
+
+                        <input id="star-1" type="radio" name="rating" value="1">
+                        <label for="star-1" title="1 star"><i class="active fa fa-star" aria-hidden="true"></i></label>
+                    </div>
+                </div>
+
+                <div class="fullWidth required">
+                    <div class="halfwidth captcha">
+                        <?php echo $captcha; ?>
+                    </div>
+                </div>
+
+                <button type="button" id="button-review" data-loading-text="<?php echo $text_loading; ?>" class="yellowbtn"><?php echo "Post"; ?></button>
+                <?php } else { ?>
+                    <?php echo $text_login; ?>
+                <?php } ?>
+            </div>
+        </form>
+    </div>
+    <?php } ?>
+</div>
+
 
       <!-- Add Review Form -->
       <div class="add-review">
