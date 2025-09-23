@@ -40,6 +40,7 @@
             <li><a href="#tab-image" data-toggle="tab"><?php echo $tab_image; ?></a></li>
             <li><a href="#tab-reward" data-toggle="tab"><?php echo $tab_reward; ?></a></li>
             <li><a href="#tab-design" data-toggle="tab"><?php echo $tab_design; ?></a></li>
+            <li><a href="#tab-gallery" data-toggle="tab">Gallery</a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab-general">
@@ -1308,6 +1309,53 @@
                 </table>
               </div>
             </div>
+
+            <div class="tab-pane" id="tab-gallery">
+              <div class="table-responsive">
+                <table id="gallery-images" class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <td class="text-left">Image</td>
+                      <td class="text-left">Sort Order</td>
+                      <td></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% set gallery_row = 0 %}
+                    {% for gallery in product_gallery %}
+                    <tr id="gallery-row{{ gallery_row }}">
+                      <td class="text-left">
+                        <a href="" id="thumb-gallery{{ gallery_row }}" data-toggle="image" class="img-thumbnail">
+                          <img src="{{ gallery.thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                        </a>
+                        <input type="hidden" name="product_gallery[{{ gallery_row }}][image]" value="{{ gallery.image }}" id="input-gallery{{ gallery_row }}" />
+                      </td>
+                      <td class="text-left">
+                        <input type="text" name="product_gallery[{{ gallery_row }}][sort_order]" value="{{ gallery.sort_order }}" placeholder="Sort Order" class="form-control" />
+                      </td>
+                      <td class="text-left">
+                        <button type="button" onclick="$('#gallery-row{{ gallery_row }}').remove();" data-toggle="tooltip" title="Remove" class="btn btn-danger">
+                          <i class="fa fa-minus-circle"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    {% set gallery_row = gallery_row + 1 %}
+                    {% endfor %}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="2"></td>
+                      <td class="text-left">
+                        <button type="button" onclick="addGallery();" data-toggle="tooltip" title="Add Image" class="btn btn-primary">
+                          <i class="fa fa-plus-circle"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+
           </div>
         </form>
       </div>
@@ -1861,6 +1909,28 @@ function addRecurring() {
 	$('#tab-recurring table tbody').append(html);
 }
 //--></script>
+
+
+
+<script type="text/javascript">
+var gallery_row = {{ gallery_row }};
+
+function addGallery() {
+    html  = '<tr id="gallery-row' + gallery_row + '">';
+    html += '  <td class="text-left"><a href="" id="thumb-gallery' + gallery_row + '" data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="product_gallery[' + gallery_row + '][image]" value="" id="input-gallery' + gallery_row + '" /></td>';
+    html += '  <td class="text-left"><input type="text" name="product_gallery[' + gallery_row + '][sort_order]" value="" placeholder="Sort Order" class="form-control" /></td>';
+    html += '  <td class="text-left"><button type="button" onclick="$(\'#gallery-row' + gallery_row + '\').remove();" data-toggle="tooltip" title="Remove" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+    html += '</tr>';
+
+    $('#gallery-images tbody').append(html);
+
+    gallery_row++;
+}
+</script>
+
+
+
+
   <script type="text/javascript"><!--
 
 $("#tab-google .btn.active").removeClass("btn-primary").addClass("btn-success");
