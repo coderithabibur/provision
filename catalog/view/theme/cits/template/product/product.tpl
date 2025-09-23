@@ -210,21 +210,7 @@
 
         <!-- Right Side: Technical Specifications -->
         <div class="tech-specs">
-          <div class="section-title">TECH SPECS</div>
-          <ul class="tech-spec-list">
-            <li><span class="tech-spec-label">HOUSING MATERIAL</span><span class="tech-spec-value">6063 Aviation
-                Aluminium</span></li>
-            <li><span class="tech-spec-label">HID TYPE</span><span class="tech-spec-value">Xenon</span></li>
-            <li><span class="tech-spec-label">INPUT POWER</span><span class="tech-spec-value">35W</span></li>
-            <li><span class="tech-spec-label">ACTUAL LUMENS</span><span class="tech-spec-value">2,800Lm</span></li>
-            <li><span class="tech-spec-label">COMPATIBLE VOLTAGE</span><span class="tech-spec-value">DC 12v</span></li>
-            <li><span class="tech-spec-label">LIFESPAN</span><span class="tech-spec-value">3,000 hours</span></li>
-            <li><span class="tech-spec-label">CANBUS</span><span class="tech-spec-value">BUILT-IN</span></li>
-            <li><span class="tech-spec-label">SOCKET TYPE</span><span class="tech-spec-value">D3S</span></li>
-            <li><span class="tech-spec-label">CCT</span><span class="tech-spec-value">5500K</span></li>
-            <li><span class="tech-spec-label">OPERATING TEMP</span><span class="tech-spec-value">-40°C to +80°C</span>
-            </li>
-          </ul>
+          <h2 class="section-title">TECH SPECS</h2>
           <?php echo $short_description; ?>
         </div>
       </div>
