@@ -1762,19 +1762,19 @@ class ControllerCatalogProduct extends Controller {
 		}
 
 		// Gallery
-		// $this->load->model('catalog/product');
-		// $product_gallery = $this->model_catalog_product->getProductGallery($this->request->get['product_id']);
-		// $data['product_gallery'] = array();
-		// foreach ($product_gallery as $gallery) {
-		// 		$data['product_gallery'][] = array(
-		// 				'image'      => $gallery['image'],
-		// 				'thumb'      => $this->model_tool_image->resize($gallery['image'], 100, 100),
-		// 				'sort_order' => $gallery['sort_order']
-		// 		);
-		// }
-		// if (isset($this->request->post['product_gallery'])) {
-		// 	$this->model_catalog_product->editProductGallery($product_id, $this->request->post['product_gallery']);
-		// }
+		$this->load->model('catalog/product');
+		$product_gallery = $this->model_catalog_product->getProductGallery($this->request->get['product_id']);
+		$data['product_gallery'] = array();
+		foreach ($product_gallery as $gallery) {
+				$data['product_gallery'][] = array(
+						'image'      => $gallery['image'],
+						'thumb'      => $this->model_tool_image->resize($gallery['image'], 100, 100),
+						'sort_order' => $gallery['sort_order']
+				);
+		}
+		if (isset($this->request->post['product_gallery'])) {
+			$this->model_catalog_product->editProductGallery($product_id, $this->request->post['product_gallery']);
+		}
 
 		// Downloads
 		$this->load->model('catalog/download');
