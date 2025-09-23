@@ -2,8 +2,8 @@
 
 <pre>
   <?php print_r($data['categories']);?>
-  <?php //print_r($data['buy1get1']);?>
-  <?php //print_r($data['buy1get12']);?>
+  <?php print_r($data['buy1get1']);?>
+  <?php print_r($data['buy1get12']);?>
 </pre>
 
   <section class="hero-slider swiper">
@@ -87,11 +87,11 @@
         </div>
         <div class="single-buy-get-free">
           <div class="buy-get-free-images">
-            <img src="https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D1S-Globes/HID-D1S-HID-Xenon-Globes-Australia-450x450.png">
+            <img src="<?php echo $data['buy1get1']['image']; ?>">
             <div class="plus-sybol">
               <p>+</p>
             </div>
-            <img src="https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D1S-Globes/HID-D1S-HID-Xenon-Globes-Australia-450x450.png">
+            <img src="<?php echo $data['buy1get1']['image']; ?>">
           </div>
           <h2><a href="<?php echo $data['buy1get1']['href'] ?>"><?php echo $data['buy1get1']['name']; ?></a></h2>
           <div class="best-sellers-item-price">
