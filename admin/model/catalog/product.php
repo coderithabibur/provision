@@ -708,19 +708,19 @@ class ModelCatalogProduct extends Model {
 		return $query->row['total'];
 	}
 
-	public function getProductGallery($product_id) {
-    $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_gallery WHERE product_id = '" . (int)$product_id . "' ORDER BY sort_order ASC");
+	// public function getProductGallery($product_id) {
+  //   $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_gallery WHERE product_id = '" . (int)$product_id . "' ORDER BY sort_order ASC");
 
-    return $query->rows;
-	}
+  //   return $query->rows;
+	// }
 
-	public function editProductGallery($product_id, $data) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "product_gallery WHERE product_id = '" . (int)$product_id . "'");
+	// public function editProductGallery($product_id, $data) {
+	// 	$this->db->query("DELETE FROM " . DB_PREFIX . "product_gallery WHERE product_id = '" . (int)$product_id . "'");
 
-		foreach ($data as $gallery) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "product_gallery SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($gallery['image']) . "', sort_order = '" . (int)$gallery['sort_order'] . "'");
-		}
-	}
+	// 	foreach ($data as $gallery) {
+	// 			$this->db->query("INSERT INTO " . DB_PREFIX . "product_gallery SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($gallery['image']) . "', sort_order = '" . (int)$gallery['sort_order'] . "'");
+	// 	}
+	// }
 
 
 }

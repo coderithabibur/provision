@@ -968,7 +968,7 @@
               </div>
             </div>
 
-            <div class="tab-pane" id="tab-gallery">
+            <!-- <div class="tab-pane" id="tab-gallery">
               <div class="table-responsive">
                 <table id="gallery-images" class="table table-striped table-bordered table-hover">
                   <thead>
@@ -1012,7 +1012,7 @@
                   </tfoot>
                 </table>
               </div>
-            </div>
+            </div> -->
 
           </div>
         </form>
@@ -1505,7 +1505,7 @@ function addRecurring() {
 
 
 <!-- Gallery Row -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var gallery_row = {{ gallery_row }};
 
 function addGallery() {
@@ -1519,7 +1519,7 @@ function addGallery() {
 
     gallery_row++;
 }
-</script>
+</script> -->
 
 
 
