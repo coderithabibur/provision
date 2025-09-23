@@ -330,3 +330,6 @@ admin\language\english\catalog\category.php
 admin\controller\common\filemanager.php
 admin\language\english\common\filemanager.php
 admin\view\template\common\filemanager.tpl
+admin\model\catalog\manufacturer.php
+admin\model\catalog\category.php
+admin\view\template\catalog\product_form.tpl

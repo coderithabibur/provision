@@ -1911,7 +1911,7 @@ function addRecurring() {
 //--></script>
 
 
-
+<!-- Gallery Row -->
 <script type="text/javascript">
 var gallery_row = {{ gallery_row }};
 
@@ -1927,7 +1927,6 @@ function addGallery() {
     gallery_row++;
 }
 </script>
-
 
 
 

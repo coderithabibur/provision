@@ -1523,7 +1523,6 @@ function addGallery() {
 
 
 
-
   <script type="text/javascript"><!--
 $('.date').datetimepicker({
 	pickTime: false
