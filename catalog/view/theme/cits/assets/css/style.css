@@ -2100,8 +2100,7 @@
     margin-bottom: 20px;
   }
 
-  .feature-list,
-  .tech-spec-list {
+  .feature-list {
     list-style: none;
     padding: 0;
     margin: 0 0 20px 0;
@@ -2109,13 +2108,6 @@
 
   .feature-list li {
     margin-bottom: 10px;
-  }
-
-  .tech-spec-list li {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--white-color);
-    padding: 8px 0;
   }
 
   strong {
@@ -2129,7 +2121,13 @@
     border-bottom: 1px solid #fff;
     padding-bottom: 10px;
     margin-bottom: 10px;
-}
+    gap: 15px;
+    text-align: right;
+  }
+
+  .tech-specs ul li b {
+    text-align: left;
+  }
 
   /* Product Reviews */
 
