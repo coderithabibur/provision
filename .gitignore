@@ -1,2 +1,2 @@
-system/storage
-system/storage/logs/error.log
+# Ignore everything inside the 'storage' directory...
+system/storage/*
