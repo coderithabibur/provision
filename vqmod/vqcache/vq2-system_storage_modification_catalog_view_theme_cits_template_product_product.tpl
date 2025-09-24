@@ -275,6 +275,11 @@
     Your browser does not support the video tag.
   </video>
 
+  <iframe class="video-iframe" width="100%" height="320" src="<?php echo $video_link?>"
+    frameborder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+
   <div class="video-overlay"></div>
 
   <div class="video-content">
