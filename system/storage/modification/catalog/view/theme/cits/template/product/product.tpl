@@ -297,8 +297,7 @@
       <!-- Add Review Form -->
       <div class="add-review">
         <h4><?php echo $text_write; ?></h4>
-        <p><?php echo $text_note; // optional note ?></p>        
-
+        <p><?php echo $text_note; // optional note ?></p>
         <?php if ($review_guest) { ?>
         <form class="form-horizontal" id="form-review">
           <label><?php echo $entry_rating; ?> *</label>
