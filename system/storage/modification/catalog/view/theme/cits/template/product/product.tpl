@@ -448,18 +448,22 @@
                       </h2>
 
                       <!-- Price -->
-                       <div class="best-sellers-item-price">
-                        <span><?php echo $product['special']; ?></span>
-                        <del><?php echo $product['price']; ?></del>
-                        <div class="save-price">
-                          <p>save <?php
-                              $old = preg_replace('/[^\d.]/', '', $product['price']);
-                              $new = preg_replace('/[^\d.]/', '', $product['special']);
-                              if ($old > 0) {
-                                echo round((($old - $new) / $old) * 100) . '%';
-                              }
-                            ?></p>
-                        </div>
+                      <div class="best-sellers-item-price">
+                        <?php if ($product['special']) { ?>
+                          <span><?php echo $product['special']; ?></span>
+                          <del><?php echo $product['price']; ?></del>
+                          <div class="save-price">
+                            <p>save <?php
+                                $old = preg_replace('/[^\d.]/', '', $product['price']);
+                                $new = preg_replace('/[^\d.]/', '', $product['special']);
+                                if ($old > 0) {
+                                  echo round((($old - $new) / $old) * 100) . '%';
+                                }
+                              ?></p>
+                          </div>
+                          <?php } else { ?>
+                              <span><?php echo $product['price']; ?></span>
+                          <?php } ?>
                       </div>
 
                       <!-- Reviews -->
