@@ -523,7 +523,7 @@
                                         <?php } else { ?>
                                         <?php echo $text_login; ?>
                                         <?php } ?>
-                                </div>
+                                    </div>
                                 </form>
                             </div>
                             <?php } ?>
