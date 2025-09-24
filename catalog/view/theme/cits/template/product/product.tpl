@@ -427,188 +427,90 @@
   <section class="related-products-area">
     <div class="container">
       <div class="related-products-slider">
-        <h2>Related products</h2>
+        <h2><?php echo $text_related; ?></h2>
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="single-product-item">
-              <a href="#"><img src="assets/images/product-1.jpg"></a>
-              <div class="single-product-item-info">
-                <h2><a href="#">D2R HID Xenon Bulbs - Buy One Get One Free - Express Delivery Included</a></h2>
-                <div class="best-sellers-item-price">
-                  <span>$35.00</span>
-                  <del>$40.00</del>
-                  <div class="save-price">
-                    <p>save 5%</p>
+          <?php foreach ($products as $product) { ?>
+            <div class="swiper-slide">
+              <div class="single-product-item">
+                  <!-- Product Image -->
+                  <a href="<?php echo $product['href']; ?>">
+                      <img src="<?php echo $product['thumb']; ?>" 
+                          alt="<?php echo $product['name']; ?>" 
+                          title="<?php echo $product['name']; ?>" />
+                  </a>
+
+                  <!-- Product Info -->
+                  <div class="single-product-item-info">
+                      <h2>
+                          <a href="<?php echo $product['href']; ?>">
+                              <?php echo $product['name']; ?>
+                          </a>
+                      </h2>
+
+                      <!-- Price -->
+                      <div class="best-sellers-item-price">
+                          <?php if ((float)$product['price'] > 0) { ?>
+                              <?php if (!$product['special']) { ?>
+                                  <span><?php echo $product['price']; ?></span>
+                              <?php } else { ?>
+                                  <span><?php echo $product['special']; ?></span>
+                                  <del><?php echo $product['price']; ?></del>
+                                  <div class="save-price">
+                                      <p>
+                                          save 
+                                          <?php
+                                              $old = preg_replace('/[^\d.]/', '', $product['price']);
+                                              $new = preg_replace('/[^\d.]/', '', $product['special']);
+                                              if ($old > 0) {
+                                                  echo round((($old - $new) / $old) * 100) . '%';
+                                              }
+                                          ?>
+                                      </p>
+                                  </div>
+                              <?php } ?>
+                          <?php } else { ?>
+                              <span>&nbsp;</span>
+                          <?php } ?>
+                      </div>
+
+                      <!-- Reviews -->
+                      <div class="single-product-reviews">
+                          <?php if ($product['rating']) { ?>
+                          <ul>
+                              <?php for ($j = 1; $j <= 5; $j++) { ?>
+                                  <li>
+                                      <?php if ($product['rating'] < $j) { ?>
+                                          <i class="fa-regular fa-star"></i>
+                                      <?php } else { ?>
+                                          <i class="fa-solid fa-star"></i>
+                                      <?php } ?>
+                                  </li>
+                              <?php } ?>
+                          </ul>
+                          <?php } ?>
+                          <p><?php echo $product['reviews']; ?></p>
+                      </div>
+
+                      <!-- Buttons -->
+                      <div class="single-product-btn-group">
+                          <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>');">
+                              <?php echo $button_cart; ?>
+                          </button>
+                          <button type="button" onclick="compare.add('<?php echo $product['product_id']; ?>');" aria-label="Add to Compare">
+                              <i class="fa-solid fa-code-compare"></i>
+                          </button>
+                      </div>
                   </div>
-                </div>
-                <div class="single-product-reviews">
-                  <ul>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                  </ul>
-                  <p>575 reviews</p>
-                </div>
-                <div class="single-product-btn-group">
-                  <button type="submit">add to cart</button>
-                  <button><i class="fa-solid fa-code-compare"></i></button>
-                </div>
               </div>
             </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="single-product-item">
-              <a href="#"><img src="assets/images/product-2.jpg"></a>
-              <div class="single-product-item-info">
-                <h2><a href="#">D2R HID Xenon Bulbs - Buy One Get One Free - Express Delivery Included</a></h2>
-                <div class="best-sellers-item-price">
-                  <span>$35.00</span>
-                  <del>$40.00</del>
-                  <div class="save-price">
-                    <p>save 5%</p>
-                  </div>
-                </div>
-                <div class="single-product-reviews">
-                  <ul>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                  </ul>
-                  <p>575 reviews</p>
-                </div>
-                <div class="single-product-btn-group">
-                  <button type="submit">add to cart</button>
-                  <button><i class="fa-solid fa-code-compare"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="single-product-item">
-              <a href="#"><img src="assets/images/product-3.jpg"></a>
-              <div class="single-product-item-info">
-                <h2><a href="#">D2R HID Xenon Bulbs - Buy One Get One Free - Express Delivery Included</a></h2>
-                <div class="best-sellers-item-price">
-                  <span>$35.00</span>
-                  <del>$40.00</del>
-                  <div class="save-price">
-                    <p>save 5%</p>
-                  </div>
-                </div>
-                <div class="single-product-reviews">
-                  <ul>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                  </ul>
-                  <p>575 reviews</p>
-                </div>
-                <div class="single-product-btn-group">
-                  <button type="submit">add to cart</button>
-                  <button><i class="fa-solid fa-code-compare"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="single-product-item">
-              <a href="#"><img src="assets/images/product-1.jpg"></a>
-              <div class="single-product-item-info">
-                <h2><a href="#">D2R HID Xenon Bulbs - Buy One Get One Free - Express Delivery Included</a></h2>
-                <div class="best-sellers-item-price">
-                  <span>$35.00</span>
-                  <del>$40.00</del>
-                  <div class="save-price">
-                    <p>save 5%</p>
-                  </div>
-                </div>
-                <div class="single-product-reviews">
-                  <ul>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                  </ul>
-                  <p>575 reviews</p>
-                </div>
-                <div class="single-product-btn-group">
-                  <button type="submit">add to cart</button>
-                  <button><i class="fa-solid fa-code-compare"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="single-product-item">
-              <a href="#"><img src="assets/images/product-2.jpg"></a>
-              <div class="single-product-item-info">
-                <h2><a href="#">D2R HID Xenon Bulbs - Buy One Get One Free - Express Delivery Included</a></h2>
-                <div class="best-sellers-item-price">
-                  <span>$35.00</span>
-                  <del>$40.00</del>
-                  <div class="save-price">
-                    <p>save 5%</p>
-                  </div>
-                </div>
-                <div class="single-product-reviews">
-                  <ul>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                  </ul>
-                  <p>575 reviews</p>
-                </div>
-                <div class="single-product-btn-group">
-                  <button type="submit">add to cart</button>
-                  <button><i class="fa-solid fa-code-compare"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="single-product-item">
-              <a href="#"><img src="assets/images/product-3.jpg"></a>
-              <div class="single-product-item-info">
-                <h2><a href="#">D2R HID Xenon Bulbs - Buy One Get One Free - Express Delivery Included</a></h2>
-                <div class="best-sellers-item-price">
-                  <span>$35.00</span>
-                  <del>$40.00</del>
-                  <div class="save-price">
-                    <p>save 5%</p>
-                  </div>
-                </div>
-                <div class="single-product-reviews">
-                  <ul>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                  </ul>
-                  <p>575 reviews</p>
-                </div>
-                <div class="single-product-btn-group">
-                  <button type="submit">add to cart</button>
-                  <button><i class="fa-solid fa-code-compare"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <?php } ?>
         </div>
 
-        <!-- Add Navigation -->
+        <!-- Swiper Navigation -->
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
       </div>
+
     </div>
   </section>
 
