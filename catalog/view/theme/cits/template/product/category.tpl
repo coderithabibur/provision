@@ -29,13 +29,14 @@
                 <del><?php echo $product['price']; ?></del>
                 <div class="save-price">
                   <p>save <?php
-                  $old = floatval(strip_tags(preg_replace('/[^0-9.]/', '', $product['price'])));
-                  $new = floatval(strip_tags(preg_replace('/[^0-9.]/', '', $product['special'])));
+                      $old = floatval(strip_tags(preg_replace('/[^0-9.]/', '', $product['price'])));
+                      $new = floatval(strip_tags(preg_replace('/[^0-9.]/', '', $product['special'])));
 
-                  if ($old > 0) {
-                    echo round((($old - $new) / $old) * 100) . '%';
-                  }
-                ?></p>
+                      if ($old > 0) {
+                        echo round((($old - $new) / $old) * 100) . '%';
+                      }
+                    ?>
+                  </p>
                 </div>
               </div>
               <div class="single-product-reviews">
