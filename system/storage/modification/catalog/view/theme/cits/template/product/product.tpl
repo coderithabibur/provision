@@ -292,146 +292,55 @@
 <section class="product-reviews-content">
   <div class="container">
     <h2>Reviews</h2>
-    <div class="reviews-list">
-      <div class="review-item">
-        <div class="review-avatar">
-          <img src="assets/images/user.png">
-        </div>
-        <div class="review-content">
-          <div class="review-rating">★★★☆☆</div>
-          <div class="review-author">Alex — June 12, 2024</div>
-          <p>Full of flavour but with palate cleansing acidity, our kiwifruit are rich in fibre and packed with
-            the
-            enzyme actinidin which are brilliant for digestion.</p>
-        </div>
-      </div>
-
-      <div class="review-item">
-        <div class="review-avatar">
-          <img src="assets/images/user.png">
-        </div>
-        <div class="review-content">
-          <div class="review-rating">★★★★★</div>
-          <div class="review-author">Admin — June 14, 2024</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae malesuada velit, ac eleifend purus.
-            Cras fermentum dictum massa, sit amet rhoncus purus tincidunt vel.</p>
-        </div>
-      </div>
-
-      <div class="review-item">
-        <div class="review-avatar">
-          <img src="assets/images/user.png">
-        </div>
-        <div class="review-content">
-          <div class="review-rating">★★★★★</div>
-          <div class="review-author">Tony Nguyen — June 14, 2024</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae malesuada velit, ac eleifend purus.
-            Cras fermentum dictum massa, sit amet rhoncus purus tincidunt vel.</p>
-        </div>
-      </div>
-
-      <div class="review-item">
-        <div class="review-avatar">
-          <img src="assets/images/user.png">
-        </div>
-        <div class="review-content">
-          <div class="review-rating">★★★★★</div>
-          <div class="review-author">Nathan Lee — June 14, 2024</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae malesuada velit, ac eleifend purus.
-            Cras fermentum dictum massa, sit amet rhoncus purus tincidunt vel.</p>
-        </div>
-      </div>
-    </div>
-
     <?php if ($review_status) { ?>
-    <form class="form-horizontal" id="form-review">
       <div id="review"></div>
-      <div class="reviewForm">
-        <div class="panel-box-title">
-          <h2 class="title-orange"><?php echo $text_write; ?></h2>
-        </div>
+      <!-- Add Review Form -->
+      <div class="add-review">
+        <h4><?php echo $text_write; ?></h4>
+        <p><?php echo $text_note; // optional note ?></p>        
+
         <?php if ($review_guest) { ?>
-        <div class="fullWidth required ">
-          <div class="halfwidth">
-            <label for="input-name"><?php echo $entry_name; ?></label>
-            <input type="text" name="name" value="" id="input-name" placeholder="Enter your name…" class="textfeild" />
+        <form class="form-horizontal" id="form-review">
+          <label><?php echo $entry_rating; ?> *</label>
+          <div class="rating-stars">
+            <input type="radio" id="star-5" name="rating" value="5"><label for="star-5">☆</label>
+            <input type="radio" id="star-4" name="rating" value="4"><label for="star-4">☆</label>
+            <input type="radio" id="star-3" name="rating" value="3"><label for="star-3">☆</label>
+            <input type="radio" id="star-2" name="rating" value="2"><label for="star-2">☆</label>
+            <input type="radio" id="star-1" name="rating" value="1"><label for="star-1">☆</label>
           </div>
-        </div>
-        <div class="fullWidth required">
-          <div class="halfwidth">
-            <label for="input-review"><?php echo $entry_review; ?></label>
-            <textarea name="text" rows="0" cols="0" id="input-review" placeholder="Write Review"
-              class="textareafeild"></textarea>
-            <!--div class="help-block"><?php //echo $text_note; ?></div-->
-          </div>
-        </div>
-        <div class="fullWidth required">
-          <label><?php echo $entry_rating; ?></label>
-          <div class="star-rating">
-            <input id="star-5" type="radio" name="rating" value="5">
-            <label for="star-5" title="5 stars">
-              <i class="active fa fa-star" aria-hidden="true"></i>
-            </label>
-            <input id="star-4" type="radio" name="rating" value="4">
-            <label for="star-4" title="4 stars">
-              <i class="active fa fa-star" aria-hidden="true"></i>
-            </label>
-            <input id="star-3" type="radio" name="rating" value="3">
-            <label for="star-3" title="3 stars">
-              <i class="active fa fa-star" aria-hidden="true"></i>
-            </label>
-            <input id="star-2" type="radio" name="rating" value="2">
-            <label for="star-2" title="2 stars">
-              <i class="active fa fa-star" aria-hidden="true"></i>
-            </label>
-            <input id="star-1" type="radio" name="rating" value="1">
-            <label for="star-1" title="1 star">
-              <i class="active fa fa-star" aria-hidden="true"></i>
-            </label>
-          </div>
-        </div>
-        <div class="fullWidth required">
-          <div class="halfwidth captcha">
+
+          <label><?php echo $entry_review; ?> *</label>
+          <input type="text" name="title" id="input-title" placeholder="Enter review title…" required>
+
+          <label><?php echo $entry_name; ?> *</label>
+          <input type="text" name="name" value="" id="input-name" placeholder="Enter your name…" required>
+
+          <label>Email *</label>
+          <input type="email" name="email" id="input-email" placeholder="Enter your email…" required>
+
+          <label><?php echo $entry_review; ?> *</label>
+          <textarea name="text" id="input-review" placeholder="Write Review" required></textarea>
+
+          <label>
+            <input type="checkbox"> Save my name, email, and website in this browser for the next time I comment.
+          </label>
+
+          <div class="captcha">
             <?php echo $captcha; ?>
           </div>
-        </div>
-        <button type="button" id="button-review" data-loading-text="<?php echo $text_loading; ?>"
-          class="yellowbtn"><?php echo "Post"; ?></button>
+
+          <button type="button" id="button-review" data-loading-text="<?php echo $text_loading; ?>">
+            <?php echo $button_continue ?? 'Submit'; ?>
+          </button>
+        </form>
+        <?php } else { ?>
+          <p><?php echo $text_login; ?></p>
+        <?php } ?>
       </div>
-      <?php } else { ?>
-      <?php echo $text_login; ?>
-      <?php } ?>
-    </form>
     <?php } ?>
-
-
-    <!-- Add Review Form -->
-    <div class="add-review">
-      <h4>Add a Review</h4>
-      <p>Your email address will not be published. Required fields are marked *</p>
-      <form>
-        <label>Your rating *</label>
-        <div class="rating-stars">
-          <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-        </div>
-        <label>Review Title *</label>
-        <input type="text" required>
-        <label>Name *</label>
-        <input type="text" required>
-        <label>Email *</label>
-        <input type="email" required>
-        <label>Your review *</label>
-        <textarea required></textarea>
-        <label>
-          <input type="checkbox"> Save my name, email, and website in this browser for the next time I comment.
-        </label>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-
   </div>
 </section>
-
 
 <!-- Related Products -->
 <section class="related-products-area">
