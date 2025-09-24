@@ -5,20 +5,24 @@
       <div class="single-product-item-info">
         <h2><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h2>
         <div class="best-sellers-item-price">
-          <span><?php echo $product['special'] ?></span>
-          <del><?php echo $product['price'] ?></del>
-          <div class="save-price">
-            <p>save 
-              <?php
-                  $old = floatval(strip_tags(preg_replace('/[^0-9.]/', '', $product['price'])));
-                  $new = floatval(strip_tags(preg_replace('/[^0-9.]/', '', $product['special'])));
+          <?php if ($product['special']) { ?>
+              <span><?php echo $product['special']; ?></span>
+              <del><?php echo $product['price']; ?></del>
+              <div class="save-price">
+                <p>save 
+                  <?php
+                    $old = floatval(strip_tags(preg_replace('/[^0-9.]/', '', $product['price'])));
+                    $new = floatval(strip_tags(preg_replace('/[^0-9.]/', '', $product['special'])));
 
-                  if ($old > 0) {
-                    echo round((($old - $new) / $old) * 100) . '%';
-                  }
-                ?>
-            </p>
-          </div>
+                    if ($old > 0) {
+                      echo round((($old - $new) / $old) * 100) . '%';
+                    }
+                  ?>
+                </p>
+              </div>
+          <?php } else { ?>
+              <span><?php echo $product['price']; ?></span>
+          <?php } ?>
         </div>
         <div class="single-product-reviews">
           <ul>
