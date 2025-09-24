@@ -442,35 +442,24 @@
                   <!-- Product Info -->
                   <div class="single-product-item-info">
                       <h2>
-                          <a href="<?php echo $product['href']; ?>">
-                              <?php echo $product['name']; ?>
-                          </a>
+                        <a href="<?php echo $product['href']; ?>">
+                          <?php echo $product['name']; ?>
+                        </a>
                       </h2>
 
                       <!-- Price -->
-                      <div class="best-sellers-item-price">
-                          <?php if ((float)$product['price'] > 0) { ?>
-                              <?php if (!$product['special']) { ?>
-                                  <span><?php echo $product['price']; ?></span>
-                              <?php } else { ?>
-                                  <span><?php echo $product['special']; ?></span>
-                                  <del><?php echo $product['price']; ?></del>
-                                  <div class="save-price">
-                                      <p>
-                                          save 
-                                          <?php
-                                              $old = preg_replace('/[^\d.]/', '', $product['price']);
-                                              $new = preg_replace('/[^\d.]/', '', $product['special']);
-                                              if ($old > 0) {
-                                                  echo round((($old - $new) / $old) * 100) . '%';
-                                              }
-                                          ?>
-                                      </p>
-                                  </div>
-                              <?php } ?>
-                          <?php } else { ?>
-                              <span>&nbsp;</span>
-                          <?php } ?>
+                       <div class="best-sellers-item-price">
+                        <span><?php echo $product['special']; ?></span>
+                        <del><?php echo $product['price']; ?></del>
+                        <div class="save-price">
+                          <p>save <?php
+                              $old = preg_replace('/[^\d.]/', '', $product['price']);
+                              $new = preg_replace('/[^\d.]/', '', $product['special']);
+                              if ($old > 0) {
+                                echo round((($old - $new) / $old) * 100) . '%';
+                              }
+                            ?></p>
+                        </div>
                       </div>
 
                       <!-- Reviews -->
