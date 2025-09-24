@@ -89,9 +89,10 @@
     width: 100%;
   }
 
-  .container::before, .container::after {
+  .container::before,
+  .container::after {
     display: none;
-}
+  }
 
   /*****************************************************/
   /******************   Header Area   ******************/
@@ -1903,25 +1904,39 @@
     margin-bottom: 5px;
   }
 
-  .add-review form label {
+  .add-review label {
     display: block;
     margin-top: 10px;
     margin-bottom: 5px;
   }
 
-  .add-review form input,
-  .add-review form textarea {
+  .add-review input,
+  .add-review textarea {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
 
-  .add-review form input[type="checkbox"] {
+  .add-review input[type="checkbox"] {
     width: auto;
   }
 
-  .add-review form button {
+  .rating-stars {
+    display: flex;
+    align-items: center;
+  }
+
+  .rating-stars input {
+    width: auto;
+  }
+
+  .rating-stars label {
+    margin-right: 10px;
+    margin-left: 4px;
+  }
+
+  .add-review button {
     margin-top: 15px;
     background: var(--brand-color);
     color: var(--white-color);
@@ -2416,9 +2431,10 @@
   }
 
 
-  .home-hightlights-area{
-    padding:3px;
+  .home-hightlights-area {
+    padding: 3px;
   }
-  .home-category-based-products{
+
+  .home-category-based-products {
     padding-top: 70px;
   }
