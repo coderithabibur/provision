@@ -100,17 +100,7 @@
           <?php } ?>
           <?php } ?>
 
-          <p class="newprice"><?php echo $special; ?><span class="eachText"> (<?php echo $txt_each; ?>)</span>
-            <span class="newprice" style="font-size: 16px;"> - Discount:
-              <?php
-                  $prica = str_replace(',','',$price);
-                  $pricb = str_replace(',','',$special);
-                  $priceInt= str_replace('$','',$prica);
-                  $specialInt= str_replace('$','',$pricb);
-                  $disc = (($priceInt-$specialInt)/$priceInt)*100;
-                  ?>
-              <?php echo round($disc,2);?>% </span>
-          </p>
+          
 
           <div class="ratingsAndReviews">
             <?php if ($product['rating']) { ?>
@@ -297,7 +287,7 @@
       <!-- Add Review Form -->
       <div class="add-review">
         <h4><?php echo $text_write; ?></h4>
-        <p><?php echo $text_note; // optional note ?></p>
+        <p><?php echo $text_note; ?></p>
         <?php if ($review_guest) { ?>
         <form class="form-horizontal" id="form-review">
           <label><?php echo $entry_rating; ?> *</label>
