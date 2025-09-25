@@ -95,11 +95,27 @@
           </div>
           <h2><a href="<?php echo $data['buy1get1']['href'] ?>"><?php echo $data['buy1get1']['name']; ?></a></h2>
           <div class="best-sellers-item-price">
-            <span><?php echo $data['buy1get1']['price'] ?></span>
-            <del>$70.00</del>
-            <div class="save-price">
-              <p>save 5%</p>
-            </div>
+            <?php if (!empty($data['buy1get12']['special'])) { ?>
+              <span><?php echo $data['buy1get12']['special']; ?></span>
+              <del><?php echo $data['buy1get12']['price']; ?></del>
+              <div class="save-price">
+                  <p>
+                    save 
+                    <?php
+                    $old = (float) filter_var($data['buy1get12']['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                    $new = (float) filter_var($data['buy1get12']['special'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+                    if ($old > 0 && $new > 0 && $new < $old) {
+                        echo round((($old - $new) / $old) * 100) . '%';
+                    } else {
+                        echo '0%';
+                    }
+                    ?>
+                  </p>
+              </div>
+            <?php } else { ?>
+                <span><?php echo $data['buy1get12']['price']; ?></span>
+            <?php } ?>
           </div>
         </div>
       </div>
@@ -120,12 +136,28 @@
             <img src="https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D2R-Globes/D2R-HID-Xenon-Globe-Replacements-Australia-450x450.jpg">
           </div>
           <h2><a href="<?php echo $data['buy1get12']['href'] ?>"><?php echo $data['buy1get12']['name']; ?></a></h2>
-          <div class="best-sellers-item-price">
-            <span><?php echo $data['buy1get12']['price'] ?></span>
-            <del>$70.00</del>
-            <div class="save-price">
-              <p>save 5%</p>
-            </div>
+            <div class="best-sellers-item-price">
+              <?php if (!empty($data['buy1get12']['special'])) { ?>
+                  <span><?php echo $data['buy1get12']['special']; ?></span>
+                  <del><?php echo $data['buy1get12']['price']; ?></del>
+                  <div class="save-price">
+                    <p>
+                      save 
+                      <?php
+                      $old = (float) filter_var($data['buy1get12']['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                      $new = (float) filter_var($data['buy1get12']['special'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+                      if ($old > 0 && $new > 0 && $new < $old) {
+                          echo round((($old - $new) / $old) * 100) . '%';
+                      } else {
+                          echo '0%';
+                      }
+                      ?>
+                  </p>
+                </div>
+              <?php } else { ?>
+                  <span><?php echo $data['buy1get12']['price']; ?></span>
+              <?php } ?>
           </div>
         </div>
       </div>
