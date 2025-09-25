@@ -42,28 +42,38 @@
       <div class="container footer-grid">
         <div class="footer-about">
           <a href="<?php echo $home; ?>" class="footer-logo">
-            <img src="<?php echo $logo; ?>" alt="<?php echo $name; ?>">
+            <img src="catalog/view/theme/cits/assets/images/footer-logo.jpg" alt="<?php echo $name; ?>">
           </a>
           <p>The small round table in the dinette may be great for casual me. Is simply dummy text of the printing.</p>
           <h2>Social Links</h2>
           <div class="footer-social">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-pinterest-p"></i></a>
-            <a href="#"><i class="fab fa-flickr"></i></a>
+            <ul>        
+              <li><a href="<?php echo $google; ?>" target="_blank"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+              <li><a href="<?php echo $facebook; ?>" target="_blank"><i aria-hidden="true" class="fab fa-facebook"></i></a></li>
+              <li><a href="<?php echo $twitter; ?>" target="_blank"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+              <li class="blogger"><a href="<?php echo $blogger; ?>" target="_blank"><img src="catalog/view/theme/hidlighting/images/blog.png"></a></li>
+              <li><a href="<?php echo $youtube; ?>" target="_blank"><i class="fab fa-youtube-play" aria-hidden="true"></i></a></li>
+              <li><a href="<?php echo $linkedin; ?>" target="_blank"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+              <li><a href="<?php echo $instagram; ?>" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+            </ul>
           </div>
         </div>
 
         <div class="footer-links">
-          <h2>Pages</h2>
+          <h2>Quick Links</h2>
+           <?php if ($informations) { ?>
           <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Advertising</a></li>
-            <li><a href="#">Business Development</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Permissions</a></li>
-            <li><a href="#">Contact</a></li>
+            <?php
+              $i=1;
+              foreach ($informations as $information) {
+              if($i == 4){
+                break;
+              }
+            ?>
+            <li><a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a></li>
+            <?php $i++; } ?>
           </ul>
+          <?php } ?>
         </div>
 
         <div class="footer-links">
@@ -79,15 +89,14 @@
 
         <div class="footer-contact">
           <h2>Contact</h2>
-          <a href="#" class="contact-item">
+          <a href="tel:<?php echo $telephone;?>" class="contact-item">
             <i class="fas fa-headset"></i>
             <span>Call us 24/7</span>
-            <h3>+08 9229 8228</h3>
+            <h3><?php echo $telephone;?></h3>
           </a>
-          <p><i class="fa-solid fa-location-dot"></i><span>1234 Heaven Stress, Beverly Hill OldYork- United State of
-              Lorem</span></p>
-          <p><i class="fa-solid fa-phone"></i>1234 5678 5576</p>
-          <p><i class="fa-solid fa-envelope"></i><a href="mailto:Support1234@Orlife">Support1234@Orlife</a></p>
+          <p><i class="fa-solid fa-location-dot"></i><span><?php echo $address;?></span></p>
+          <p><i class="fa-solid fa-phone"></i><a href="tel:<?php echo $telephone;?>"><?php echo $telephone;?></a></p>
+          <p><i class="fa-solid fa-envelope"></i><a href="mailto:<?php echo $email;?>"><?php echo $email;?></a></p>
         </div>
       </div>
     </div>  
@@ -95,9 +104,13 @@
     <!-- Footer Bottom -->
     <div class="footer-bottom">
       <div class="container">
-        <p>© ProVision. All Rights Reserved.</p>
+        <p><?php echo $powered; ?></p>
         <div class="footer-payments">
-          <img src="catalog/view/theme/cits/assets/images/payment-method.png" alt="MasterCard">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/paypal.png">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/visa.png">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/discover.png">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/mastercard.png">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/american.png">
         </div>
       </div>
     </div>
