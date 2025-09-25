@@ -1310,6 +1310,12 @@
     color: var(--brand-color);
   }
 
+  .footer-about .footer-social ul {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   .footer-about .footer-social a {
     margin-right: 10px;
     font-size: 16px;
