@@ -151,6 +151,7 @@
               <input type="text" value="1">
               <button>+</button>
             </div>
+            
             <button class="add-to-cart">ADD TO CART</button>
           </div>
 
