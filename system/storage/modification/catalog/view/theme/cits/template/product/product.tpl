@@ -100,7 +100,17 @@
           <?php } ?>
           <?php } ?>
 
-          
+          <!-- <p class="newprice"><?php// echo $special; ?><span class="eachText"> (<?php// echo $txt_each; ?>)</span>
+            <span class="newprice" style="font-size: 16px;"> - Discount:
+              <?php
+                  //$prica = str_replace(',','',$price);
+                  //$pricb = str_replace(',','',$special);
+                  //$priceInt= str_replace('$','',$prica);
+                  //$specialInt= str_replace('$','',$pricb);
+                  //$disc = (($priceInt-$specialInt)/$priceInt)*100;
+                  ?>
+              <?php //echo round($disc,2);?>% </span>
+          </p> -->
 
           <div class="ratingsAndReviews">
             <?php if ($product['rating']) { ?>
