@@ -42,11 +42,11 @@
               <?php } ?>
 
               <?php if ($images) { ?>
-              <?php foreach ($images as $image) { ?>
-              <div class="swiper-slide">
-                <img src="<?php echo $image['thumb']; ?>" alt="<?php echo $heading_title; ?>" />
-              </div>
-              <?php } ?>
+                <?php foreach ($images as $image) { ?>
+                <div class="swiper-slide">
+                  <img src="<?php echo $image['thumb']; ?>" alt="<?php echo $heading_title; ?>" />
+                </div>
+                <?php } ?>
               <?php } ?>
             </div>
           </div>
@@ -97,10 +97,10 @@
           <p class="splDes">
             <?php echo $discount['quantity']; ?><?php echo $text_discount; ?><span><?php echo $discount['price']; ?><span
                 class="eachText"> (<?php echo $txt_each; ?>)</span></span></p>
-          <?php } ?>
+            <?php } ?>
           <?php } ?>
 
-          <!-- <p class="newprice"><?php// echo $special; ?><span class="eachText"> (<?php// echo $txt_each; ?>)</span>
+          <!-- <p class="newprice"><?php //echo $special; ?><span class="eachText"> (<?php //echo $txt_each; ?>)</span>
             <span class="newprice" style="font-size: 16px;"> - Discount:
               <?php
                   //$prica = str_replace(',','',$price);
@@ -165,7 +165,7 @@
           <div class="secure-checkout">
             <p>Guarantee safe & secure checkout</p>
             <div class="cards">
-              <img src="assets/images/payment-method.png" alt="">
+              <img src="assets/images/payment-method.png">
             </div>
           </div>
 
