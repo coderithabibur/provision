@@ -2448,3 +2448,24 @@
   .home-category-based-products {
     padding-top: 70px;
   }
+
+  /*****************************************************/
+  /******************   Login Page   *******************/
+  /*****************************************************/
+
+  .catListing.accountList {
+    box-shadow: 0px 0px 5px #cccccc8c;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .catListing.accountList a {
+    width: 100%;
+    padding: 10px 20px;
+    transition: 0.3s;
+  }
+
+  .catListing.accountList a:hover, .catListing.accountList li.active a {
+    background-color: var(--brand-color);
+    color: var(--white-color);
+  }
