@@ -131,7 +131,6 @@
               |
               <a href="<?php echo $product['href']; ?>#customerReview"><?php echo $text_write; ?></a>
             </div>
-
           </div>
 
           <?php if ($manufacturer) { ?>
