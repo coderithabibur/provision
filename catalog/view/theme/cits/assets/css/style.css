@@ -2463,6 +2463,7 @@
     width: 100%;
     padding: 10px 20px;
     transition: 0.3s;
+    color: var(--black-color);
   }
 
   .catListing.accountList a:hover, .catListing.accountList li.active a {
@@ -2500,4 +2501,19 @@
 .well input[type="submit"]:hover, .pull-right input[type="submit"]:hover {
   background: var(--black-color);
   color: var(--white-color);
+}
+
+.register-form-area {
+  box-shadow: 0px 0px 10px #cccccc52;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.already_account_text {
+    padding: 10px 0;
+}
+
+.already_account_text p {
+    padding-bottom: 5px;
 }
