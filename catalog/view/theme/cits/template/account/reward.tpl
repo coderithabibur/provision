@@ -27,6 +27,7 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
+    <div class="account-login-box">
        <div class="row">
           <div class="col-xs-12">
             <div class="theading">
@@ -74,6 +75,7 @@
   <?php } ?>
       <div class="buttons clearfix">
         <div class="pull-right"><a href="<?php echo $continue; ?>" class="yellowbtn"><?php echo $button_continue; ?></a></div>
+      </div>
       </div>
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>

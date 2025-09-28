@@ -30,6 +30,7 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
+    
      <div class="row">
           <div class="col-xs-12">
             <div class="theading">
@@ -98,6 +99,7 @@
         <?php } ?>
         </tbody>
       </table>
+        </div>
       <?php echo $buttons; ?>
       <?php echo $content_bottom; ?>
     </div>

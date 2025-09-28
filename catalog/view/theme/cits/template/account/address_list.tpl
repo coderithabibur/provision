@@ -33,6 +33,7 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
+    <div class="account-login-box">
      <div class="row">
           <div class="col-xs-12">
             <div class="theading">
@@ -55,6 +56,7 @@
       <div class="buttons clearfix">
         <div class="pull-left"><a href="<?php echo $back; ?>" class="yellowbtn"><?php echo $button_back; ?></a></div>
         <div class="pull-right"><a href="<?php echo $add; ?>" class="yellowbtn"><?php echo $button_new_address; ?></a></div>
+      </div>
       </div>
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>
