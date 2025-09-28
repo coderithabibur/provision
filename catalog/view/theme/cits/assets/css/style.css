@@ -2440,7 +2440,6 @@
     background: var(--black-color);
   }
 
-
   .home-hightlights-area {
     padding: 3px;
   }
@@ -2453,7 +2452,7 @@
   /******************   Login Page   *******************/
   /*****************************************************/
 
-  .catListing.accountList {
+  .account-sidebar {
     box-shadow: 0px 0px 10px #cccccc52;
     border-radius: 5px;
     overflow: hidden;
@@ -2464,6 +2463,12 @@
     padding: 10px 20px;
     transition: 0.3s;
     color: var(--black-color);
+    box-shadow: 0 8px 10px #cccccc36;
+  }
+
+  .account-sidebar h2 {
+    padding: 15px 20px;
+    box-shadow: 0px 0px 3px #ccc;
   }
 
   .catListing.accountList a:hover, .catListing.accountList li.active a {
@@ -2471,14 +2476,26 @@
     color: var(--white-color);
   }
 
-  .well {
-    min-height: 20px;
+  .account-login-box {
     padding: 19px;
     margin-bottom: 20px;
-    border: none;
     background-color: var(--white-color);
     border-radius: 4px;
     box-shadow: 0px 0px 10px #cccccc52;
+}
+
+.login-title {
+  padding-bottom: 15px;
+}
+
+.account-login-box h2 {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.account-login-box p {
+    padding: 8px 0;
+    font-weight: 500;
 }
 
 .form-control {
@@ -2488,7 +2505,7 @@
     box-shadow: unset;
 }
 
-.well input[type="submit"], .pull-right input[type="submit"] {
+.account-login-box input[type="submit"], .pull-right input[type="submit"] {
     padding: 10px 45px;
     background: var(--brand-color);
     color: var(--white-color);
@@ -2498,7 +2515,7 @@
     border: none;
 }
 
-.well input[type="submit"]:hover, .pull-right input[type="submit"]:hover {
+.account-login-box input[type="submit"]:hover, .pull-right input[type="submit"]:hover {
   background: var(--black-color);
   color: var(--white-color);
 }
@@ -2516,4 +2533,12 @@
 
 .already_account_text p {
     padding-bottom: 5px;
+}
+
+.acccount-section {
+    padding: 60px 0 20px;
+}
+
+.breadcrumb {
+    margin: 20px 0;
 }
