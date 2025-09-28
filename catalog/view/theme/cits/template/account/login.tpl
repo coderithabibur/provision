@@ -1,5 +1,5 @@
 <?php echo $header; ?>
-<section class="bannerOuter paddingless">
+<section class="acccount-section">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -7,8 +7,7 @@
       </div>
     </div>
   </div>
-</section>
-<section class="greyBg paddingtop30">
+
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -36,23 +35,16 @@
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
      <div class="row">
           <div class="col-xs-12">
-            <div class="theading">
+            <div class="theading login-title">
               <h2><?php echo $heading_title; ?></h2>
             </div>
           </div>
         </div>
       <div class="row">
-        <div class="col-sm-6">
-          <div class="well">
-            <h2><?php echo $text_new_customer; ?></h2>
-            <p><strong><?php echo $text_register; ?></strong></p>
-            <p><?php echo $text_register_account; ?></p>
-            <a href="<?php echo $register; ?>" class="btna yellowbtn "><?php echo $button_continue; ?></a></div>
-        </div>
-        <div class="col-sm-6">
-          <div class="well">
+        <div class="col-6">
+          <div class="account-login-box">
             <h2><?php echo $text_returning_customer; ?></h2>
-            <p><strong><?php echo $text_i_am_returning_customer; ?></strong></p>
+            <p><?php echo $text_i_am_returning_customer; ?></p>
             <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label class="control-label" for="input-email"><?php echo $entry_email; ?></label>
@@ -69,6 +61,13 @@
             </form>
           </div>
         </div>
+        <div class="col-6">
+          <div class="account-login-box">
+            <h2><?php echo $text_new_customer; ?></h2>
+            <p><?php echo $text_register; ?></p>
+            <p><?php echo $text_register_account; ?></p>
+            <a href="<?php echo $register; ?>" class="btna yellowbtn "><?php echo $button_continue; ?></a></div>
+        </div>        
       </div>
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>
