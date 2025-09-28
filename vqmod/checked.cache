@@ -374,3 +374,4 @@ catalog\language\english\account\forgotten.php
 catalog\view\theme\cits\template\account\forgotten.tpl
 system\storage\modification\admin\language\english\extension\installer.php
 system\storage\modification\admin\view\template\extension\installer.tpl
+catalog\controller\account\address.php

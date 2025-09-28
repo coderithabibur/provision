@@ -2454,7 +2454,7 @@
   /*****************************************************/
 
   .catListing.accountList {
-    box-shadow: 0px 0px 5px #cccccc8c;
+    box-shadow: 0px 0px 10px #cccccc52;
     border-radius: 5px;
     overflow: hidden;
   }
@@ -2469,3 +2469,35 @@
     background-color: var(--brand-color);
     color: var(--white-color);
   }
+
+  .well {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    border: none;
+    background-color: var(--white-color);
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px #cccccc52;
+}
+
+.form-control {
+    border-radius: 0;
+    padding: 22px 15px;
+    border: 2px solid #cccccc61;
+    box-shadow: unset;
+}
+
+.well input[type="submit"], .pull-right input[type="submit"] {
+    padding: 10px 45px;
+    background: var(--brand-color);
+    color: var(--white-color);
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: 0.3s;
+    border: none;
+}
+
+.well input[type="submit"]:hover, .pull-right input[type="submit"]:hover {
+  background: var(--black-color);
+  color: var(--white-color);
+}
