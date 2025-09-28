@@ -1,5 +1,5 @@
 <?php echo $header; ?>
-<section class="bannerOuter paddingless">
+<section class="acccount-section">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -9,8 +9,7 @@
       </div>
     </div>
   </div>
-</section>
-<section class="greyBg paddingtop30">
+
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
