@@ -1,6 +1,14 @@
-<?php
+<?php  
 class ControllerCommonHome extends Controller {
 	public function index() {
+        
+        $this->load->model('setting/setting');
+
+        // 2. Get all the saved settings for your video module
+        $homepage_video_settings = $this->model_setting_setting->getSetting('homepage_video');
+        
+        $data['my_video_section'] = $this->load->controller('extension/module/homepage_video', $homepage_video_settings);
+        
 		$this->document->setTitle($this->config->get('config_meta_title'));
 		$this->document->setDescription($this->config->get('config_meta_description'));
 		$this->document->setKeywords($this->config->get('config_meta_keyword'));
@@ -20,6 +28,8 @@ class ControllerCommonHome extends Controller {
 		$data['categories'] = $this->model_catalog_category->getCategories();
 		$data['buy1get1'] = $this->getProductInfoById(290);
         $data['buy1get12'] = $this->getProductInfoById(251);
+
+ 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/home.tpl')) {
 			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/common/home.tpl', $data));
 		} else {
