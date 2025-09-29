@@ -30,6 +30,33 @@ class ControllerCommonHome extends Controller {
         
 		// Home page Data
 		$data['categories'] = $this->model_catalog_category->getCategories();
+
+        // highlight categories
+        $data['highlight_categories'] = array(); 
+        $categories = $this->model_catalog_category->getCategories(0); 
+        foreach ($categories as $category) { 
+            // $product_total = $this->model_catalog_product->getTotalProducts(array('filter_category_id' => $category['category_id']));
+
+            $filter_data = array(
+                'filter_category_id'  => $category['category_id'],
+                'filter_sub_category' => true
+            ); 
+            $product_total = $this->model_catalog_product->getTotalProducts($filter_data);
+ 
+            if ($category['image'] && is_file(DIR_IMAGE . $category['image'])) { 
+                $image_url = HTTP_SERVER . 'image/' . $category['image'];
+            } else { 
+                $image_url = $this->model_tool_image->resize('placeholder.png', 500, 500);
+            } 
+            $data['highlight_categories'][] = array(
+                'name'          => $category['name'],
+                'image'         => $image_url,
+        'product_total' => $product_total,
+                'href'          => $this->url->link('product/category', 'path=' . $category['category_id'])
+            );
+        }
+
+
 		$data['buy1get1'] = $this->getProductInfoById(290);
         $data['buy1get12'] = $this->getProductInfoById(251);
   

@@ -1,7 +1,7 @@
 <?php echo $header; ?>
 
 <pre>
-  <?php // print_r($data['categories']);?>
+  <?php  print_r($data['categories']);?>
   <?php // print_r($data['buy1get1']);?>
   <?php // print_r($data['buy1get12']);?>
   <?php // print_r($data['featured_products']);?>
@@ -214,17 +214,23 @@
 
   <section class="hightlights-area">
     <div class="hightlights-content-area">
-    <?php if (!empty($data['categories'])) : ?>
-      <?php foreach($data['categories'] as $category) : ?>
-        <div class="single-highlights-item" style="background-image: url('https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D2R-Globes/D2R-HID-Xenon-Globe-Replacements-Australia-450x450.jpg);">
-          <div class="highlights-item-info">
-            <span>4 products</span>
-            <h2><?php echo $category['name'] ?></h2>
+      <?php if ($data['highlight_categories']) { ?>
+        <?php foreach($data['highlight_categories'] as $category) { ?>
+          
+          <div class="single-highlights-item" style="background-image: url('<?php echo $category['image']; ?>');">
+            <div class="highlights-item-info">
+              
+              <span><?php echo $category['product_total']; ?> products</span>
+              
+              <h2><?php echo $category['name']; ?></h2>
+            </div>
+            
+            <a href="<?php echo $category['href']; ?>">Shop now</a>
           </div>
-          <a href="index.php?route=product/category&path=<?php echo $category['category_id']; ?>">Shop now</a>
-        </div>
-      <?php endforeach; ?>
-    <?php endif; ?>
+          
+        <?php } ?>
+      <?php } ?>
+    </div>
   </section>
 
   <section class="category-based-products">
