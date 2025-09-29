@@ -57,9 +57,9 @@ class ControllerCommonHome extends Controller {
 
         if ($product_info) {
             if ($product_info['image']) {
-                $image = $this->model_tool_image->resize($product_info['image'], 200, 200);
+                $image = $this->model_tool_image->resize($product_info['image'], 450, 450);
             } else {
-                $image = $this->model_tool_image->resize('placeholder.png', 200, 200);
+                $image = $this->model_tool_image->resize('placeholder.png', 450, 450);
             }
 
             if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
