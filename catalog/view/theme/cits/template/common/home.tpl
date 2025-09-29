@@ -4,8 +4,8 @@
   <?php // print_r($data['categories']);?>
   <?php // print_r($data['buy1get1']);?>
   <?php // print_r($data['buy1get12']);?>
-  <?php  print_r($data['my_video_section']);?>
-</pre>
+  <?php // print_r($data['featured_products']);?>
+</pre> 
  
   <section class="hero-slider swiper">
     <div class="swiper-wrapper">
@@ -64,15 +64,62 @@
     <div class="container">
       <div class="best-seller-title">
         <h2>best selling</h2>
-        <ul>
-          <li><button class="active">led</button></li>
-          <li><button>hid</button></li>
-          <li><button>Laser Driving Lights</button></li>
-          <li><button>Laser Light Bar</button></li>
-        </ul>
+        <?php if ($data['filter_categories']) { ?>
+          <ul>
+            <?php foreach ($data['filter_categories'] as $key => $category) { ?>
+              <li>
+                <button class="<?php echo ($key == 0) ? 'active' : ''; ?> category-filter" data-categoryid="<?php echo $category['category_id']; ?>">
+                  <?php echo $category['name']; ?>
+                </button>
+              </li>
+            <?php } ?>
+          </ul>
+        <?php } ?>
       </div>
+
       <div class="best-seller-product-grid">
-        <?php echo $column_right; ?>
+        <?php if ($data['initial_products']) { ?>
+          <?php foreach ($data['initial_products'] as $product) { ?>
+            <div class="single-product-item">
+              <a href="<?php echo $product['href']; ?>">
+                <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>">
+              </a>
+              <div class="single-product-item-info">
+                <h2><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h2>
+                
+                <div class="best-sellers-item-price">
+                  <?php if ($product['special']) { ?>
+                    <span><?php echo $product['special']; ?></span>
+                    <del><?php echo $product['price']; ?></del>
+                    <?php if ($product['save_percent']) { ?>
+                      <div class="save-price">
+                        <p>save <?php echo $product['save_percent']; ?>%</p>
+                      </div>
+                    <?php } ?>
+                  <?php } else { ?>
+                    <span><?php echo $product['price']; ?></span>
+                  <?php } ?>
+                </div>
+                
+                <div class="single-product-reviews">
+                  <ul>
+                    <li><i class="fa-solid fa-star"></i></li>
+                    <li><i class="fa-solid fa-star"></i></li>
+                    <li><i class="fa-solid fa-star"></i></li>
+                    <li><i class="fa-solid fa-star"></i></li>
+                    <li><i class="fa-solid fa-star"></i></li>
+                  </ul>
+                  <p><?php echo $product['reviews']; ?> reviews</p>
+                </div>
+                
+                <div class="single-product-btn-group">
+                  <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>');">add to cart</button>
+                  <button type="button" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa-solid fa-code-compare"></i></button>
+                </div>
+              </div>
+            </div>
+          <?php } ?>
+        <?php } ?>
       </div>
     </div>
 
@@ -297,4 +344,31 @@
     </div>
   </section>
 
-  <?php echo $footer; ?>
+
+  
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.category-filter').on('click', function(e) {
+      e.preventDefault(); 
+      var category_id = $(this).data('categoryid');
+      $('.category-filter').removeClass('active');
+      $(this).addClass('active');
+
+      $.ajax({
+          url: 'index.php?route=common/home/getCategoryProducts&category_id=' + category_id,
+          type: 'get',
+          dataType: 'html',
+          beforeSend: function() {
+              $('.best-seller-product-grid').html('<p style="text-align: center; width: 100%; padding: 20px;">Loading...</p>');
+          },
+          success: function(html) {
+              $('.best-seller-product-grid').html(html);
+          },
+          error: function(xhr, ajaxOptions, thrownError) {
+              alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          }
+      });
+  });
+});
+</script> 
+<?php echo $footer; ?>

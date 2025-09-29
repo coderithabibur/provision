@@ -2542,3 +2542,9 @@
 .breadcrumb {
     margin: 20px 0;
 }
+
+
+.best-seller-title button.active {
+  background-color: var(--brand-color);
+  color: #fff;
+}
