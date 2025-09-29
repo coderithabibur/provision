@@ -1,7 +1,7 @@
 <?php echo $header; ?>
 
 <pre>
-  <?php  print_r($data['categories']);?>
+  <?php // print_r($data['categories']);?>
   <?php // print_r($data['buy1get1']);?>
   <?php // print_r($data['buy1get12']);?>
   <?php // print_r($data['featured_products']);?>
