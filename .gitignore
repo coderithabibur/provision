@@ -1,3 +1,4 @@
 # Ignore everything inside the 'storage' directory...
 /system/storage
 /vqmod
+/system/storage/logs
