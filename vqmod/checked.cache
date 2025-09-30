@@ -461,3 +461,4 @@ admin\view\template\extension\module.tpl
 admin\model\user\user_group.php
 admin\model\extension\d_opencart_patch\user.php
 admin\controller\extension\module\homepage_video.php
+catalog\controller\extension\module\homepage_video.php
