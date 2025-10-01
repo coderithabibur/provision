@@ -24,6 +24,14 @@ class ControllerCatalogProduct extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
+			// 1. The addProduct model returns the new product_id. We capture it here.
+			$product_id = $this->model_catalog_product->addProduct($this->request->post);
+
+			// 2. Now that we have the product_id, we can save our gallery images.
+			if (isset($this->request->post['product_gallery'])) {
+				$this->model_catalog_product->editProductGallery($product_id, $this->request->post['product_gallery']);
+			}
+			
 			$url = '';
 
 			if (isset($this->request->get['filter_name'])) {
@@ -57,7 +65,7 @@ class ControllerCatalogProduct extends Controller {
 			if (isset($this->request->get['page'])) {
 				$url .= '&page=' . $this->request->get['page'];
 			}
-
+			
 			$this->response->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 		}
 
@@ -75,6 +83,10 @@ class ControllerCatalogProduct extends Controller {
 			$this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
 			$this->session->data['success'] = $this->language->get('text_success');
 
+			if (isset($this->request->post['product_gallery'])) {
+				$this->model_catalog_product->editProductGallery($this->request->get['product_id'], $this->request->post['product_gallery']);
+			}
+			
 			$url = '';
 
 			if (isset($this->request->get['filter_name'])) {
@@ -587,6 +599,9 @@ class ControllerCatalogProduct extends Controller {
 		$data['entry_date_end'] = $this->language->get('entry_date_end');
 		$data['entry_priority'] = $this->language->get('entry_priority');
 		$data['entry_tag'] = $this->language->get('entry_tag');
+
+		$data['tab_gallery'] = $this->language->get('tab_gallery'); 
+
 		$data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$data['entry_reward'] = $this->language->get('entry_reward');
 		
@@ -1270,6 +1285,32 @@ class ControllerCatalogProduct extends Controller {
 			);
 		}
 
+		// Custom Gallery
+		if (isset($this->request->post['product_gallery'])) {
+			$product_gallery_images = $this->request->post['product_gallery'];
+		} elseif (isset($this->request->get['product_id'])) {
+			$product_gallery_images = $this->model_catalog_product->getProductGalleryImages($this->request->get['product_id']);
+		} else {
+			$product_gallery_images = array();
+		}
+
+		$data['product_gallery_images'] = array();
+
+		foreach ($product_gallery_images as $gallery_image) {
+			if (is_file(DIR_IMAGE . $gallery_image['image'])) {
+				$image = $gallery_image['image'];
+				$thumb = $gallery_image['image'];
+			} else {
+				$image = '';
+				$thumb = 'no_image.png';
+			}
+
+			$data['product_gallery_images'][] = array(
+				'image'      => $image,
+				'thumb'      => $this->model_tool_image->resize($thumb, 100, 100),
+				'sort_order' => $gallery_image['sort_order']
+			);
+		}
 		// Gallery
 		// $this->load->model('catalog/product');
 		// $product_gallery = $this->model_catalog_product->getProductGallery($this->request->get['product_id']);

@@ -37,7 +37,7 @@
             <li><a href="#tab-image" data-toggle="tab"><?php echo $tab_image; ?></a></li>
             <li><a href="#tab-reward" data-toggle="tab"><?php echo $tab_reward; ?></a></li>
             <li><a href="#tab-design" data-toggle="tab"><?php echo $tab_design; ?></a></li>
-            <li><a href="#tab-gallery" data-toggle="tab">Gallery</a></li>
+            <li><a href="#tab-gallery" data-toggle="tab"><?php echo $tab_gallery; ?></a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab-general">
@@ -967,53 +967,37 @@
                 </table>
               </div>
             </div>
-
-            <!-- <div class="tab-pane" id="tab-gallery">
-              <div class="table-responsive">
-                <table id="gallery-images" class="table table-striped table-bordered table-hover">
-                  <thead>
-                    <tr>
-                      <td class="text-left">Image</td>
-                      <td class="text-left">Sort Order</td>
-                      <td></td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% set gallery_row = 0 %}
-                    {% for gallery in product_gallery %}
-                    <tr id="gallery-row{{ gallery_row }}">
-                      <td class="text-left">
-                        <a href="" id="thumb-gallery{{ gallery_row }}" data-toggle="image" class="img-thumbnail">
-                          <img src="{{ gallery.thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" />
-                        </a>
-                        <input type="hidden" name="product_gallery[{{ gallery_row }}][image]" value="{{ gallery.image }}" id="input-gallery{{ gallery_row }}" />
-                      </td>
-                      <td class="text-left">
-                        <input type="text" name="product_gallery[{{ gallery_row }}][sort_order]" value="{{ gallery.sort_order }}" placeholder="Sort Order" class="form-control" />
-                      </td>
-                      <td class="text-left">
-                        <button type="button" onclick="$('#gallery-row{{ gallery_row }}').remove();" data-toggle="tooltip" title="Remove" class="btn btn-danger">
-                          <i class="fa fa-minus-circle"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    {% set gallery_row = gallery_row + 1 %}
-                    {% endfor %}
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <td colspan="2"></td>
-                      <td class="text-left">
-                        <button type="button" onclick="addGallery();" data-toggle="tooltip" title="Add Image" class="btn btn-primary">
-                          <i class="fa fa-plus-circle"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-            </div> -->
-
+            
+            <div class="tab-pane" id="tab-gallery">
+              <table id="gallery" class="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <td class="text-left"><?php echo $entry_image; ?></td>
+                    <td class="text-right"><?php echo $entry_sort_order; ?></td>
+                    <td></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $gallery_image_row = 0; ?>
+                  <?php foreach ($product_gallery_images as $product_gallery_image) { ?>
+                  <tr id="gallery-image-row<?php echo $gallery_image_row; ?>">
+                    <td class="text-left"><a href="" id="thumb-gallery<?php echo $gallery_image_row; ?>" data-toggle="image" class="img-thumbnail"><img src="<?php echo $product_gallery_image['thumb']; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
+                      <input type="hidden" name="product_gallery[<?php echo $gallery_image_row; ?>][image]" value="<?php echo $product_gallery_image['image']; ?>" id="input-gallery<?php echo $gallery_image_row; ?>" /></td>
+                    <td class="text-right"><input type="text" name="product_gallery[<?php echo $gallery_image_row; ?>][sort_order]" value="<?php echo $product_gallery_image['sort_order']; ?>" class="form-control" /></td>
+                    <td class="text-right"><button type="button" onclick="$('#gallery-image-row<?php echo $gallery_image_row; ?>').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                  </tr>
+                  <?php $gallery_image_row++; ?>
+                  <?php } ?>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="2"></td>
+                    <td class="text-right"><button type="button" onclick="addGalleryImage();" data-toggle="tooltip" title="<?php echo $button_image_add; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+ 
           </div>
         </form>
       </div>
@@ -1471,6 +1455,23 @@ function addImage() {
 
 	image_row++;
 }
+
+var gallery_image_row = <?php echo $gallery_image_row; ?>;
+
+function addGalleryImage() {
+	html  = '<tr id="gallery-image-row' + gallery_image_row + '">';
+	html += '  <td class="text-left"><a href="" id="thumb-gallery' + gallery_image_row + '" data-toggle="image" class="img-thumbnail"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" name="product_gallery[' + gallery_image_row + '][image]" value="" id="input-gallery' + gallery_image_row + '" /></td>';
+	html += '  <td class="text-right"><input type="text" name="product_gallery[' + gallery_image_row + '][sort_order]" value="" class="form-control" /></td>';
+	html += '  <td class="text-right"><button type="button" onclick="$(\'#gallery-image-row' + gallery_image_row + '\').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '</tr>';
+
+	$('#gallery tbody').append(html);
+
+	gallery_image_row++;
+}
+
+
+
 //--></script>
   <script type="text/javascript"><!--
 var recurring_row = <?php echo $recurring_row; ?>;
