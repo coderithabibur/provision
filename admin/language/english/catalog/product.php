@@ -109,4 +109,13 @@ $_['error_model']            = 'Product Model must be greater than 1 and less th
 $_['error_keyword']          = 'SEO keyword already in use!';
 
 
-$_['tab_gallery']      = 'Custom Gallery';
+// $_['tab_gallery']      = 'Custom Gallery';
+
+$_['tab_sections']       = 'Custom Sections';
+$_['entry_title']        = 'Title';
+$_['entry_content']      = 'Content';
+$_['entry_background']   = 'Background Image';
+$_['entry_section_type'] = 'Section Type';
+$_['entry_video_path']   = 'Video Path (e.g., catalog/view/theme/your_theme/video/intro.mp4)';
+$_['text_image']         = 'Image';
+$_['text_video']         = 'Video';

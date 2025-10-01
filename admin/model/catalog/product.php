@@ -708,18 +708,33 @@ class ModelCatalogProduct extends Model {
 		return $query->row['total'];
 	}
  
-	public function getProductGalleryImages($product_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_gallery WHERE product_id = '" . (int)$product_id . "' ORDER BY sort_order ASC");
+	// public function getProductGalleryImages($product_id) {
+	// 	$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_gallery WHERE product_id = '" . (int)$product_id . "' ORDER BY sort_order ASC");
+	// 	return $query->rows;
+	// }
+
+	// public function editProductGallery($product_id, $product_gallery) {
+	// 	$this->db->query("DELETE FROM " . DB_PREFIX . "product_gallery WHERE product_id = '" . (int)$product_id . "'");
+	// 	if (isset($product_gallery)) {
+	// 		foreach ($product_gallery as $gallery_image) {
+	// 			if (isset($gallery_image['image']) && !empty($gallery_image['image'])) {
+	// 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_gallery SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($gallery_image['image']) . "', sort_order = '" . (int)$gallery_image['sort_order'] . "'");
+	// 			}
+	// 		}
+	// 	}
+	// }
+
+	public function getProductSections($product_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_section WHERE product_id = '" . (int)$product_id . "' ORDER BY sort_order ASC");
 		return $query->rows;
 	}
 
-	public function editProductGallery($product_id, $product_gallery) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "product_gallery WHERE product_id = '" . (int)$product_id . "'");
-		if (isset($product_gallery)) {
-			foreach ($product_gallery as $gallery_image) {
-				if (isset($gallery_image['image']) && !empty($gallery_image['image'])) {
-					$this->db->query("INSERT INTO " . DB_PREFIX . "product_gallery SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($gallery_image['image']) . "', sort_order = '" . (int)$gallery_image['sort_order'] . "'");
-				}
+	public function editProductSections($product_id, $product_sections) {
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_section WHERE product_id = '" . (int)$product_id . "'");
+
+		if (isset($product_sections)) {
+			foreach ($product_sections as $section) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_section SET product_id = '" . (int)$product_id . "', section_type = '" . $this->db->escape($section['section_type']) . "', image = '" . $this->db->escape($section['image']) . "', video_path = '" . $this->db->escape($section['video_path']) . "', title = '" . $this->db->escape($section['title']) . "', description = '" . $this->db->escape($section['description']) . "', sort_order = '" . (int)$section['sort_order'] . "'");
 			}
 		}
 	}

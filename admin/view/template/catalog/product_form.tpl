@@ -37,7 +37,7 @@
             <li><a href="#tab-image" data-toggle="tab"><?php echo $tab_image; ?></a></li>
             <li><a href="#tab-reward" data-toggle="tab"><?php echo $tab_reward; ?></a></li>
             <li><a href="#tab-design" data-toggle="tab"><?php echo $tab_design; ?></a></li>
-            <li><a href="#tab-gallery" data-toggle="tab"><?php echo $tab_gallery; ?></a></li>
+            <li><a href="#tab-sections" data-toggle="tab"><?php echo $tab_sections; ?></a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab-general">
@@ -968,31 +968,57 @@
               </div>
             </div>
             
-            <div class="tab-pane" id="tab-gallery">
-              <table id="gallery" class="table table-striped table-bordered table-hover">
+            <div class="tab-pane" id="tab-sections">
+              <table id="sections" class="table table-striped table-bordered table-hover">
                 <thead>
                   <tr>
-                    <td class="text-left"><?php echo $entry_image; ?></td>
-                    <td class="text-right"><?php echo $entry_sort_order; ?></td>
-                    <td></td>
+                    <td class="text-left" style="width: 12%;"><?php echo $entry_section_type; ?></td>
+                    <td class="text-left"><?php echo $entry_background; ?> / <?php echo $entry_video_path; ?></td>
+                    <td class="text-left"><?php echo $entry_title; ?></td>
+                    <td class="text-left"><?php echo $entry_content; ?></td>
+                    <td class="text-right" style="width: 10%;"><?php echo $entry_sort_order; ?></td>
+                    <td style="width: 1%;"></td>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $gallery_image_row = 0; ?>
-                  <?php foreach ($product_gallery_images as $product_gallery_image) { ?>
-                  <tr id="gallery-image-row<?php echo $gallery_image_row; ?>">
-                    <td class="text-left"><a href="" id="thumb-gallery<?php echo $gallery_image_row; ?>" data-toggle="image" class="img-thumbnail"><img src="<?php echo $product_gallery_image['thumb']; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
-                      <input type="hidden" name="product_gallery[<?php echo $gallery_image_row; ?>][image]" value="<?php echo $product_gallery_image['image']; ?>" id="input-gallery<?php echo $gallery_image_row; ?>" /></td>
-                    <td class="text-right"><input type="text" name="product_gallery[<?php echo $gallery_image_row; ?>][sort_order]" value="<?php echo $product_gallery_image['sort_order']; ?>" class="form-control" /></td>
-                    <td class="text-right"><button type="button" onclick="$('#gallery-image-row<?php echo $gallery_image_row; ?>').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                  <?php $section_row = 0; ?>
+                  <?php foreach ($product_sections as $product_section) { ?>
+                  <tr id="section-row<?php echo $section_row; ?>">
+                    <td class="text-left">
+                        <select name="product_section[<?php echo $section_row; ?>][section_type]" onchange="toggleSectionType(this);" class="form-control">
+                            <option value="image" <?php if ($product_section['section_type'] == 'image') { echo 'selected="selected"'; } ?>><?php echo $text_image; ?></option>
+                            <option value="video" <?php if ($product_section['section_type'] == 'video') { echo 'selected="selected"'; } ?>><?php echo $text_video; ?></option>
+                        </select>
+                    </td>
+                    <td class="text-left">
+                        <div class="section-image" style="<?php if ($product_section['section_type'] == 'video') { echo 'display: none;'; } ?>">
+                            <a href="" id="thumb-section<?php echo $section_row; ?>" data-toggle="image" class="img-thumbnail"><img src="<?php echo $product_section['thumb']; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
+                            <input type="hidden" name="product_section[<?php echo $section_row; ?>][image]" value="<?php echo $product_section['image']; ?>" id="input-section<?php echo $section_row; ?>" />
+                        </div>
+                        <div class="section-video" style="<?php if ($product_section['section_type'] != 'video') { echo 'display: none;'; } ?>">
+                            <input type="text" name="product_section[<?php echo $section_row; ?>][video_path]" value="<?php echo isset($product_section['video_path']) ? $product_section['video_path'] : ''; ?>" placeholder="<?php echo $entry_video_path; ?>" class="form-control" />
+                        </div>
+                    </td>
+                    <td class="text-left">
+                        <input type="text" name="product_section[<?php echo $section_row; ?>][title]" value="<?php echo $product_section['title']; ?>" class="form-control" />
+                    </td>
+                    <td class="text-left">
+                        <textarea name="product_section[<?php echo $section_row; ?>][description]" data-toggle="summernote" class="form-control"><?php echo $product_section['description']; ?></textarea>
+                    </td>
+                    <td class="text-right">
+                        <input type="text" name="product_section[<?php echo $section_row; ?>][sort_order]" value="<?php echo $product_section['sort_order']; ?>" class="form-control" />
+                    </td>
+                    <td class="text-right">
+                        <button type="button" onclick="$('#section-row<?php echo $section_row; ?>').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+                    </td>
                   </tr>
-                  <?php $gallery_image_row++; ?>
+                  <?php $section_row++; ?>
                   <?php } ?>
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td colspan="2"></td>
-                    <td class="text-right"><button type="button" onclick="addGalleryImage();" data-toggle="tooltip" title="<?php echo $button_image_add; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                    <td colspan="5"></td>
+                    <td class="text-right"><button type="button" onclick="addSection();" data-toggle="tooltip" title="<?php echo $button_add; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
                   </tr>
                 </tfoot>
               </table>
@@ -1455,23 +1481,52 @@ function addImage() {
 
 	image_row++;
 }
+ 
+//--></script>
+<script type="text/javascript"><!--
+var section_row = <?php echo $section_row; ?>;
 
-var gallery_image_row = <?php echo $gallery_image_row; ?>;
-
-function addGalleryImage() {
-	html  = '<tr id="gallery-image-row' + gallery_image_row + '">';
-	html += '  <td class="text-left"><a href="" id="thumb-gallery' + gallery_image_row + '" data-toggle="image" class="img-thumbnail"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" name="product_gallery[' + gallery_image_row + '][image]" value="" id="input-gallery' + gallery_image_row + '" /></td>';
-	html += '  <td class="text-right"><input type="text" name="product_gallery[' + gallery_image_row + '][sort_order]" value="" class="form-control" /></td>';
-	html += '  <td class="text-right"><button type="button" onclick="$(\'#gallery-image-row' + gallery_image_row + '\').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+function addSection() {
+	html  = '<tr id="section-row' + section_row + '">';
+    html += '  <td class="text-left">';
+    html += '    <select name="product_section[' + section_row + '][section_type]" onchange="toggleSectionType(this);" class="form-control">';
+    html += '      <option value="image" selected="selected"><?php echo $text_image; ?></option>';
+    html += '      <option value="video"><?php echo $text_video; ?></option>';
+    html += '    </select>';
+    html += '  </td>';
+	html += '  <td class="text-left">';
+    html += '    <div class="section-image">';
+    html += '      <a href="" id="thumb-section' + section_row + '" data-toggle="image" class="img-thumbnail"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" name="product_section[' + section_row + '][image]" value="" id="input-section' + section_row + '" />';
+    html += '    </div>';
+    html += '    <div class="section-video" style="display: none;">';
+    html += '      <input type="text" name="product_section[' + section_row + '][video_path]" value="" placeholder="<?php echo $entry_video_path; ?>" class="form-control" />';
+    html += '    </div>';
+    html += '  </td>';
+	html += '  <td class="text-left"><input type="text" name="product_section[' + section_row + '][title]" value="" class="form-control" /></td>';
+    html += '  <td class="text-left"><textarea name="product_section[' + section_row + '][description]" data-toggle="summernote" class="form-control"></textarea></td>';
+    html += '  <td class="text-right"><input type="text" name="product_section[' + section_row + '][sort_order]" value="" class="form-control" /></td>';
+	html += '  <td class="text-right"><button type="button" onclick="$(\'#section-row' + section_row + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';
 
-	$('#gallery tbody').append(html);
+	$('#sections tbody').append(html);
+    
+	$('#section-row' + section_row + ' [data-toggle=\'summernote\']').summernote({
+		height: 300
+	});
 
-	gallery_image_row++;
+	section_row++;
 }
 
-
-
+function toggleSectionType(selectElement) {
+    var row = $(selectElement).closest('tr');
+    if ($(selectElement).val() == 'video') {
+        row.find('.section-image').hide();
+        row.find('.section-video').show();
+    } else {
+        row.find('.section-video').hide();
+        row.find('.section-image').show();
+    }
+}
 //--></script>
   <script type="text/javascript"><!--
 var recurring_row = <?php echo $recurring_row; ?>;
