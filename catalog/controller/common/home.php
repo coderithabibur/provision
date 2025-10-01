@@ -67,7 +67,7 @@ class ControllerCommonHome extends Controller {
         // --- Load the initial set of products from the VERY FIRST category ---
         if ($data['filter_categories']) {
             $first_category_id = $data['filter_categories'][0]['category_id'];
-            $data['initial_products'] = $this->getProductsByCategoryId($first_category_id, 8);
+            $data['initial_products'] = $this->getProductsByCategoryId($first_category_id, 6);
         } else {
             $data['initial_products'] = array();
         }
@@ -108,29 +108,8 @@ class ControllerCommonHome extends Controller {
         // Return an empty array if the product is not found
         return array();
     }
-    private function getProductsByCategoryId($category_id, $limit = 8) { // Changed limit to 8 to match your AJAX call
-        // Make sure the necessary models are loaded
-        $this->load->model('catalog/product');
-        $this->load->model('tool/image');
-
-        // --- STEP 1: First, try to get products from the main category ONLY ---
-        $results = $this->model_catalog_product->getProducts([
-            'filter_category_id' => $category_id,
-            'start'              => 0,
-            'limit'              => $limit
-        ]);
-
-        // --- STEP 2: If no products were found, try again but INCLUDE subcategories ---
-        if (!$results) {
-            $results = $this->model_catalog_product->getProducts([
-                'filter_category_id'  => $category_id,
-                'filter_sub_category' => true, // This is the key change to search deeper
-                'start'               => 0,
-                'limit'               => $limit
-            ]);
-        }
-
-        // --- STEP 3: The rest of the function formats whatever results were found ---
+    private function getProductsByCategoryId($category_id, $limit = 6) { 
+        $results = $this->model_catalog_product->getProducts(['filter_category_id' => $category_id, 'start' => 0, 'limit' => $limit]);
         $products_data = array();
         foreach ($results as $result) {
             if ($result['image']) {
@@ -138,13 +117,11 @@ class ControllerCommonHome extends Controller {
             } else {
                 $image = $this->model_tool_image->resize('placeholder.png', 450, 450);
             }
-
             if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
                 $price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
             } else {
                 $price = false;
             }
-
             if ((float)$result['special']) {
                 $special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
                 $save_percent = round((($result['price'] - $result['special']) / $result['price']) * 100);
@@ -152,7 +129,6 @@ class ControllerCommonHome extends Controller {
                 $special = false;
                 $save_percent = false;
             }
-
             $products_data[] = array(
                 'product_id'   => $result['product_id'],
                 'name'         => $result['name'],
@@ -164,7 +140,6 @@ class ControllerCommonHome extends Controller {
                 'href'         => $this->url->link('product/product', 'product_id=' . $result['product_id']),
             );
         }
-        
         return $products_data;
     }
 
