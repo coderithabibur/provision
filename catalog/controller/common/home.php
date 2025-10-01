@@ -67,7 +67,7 @@ class ControllerCommonHome extends Controller {
         // --- Load the initial set of products from the VERY FIRST category ---
         if ($data['filter_categories']) {
             $first_category_id = $data['filter_categories'][0]['category_id'];
-            $data['initial_products'] = $this->getProductsByCategoryId($first_category_id, 8);
+            $data['initial_products'] = $this->getProductsByCategoryId($first_category_id, 6);
         } else {
             $data['initial_products'] = array();
         }

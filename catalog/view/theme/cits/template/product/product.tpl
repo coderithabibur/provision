@@ -1,5 +1,8 @@
 <?php echo $header; ?>
 
+<!-- Product custom sections  $data['product_sections'] -->
+<?php // print_r($data['product_sections']); ?>
+
 <section class="product-gallery-info">
   <div class="container">
     <div class="row">

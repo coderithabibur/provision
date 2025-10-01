@@ -158,6 +158,38 @@ class ControllerProductProduct extends Controller {
 		$this->load->model('catalog/product');
 
 		$product_info = $this->model_catalog_product->getProduct($product_id);
+
+		// Load Custom Sections
+		$data['product_sections'] = array();
+		$this->load->model('catalog/product');
+		$this->load->model('tool/image');
+		$section_results = $this->model_catalog_product->getProductSections($this->request->get['product_id']); 
+		foreach ($section_results as $result) {
+			// Prepare image if it's an image section
+			if ($result['section_type'] == 'image' && is_file(DIR_IMAGE . $result['image'])) {
+				// Use a large size for background images, e.g., 1920x1080
+				$background_image = $this->model_tool_image->resize($result['image'], 1920, 1080);
+			} else {
+				$background_image = false;
+			}
+
+			// Prepare video path if it's a video section
+			if ($result['section_type'] == 'video' && $result['video_path']) {
+				// We assume the video path is relative to the store root
+				$video_path = HTTP_SERVER . $result['video_path'];
+			} else {
+				$video_path = false;
+			}
+			
+			$data['product_sections'][] = array(
+				'section_type'     => $result['section_type'],
+				'background_image' => $background_image,
+				'video_path'       => $video_path,
+				'title'            => $result['title'],
+				'description'      => html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8') // Decode HTML from the editor
+			);
+		}
+
 //        echo "<pre>";print_r($product_info);exit;
 		if ($product_info) {
 			$url = '';

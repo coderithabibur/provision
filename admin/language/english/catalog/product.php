@@ -60,6 +60,7 @@ $_['entry_length']           = 'Length';
 $_['entry_width']            = 'Width';
 $_['entry_height']           = 'Height';
 $_['entry_image']            = 'Image';
+$_['entry_icon']             = 'Icon';
 $_['entry_customer_group']   = 'Customer Group';
 $_['entry_date_start']       = 'Date Start';
 $_['entry_date_end']         = 'Date End';
@@ -107,3 +108,15 @@ $_['error_name']             = 'Product Name must be greater than 3 and less tha
 $_['error_meta_title']       = 'Meta Title must be greater than 3 and less than 255 characters!';
 $_['error_model']            = 'Product Model must be greater than 1 and less than 64 characters!';
 $_['error_keyword']          = 'SEO keyword already in use!';
+
+
+// $_['tab_gallery']      = 'Custom Gallery';
+
+$_['tab_sections']       = 'Custom Sections';
+$_['entry_title']        = 'Title';
+$_['entry_content']      = 'Content';
+$_['entry_background']   = 'Background Image';
+$_['entry_section_type'] = 'Section Type';
+$_['entry_video_path']   = 'Video Path (e.g., catalog/view/theme/your_theme/video/intro.mp4)';
+$_['text_image']         = 'Image';
+$_['text_video']         = 'Video';
