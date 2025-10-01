@@ -169,6 +169,13 @@
                 </div>
               </div>
               <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-icon">Icon</label>
+                <div class="col-sm-10">
+                  <a href="" id="thumb-icon" data-toggle="image" class="img-thumbnail"><img src="<?php echo $icon_thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
+                  <input type="hidden" name="icon" value="<?php echo $icon; ?>" id="input-icon" />
+                </div>
+              </div>
+              <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-top"><span data-toggle="tooltip" title="<?php echo $help_top; ?>"><?php echo $entry_top; ?></span></label>
                 <div class="col-sm-10">
                   <div class="checkbox">

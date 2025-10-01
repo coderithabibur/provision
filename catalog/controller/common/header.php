@@ -122,6 +122,11 @@ class ControllerCommonHeader extends Controller {
 
 		foreach ($categories as $category) {
 			if ($category['top']) {
+				if ($category['icon']) {
+					$icon = $this->model_tool_image->resize($category['icon'], 25, 25);
+				} else {
+					$icon = false;
+				}
 				// Level 2
 				$children_data = array();
 
@@ -154,6 +159,7 @@ class ControllerCommonHeader extends Controller {
 					'name'     => $category['name'],
 					'children' => $children_data,
 					'column'   => $category['column'] ? $category['column'] : 1,
+					'icon'     => $icon,
 					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
 				);
 			}
