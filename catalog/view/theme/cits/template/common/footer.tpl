@@ -47,13 +47,10 @@
           <p>The small round table in the dinette may be great for casual me. Is simply dummy text of the printing.</p>
           <h2>Social Links</h2>
           <div class="footer-social">
-            <ul>        
-              <li><a href="<?php echo $google; ?>" target="_blank"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+            <ul>
               <li><a href="<?php echo $facebook; ?>" target="_blank"><i aria-hidden="true" class="fab fa-facebook"></i></a></li>
-              <li><a href="<?php echo $twitter; ?>" target="_blank"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-              <li class="blogger"><a href="<?php echo $blogger; ?>" target="_blank"><img src="catalog/view/theme/hidlighting/images/blog.png"></a></li>
               <li><a href="<?php echo $youtube; ?>" target="_blank"><i class="fab fa-youtube-play" aria-hidden="true"></i></a></li>
-              <li><a href="<?php echo $linkedin; ?>" target="_blank"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+              <li class="blogger"><a href="<?php echo $blogger; ?>" target="_blank"><img src="catalog/view/theme/hidlighting/images/blog.png"></a></li>              
               <li><a href="<?php echo $instagram; ?>" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
             </ul>
           </div>
