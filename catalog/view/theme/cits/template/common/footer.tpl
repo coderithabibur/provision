@@ -22,6 +22,7 @@
 
   <!-- Footer Section -->
   <footer class="site-footer">
+    
     <!-- Newsletter -->
     <div class="footer-newsletter">
       <div class="container">

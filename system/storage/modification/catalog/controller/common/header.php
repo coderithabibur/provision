@@ -218,6 +218,11 @@ if(file_exists('catalog/model/extension/bganycombi.php')) {
 
 		foreach ($categories as $category) {
 			if ($category['top']) {
+				if ($category['icon']) {
+					$icon = $this->model_tool_image->resize($category['icon'], 25, 25);
+				} else {
+					$icon = false;
+				}
 				// Level 2
 				$children_data = array();
 
@@ -255,6 +260,7 @@ if($this->config->get("nerdherd_direct_links")) {
 					'name'     => $category['name'],
 					'children' => $children_data,
 					'column'   => $category['column'] ? $category['column'] : 1,
+					'icon'     => $icon,
 					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
 				);
 			}

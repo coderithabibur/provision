@@ -171,7 +171,7 @@
   <div class="header-top">
     <div class="container">
       <div class="header-top-left">
-        <p> <i class="fa-solid fa-truck-fast"></i> FREE DELIVERY on all orders</p>
+        <p> <i class="fa-solid fa-truck-fast"></i> Delivery Costs are Included in the Price</p>
       </div>
       <div class="header-top-center">
         <p><i class="fa-solid fa-bolt-lightning"></i> <strong>FLASH SALE:</strong> 60% OFF CAR BATTERIES | USE CODE
