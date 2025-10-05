@@ -1,6 +1,6 @@
   <section class="brand-logo-slider">
     <div class="container">
-      <h2>featured brand</h2>
+      <h2>Our Clients</h2>
       <div class="brand-slider swiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-1.png" alt="Brand 1"></div>
@@ -50,7 +50,7 @@
             <ul>
               <li><a href="<?php echo $facebook; ?>" target="_blank"><i aria-hidden="true" class="fab fa-facebook"></i></a></li>
               <li><a href="<?php echo $youtube; ?>" target="_blank"><i class="fab fa-youtube-play" aria-hidden="true"></i></a></li>
-              <li class="blogger"><a href="<?php echo $blogger; ?>" target="_blank"><img src="catalog/view/theme/hidlighting/images/blog.png"></a></li>              
+              <li><a href="<?php echo $blogger; ?>" target="_blank"><i class="fab fa-blogger-b"></i></a></li>              
               <li><a href="<?php echo $instagram; ?>" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
             </ul>
           </div>
@@ -73,7 +73,7 @@
           <?php } ?>
         </div>
 
-        <div class="footer-links">
+        <!-- <div class="footer-links">
           <h2>Company</h2>
           <ul>
             <li><a href="#">Advertising</a></li>
@@ -82,7 +82,9 @@
             <li><a href="#">Permissions</a></li>
             <li><a href="#">Contact Us</a></li>
           </ul>
-        </div>
+        </div> -->
+         i. Disclaimers ii. About Us iii. Privacy Policy iv. Terms and Conditions v. Return and Refund Policy
+
 
         <div class="footer-contact">
           <h2>Contact</h2>
