@@ -170,6 +170,31 @@ class ControllerCommonHeader extends Controller {
 		$data['search'] = $this->load->controller('common/search');
 		$data['cart'] = $this->load->controller('common/cart');
 
+		// Mini cart data
+		$this->load->model('tool/image');
+		$this->load->language('checkout/cart');
+
+		$data['cart_count'] = $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0);
+
+		$data['cart_items'] = array();
+		$products = $this->cart->getProducts();
+		foreach ($products as $product) {
+			if ($product['image']) {
+				$image = $this->model_tool_image->resize($product['image'], 50, 50);
+			} else {
+				$image = '';
+			}
+			$data['cart_items'][] = array(
+				'key' => $product['key'],
+				'name' => $product['name'],
+				'image' => $image,
+				'quantity' => $product['quantity'],
+				'price' => $this->currency->format($product['price'], $this->session->data['currency']),
+				'total' => $this->currency->format($product['total'], $this->session->data['currency'])
+			);
+		}
+		$data['cart_total'] = $this->currency->format($this->cart->getTotal(), $this->session->data['currency']);
+
 		if (!empty($this->request->get['route'])) {
 			$data['route'] = $this->request->get['route'];
 		} else {
