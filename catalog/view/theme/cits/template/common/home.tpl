@@ -199,7 +199,7 @@
   </div>
 </section>
 
-<section class="category-based-products">
+<!-- <section class="category-based-products">
   <div class="container">
     <div class="single-category-based">
       <div class="single-category-based-left"
@@ -225,31 +225,7 @@
     </div>
 
   </div>
-</section>
-
-<!-- Product Categories -->
-<section class="product-categories">
-  <div class="category-grid">
-    <a href="#" class="category-item"
-      style="background-image: url(https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D1S-Globes/HID-D1S-HID-Xenon-Globes-Australia-450x450.png);">
-      <div class="category-content">
-        <h4>Driving Lights</h4>
-        <h2>Type-X™ EVO</h2>
-        <p>Shaping the Future.</p>
-        <span>Learn more ></span>
-      </div>
-    </a>
-    <a href="#" class="category-item"
-      style="background-image: url(https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D1S-Globes/HID-D1S-HID-Xenon-Globes-Australia-450x450.png);">
-      <div class="category-content">
-        <p>LED Driving Lights</p>
-        <h2>Type-X™ Sport</h2>
-        <p>Legendary Hyper™ DNA.</p>
-        <span>Learn more ></span>
-      </div>
-    </a>
-  </div>
-</section>
+</section> -->
 
 <!-- Video -->
 <section class="video-hero">
@@ -268,29 +244,6 @@
 </section>
 
 <img src="assets/images/review.png" style="width: 100%;">
-
-<!-- Logo Slider -->
-<!-- <section class="brand-logo-slider">
-    <div class="container">
-      <h2>featured brand</h2>
-      <div class="brand-slider swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="assets/images/logo-1.png" alt="Brand 1"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-2.png" alt="Brand 2"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-3.png" alt="Brand 3"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-4.png" alt="Brand 4"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-5.png" alt="Brand 5"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-6.png" alt="Brand 6"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-1.png" alt="Brand 1"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-2.png" alt="Brand 2"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-3.png" alt="Brand 3"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-4.png" alt="Brand 4"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-5.png" alt="Brand 5"></div>
-          <div class="swiper-slide"><img src="assets/images/logo-6.png" alt="Brand 6"></div>
-        </div>
-      </div>
-    </div>
-  </section> -->
 
 <!-- Features -->
 <section class="section-features">
@@ -318,7 +271,6 @@
     </div>
   </div>
 </section>
-
 
 
 <script type="text/javascript">
