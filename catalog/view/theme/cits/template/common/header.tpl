@@ -271,19 +271,19 @@
         <ul class="category-list">
           <?php foreach ($categories as $category) { ?>
             <li><a href="<?php echo $category['href']; ?>">
-                <span> <?php if ($category['icon']) { ?><img src="<?php echo $category['icon']; ?>" alt=""><?php } else { ?><img src="<?php echo $category['image']; ?>" alt=""><?php } ?><?php echo $category['name']; ?></span>
+                <span> <?php if ($category['icon']) { ?><img src="<?php echo $category['icon']; ?>"><?php } else { ?><img src="<?php echo $category['image']; ?>"><?php } ?><?php echo $category['name']; ?></span>
                 <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-right"></i><?php } ?></a>
               <?php if ($category['children']) { ?>
               <div class="cat-submenu">
                 <ul>
                   <?php foreach ($category['children'] as $child) { ?>
-                    <li><a href="<?php echo $child['href']; ?>" data-image="assets/images/product-1.jpg">
-                        <img src="assets/images/light-icons/day-mode.png"><?php echo $child['name']; ?></a>
+                    <li><a href="<?php echo $child['href']; ?>" data-image="<?php echo $category['image']; ?>">
+                        <img src="<?php echo $category['image']; ?>"><?php echo $child['name']; ?></a>
                     </li>
                     <?php if ($child['subChild']) { ?>
                       <?php foreach ($child['subChild'] as $subchild) { ?>
-                        <li><a href="<?php echo $subchild['href']; ?>" data-image="assets/images/product-1.jpg">
-                            <img src="assets/images/light-icons/day-mode.png"><?php echo $subchild['name']; ?></a>
+                        <li><a href="<?php echo $subchild['href']; ?>" data-image="<?php echo $category['image']; ?>">
+                            <img src="<?php echo $category['image']; ?>"><?php echo $subchild['name']; ?></a>
                         </li>
                       <?php } ?>
                     <?php } ?>
