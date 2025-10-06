@@ -224,6 +224,7 @@
           </div>
         </div>
       </nav>
+      
       <!-- Right Side -->
       <div class="header-right">
         <a href="#" class="header-reviews">
@@ -254,8 +255,8 @@
                 <span>SUBTOTAL</span>
                 <span class="minicart-total"><?php echo $cart_total; ?></span>
               </div>
-              <button class="minicart-btn minicart-view-cart">VIEW CART</button>
-              <button class="minicart-btn minicart-checkout">CHECKOUT</button>
+              <a href="/cart" class="minicart-btn minicart-view-cart">VIEW CART</a>
+              <a href="/checkout" class="minicart-btn minicart-checkout">CHECKOUT</a>
             <?php } else { ?>
               <p>Your cart is empty.</p>
             <?php } ?>
