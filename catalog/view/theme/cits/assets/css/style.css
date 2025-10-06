@@ -369,6 +369,11 @@
     font-weight: bold;
     font-size: 14px;
     border-radius: 35px;
+    text-align: center;
+  }
+
+  .minicart-btn:hover {
+    color: var(--white-color);
   }
 
   .minicart-view-cart {
