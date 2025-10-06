@@ -1,5 +1,8 @@
 <?php echo $header; ?>
 
+<!-- Product custom sections  $data['product_sections'] -->
+<?php // print_r($data['product_sections']); ?>
+
 <section class="product-gallery-info">
   <div class="container">
     <div class="row">
@@ -426,53 +429,6 @@
 </section>
 
 
-<!-- Review Script -->
-<script type="text/javascript">
-  $('#review').delegate('.pagination a', 'click', function (e) {
-    e.preventDefault();
-
-    $('#review').fadeOut('slow');
-
-    $('#review').load(this.href);
-
-    $('#review').fadeIn('slow');
-  });
-
-  $('#review').load('index.php?route=product/product/review&product_id=<?php echo $product_id; ?>');
-
-  $('#button-review').on('click', function () {
-    $.ajax({
-      url: 'index.php?route=product/product/write&product_id=<?php echo $product_id; ?>',
-      type: 'post',
-      dataType: 'json',
-      data: $("#form-review").serialize(),
-      beforeSend: function () {
-        $('#button-review').button('loading');
-      },
-      complete: function () {
-        $('#button-review').button('reset');
-      },
-      success: function (json) {
-        $('.alert-success, .alert-danger').remove();
-
-        if (json['error']) {
-          grecaptcha.reset();
-          $('#review').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' +
-            json['error'] + '</div>');
-        }
-
-        if (json['success']) {
-          $('#review').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json[
-            'success'] + '</div>');
-
-          $('input[name=\'name\']').val('');
-          $('textarea[name=\'text\']').val('');
-          $('input[name=\'rating\']:checked').prop('checked', false);
-        }
-      }
-    });
-  });
-</script>
 
 
 			<?php if($config_gr_status) { ?>

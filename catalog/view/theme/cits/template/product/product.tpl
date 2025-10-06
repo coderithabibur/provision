@@ -20,13 +20,13 @@
               <?php } ?>
 
               <?php if ($images) { ?>
-              <?php foreach ($images as $image) { ?>
-              <div class="swiper-slide">
-                <a href="<?php echo $image['popup']; ?>" class="popup-link" title="<?php echo $heading_title; ?>">
-                  <img src="<?php echo $image['thumb']; ?>" alt="<?php echo $heading_title; ?>" />
-                </a>
-              </div>
-              <?php } ?>
+                <?php foreach ($images as $image) { ?>
+                <div class="swiper-slide">
+                  <a href="<?php echo $image['popup']; ?>" class="popup-link" title="<?php echo $heading_title; ?>">
+                    <img src="<?php echo $image['thumb']; ?>" alt="<?php echo $heading_title; ?>" />
+                  </a>
+                </div>
+                <?php } ?>
               <?php } ?>
             </div>
 

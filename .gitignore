@@ -20,3 +20,5 @@ vqmod/checked.cache
 vqmod/mods.cache
 system/storage/logs/error.log
 vqmod/checked.cache
+system/storage/logs/error.log
+/system/storage/logs
