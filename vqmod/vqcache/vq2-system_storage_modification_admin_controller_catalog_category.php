@@ -579,6 +579,24 @@ $data['button_export'] = $this->language->get('button_export');
 		} else {
 			$data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 		}
+		
+		// Catgory Icon Block
+		if (isset($this->request->post['icon'])) {
+			$data['icon'] = $this->request->post['icon'];
+		} elseif (!empty($category_info)) {
+			$data['icon'] = $category_info['icon'];
+		} else {
+			$data['icon'] = '';
+		}
+
+		if (isset($this->request->post['icon']) && is_file(DIR_IMAGE . $this->request->post['icon'])) {
+			$data['icon_thumb'] = $this->model_tool_image->resize($this->request->post['icon'], 100, 100);
+		} elseif (!empty($category_info) && is_file(DIR_IMAGE . $category_info['icon'])) {
+			$data['icon_thumb'] = $this->model_tool_image->resize($category_info['icon'], 100, 100);
+		} else {
+			$data['icon_thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+		}
+		// End Catgory Icon Block
 
 		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 

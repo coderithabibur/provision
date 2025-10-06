@@ -219,39 +219,32 @@
           <li><a href="about-us.html">about</a></li>
           <li><a href="#">blog</a></li>
           <li><a href="contact.html">contact</a></li>
-          <div class="mobile-category">
-            <li><a href="#">
-                <span><img src="catalog/view/theme/cits/assets/images/light-icons/light-bulb.png">LED</span>
-                <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="mobile-category">
+          <?php foreach ($categories as $category) { ?>
+            <li><a href="<?php echo $category['href']; ?>">
+                <span><?php if ($category['icon']) { ?><img src="<?php echo $category['icon']; ?>" alt=""><?php } else { ?><img src="catalog/view/theme/cits/assets/images/light-icons/light-bulb.png" alt=""><?php } ?><?php echo $category['name']; ?></span>
+                <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-down"></i><?php } ?></a>
+              <?php if ($category['children']) { ?>
               <div class="cat-submenu">
                 <ul>
-                  <li><a href="#"><img src="assets/images/light-icons/day-mode.png">LED Headlight Bulbs.</a></li>
-                  <li><a href="#"><img src="assets/images/light-icons/idea(1).png">LED Headlights</a></li>
-                  <li><a href="#"><img src="assets/images/light-icons/idea.png">LED LIGHT BARS</a></li>
-                  <li><a href="#"><img src="assets/images/light-icons/light-bulb(1).png">LED Work Lights</a></li>
-                  <li><a href="#"><img src="assets/images/light-icons/light-bulb(3).png">LED Driving Lights</a></li>
-                  <li><a href="#"><img src="assets/images/light-icons/light-bulb(4).png">LED Headlight Control
-                      Modules</a>
-                  </li>
+                  <?php foreach ($category['children'] as $child) { ?>
+                    <li><a href="<?php echo $child['href']; ?>">
+                        <img src="assets/images/light-icons/day-mode.png"><?php echo $child['name']; ?></a>
+                    </li>
+                    <?php if ($child['subChild']) { ?>
+                      <?php foreach ($child['subChild'] as $subchild) { ?>
+                        <li><a href="<?php echo $subchild['href']; ?>">
+                            <img src="assets/images/light-icons/day-mode.png"><?php echo $subchild['name']; ?></a>
+                        </li>
+                      <?php } ?>
+                    <?php } ?>
+                  <?php } ?>
                 </ul>
               </div>
+              <?php } ?>
             </li>
-            <li><a href="#">
-                <span> <img src="catalog/view/theme/cits/assets/images/light-icons/light-bulb.png"> HID </span>
-                <i class="fa-solid fa-chevron-down"></i></a>
-              <div class="cat-submenu">
-                <ul>
-                  <li><a href="#"><img src="assets/images/light-icons/day-mode.png">HID Conversion Kits</a></li>
-                  <li><a href="#"><img src="assets/images/light-icons/idea(1).png">HID Driving Lights</a></li>
-                  <li><a href="#"><img src="assets/images/light-icons/idea.png">HID Spare Parts</a></li>
-                </ul>
-
-              </div>
-            </li>
-            <li><a href="#"><span><img src="assets/images/light-icons/light-bulb.png">Laser Driving Lights</span></a>
-            </li>
-            <li><a href="#"><span><img src="assets/images/light-icons/day-mode.png">Laser Light Bar</span></a></li>
-          </div>
+          <?php } ?>
+        </div>
         </ul>
         <div class="mobile-nav-bottom">
           <div class="mobile-nav-account-info">
@@ -269,6 +262,7 @@
           </div>
         </div>
       </nav>
+
       <!-- Right Side -->
       <div class="header-right">
         <a href="#" class="header-reviews">
@@ -299,8 +293,8 @@
                 <span>SUBTOTAL</span>
                 <span class="minicart-total"><?php echo $cart_total; ?></span>
               </div>
-              <button class="minicart-btn minicart-view-cart">VIEW CART</button>
-              <button class="minicart-btn minicart-checkout">CHECKOUT</button>
+              <a href="/cart" class="minicart-btn minicart-view-cart">VIEW CART</a>
+              <a href="/checkout" class="minicart-btn minicart-checkout">CHECKOUT</a>
             <?php } else { ?>
               <p>Your cart is empty.</p>
             <?php } ?>
@@ -320,59 +314,33 @@
           <p>ALL CATEGORIES</p>
         </button>
         <ul class="category-list">
-          <li><a href="#">
-              <span> <img src="assets/images/light-icons/bulb.png">LED</span>
-              <i class="fa-solid fa-chevron-right"></i></a>
-            <div class="cat-submenu">
-              <ul>
-                <li><a href="#" data-image="assets/images/product-1.jpg">
-                    <img src="assets/images/light-icons/day-mode.png">LED Headlight Bulbs</a>
-                </li>
-                <li><a href="#" data-image="assets/images/product-2.jpg">
-                    <img src="assets/images/light-icons/idea(1).png">LED Headlights</a>
-                </li>
-                <li><a href="#" data-image="assets/images/product-3.jpg">
-                    <img src="assets/images/light-icons/idea.png">LED LIGHT BARS</a>
-                </li>
-                <li><a href="#" data-image="assets/images/product-1.jpg">
-                    <img src="assets/images/light-icons/light-bulb(1).png">LED Work Lights</a>
-                </li>
-                <li><a href="#" data-image="assets/images/product-2.jpg">
-                    <img src="assets/images/light-icons/light-bulb(3).png">LED Driving Lights</a>
-                </li>
-                <li><a href="#" data-image="assets/images/product-3.jpg">
-                    <img src="assets/images/light-icons/light-bulb(4).png">LED Headlight Control Modules</a>
-                </li>
-              </ul>
-              <div class="cat-submenu-image">
-                <img src="assets/images/product-1.jpg" class="submenu-preview">
+          <?php foreach ($categories as $category) { ?>
+            <li><a href="<?php echo $category['href']; ?>">
+                <span> <?php if ($category['icon']) { ?><img src="<?php echo $category['icon']; ?>"><?php } else { ?><img src="<?php echo $category['image']; ?>"><?php } ?><?php echo $category['name']; ?></span>
+                <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-right"></i><?php } ?></a>
+              <?php if ($category['children']) { ?>
+              <div class="cat-submenu">
+                <ul>
+                  <?php foreach ($category['children'] as $child) { ?>
+                    <li><a href="<?php echo $child['href']; ?>" data-image="<?php echo $category['image']; ?>">
+                        <img src="<?php echo $category['image']; ?>"><?php echo $child['name']; ?></a>
+                    </li>
+                    <?php if ($child['subChild']) { ?>
+                      <?php foreach ($child['subChild'] as $subchild) { ?>
+                        <li><a href="<?php echo $subchild['href']; ?>" data-image="<?php echo $category['image']; ?>">
+                            <img src="<?php echo $category['image']; ?>"><?php echo $subchild['name']; ?></a>
+                        </li>
+                      <?php } ?>
+                    <?php } ?>
+                  <?php } ?>
+                </ul>
+                <div class="cat-submenu-image">
+                  <img src="assets/images/product-1.jpg" class="submenu-preview">
+                </div>
               </div>
-            </div>
-          </li>
-          <li><a href="#">
-              <span>
-                <img src="assets/images/light-icons/light-bulb(4).png">HID
-              </span>
-              <i class="fa-solid fa-chevron-right"></i></a>
-            <div class="cat-submenu">
-              <ul>
-                <li><a href="#" data-image="assets/images/product-1.jpg">
-                    <img src="assets/images/light-icons/day-mode.png">HID Conversion Kits</a>
-                </li>
-                <li><a href="#" data-image="assets/images/product-2.jpg">
-                    <img src="assets/images/light-icons/idea(1).png">HID Driving Lights</a>
-                </li>
-                <li><a href="#" data-image="assets/images/product-3.jpg">
-                    <img src="assets/images/light-icons/idea.png">HID Spare Parts</a>
-                </li>
-              </ul>
-              <div class="cat-submenu-image">
-                <img src="assets/images/product-1.jpg" class="submenu-preview">
-              </div>
-            </div>
-          </li>
-          <li><a href="#"><span><img src="assets/images/light-icons/light-bulb.png">Laser Driving Lights</span></a></li>
-          <li><a href="#"><span><img src="assets/images/light-icons/day-mode.png">Laser Light Bar</span></a></li>
+              <?php } ?>
+            </li>
+          <?php } ?>
         </ul>
       </div>
       <!-- Search Box -->

@@ -1,0 +1,3 @@
+- [ ] Update catalog/view/theme/cits/template/common/header.tpl to render header-categories dynamically using $categories array from controller
+- [ ] Update mobile-category section in header.tpl to also use dynamic categories
+- [ ] Test the header on frontend to ensure categories display correctly and submenus work

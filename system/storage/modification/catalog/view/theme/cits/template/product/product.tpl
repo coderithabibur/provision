@@ -192,7 +192,7 @@
   </div>
 </section>
 
-<section class="product-page-gallery">
+<!-- <section class="product-page-gallery">
   <div class="pro-left-image">
     <a href="assets/images/product-1.jpg" class="popup-link">
       <img src="assets/images/product-1.jpg">
@@ -212,7 +212,7 @@
       <img src="assets/images/product-2.jpg">
     </a>
   </div>
-</section>
+</section> -->
 
 <div class="product-featured-section" style="padding-top: 0;">
   <div class="single-product-featured" style="background-image: url(assets/images/img-1.jpg);">
