@@ -180,7 +180,7 @@ class ControllerCommonHeader extends Controller {
 		$products = $this->cart->getProducts();
 		foreach ($products as $product) {
 			if ($product['image']) {
-				$image = $this->model_tool_image->resize($product['image'], 50, 50);
+				$image = $this->model_tool_image->resize($product['image'], 450, 450);
 			} else {
 				$image = '';
 			}
