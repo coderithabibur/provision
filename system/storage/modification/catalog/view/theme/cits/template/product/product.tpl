@@ -20,13 +20,13 @@
               <?php } ?>
 
               <?php if ($images) { ?>
-              <?php foreach ($images as $image) { ?>
-              <div class="swiper-slide">
-                <a href="<?php echo $image['popup']; ?>" class="popup-link" title="<?php echo $heading_title; ?>">
-                  <img src="<?php echo $image['thumb']; ?>" alt="<?php echo $heading_title; ?>" />
-                </a>
-              </div>
-              <?php } ?>
+                <?php foreach ($images as $image) { ?>
+                <div class="swiper-slide">
+                  <a href="<?php echo $image['popup']; ?>" class="popup-link" title="<?php echo $heading_title; ?>">
+                    <img src="<?php echo $image['thumb']; ?>" alt="<?php echo $heading_title; ?>" />
+                  </a>
+                </div>
+                <?php } ?>
               <?php } ?>
             </div>
 
@@ -147,15 +147,16 @@
           <p class="spl"><?php echo $text_stock; ?> <span><?php echo $stock; ?></span></p>
 
           <!-- Quantity & Add to Cart -->
-          <div class="product-cart">
+          <form id="product" class="product-cart" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
             <div class="quantity">
-              <button>-</button>
-              <input type="text" value="1">
-              <button>+</button>
+              <button type="button" class="quantity-minus">-</button>
+              <input type="text" id="input-quantity" name="quantity" value="1">
+              <button type="button" class="quantity-plus">+</button>
             </div>
             
-            <button class="add-to-cart">ADD TO CART</button>
-          </div>
+            <button type="button" id="button-cart" class="btn btn-primary">ADD TO CART</button>
+          </form>
 
           <!-- Extra Actions -->
           <div class="extra-actions">
@@ -555,12 +556,15 @@
                         $('#content').before('<div class="alert alert-success">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
                         $('#cart > button').html(json['total']);
-                        $('#button-cart').hide();
+                        // $('#button-cart').hide();
                         $('#button-cart1').show();
 
                         //$('html, body').animate({ scrollTop: 0 }, 'slow');
 
                         $('#cart > ul').load('index.php?route=common/cart/info ul li');
+
+                        // Log success message with item count to console
+                        console.log("Add to cart successful item = " + json['total']);
                     }
 
                 },
@@ -721,6 +725,23 @@
     }).call(this);
     $('.product-faq-form').on('click', function() {
         $('#section-product-question-form').hide();
+    });
+
+    // Quantity increment/decrement
+    $('.quantity-plus').on('click', function() {
+        var input = $(this).siblings('input[name="quantity"]');
+        var currentVal = parseInt(input.val());
+        if (!isNaN(currentVal)) {
+            input.val(currentVal + 1);
+        }
+    });
+
+    $('.quantity-minus').on('click', function() {
+        var input = $(this).siblings('input[name="quantity"]');
+        var currentVal = parseInt(input.val());
+        if (!isNaN(currentVal) && currentVal > 1) {
+            input.val(currentVal - 1);
+        }
     });
     //--></script>
 

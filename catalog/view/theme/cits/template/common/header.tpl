@@ -230,44 +230,35 @@
           <img src="catalog/view/theme/cits/assets/images/Trustpilot_logo-1.png"> 651 reviews on <span class="header-trust">Trustpilot</span>
         </a>
         <div class="header-cart">
-          <button><i class="fa-solid fa-shopping-cart"></i> <span class="header-cart-count">0</span></button>
+          <button><i class="fa-solid fa-shopping-cart"></i> <span class="header-cart-count"><?php echo $cart_count; ?></span></button>
           <div class="minicart">
-            <div class="minicart-item">
-              <img src="catalog/view/theme/cits/assets/images/product-1.jpg" alt="Kit Brembo GT BMW">
-              <div class="minicart-item-info">
-                <h4>Kit Brembo GT BMW</h4>
-                <div class="minicart-quantity-price">
-                  <div class="minicart-quantity">
-                    <button class="minicart-minus">-</button>
-                    <input type="text" value="1" min="1">
-                    <button class="minicart-plus">+</button>
+            <?php if ($cart_items) { ?>
+              <?php foreach ($cart_items as $item) { ?>
+                <div class="minicart-item">
+                  <img src="<?php echo $item['image']; ?>" alt="<?php echo $item['name']; ?>">
+                  <div class="minicart-item-info">
+                    <h4><?php echo $item['name']; ?></h4>
+                    <div class="minicart-quantity-price">
+                      <div class="minicart-quantity">
+                        <button class="minicart-minus" data-key="<?php echo $item['key']; ?>">-</button>
+                        <input type="text" value="<?php echo $item['quantity']; ?>" min="1" data-key="<?php echo $item['key']; ?>">
+                        <button class="minicart-plus" data-key="<?php echo $item['key']; ?>">+</button>
+                      </div>
+                      <span class="minicart-price"><?php echo $item['price']; ?></span>
+                    </div>
                   </div>
-                  <span class="minicart-price">$69.75</span>
+                  <button class="minicart-remove" data-key="<?php echo $item['key']; ?>">×</button>
                 </div>
+              <?php } ?>
+              <div class="minicart-subtotal">
+                <span>SUBTOTAL</span>
+                <span class="minicart-total"><?php echo $cart_total; ?></span>
               </div>
-              <button class="minicart-remove">×</button>
-            </div>
-            <div class="minicart-item">
-              <img src="catalog/view/theme/cits/assets/images/product-2.jpg" alt="Nuna car seats S134">
-              <div class="minicart-item-info">
-                <h4>Nuna car seats S134</h4>
-                <div class="minicart-quantity-price">
-                  <div class="minicart-quantity">
-                    <button class="minicart-minus">-</button>
-                    <input type="text" value="1" min="1">
-                    <button class="minicart-plus">+</button>
-                  </div>
-                  <span class="minicart-price">$38.24</span>
-                </div>
-              </div>
-              <button class="minicart-remove">×</button>
-            </div>
-            <div class="minicart-subtotal">
-              <span>SUBTOTAL</span>
-              <span class="minicart-total">$107.99</span>
-            </div>
-            <button class="minicart-btn minicart-view-cart">VIEW CART</button>
-            <button class="minicart-btn minicart-checkout">CHECKOUT</button>
+              <button class="minicart-btn minicart-view-cart">VIEW CART</button>
+              <button class="minicart-btn minicart-checkout">CHECKOUT</button>
+            <?php } else { ?>
+              <p>Your cart is empty.</p>
+            <?php } ?>
           </div>
         </div>
         <button class="mobile-menu-trigger"><i class="fa-solid fa-bars"></i></button>

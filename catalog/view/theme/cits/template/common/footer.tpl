@@ -84,7 +84,7 @@
             <li><a href="#">Contact Us</a></li>
           </ul>
         </div> -->
-         i. Disclaimers ii. About Us iii. Privacy Policy iv. Terms and Conditions v. Return and Refund Policy
+         <!-- i. Disclaimers ii. About Us iii. Privacy Policy iv. Terms and Conditions v. Return and Refund Policy -->
 
 
         <div class="footer-contact">
