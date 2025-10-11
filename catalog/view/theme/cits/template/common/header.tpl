@@ -299,10 +299,19 @@
         </ul>
       </div>
       <!-- Search Box -->
-      <div class="header-search-box">
+      <!-- <div class="header-search-box">
         <input type="text" placeholder="Search for products">
         <button type="submit"><i class="fas fa-search"></i></button>
+      </div> -->
+
+      <!-- Search Box -->
+      <div class="header-search-box">
+        <form action="index.php?route=product/search" method="get">
+          <input type="text" name="search" value="<?php echo isset($search) ? $search : ''; ?>" placeholder="Search for products">
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
       </div>
+      
       <div class="header-phone">
         <a href="#"><i class="fas fa-headset"></i>
           <p>Call us 24/7 <br> <span class="header-phone-number">+08 9229 8228</span></p>
