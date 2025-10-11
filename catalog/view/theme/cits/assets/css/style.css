@@ -1095,7 +1095,7 @@
   }
 
   .single-highlights-item {
-    height: 35rem;
+    height: 44rem;
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
@@ -1103,12 +1103,12 @@
     border-radius: 5px;
     overflow: hidden;
     text-align: center;
-    background-size: 150% 100%;
+    background-size: 103% 100%;
     transition: 0.3s;
-  }
+}
 
   .single-highlights-item:hover {
-    background-size: 160% 110%;
+    background-size: 110% 110%;
   }
 
   .single-highlights-item::after {
@@ -1125,7 +1125,7 @@
 
   .highlights-item-info {
     color: var(--white-color);
-    margin: 13rem 0;
+    margin: 15rem 0;
   }
 
   .highlights-item-info h2 {
