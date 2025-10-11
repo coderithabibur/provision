@@ -108,15 +108,15 @@
             <p>
               save
               <?php
-                    $old = (float) filter_var($data['buy1get12']['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                    $new = (float) filter_var($data['buy1get12']['special'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                $old = (float) filter_var($data['buy1get12']['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                $new = (float) filter_var($data['buy1get12']['special'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
-                    if ($old > 0 && $new > 0 && $new < $old) {
-                        echo round((($old - $new) / $old) * 100) . '%';
-                    } else {
-                        echo '0%';
-                    }
-                    ?>
+                if ($old > 0 && $new > 0 && $new < $old) {
+                    echo round((($old - $new) / $old) * 100) . '%';
+                } else {
+                    echo '0%';
+                }
+                ?>
             </p>
           </div>
           <?php } else { ?>
