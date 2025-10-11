@@ -199,34 +199,6 @@
   </div>
 </section>
 
-<!-- <section class="category-based-products">
-  <div class="container">
-    <div class="single-category-based">
-      <div class="single-category-based-left"
-        style="background-image: url(https://dy2yl24vzmra3.cloudfront.net/image/cache/catalog/HID/HID-Bulbs/OEM Bulbs/D2R-Globes/D2R-HID-Xenon-Globe-Replacements-Australia-450x450.jpg);">
-        <h2>Flash Sale</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        <a href="#">shop now</a>
-      </div>
-      <div class="single-category-based-right">
-        <div class="best-seller-title">
-          <h2>featured products</h2>
-          <ul>
-            <li><button class="active">all</button></li>
-            <li><button>LED LIGHT BARS</button></li>
-            <li><button>LED Headlights</button></li>
-            <li><button>LED Work Lights</button></li>
-          </ul>
-        </div>
-        <div class="best-seller-product-grid">
-          <?php echo $column_right; ?>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section> -->
-
 <!-- Video -->
 <section class="video-hero">
   <video autoplay muted loop playsinline class="video-bg">
