@@ -1,0 +1,93 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="float-end">
+        <button type="submit" form="form-module" data-bs-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-bs-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-light"><i class="fa fa-reply"></i></a>
+      </div>
+      <h1>{{ heading_title }}</h1>
+      <ol class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endif %}
+    <div class="card">
+      <div class="card-header"><i class="fa fa-pencil"></i> {{ text_edit }}</div>
+      <div class="card-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+          <div class="row mb-3">
+            <label for="input-status" class="col-sm-2 col-form-label">{{ entry_status }}</label>
+            <div class="col-sm-10">
+              <select name="module_client_logos_status" id="input-status" class="form-control">
+                {% if module_client_logos_status %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+          <fieldset>
+            <legend>Logos</legend>
+            <div id="logos" class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <td class="text-start">{{ entry_image }}</td>
+                    <td class="text-start">{{ entry_link }}</td>
+                    <td class="text-start">{{ entry_alt }}</td>
+                    <td></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% set logo_row = 0 %}
+                  {% for logo in client_logos %}
+                  <tr id="logo-row{{ logo_row }}">
+                    <td class="text-start">
+                      <a href="" id="thumb-image{{ logo_row }}" data-bs-toggle="image" class="img-thumbnail">
+                        <img src="{{ logo.thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                      </a>
+                      <input type="hidden" name="module_client_logos_item[{{ logo_row }}][image]" value="{{ logo.image }}" id="input-image{{ logo_row }}" />
+                    </td>
+                    <td class="text-start">
+                      <input type="text" name="module_client_logos_item[{{ logo_row }}][link]" value="{{ logo.link }}" placeholder="{{ entry_link }}" class="form-control" />
+                    </td>
+                    <td class="text-start">
+                      <input type="text" name="module_client_logos_item[{{ logo_row }}][alt]" value="{{ logo.alt }}" placeholder="{{ entry_alt }}" class="form-control" />
+                    </td>
+                    <td class="text-end">
+                      <button type="button" onclick="$('#logo-row{{ logo_row }}').remove();" data-bs-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+                    </td>
+                  </tr>
+                  {% set logo_row = logo_row + 1 %}
+                  {% endfor %}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="3"></td>
+                    <td class="text-end">
+                      <button type="button" onclick="addLogo();" data-bs-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript"></script>
+{{ footer }}
