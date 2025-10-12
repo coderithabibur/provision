@@ -16,13 +16,26 @@ class ControllerExtensionModuleFeaturesSection extends Controller {
         $data['heading_title'] = $this->language->get('heading_title');
         $data['text_edit'] = $this->language->get('text_edit');
         $data['entry_status'] = $this->language->get('entry_status');
+        $data['entry_items'] = $this->language->get('entry_items');
+        $data['button_add'] = $this->language->get('button_add');
+        $data['button_remove'] = $this->language->get('button_remove');
         $data['button_save'] = $this->language->get('button_save');
         $data['button_cancel'] = $this->language->get('button_cancel');
 
+        if (isset($this->request->post['module_features_section_items'])) {
+            $data['module_features_section_items'] = $this->request->post['module_features_section_items'];
+        } else {
+            $data['module_features_section_items'] = $this->config->get('module_features_section_items');
+        }
+
+        if (isset($this->request->post['module_features_section_status'])) {
+            $data['module_features_section_status'] = $this->request->post['module_features_section_status'];
+        } else {
+            $data['module_features_section_status'] = $this->config->get('module_features_section_status');
+        }
+
         $data['action'] = $this->url->link('extension/module/features_section', 'user_token=' . $this->session->data['user_token'], true);
         $data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true);
-
-        $data['module_features_section_status'] = $this->config->get('module_features_section_status');
 
         $data['header'] = $this->load->controller('common/header');
         $data['column_left'] = $this->load->controller('common/column_left');

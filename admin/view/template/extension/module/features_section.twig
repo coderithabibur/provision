@@ -13,6 +13,7 @@
       </ul>
     </div>
   </div>
+
   <div class="container-fluid">
     {% if error_warning %}
       <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
@@ -21,6 +22,32 @@
       <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-puzzle-piece"></i> {{ text_edit }}</h3></div>
       <div class="panel-body">
         <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-features-section" class="form-horizontal">
+
+          <div id="feature-items">
+            {% if module_features_section_items %}
+              {% for item in module_features_section_items %}
+                <div class="feature-item-box well">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Icon (FA class)</label>
+                    <div class="col-sm-10"><input type="text" name="module_features_section_items[{{ loop.index0 }}][icon]" value="{{ item.icon }}" class="form-control" placeholder="fa-solid fa-gear" /></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Title</label>
+                    <div class="col-sm-10"><input type="text" name="module_features_section_items[{{ loop.index0 }}][title]" value="{{ item.title }}" class="form-control" /></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Description</label>
+                    <div class="col-sm-10"><textarea name="module_features_section_items[{{ loop.index0 }}][desc]" class="form-control">{{ item.desc }}</textarea></div>
+                  </div>
+                  <button type="button" class="btn btn-danger btn-sm remove-feature"><i class="fa fa-trash"></i> {{ button_remove }}</button>
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+
+          <button type="button" id="add-feature" class="btn btn-success"><i class="fa fa-plus"></i> {{ button_add }}</button>
+
+          <hr>
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
             <div class="col-sm-10">
@@ -30,9 +57,38 @@
               </select>
             </div>
           </div>
+
         </form>
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+let featureIndex = {{ module_features_section_items ? module_features_section_items|length : 0 }};
+$('#add-feature').on('click', function() {
+  const html = `
+  <div class="feature-item-box well">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Icon (FA class)</label>
+      <div class="col-sm-10"><input type="text" name="module_features_section_items[${featureIndex}][icon]" value="" class="form-control" placeholder="fa-solid fa-gear" /></div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Title</label>
+      <div class="col-sm-10"><input type="text" name="module_features_section_items[${featureIndex}][title]" value="" class="form-control" /></div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Description</label>
+      <div class="col-sm-10"><textarea name="module_features_section_items[${featureIndex}][desc]" class="form-control"></textarea></div>
+    </div>
+    <button type="button" class="btn btn-danger btn-sm remove-feature"><i class="fa fa-trash"></i> Remove</button>
+  </div>`;
+  $('#feature-items').append(html);
+  featureIndex++;
+});
+
+$(document).on('click', '.remove-feature', function() {
+  $(this).closest('.feature-item-box').remove();
+});
+</script>
 {{ footer }}
