@@ -664,14 +664,16 @@
             </fieldset>
             <?php echo $captcha; ?>
             <?php if ($text_agree) { ?>
-            <div class="buttons">
-              <div class="pull-right"><?php echo $text_agree; ?>
+            <div class="buttons register-btn">              
+              <div class="register-agree">
+                <input type="checkbox" name="agree" value="1" />
+                <?php echo $text_agree; ?>
                 <?php if ($agree) { ?>
                 <input type="checkbox" name="agree" value="1" checked="checked" />
-                <?php } else { ?>
-                <input type="checkbox" name="agree" value="1" />
+                <?php } else { ?>                
                 <?php } ?>
-                &nbsp;
+              </div>
+              <div class="pull-right">
                 <input type="submit" value="<?php echo $button_continue; ?>" class="btn2 yellowbtn" />
               </div>
             </div>
