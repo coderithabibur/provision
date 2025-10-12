@@ -306,7 +306,7 @@
 
       <!-- Search Box -->
       <div class="header-search-box">
-          <select name="category_id" class="form-control" style="width:200px">
+          <select name="category_id" class="header-search-category" style="width:200px">
             <option value="0">All Categories</option>
             <?php foreach ($categories as $category_1) { ?>
             <?php if ($category_1['category_id'] == $category_id) { ?>
@@ -332,7 +332,8 @@
           </select>  
           <input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_keyword; ?>" id="input-search" class="form-control" />
           
-          <input type="button" value="Search" id="button-search2" class="yellowbtn" />  
+          <!-- <input type="button" value="Search" id="button-search2" class="yellowbtn" /> -->
+          <button type="button" value="Search" id="button-search2"><i class="fas fa-search"></i></button>  
       </div>
       
       <div class="header-phone">
