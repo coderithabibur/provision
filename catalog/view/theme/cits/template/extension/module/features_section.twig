@@ -1,0 +1,15 @@
+{% if features_items %}
+<section class="section-features">
+  <div class="container features-inner">
+    {% for item in features_items %}
+      <div class="feature-item">
+        <span class="feature-icon"><i class="{{ item.icon }}"></i></span>
+        <div class="feature-content">
+          <h4>{{ item.title }}</h4>
+          <p>{{ item.desc }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

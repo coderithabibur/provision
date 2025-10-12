@@ -1,0 +1,22 @@
+{% if client_logos %}
+<section class="brand-logo-slider">
+  <div class="container">
+    <h2>{{ heading_title }}</h2>     
+    <div class="brand-slider swiper">
+      <div class="swiper-wrapper">        
+        {% for logo in client_logos %}
+        <div class="swiper-slide">          
+          {% if logo.link %}
+          <a href="{{ logo.link }}" target="_blank">
+            <img src="{{ logo.image }}" alt="{{ logo.alt }}">
+          </a>
+          {% else %}
+            <img src="{{ logo.image }}" alt="{{ logo.alt }}">
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>      
+      </div> 
+  </div>
+</section>
+{% endif %}
