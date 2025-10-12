@@ -113,7 +113,7 @@ class ControllerCommonHeader extends Controller {
 
 		// Menu
 		$this->load->model('catalog/category');
-
+		$this->load->model('tool/image');
 		$this->load->model('catalog/product');
 
 		$data['categories'] = array();
@@ -170,8 +170,7 @@ class ControllerCommonHeader extends Controller {
 		$data['search'] = $this->load->controller('common/search');
 		$data['cart'] = $this->load->controller('common/cart');
 
-		// Mini cart data
-		$this->load->model('tool/image');
+		// Mini cart data 
 		$this->load->language('checkout/cart');
 
 		$data['cart_count'] = $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0);
