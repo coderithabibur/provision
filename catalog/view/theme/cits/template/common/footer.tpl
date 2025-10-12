@@ -116,8 +116,58 @@
     </div>
   </footer>
 
+
+<script type="text/javascript"><!--
+$('#button-search2').bind('click', function() {
+  url = 'index.php?route=product/search';
+
+  var search = $('.header-search-box input[name=\'search\']').prop('value');
+
+  if (search) {
+    url += '&search=' + encodeURIComponent(search);
+  }
+
+  var category_id = $('.header-search-box select[name=\'category_id\']').prop('value');
+
+  if (category_id > 0) {
+    url += '&category_id=' + encodeURIComponent(category_id);
+  }
+
+  var sub_category = $('.header-search-box input[name=\'sub_category\']:checked').prop('value');
+
+  if (sub_category) {
+    url += '&sub_category=true';
+  }
+
+  var filter_description = $('.header-search-box input[name=\'description\']:checked').prop('value');
+
+  if (filter_description) {
+    url += '&description=true';
+  }
+
+  location = url;
+});
+
+$('.header-search-box input[name=\'search\']').bind('keydown', function(e) {
+  if (e.keyCode == 13) {
+    $('#button-search2').trigger('click');
+  }
+});
+
+$('select[name=\'category_id\']').on('change', function() {
+  if (this.value == '0') {
+    $('input[name=\'sub_category\']').prop('disabled', true);
+  } else {
+    $('input[name=\'sub_category\']').prop('disabled', false);
+  }
+});
+
+$('select[name=\'category_id\']').trigger('change');
+--></script>
+
+  
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="catalog/view/theme/cits/assets/js/script.js"></script>
-
+ 
 </body>
 </html>

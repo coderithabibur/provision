@@ -306,10 +306,33 @@
 
       <!-- Search Box -->
       <div class="header-search-box">
-        <form action="index.php?route=product/search" method="get">
-          <input type="text" name="search" value="<?php echo isset($search) ? $search : ''; ?>" placeholder="Search for products">
-          <button type="submit"><i class="fas fa-search"></i></button>
-        </form>
+          <select name="category_id" class="form-control" style="width:200px">
+            <option value="0">All Categories</option>
+            <?php foreach ($categories as $category_1) { ?>
+            <?php if ($category_1['category_id'] == $category_id) { ?>
+            <option value="<?php echo $category_1['category_id']; ?>" selected="selected"><?php echo $category_1['name']; ?></option>
+            <?php } else { ?>
+            <option value="<?php echo $category_1['category_id']; ?>"><?php echo $category_1['name']; ?></option>
+            <?php } ?>
+            <?php foreach ($category_1['children'] as $category_2) { ?>
+            <?php if ($category_2['category_id'] == $category_id) { ?>
+            <option value="<?php echo $category_2['category_id']; ?>" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_2['name']; ?></option>
+            <?php } else { ?>
+            <option value="<?php echo $category_2['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_2['name']; ?></option>
+            <?php } ?>
+            <?php foreach ($category_2['children'] as $category_3) { ?>
+            <?php if ($category_3['category_id'] == $category_id) { ?>
+            <option value="<?php echo $category_3['category_id']; ?>" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_3['name']; ?></option>
+            <?php } else { ?>
+            <option value="<?php echo $category_3['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_3['name']; ?></option>
+            <?php } ?>
+            <?php } ?>
+            <?php } ?>
+            <?php } ?>
+          </select>  
+          <input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_keyword; ?>" id="input-search" class="form-control" />
+          
+          <input type="button" value="Search" id="button-search2" class="yellowbtn" />  
       </div>
       
       <div class="header-phone">
