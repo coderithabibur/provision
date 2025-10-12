@@ -8,87 +8,99 @@
       </div>
       <h1>{{ heading_title }}</h1>
       <ul class="breadcrumb">
-        <li><a href="{{ home }}">{{ text_home }}</a></li>
-        <li><a href="{{ heading_title }}">{{ heading_title }}</a></li>
+        {% for breadcrumb in breadcrumbs %}
+          <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
       </ul>
     </div>
   </div>
-
   <div class="container-fluid">
     {% if error_warning %}
       <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
     {% endif %}
     <div class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-puzzle-piece"></i> {{ text_edit }}</h3></div>
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-cog"></i> {{ text_edit }}</h3>
+      </div>
       <div class="panel-body">
         <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-features-section" class="form-horizontal">
-
-          <div id="feature-items">
-            {% if module_features_section_items %}
-              {% for item in module_features_section_items %}
-                <div class="feature-item-box well">
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Icon (FA class)</label>
-                    <div class="col-sm-10"><input type="text" name="module_features_section_items[{{ loop.index0 }}][icon]" value="{{ item.icon }}" class="form-control" placeholder="fa-solid fa-gear" /></div>
+            <input type="hidden" name="token" value="{{ token }}" />
+          <div id="repeater">
+            {% set row = 0 %}
+            {% for feature in features_items %}
+              <div class="feature-row" data-row="{{ row }}">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Icon</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="features_items[{{ row }}][icon]" value="{{ feature.icon }}" placeholder="fa-solid fa-gear" class="form-control" />
                   </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Title</label>
-                    <div class="col-sm-10"><input type="text" name="module_features_section_items[{{ loop.index0 }}][title]" value="{{ item.title }}" class="form-control" /></div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Description</label>
-                    <div class="col-sm-10"><textarea name="module_features_section_items[{{ loop.index0 }}][desc]" class="form-control">{{ item.desc }}</textarea></div>
-                  </div>
-                  <button type="button" class="btn btn-danger btn-sm remove-feature"><i class="fa fa-trash"></i> {{ button_remove }}</button>
                 </div>
-              {% endfor %}
-            {% endif %}
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Title</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="features_items[{{ row }}][title]" value="{{ feature.title }}" placeholder="Best Quality" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Description</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="features_items[{{ row }}][desc]" value="{{ feature.desc }}" placeholder="Best quality is a must at organic" class="form-control" />
+                  </div>
+                </div>
+                <button type="button" class="btn btn-danger remove-row"><i class="fa fa-minus-circle"></i></button>
+              </div>
+              {% set row = row + 1 %}
+            {% endfor %}
           </div>
 
-          <button type="button" id="add-feature" class="btn btn-success"><i class="fa fa-plus"></i> {{ button_add }}</button>
-
+          <button type="button" id="add-row" class="btn btn-success"><i class="fa fa-plus-circle"></i> Add Feature</button>
           <hr>
+
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
             <div class="col-sm-10">
-              <select name="module_features_section_status" id="input-status" class="form-control">
-                <option value="1" {% if module_features_section_status %}selected{% endif %}>Enabled</option>
-                <option value="0" {% if not module_features_section_status %}selected{% endif %}>Disabled</option>
+              <select name="features_section_status" id="input-status" class="form-control">
+                <option value="1" {% if features_section_status %}selected{% endif %}>{{ text_enabled }}</option>
+                <option value="0" {% if not features_section_status %}selected{% endif %}>{{ text_disabled }}</option>
               </select>
             </div>
           </div>
-
         </form>
       </div>
     </div>
   </div>
 </div>
 
-<script type="text/javascript">
-let featureIndex = {{ module_features_section_items ? module_features_section_items|length : 0 }};
-$('#add-feature').on('click', function() {
-  const html = `
-  <div class="feature-item-box well">
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Icon (FA class)</label>
-      <div class="col-sm-10"><input type="text" name="module_features_section_items[${featureIndex}][icon]" value="" class="form-control" placeholder="fa-solid fa-gear" /></div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Title</label>
-      <div class="col-sm-10"><input type="text" name="module_features_section_items[${featureIndex}][title]" value="" class="form-control" /></div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Description</label>
-      <div class="col-sm-10"><textarea name="module_features_section_items[${featureIndex}][desc]" class="form-control"></textarea></div>
-    </div>
-    <button type="button" class="btn btn-danger btn-sm remove-feature"><i class="fa fa-trash"></i> Remove</button>
-  </div>`;
-  $('#feature-items').append(html);
-  featureIndex++;
+<script>
+$('#add-row').on('click', function() {
+  var row = $('#repeater .feature-row').length;
+  var html = `
+    <div class="feature-row" data-row="${row}">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Icon</label>
+        <div class="col-sm-10">
+          <input type="text" name="features_items[${row}][icon]" placeholder="fa-solid fa-gear" class="form-control" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Title</label>
+        <div class="col-sm-10">
+          <input type="text" name="features_items[${row}][title]" placeholder="Best Quality" class="form-control" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+          <input type="text" name="features_items[${row}][desc]" placeholder="Best quality is a must at organic" class="form-control" />
+        </div>
+      </div>
+      <button type="button" class="btn btn-danger remove-row"><i class="fa fa-minus-circle"></i></button>
+    </div>`;
+  $('#repeater').append(html);
 });
 
-$(document).on('click', '.remove-feature', function() {
-  $(this).closest('.feature-item-box').remove();
+$(document).on('click', '.remove-row', function() {
+  $(this).closest('.feature-row').remove();
 });
 </script>
 {{ footer }}
