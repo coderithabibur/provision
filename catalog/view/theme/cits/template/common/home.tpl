@@ -173,20 +173,15 @@
 <section class="hightlights-area">
   <div class="hightlights-content-area">
     <?php if ($data['highlight_categories']) { ?>
-    <?php foreach($data['highlight_categories'] as $category) { ?>
-
-    <div class="single-highlights-item" style="background-image: url('<?php echo $category['image']; ?>');">
-      <div class="highlights-item-info">
-
-        <span><?php echo $category['product_total']; ?> products</span>
-
-        <h2><?php echo $category['name']; ?></h2>
+      <?php foreach($data['highlight_categories'] as $category) { ?>
+      <div class="single-highlights-item" style="background-image: url('<?php echo $category['image']; ?>');">
+        <div class="highlights-item-info">
+          <span><?php echo $category['product_total']; ?> products</span>
+          <h2><?php echo $category['name']; ?></h2>
+        </div>
+        <a href="<?php echo $category['href']; ?>">Shop now</a>
       </div>
-
-      <a href="<?php echo $category['href']; ?>">Shop now</a>
-    </div>
-
-    <?php } ?>
+      <?php } ?>
     <?php } ?>
   </div>
 </section>
@@ -197,9 +192,7 @@
     <source src="https://cdn.shopify.com/videos/c/o/v/18c2e078311d40b38447d79e0db19bc8.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
-
   <div class="video-overlay"></div>
-
   <div class="video-content">
     <h1>NEXT GEN - 8.5" SPOT LIGHT KIT</h1>
     <p>Ranger/Everest Stealth Kit</p>
@@ -235,7 +228,6 @@
     </div>
   </div>
 </section>
-
 
 <script type="text/javascript">
   $(document).ready(function () {
