@@ -2,33 +2,81 @@
 <div id="content">
   <div class="page-header">
     <div class="container-fluid">
-      <div class="float-end">
-        <button type="submit" form="form-module" data-bs-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
-        <a href="{{ cancel }}" data-bs-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-light"><i class="fa fa-reply"></i></a>
-      </div>
+      <div class="pull-right">
+        <button type="submit" form="form-logos" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
       <h1>{{ heading_title }}</h1>
-      <ol class="breadcrumb">
+      <ul class="breadcrumb">
         {% for breadcrumb in breadcrumbs %}
-        <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
         {% endfor %}
-      </ol>
+      </ul>
     </div>
   </div>
   <div class="container-fluid">
     {% if error_warning %}
-    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
     </div>
     {% endif %}
-    <div class="card">
-      <div class="card-header"><i class="fa fa-pencil"></i> {{ text_edit }}</div>
-      <div class="card-body">
-        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
-          <div class="row mb-3">
-            <label for="input-status" class="col-sm-2 col-form-label">{{ entry_status }}</label>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-logos" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-title">{{ entry_title }}</label>
             <div class="col-sm-10">
-              <select name="module_client_logos_status" id="input-status" class="form-control">
-                {% if module_client_logos_status %}
+              <input type="text" name="client_logos_title" value="{{ client_logos_title }}" placeholder="{{ entry_title }}" id="input-title" class="form-control" />
+            </div>
+          </div>
+
+          <table id="logos" class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <td class="text-left">{{ entry_image }}</td>
+                <td class="text-left">{{ entry_link }}</td>
+                <td class="text-right">{{ entry_sort_order }}</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+              {% set logo_row = 0 %}
+              {% if client_logos %}
+              {% for logo in client_logos %}
+              <tr id="logo-row{{ logo_row }}">
+                <td class="text-left">
+                    <a href="" id="thumb-image{{ logo_row }}" data-toggle="image" class="img-thumbnail"><img src="{{ logo.thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a>
+                    <input type="hidden" name="client_logos_logo[{{ logo_row }}][image]" value="{{ logo.image }}" id="input-image{{ logo_row }}" />
+                </td>
+                <td class="text-left">
+                    <input type="text" name="client_logos_logo[{{ logo_row }}][link]" value="{{ logo.link }}" placeholder="{{ entry_link }}" class="form-control" />
+                </td>
+                <td class="text-right">
+                    <input type="text" name="client_logos_logo[{{ logo_row }}][sort_order]" value="{{ logo.sort_order }}" placeholder="{{ entry_sort_order }}" class="form-control" />
+                </td>
+                <td class="text-left">
+                    <button type="button" onclick="$('#logo-row{{ logo_row }}').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+                </td>
+              </tr>
+              {% set logo_row = logo_row + 1 %}
+              {% endfor %}
+              {% endif %}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3"></td>
+                <td class="text-left"><button type="button" onclick="addLogo();" data-toggle="tooltip" title="{{ button_logo_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+              </tr>
+            </tfoot>
+          </table>
+          
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-10">
+              <select name="client_logos_status" id="input-status" class="form-control">
+                {% if client_logos_status %}
                 <option value="1" selected="selected">{{ text_enabled }}</option>
                 <option value="0">{{ text_disabled }}</option>
                 {% else %}
@@ -38,56 +86,26 @@
               </select>
             </div>
           </div>
-          <fieldset>
-            <legend>Logos</legend>
-            <div id="logos" class="table-responsive">
-              <table class="table table-bordered table-hover">
-                <thead>
-                  <tr>
-                    <td class="text-start">{{ entry_image }}</td>
-                    <td class="text-start">{{ entry_link }}</td>
-                    <td class="text-start">{{ entry_alt }}</td>
-                    <td></td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% set logo_row = 0 %}
-                  {% for logo in client_logos %}
-                  <tr id="logo-row{{ logo_row }}">
-                    <td class="text-start">
-                      <a href="" id="thumb-image{{ logo_row }}" data-bs-toggle="image" class="img-thumbnail">
-                        <img src="{{ logo.thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" />
-                      </a>
-                      <input type="hidden" name="module_client_logos_item[{{ logo_row }}][image]" value="{{ logo.image }}" id="input-image{{ logo_row }}" />
-                    </td>
-                    <td class="text-start">
-                      <input type="text" name="module_client_logos_item[{{ logo_row }}][link]" value="{{ logo.link }}" placeholder="{{ entry_link }}" class="form-control" />
-                    </td>
-                    <td class="text-start">
-                      <input type="text" name="module_client_logos_item[{{ logo_row }}][alt]" value="{{ logo.alt }}" placeholder="{{ entry_alt }}" class="form-control" />
-                    </td>
-                    <td class="text-end">
-                      <button type="button" onclick="$('#logo-row{{ logo_row }}').remove();" data-bs-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
-                    </td>
-                  </tr>
-                  {% set logo_row = logo_row + 1 %}
-                  {% endfor %}
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="3"></td>
-                    <td class="text-end">
-                      <button type="button" onclick="addLogo();" data-bs-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </fieldset>
         </form>
       </div>
     </div>
   </div>
+<script type="text/javascript"><!--
+var logo_row = {{ logo_row }};
+
+function addLogo() {
+	var html  = '<tr id="logo-row' + logo_row + '">';
+    html += '  <td class="text-left"><a href="" id="thumb-image' + logo_row + '" data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="client_logos_logo[' + logo_row + '][image]" value="" id="input-image' + logo_row + '" /></td>';	
+	html += '  <td class="text-left"><input type="text" name="client_logos_logo[' + logo_row + '][link]" value="" placeholder="{{ entry_link }}" class="form-control" /></td>';	
+	html += '  <td class="text-right"><input type="text" name="client_logos_logo[' + logo_row + '][sort_order]" value="" placeholder="{{ entry_sort_order }}" class="form-control" /></td>';
+	html += '  <td class="text-left"><button type="button" onclick="$(\'#logo-row' + logo_row + '\').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '</tr>';
+	
+	$('#logos tbody').append(html);
+	
+	logo_row++;
+}
+//--></script>
 </div>
-<script type="text/javascript"></script>
 {{ footer }}
+
