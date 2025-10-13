@@ -72,6 +72,14 @@ class ControllerCommonFooter extends Controller {
 
 		$data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 
+		// ===========================
+		// === CLIENT LOGOS MODULE ===
+		// ===========================
+		$this->load->model('setting/setting');
+		$client_logos_settings = $this->model_setting_setting->getSetting('client_logos');
+		$data['client_logos_section'] = $this->load->controller('extension/module/client_logos', $client_logos_settings);
+		// ===========================
+		
 		// Whos Online
 		if ($this->config->get('config_customer_online')) {
 			$this->load->model('tool/online');

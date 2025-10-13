@@ -1,25 +1,4 @@
-  <section class="brand-logo-slider">
-    <div class="container">
-      <h2>Our Clients</h2>
-      <div class="brand-slider swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-1.png" alt="Brand 1"></div>
-          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-2.png" alt="Brand 2"></div>
-          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-3.png" alt="Brand 3"></div>
-          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-4.png" alt="Brand 4"></div>
-          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-5.png" alt="Brand 5"></div>
-          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-6.png" alt="Brand 6"></div>
-          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-1.png" alt="Brand 1"></div>
-          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-2.png" alt="Brand 2"></div>
-          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-3.png" alt="Brand 3"></div>
-          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-4.png" alt="Brand 4"></div>
-          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-5.png" alt="Brand 5"></div>
-          <div class="swiper-slide"><img src="catalog/view/theme/cits/assets/images/logo-6.png" alt="Brand 6"></div>
-        </div>
-      </div> 
-    </div>
-  </section>
-
+<?php echo $client_logos_section; ?>
   <!-- Footer Section -->
   <footer class="site-footer">
     
