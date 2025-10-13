@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']    = 'Client Logos';
+$_['heading_title']    = 'Client Logos - New';
 
 // Text
 $_['text_extension']   = 'Extensions';

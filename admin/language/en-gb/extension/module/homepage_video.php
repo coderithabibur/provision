@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']    = 'Homepage Video Section';
+$_['heading_title']    = 'Homepage Video Section - New';
 
 // Text
 $_['text_extension']   = 'Extensions';
