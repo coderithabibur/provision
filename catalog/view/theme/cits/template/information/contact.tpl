@@ -131,21 +131,21 @@
         <div class="row gx-4 gy-4">
           <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
             <div class="single-store">
-              <img src="assets/images/img-1.jpg" alt="Los Angeles">
+              <img src="/catalog/view/theme/cits/assets/images/img-1.jpg" alt="Los Angeles">
               <a href="#">Los Angeles</a>
               <p>34 Main Street, Los Angeles 9021 United States</p>
             </div>
           </div>
           <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
             <div class="single-store">
-              <img src="assets/images/img-2.jpg" alt="New York">
+              <img src="/catalog/view/theme/cits/assets/images/img-2.jpg" alt="New York">
               <a href="#">New York</a>
               <p>515 Broadway 10015 New York United States</p>
             </div>
           </div>
           <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
             <div class="single-store">
-              <img src="assets/images/img-3.jpg" alt="California">
+              <img src="/catalog/view/theme/cits/assets/images/img-3.jpg" alt="California">
               <a href="#">California</a>
               <p>1000 California St 6814 Omaha United States</p>
             </div>
