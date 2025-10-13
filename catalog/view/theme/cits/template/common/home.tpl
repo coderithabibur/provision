@@ -13,6 +13,98 @@
   </div>
 </section>
 
+<section class="buy-one-get-on-free">
+  <div class="container">
+    <h2>buy one get one free</h2>
+    <div class="category-cards">
+      <div class="category-card">
+        <div class="category-card-content">
+          <h3>buy one</h3>
+          <h3>get one free</h3>
+          <p><?php echo $data['buy1get1']['model']; ?> - Now 50% Savings</p>
+          <span>Total = <strong><?php echo $data['buy1get1']['price']; ?></strong></span>
+          <a href="<?php echo $data['buy1get1']['href'] ?>">buy Now</a>
+        </div>
+        <div class="single-buy-get-free">
+          <div class="buy-get-free-images">
+            <img src="<?php echo $data['buy1get1']['image']; ?>">
+            <div class="plus-sybol">
+              <p>+</p>
+            </div>
+            <img src="<?php echo $data['buy1get1']['image']; ?>">
+          </div>
+          <h2><a href="<?php echo $data['buy1get1']['href'] ?>"><?php echo $data['buy1get1']['name']; ?></a></h2>
+          <div class="best-sellers-item-price">
+            <?php if (!empty($data['buy1get12']['special'])) { ?>
+            <span><?php echo $data['buy1get12']['special']; ?></span>
+            <del><?php echo $data['buy1get12']['price']; ?></del>
+            <div class="save-price">
+              <p>
+                save
+                <?php
+                $old = (float) filter_var($data['buy1get12']['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                $new = (float) filter_var($data['buy1get12']['special'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+                if ($old > 0 && $new > 0 && $new < $old) {
+                    echo round((($old - $new) / $old) * 100) . '%';
+                } else {
+                    echo '0%';
+                }
+                ?>
+              </p>
+            </div>
+            <?php } else { ?>
+            <span><?php echo $data['buy1get12']['price']; ?></span>
+            <?php } ?>
+          </div>
+        </div>
+      </div>
+      <div class="category-card">
+        <div class="category-card-content">
+          <h3>buy one</h3>
+          <h3>get one free</h3>
+          <p><?php echo $data['buy1get12']['model']; ?> - Now 50% Savings</p>
+          <span>Total = <strong><?php echo $data['buy1get12']['price'] ?></strong></span>
+          <a href="<?php echo $data['buy1get12']['href'] ?>">buy Now</a>
+        </div>
+        <div class="single-buy-get-free">
+          <div class="buy-get-free-images">
+            <img src="<?php echo $data['buy1get12']['image']; ?>">
+            <div class="plus-sybol">
+              <p>+</p>
+            </div>
+            <img src="<?php echo $data['buy1get12']['image']; ?>">
+          </div>
+          <h2><a href="<?php echo $data['buy1get12']['href'] ?>"><?php echo $data['buy1get12']['name']; ?></a></h2>
+          <div class="best-sellers-item-price">
+            <?php if (!empty($data['buy1get12']['special'])) { ?>
+            <span><?php echo $data['buy1get12']['special']; ?></span>
+            <del><?php echo $data['buy1get12']['price']; ?></del>
+            <div class="save-price">
+              <p>
+                save
+                <?php
+                  $old = (float) filter_var($data['buy1get12']['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                  $new = (float) filter_var($data['buy1get12']['special'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+                  if ($old > 0 && $new > 0 && $new < $old) {
+                      echo round((($old - $new) / $old) * 100) . '%';
+                  } else {
+                      echo '0%';
+                  }
+                  ?>
+              </p>
+            </div>
+            <?php } else { ?>
+            <span><?php echo $data['buy1get12']['price']; ?></span>
+            <?php } ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Featured Categories Section -->
 <section class="best-seller-area">
   <div class="container">
@@ -79,108 +171,20 @@
       <?php } ?>
     </div>
   </div>
-
-  <!-- Buy One Get One Free -->
-  <div class="container category-cards">
-    <div class="category-card">
-      <div class="category-card-content">
-        <h3>buy one</h3>
-        <h3>get one free</h3>
-        <p><?php echo $data['buy1get1']['model']; ?> - Now 50% Savings</p>
-        <span>Total = <strong><?php echo $data['buy1get1']['price']; ?></strong></span>
-        <a href="<?php echo $data['buy1get1']['href'] ?>">buy Now</a>
-      </div>
-      <div class="single-buy-get-free">
-        <div class="buy-get-free-images">
-          <img src="<?php echo $data['buy1get1']['image']; ?>">
-          <div class="plus-sybol">
-            <p>+</p>
-          </div>
-          <img src="<?php echo $data['buy1get1']['image']; ?>">
-        </div>
-        <h2><a href="<?php echo $data['buy1get1']['href'] ?>"><?php echo $data['buy1get1']['name']; ?></a></h2>
-        <div class="best-sellers-item-price">
-          <?php if (!empty($data['buy1get12']['special'])) { ?>
-          <span><?php echo $data['buy1get12']['special']; ?></span>
-          <del><?php echo $data['buy1get12']['price']; ?></del>
-          <div class="save-price">
-            <p>
-              save
-              <?php
-                $old = (float) filter_var($data['buy1get12']['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                $new = (float) filter_var($data['buy1get12']['special'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-
-                if ($old > 0 && $new > 0 && $new < $old) {
-                    echo round((($old - $new) / $old) * 100) . '%';
-                } else {
-                    echo '0%';
-                }
-                ?>
-            </p>
-          </div>
-          <?php } else { ?>
-          <span><?php echo $data['buy1get12']['price']; ?></span>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-    <div class="category-card">
-      <div class="category-card-content">
-        <h3>buy one</h3>
-        <h3>get one free</h3>
-        <p><?php echo $data['buy1get12']['model']; ?> - Now 50% Savings</p>
-        <span>Total = <strong><?php echo $data['buy1get12']['price'] ?></strong></span>
-        <a href="<?php echo $data['buy1get12']['href'] ?>">buy Now</a>
-      </div>
-      <div class="single-buy-get-free">
-        <div class="buy-get-free-images">
-          <img src="<?php echo $data['buy1get12']['image']; ?>">
-          <div class="plus-sybol">
-            <p>+</p>
-          </div>
-          <img src="<?php echo $data['buy1get12']['image']; ?>">
-        </div>
-        <h2><a href="<?php echo $data['buy1get12']['href'] ?>"><?php echo $data['buy1get12']['name']; ?></a></h2>
-        <div class="best-sellers-item-price">
-          <?php if (!empty($data['buy1get12']['special'])) { ?>
-          <span><?php echo $data['buy1get12']['special']; ?></span>
-          <del><?php echo $data['buy1get12']['price']; ?></del>
-          <div class="save-price">
-            <p>
-              save
-              <?php
-                  $old = (float) filter_var($data['buy1get12']['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                  $new = (float) filter_var($data['buy1get12']['special'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-
-                  if ($old > 0 && $new > 0 && $new < $old) {
-                      echo round((($old - $new) / $old) * 100) . '%';
-                  } else {
-                      echo '0%';
-                  }
-                  ?>
-            </p>
-          </div>
-          <?php } else { ?>
-          <span><?php echo $data['buy1get12']['price']; ?></span>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <section class="hightlights-area">
   <div class="hightlights-content-area">
     <?php if ($data['highlight_categories']) { ?>
-      <?php foreach($data['highlight_categories'] as $category) { ?>
-      <div class="single-highlights-item" style="background-image: url('<?php echo $category['image']; ?>');">
-        <div class="highlights-item-info">
-          <span><?php echo $category['product_total']; ?> products</span>
-          <h2><?php echo $category['name']; ?></h2>
-        </div>
-        <a href="<?php echo $category['href']; ?>">Shop now</a>
+    <?php foreach($data['highlight_categories'] as $category) { ?>
+    <div class="single-highlights-item" style="background-image: url('<?php echo $category['image']; ?>');">
+      <div class="highlights-item-info">
+        <span><?php echo $category['product_total']; ?> products</span>
+        <h2><?php echo $category['name']; ?></h2>
       </div>
-      <?php } ?>
+      <a href="<?php echo $category['href']; ?>">Shop now</a>
+    </div>
+    <?php } ?>
     <?php } ?>
   </div>
 </section>
