@@ -191,9 +191,7 @@
     <a href="#">Shop now </a>
   </div>
 </section>
-
-<img src="assets/images/review.png" style="width: 100%;">
-
+  
 <!-- Features -->
 <?php echo $feature_section_module; ?>
 
