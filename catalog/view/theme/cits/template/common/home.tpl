@@ -1,17 +1,6 @@
 <?php echo $header; ?>
-<section class="hero-area">
-  <div class="hero-slide">
-    <video autoplay muted loop playsinline class="slide-video">
-      <source src="https://cdn.shopify.com/videos/c/o/v/18c2e078311d40b38447d79e0db19bc8.mp4" type="video/mp4">
-    </video>
-    <div class="container slide-content">
-      <span>NEVER MISS A SALE</span>
-      <h1>Rocket Racing Wheels</h1>
-      <p>Lorem ipsum dolor sit amet sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <a href="#" class="hero-button">SHOP NOW</a>
-    </div>
-  </div>
-</section>
+
+<?php echo $my_video_section; ?>
 
 <section class="buy-one-get-on-free">
   <div class="container">
