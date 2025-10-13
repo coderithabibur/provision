@@ -8,10 +8,26 @@
         <div class="newsletter-content">
           <div class="newsletter-text">
             <h2>Newsletter</h2>
-            <p>Subscribe to our Newsletter get 10% discount code</p>
+            <p>Subscribe to our Newsletter and get 10% discount code</p>
           </div>
-          <div class="newsletter-form">
-            <input type="email" placeholder="Your e-mail address"><button type="submit">SUBSCRIBE</button>
+          <!-- Newsletter Form -->
+          <div class="newsletter-form-area">
+            <div class="newsletter-form" id="subscribe_field">
+              <input 
+                type="email" 
+                class="footer-input" 
+                placeholder="Your e-mail address" 
+                name="sub_email" 
+                id="sub_email"
+              >
+              <button class="btn" type="button" id="subscriber">
+                SUBSCRIBE
+              </button>
+            </div>
+            <!-- Message area -->
+            <span class="subscribe_msg" id="subscribe_msg">
+              <span id="error_subscribe" class="error"></span>
+            </span>
           </div>
         </div>
       </div>
@@ -95,6 +111,55 @@
     </div>
   </footer>
 
+  <!-- Newsletter Script -->
+<script type="text/javascript"><!--
+  $('#subscriber').bind('click', function() { <!-- 
+    var email=$("#sub_email").val();
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            if(email == '' || email == "Enter your email") {
+      $("#error_subscribe").html('E-Mail id is required!');
+      return false;
+            }
+    else if( !emailReg.test( email ) ) {
+      $("#error_subscribe").html('E-Mail id is  not valid!');
+      return false;
+      }   
+    $.ajax({
+      url: 'index.php?route=common/footer/subscriber',
+      type: 'post',
+      data: 'email='+email,
+      dataType: 'json',
+      beforeSend: function() { 
+      /*$('#sub_email').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');*/
+      },
+      complete: function() {
+        $('.wait').remove(); 
+      },			
+      success: function(json) { 
+        //$("#subscribe_field").remove(); 
+        if(json['success']==0){
+        $("#error_subscribe").html('Email address already exists !');
+      }
+      else if(json['success']==2){
+        $("#error_subscribe").html('Error in subscription!');
+      }
+      else if(json['success']==1){
+        $("#subscribe_msg").html('<span class="subscribe_msg">Sucessfully subscribe!</span>');
+      }
+      },
+      error: function(xhr, ajaxOptions, thrownError) {   
+        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+      }
+      });  
+    });
+    
+    $(document).ready(function(e) {
+      $('.responsiveCat button').click(function(e) {
+        $('#column-left').removeClass('hidden-xs');		
+        $('.category-sec .panel-group').slideToggle(700);
+      });	
+    }); 
+</script>
 
 <script type="text/javascript"><!--
 $('#button-search2').bind('click', function() {
