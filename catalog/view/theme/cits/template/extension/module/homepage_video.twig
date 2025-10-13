@@ -1,4 +1,4 @@
-{% if video_url %}
+<!-- {% if video_url %}
 <div class="hero-video-section">
   <video autoplay loop muted playsinline>
     <source src="{{ video_url }}" type="video/mp4">
@@ -9,4 +9,14 @@
   </div>
   {% endif %}
 </div>
+{% endif %} -->
+
+{% if video_url %}
+<section class="hero-area">
+  <div class="hero-slide">
+    <video autoplay muted loop playsinline class="slide-video">
+      <source src="{{ video_url }}" type="video/mp4">
+    </video>   
+  </div>
+</section>
 {% endif %}
