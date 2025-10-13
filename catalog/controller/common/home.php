@@ -9,10 +9,13 @@ class ControllerCommonHome extends Controller {
 
 
         // Settings for video module
-        $homepage_video_settings = $this->model_setting_setting->getSetting('homepage_video');
-        
+        $homepage_video_settings = $this->model_setting_setting->getSetting('homepage_video'); 
         $data['my_video_section'] = $this->load->controller('extension/module/homepage_video', $homepage_video_settings);
-
+        
+        // Feature Section Module 
+        $feature_section_settings = $this->model_setting_setting->getSetting('module_feature_section');
+        $data['feature_section_module'] = $this->load->controller('extension/module/feature_section', $feature_section_settings);
+ 
 		$this->document->setTitle($this->config->get('config_meta_title'));
 		$this->document->setDescription($this->config->get('config_meta_description'));
 		$this->document->setKeywords($this->config->get('config_meta_keyword'));

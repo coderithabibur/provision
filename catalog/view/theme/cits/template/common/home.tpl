@@ -1,5 +1,4 @@
 <?php echo $header; ?>
-
 <section class="hero-area">
   <div class="hero-slide">
     <video autoplay muted loop playsinline class="slide-video">
@@ -203,31 +202,7 @@
 <img src="assets/images/review.png" style="width: 100%;">
 
 <!-- Features -->
-<section class="section-features">
-  <div class="container features-inner">
-    <div class="feature-item">
-      <span class="feature-icon"><i class="fa-solid fa-gear"></i></span>
-      <div class="feature-content">
-        <h4>Best quality</h4>
-        <p>Best quality is a must at organic</p>
-      </div>
-    </div>
-    <div class="feature-item">
-      <span class="feature-icon"><i class="fa-solid fa-truck-fast"></i></span>
-      <div class="feature-content">
-        <h4>Shipping</h4>
-        <p>Deliver within 24 hours</p>
-      </div>
-    </div>
-    <div class="feature-item">
-      <span class="feature-icon"><i class="fa-solid fa-headset"></i></span>
-      <div class="feature-content">
-        <h4>Support 24/7</h4>
-        <p>Contact us 24 hours a day</p>
-      </div>
-    </div>
-  </div>
-</section>
+<?php echo $feature_section_module; ?>
 
 <script type="text/javascript">
   $(document).ready(function () {
