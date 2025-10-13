@@ -1,7 +1,7 @@
 <?php echo $header; ?>
 
 <!-- Product custom sections  $data['product_sections'] -->
-<?php // print_r($data['product_sections']); ?>
+<?php// print_r($data['product_sections']); ?>
 
 <section class="product-gallery-info">
   <div class="container">
@@ -60,11 +60,10 @@
         <div class="product-info">
           <h2 class="product-title"><?php echo $heading_title; ?></h2>
           <p class="product-desc">
-            <?php echo $short_description; ?>
           </p>
 
           <!-- Variation -->
-          <div class="product-variation">
+          <!-- <div class="product-variation">
             <label>Size: 18 inch</label>
             <div class="pro-var-group">
               <label for="size-18">
@@ -80,8 +79,8 @@
                 22 inch
               </label>
             </div>
-          </div>
-
+          </div> 
+          
           <div class="more-quantity-area">
             <ul>
               <li><button>2 or more $186.00 <p>(Each)</p></button></li>
@@ -90,7 +89,7 @@
               <li><button>8 or more $145.25 <p>(Each)</p></button></li>
               <li><button>10 or more $135.00 <p>(Each)</p></button></li>
             </ul>
-          </div>
+          </div> -->
 
           <!-- Current Price -->
           <div class="product-current-price"><?php echo $price; ?> <del>$150.00</del></div>
@@ -155,7 +154,7 @@
               <button type="button" class="quantity-plus">+</button>
             </div>
             
-            <button type="button" id="button-cart" class="btn btn-primary">ADD TO CART</button>
+            <button type="button" id="button-cart" class="add-to-cart">ADD TO CART</button>
           </form>
 
           <!-- Extra Actions -->
@@ -214,42 +213,53 @@
   </div>
 </section> -->
 
+
+
+
 <div class="product-featured-section" style="padding-top: 0;">
-  <div class="single-product-featured" style="background-image: url(assets/images/img-1.jpg);">
-    <div class="container">
-      <div class="single-product-featured-content">
-        <h2>the pro standard</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi eius tenetur recusandae natus illum
-          architecto nemo repellendus iste, ab autem accusantium laudantium eaque sint culpa fugiat vero. Repellat,
-          consequatur ab?</p>
+<?php if (!empty($product_sections)) { ?>
+  <?php foreach ($product_sections as $section) { ?>
+
+    <?php if ($section['section_type'] == 'image') { ?>
+      <div class="single-product-featured" style="background-image: url('<?php echo $section['background_image']; ?>');">
+        <div class="container">
+          <div class="single-product-featured-content">
+            <?php if (!empty($section['title'])) { ?>
+              <h2><?php echo $section['title']; ?></h2>
+            <?php } ?>
+            <?php if (!empty($section['description'])) { ?>
+              <p><?php echo $section['description']; ?></p>
+            <?php } ?>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="single-product-featured" style="background-image: url(assets/images/img-4.jpg);">
-    <div class="container">
-      <div class="single-product-featured-content">
-        <h2>the pro standard</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi eius tenetur recusandae natus illum
-          architecto nemo repellendus iste, ab autem accusantium laudantium eaque sint culpa fugiat vero. Repellat,
-          consequatur ab?</p>
+
+    <?php } elseif ($section['section_type'] == 'video') { ?>
+      <div class="single-product-featured video-section">
+        <video autoplay muted loop playsinline class="background-video">
+          <source src="<?php echo $section['video_path']; ?>" type="video/mp4">
+        </video>
+        <div class="container">
+          <div class="single-product-featured-content">
+            <?php if (!empty($section['title'])) { ?>
+              <h2><?php echo $section['title']; ?></h2>
+            <?php } ?>
+            <?php if (!empty($section['description'])) { ?>
+              <p><?php echo $section['description']; ?></p>
+            <?php } ?>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="single-product-featured" style="background-image: url(assets/images/img-3.jpg);">
-    <div class="container">
-      <div class="single-product-featured-content">
-        <h2>the pro standard</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi eius tenetur recusandae natus illum
-          architecto nemo repellendus iste, ab autem accusantium laudantium eaque sint culpa fugiat vero. Repellat,
-          consequatur ab?</p>
-      </div>
-    </div>
-  </div>
+    <?php } ?>
+
+  <?php } ?>
+<?php } ?>
+
 </div>
 
 <section class="dimensions-area">
   <div class="container">
-    <img src="assets/images/d3s-01.avif">
+    <img src="/catalog/view/theme/cits/assets/images/d3s-01.avif">
   </div>
 </section>
 
@@ -279,10 +289,10 @@
     Your browser does not support the video tag.
   </video>
 
-  <iframe class="video-iframe" width="100%" height="320" src="<?php echo $video_link?>"
+  <!-- <iframe class="video-iframe" width="100%" height="320" src="<?php// echo $video_link?>"
     frameborder="0"
     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen></iframe>
+    allowfullscreen></iframe> -->
 
   <div class="video-overlay"></div>
 
