@@ -160,8 +160,8 @@
           <!-- Extra Actions -->
           <div class="extra-actions">
             <a href="#"><i class="fa-solid fa-code-compare"></i>Compare</a>
-            <a href="#"><i class="fa-solid fa-circle-question"></i>Ask a Question</a>
-            <a href="#"><i class="fa-solid fa-share-nodes"></i>Social Share</a>
+            <a href="/index.php?route=information/contact"><i class="fa-solid fa-circle-question"></i>Ask a Question</a>
+            <!-- <a href="#"><i class="fa-solid fa-share-nodes"></i>Social Share</a> -->
           </div>
 
           <!-- Secure Checkout -->
@@ -182,7 +182,15 @@
           <div class="meta">
             <p><span>SKU:</span> Woo-Long-Sleeve-Tee</p>
             <p><span>Categories:</span> Car Audio Systems, Headlight, Tires & Wheels</p>
-            <p><span>Tags:</span> Ducati, Hyundai, Kia, Lamborghini, Toyota, Triumph</p>
+            <p><span><?php echo $text_tags; ?> </span> 
+              <?php for ($i = 0; $i < count($tags); $i++) { ?>
+              <?php if ($i < (count($tags) - 1)) { ?>
+              <a href="<?php echo $tags[$i]['href']; ?>"><?php echo $tags[$i]['tag']; ?></a>,
+              <?php } else { ?>
+              <a href="<?php echo $tags[$i]['href']; ?>"><?php echo $tags[$i]['tag']; ?></a>
+              <?php } ?>
+              <?php } ?>
+            </p>
           </div>
 
         </div>

@@ -157,8 +157,8 @@
         </div>
         <ul>
           <li><a href="/">home</a></li>
-          <li><a href="#">shop</a></li>
-          <li><a href="about-us.html">about</a></li>
+          <li><a href="/index.php?route=product/category&path=115">shop</a></li>
+          <li><a href="/index.php?route=information/information&information_id=4">about</a></li>
           <li><a href="/index.php?route=information/contact">contact</a></li>
         <div class="mobile-category">
           <?php foreach ($categories as $category) { ?>

@@ -1551,6 +1551,10 @@
     text-align: center;
   }
 
+  .category-product-pagination {
+    display: none;
+  }
+
   /* Video Section */
 
   .video-hero {

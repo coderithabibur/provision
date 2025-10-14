@@ -69,7 +69,7 @@
       <?php } ?>
     </div>
     
-    <div class="pagination">
+    <div class="pagination category-product-pagination">
       <?php echo $pagination; ?>
       <span class="results"><?php echo $results; ?></span>
     </div>
