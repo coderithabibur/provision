@@ -123,7 +123,7 @@ class ControllerCommonHeader extends Controller {
 		foreach ($categories as $category) {
 			if ($category['top']) {
 				if ($category['icon']) {
-					$icon = $this->model_tool_image->resize($category['icon'], 25, 25);
+					$icon = HTTP_SERVER . 'image/' . $category['icon'];
 				} else {
 					$icon = false;
 				}

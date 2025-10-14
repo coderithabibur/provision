@@ -54,7 +54,7 @@ class ControllerCommonHome extends Controller {
             $data['highlight_categories'][] = array(
                 'name'          => $category['name'],
                 'image'         => $image_url,
-        'product_total' => $product_total,
+                'product_total' => $product_total,
                 'href'          => $this->url->link('product/category', 'path=' . $category['category_id'])
             );
         }
