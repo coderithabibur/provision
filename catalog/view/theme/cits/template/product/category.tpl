@@ -53,7 +53,7 @@
                 <ul>
                   <li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li>
                 </ul>
-                <p><?php echo $product['reviews']; ?></p>
+                <p><?php echo $product['reviews']; ?> Reviews</p>
               </div>
               <div class="single-product-btn-group">
                 <button onclick="cart.add('<?php echo $product['product_id']; ?>');">

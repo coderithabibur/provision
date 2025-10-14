@@ -521,7 +521,9 @@
 
   .category-list li a img {
     height: 25px;
-    filter: brightness(0);
+    width: 25px;
+    object-fit: cover;
+    border-radius: 3px;
   }
 
   .category-list li a:hover {
