@@ -19,11 +19,11 @@
         </div>
         <div class="single-buy-get-free">
           <div class="buy-get-free-images">
-            <img src="<?php echo $data['buy1get1']['image']; ?>">
+            <a href="<?php echo $data['buy1get1']['href'] ?>"><img src="<?php echo $data['buy1get1']['image']; ?>"></a>            
             <div class="plus-sybol">
               <p>+</p>
             </div>
-            <img src="<?php echo $data['buy1get1']['image']; ?>">
+            <a href="<?php echo $data['buy1get1']['href'] ?>"><img src="<?php echo $data['buy1get1']['image']; ?>"></a>
           </div>
           <h2><a href="<?php echo $data['buy1get1']['href'] ?>"><?php echo $data['buy1get1']['name']; ?></a></h2>
           <!-- <div class="best-sellers-item-price">
@@ -61,11 +61,11 @@
         </div>
         <div class="single-buy-get-free">
           <div class="buy-get-free-images">
-            <img src="<?php echo $data['buy1get12']['image']; ?>">
+            <a href="<?php echo $data['buy1get12']['href'] ?>"><img src="<?php echo $data['buy1get1']['image']; ?>"></a>
             <div class="plus-sybol">
               <p>+</p>
             </div>
-            <img src="<?php echo $data['buy1get12']['image']; ?>">
+            <a href="<?php echo $data['buy1get12']['href'] ?>"><img src="<?php echo $data['buy1get1']['image']; ?>"></a>
           </div>
           <h2><a href="<?php echo $data['buy1get12']['href'] ?>"><?php echo $data['buy1get12']['name']; ?></a></h2>
           <!-- <div class="best-sellers-item-price">

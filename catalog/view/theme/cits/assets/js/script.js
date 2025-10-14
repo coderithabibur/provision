@@ -19,15 +19,16 @@ $(document).ready(function () {
 
 });
 
-// Submenu Image Script
-document.querySelectorAll(".cat-submenu").forEach(submenu => {
-  const preview = submenu.querySelector(".submenu-preview");
 
-  submenu.querySelectorAll("ul li a").forEach(item => {
-    item.addEventListener("mouseenter", function () {
-      const newImage = this.getAttribute("data-image");
-      preview.setAttribute("src", newImage);
-    });
+// Main Category Image Hover Script
+document.querySelectorAll('.category-list > li > a').forEach(link => {
+  const mainImg = link.querySelector('img'); // get main category image
+
+  link.addEventListener('mouseenter', function() {
+      const newImage = this.getAttribute('data-image');
+      if (mainImg && newImage) {
+          mainImg.setAttribute('src', newImage);
+      }
   });
 });
 

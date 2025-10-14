@@ -134,13 +134,23 @@
           "BATT60"</p>
       </div>
       <div class="header-top-right">
-        <a href="/login">
-          <i class="fa-solid fa-right-to-bracket"></i> Login
-        </a>
-        <a href="/register">
-          <i class="fa-solid fa-user-plus"></i> Register
-        </a>
+        <?php if ($logged) { ?>
+            <a href="<?php echo $account; ?>" class="nav-link">
+                <i class="fa-solid fa-user"></i> <?php echo $text_account; ?>
+            </a>
+            <a href="<?php echo $logout; ?>" class="nav-link">
+                <i class="fa-solid fa-right-from-bracket"></i> <?php echo $text_logout; ?>
+            </a>
+        <?php } else { ?>
+            <a href="<?php echo $login; ?>" class="nav-link">
+                <i class="fa-solid fa-right-to-bracket"></i> <?php echo $text_login; ?>
+            </a>
+            <a href="<?php echo $register; ?>" class="nav-link">
+                <i class="fa-solid fa-user-plus"></i> <?php echo $text_register; ?>
+            </a>
+        <?php } ?>
       </div>
+
     </div>
   </div>
 
@@ -197,8 +207,8 @@
             </a>
           </div>
           <div class="header-phone">
-            <a href="#"><i class="fas fa-headset"></i>
-              <p>Call us 24/7 <br> <span class="header-phone-number">+08 9229 8228</span></p>
+            <a href="tel:<?php echo $telephone;?>"><i class="fas fa-headset"></i>
+              <p>Call us 24/7 <br> <span class="header-phone-number"><?php echo $telephone;?></span></p>
             </a>
           </div>
         </div>
@@ -234,8 +244,8 @@
                 <span>SUBTOTAL</span>
                 <span class="minicart-total"><?php echo $cart_total; ?></span>
               </div>
-              <a href="/cart" class="minicart-btn minicart-view-cart">VIEW CART</a>
-              <a href="/checkout" class="minicart-btn minicart-checkout">CHECKOUT</a>
+              <a href="/index.php?route=checkout/cart" class="minicart-btn minicart-view-cart">VIEW CART</a>
+              <a href="/index.php?route=checkout/checkout" class="minicart-btn minicart-checkout">CHECKOUT</a>
             <?php } else { ?>
               <p>Your cart is empty.</p>
             <?php } ?>
@@ -256,20 +266,20 @@
         </button>
         <ul class="category-list">
           <?php foreach ($categories as $category) { ?>
-            <li><a href="<?php echo $category['href']; ?>">
+            <li><a href="<?php echo $category['href']; ?>" data-image="<?php echo $category['icon']; ?>">
                 <span> <?php if ($category['icon']) { ?><img src="<?php echo $category['icon']; ?>"><?php } else { ?><img src="<?php echo $category['image']; ?>"><?php } ?><?php echo $category['name']; ?></span>
                 <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-right"></i><?php } ?></a>
               <?php if ($category['children']) { ?>
               <div class="cat-submenu">
                 <ul>
                   <?php foreach ($category['children'] as $child) { ?>
-                    <li><a href="<?php echo $child['href']; ?>" data-image="<?php echo $child['icon']; ?>">
-                        <img src="<?php echo $child['icon']; ?>"><?php echo $child['name']; ?></a>
+                    <li><a href="<?php echo $child['href']; ?>">
+                        <?php echo $child['name']; ?></a>
                     </li>
                     <?php if ($child['subChild']) { ?>
                       <?php foreach ($child['subChild'] as $subchild) { ?>
-                        <li><a href="<?php echo $subchild['href']; ?>" data-image="<?php echo $subchild['icon']; ?>">
-                            <img src="<?php echo $subchild['icon']; ?>"><?php echo $subchild['name']; ?></a>
+                        <li><a href="<?php echo $subchild['href']; ?>">
+                            <?php echo $subchild['name']; ?></a>
                         </li>
                       <?php } ?>
                     <?php } ?>
@@ -323,8 +333,8 @@
       </div>
       
       <div class="header-phone">
-        <a href="#"><i class="fas fa-headset"></i>
-          <p>Call us 24/7 <br> <span class="header-phone-number">+08 9229 8228</span></p>
+        <a href="tel:<?php echo $telephone;?>"><i class="fas fa-headset"></i>
+          <p>Call us 24/7 <br> <span class="header-phone-number"><?php echo $telephone;?></span></p>
         </a>
       </div>
     </div>
