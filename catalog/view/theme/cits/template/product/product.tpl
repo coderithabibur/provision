@@ -92,7 +92,7 @@
           </div> -->
 
           <!-- Current Price -->
-          <div class="product-current-price"><?php echo $price; ?> <del>$150.00</del></div>
+          <div class="product-current-price"><?php echo $special; ?> <del><?php echo $price; ?></del></div>
 
           <?php if ($discounts) { ?>
           <?php foreach ($discounts as $discount) { ?>
@@ -168,7 +168,7 @@
           <div class="secure-checkout">
             <p>Guarantee safe & secure checkout</p>
             <div class="cards">
-              <img src="assets/images/payment-method.png">
+              <img src="/catalog/view/theme/cits/assets/images/payment-method.png">
             </div>
           </div>
 
@@ -257,11 +257,11 @@
 
 </div>
 
-<section class="dimensions-area">
+<!-- <section class="dimensions-area">
   <div class="container">
     <img src="/catalog/view/theme/cits/assets/images/d3s-01.avif">
   </div>
-</section>
+</section> -->
 
 <section class="product-tech-info-area">
   <div class="container">

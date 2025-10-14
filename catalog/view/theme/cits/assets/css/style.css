@@ -408,6 +408,12 @@
     border: none;
   }
 
+  /* Selected option color */
+  .header-search-category option:checked, .header-search-category option:hover {
+    color: var(--white-color);
+    background-color: var(--brand-color);
+  }
+
   .header-search {
     background: var(--brand-color);
   }
@@ -569,7 +575,7 @@
     padding: 9px 14px;
     cursor: pointer;
     color: var(--white-color);
-    margin-right: 2.2px;
+    margin-right: 4.2px;
     border-radius: 35px;
     transition: 0.3s;
   }
@@ -709,7 +715,7 @@
 
   /* Features Section */
   .section-features {
-    background: var(--secondary-color);
+    background: #F1F1F1;
     color: var(--white-color);
     padding: 40px 0;
   }
@@ -733,6 +739,10 @@
     display: flex;
     align-items: center;
     gap: 20px;
+  }
+
+  .feature-content {
+    color: var(--black-color);
   }
 
   .feature-item h4 {
@@ -1003,6 +1013,7 @@
     padding: 20px;
     gap: 30px;
     grid-template-columns: 1fr 2fr;
+    box-shadow: 0px 0px 10px #e1e1e196;
   }
 
   .category-card img {
@@ -1018,7 +1029,7 @@
     transition: 0.3s;
     line-height: 30px;
     text-align: center;
-    margin: 20px 0 10px;
+    margin-top: 20px;
   }
 
   .single-buy-get-free h2 a:hover {
@@ -1095,7 +1106,7 @@
     padding: 70px 0;
   }
 
-  .buy-one-get-on-free>.container h2 {
+  .buy-one-get-on-free>.container > h2 {
     text-align: center;
     font-size: 35px;
     margin-bottom: 40px;
