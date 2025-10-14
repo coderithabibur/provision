@@ -288,8 +288,9 @@
 
   .header-nav ul li img {
     height: 20px;
+    width: 20px;
+    border-radius: 3px;
     margin-right: 10px;
-    filter: brightness(00);
   }
 
   .mobile-category {
