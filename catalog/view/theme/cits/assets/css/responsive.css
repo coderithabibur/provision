@@ -302,6 +302,11 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .category-content-area h1 {
+    font-size: 26px;
+    line-height: 38px;
+  }
+
 
 }
 
@@ -489,6 +494,10 @@
     font-size: 22px;
   }
 
+  .newsletter-form-area {
+    width: 100%;
+  }
+
   .newsletter-form {
     width: 100%;
   }
@@ -563,6 +572,7 @@
     gap: 10px;
     justify-content: center;
     flex-direction: column-reverse;
+    text-align: center;
   }
 
   .header-phone a {
