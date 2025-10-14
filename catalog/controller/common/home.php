@@ -111,8 +111,17 @@ class ControllerCommonHome extends Controller {
         // Return an empty array if the product is not found
         return array();
     }
-    private function getProductsByCategoryId($category_id, $limit = 6) { 
-        $results = $this->model_catalog_product->getProducts(['filter_category_id' => $category_id, 'start' => 0, 'limit' => $limit]);
+    private function getProductsByCategoryId($category_id, $limit = 6, $include_sub_categories = false) { 
+        $filter_data = array(
+            'filter_category_id' => $category_id,
+            'start'              => 0,
+            'limit'              => $limit
+        ); 
+        if ($include_sub_categories) {
+            $filter_data['filter_sub_category'] = true;
+        } 
+        $results = $this->model_catalog_product->getProducts($filter_data);
+
         $products_data = array();
         foreach ($results as $result) {
             if ($result['image']) {
@@ -151,9 +160,14 @@ class ControllerCommonHome extends Controller {
             $this->load->model('catalog/product');
             $this->load->model('tool/image'); 
 
-            $category_id = (int)$this->request->get['category_id'];
-            $products = $this->getProductsByCategoryId($category_id, 6);
-            
+            $category_id = (int)$this->request->get['category_id']; 
+            $limit = 6; 
+            $products = $this->getProductsByCategoryId($category_id, $limit, false);
+ 
+            if (count($products) < $limit) {
+                $products = $this->getProductsByCategoryId($category_id, $limit, true);
+            }
+ 
             $output = '';
 
             if ($products) {
