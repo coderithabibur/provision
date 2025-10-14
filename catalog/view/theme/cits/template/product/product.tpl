@@ -92,7 +92,7 @@
           </div> -->
 
           <!-- Current Price -->
-          <div class="product-current-price"><?php echo $price; ?> <del>$150.00</del></div>
+          <div class="product-current-price"><?php echo $special; ?> <del><?php echo $price; ?></del></div>
 
           <?php if ($discounts) { ?>
           <?php foreach ($discounts as $discount) { ?>

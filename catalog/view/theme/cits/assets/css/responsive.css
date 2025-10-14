@@ -507,6 +507,15 @@
 
 @media all and (max-width:575px) {
 
+  .header-search-category {
+    display: none;
+  }
+
+  .header-search-box input {
+    font-size: 13px;
+    padding: 22px;
+  }
+
   .header-logo a img {
     height: 40px;
   }
@@ -562,11 +571,7 @@
   }
 
   .header-phone a {
-    font-size: 14px;
-  }
-
-  .header-search-box input {
-    font-size: 13px;
+    font-size: 14px;    
   }
 
   .single-product-featured-content {

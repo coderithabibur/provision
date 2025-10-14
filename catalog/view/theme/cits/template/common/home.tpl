@@ -2,6 +2,9 @@
 
 <?php echo $my_video_section; ?>
 
+<!-- Features -->
+<?php echo $feature_section_module; ?>
+
 <section class="buy-one-get-on-free">
   <div class="container">
     <h2>buy one get one free</h2>
@@ -23,7 +26,7 @@
             <img src="<?php echo $data['buy1get1']['image']; ?>">
           </div>
           <h2><a href="<?php echo $data['buy1get1']['href'] ?>"><?php echo $data['buy1get1']['name']; ?></a></h2>
-          <div class="best-sellers-item-price">
+          <!-- <div class="best-sellers-item-price">
             <?php if (!empty($data['buy1get12']['special'])) { ?>
             <span><?php echo $data['buy1get12']['special']; ?></span>
             <del><?php echo $data['buy1get12']['price']; ?></del>
@@ -45,7 +48,7 @@
             <?php } else { ?>
             <span><?php echo $data['buy1get12']['price']; ?></span>
             <?php } ?>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="category-card">
@@ -65,7 +68,7 @@
             <img src="<?php echo $data['buy1get12']['image']; ?>">
           </div>
           <h2><a href="<?php echo $data['buy1get12']['href'] ?>"><?php echo $data['buy1get12']['name']; ?></a></h2>
-          <div class="best-sellers-item-price">
+          <!-- <div class="best-sellers-item-price">
             <?php if (!empty($data['buy1get12']['special'])) { ?>
             <span><?php echo $data['buy1get12']['special']; ?></span>
             <del><?php echo $data['buy1get12']['price']; ?></del>
@@ -87,7 +90,7 @@
             <?php } else { ?>
             <span><?php echo $data['buy1get12']['price']; ?></span>
             <?php } ?>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -191,9 +194,6 @@
     <a href="#">Shop now </a>
   </div>
 </section>
-  
-<!-- Features -->
-<?php echo $feature_section_module; ?>
 
 <script type="text/javascript">
   $(document).ready(function () {

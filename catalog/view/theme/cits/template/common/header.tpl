@@ -158,23 +158,9 @@
         <ul>
 
           <li><a href="/">home</a></li>
-          <li><a href="#">pages <i class="fa-solid fa-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Menu Item 1</a></li>
-              <li><a href="#">Menu Item 2</a></li>
-              <li><a href="#">Menu Item 3</a></li>
-              <li><a href="#">Menu Item 4</a></li>
-              <li><a href="#">Menu Item 5</a></li>
-              <li><a href="#">Menu Item 6</a></li>
-              <li><a href="#">Menu Item 7</a></li>
-              <li><a href="#">Menu Item 8</a></li>
-              <li><a href="#">Menu Item 9</a></li>
-            </ul>
-          </li>
           <li><a href="#">shop</a></li>
           <li><a href="about-us.html">about</a></li>
-          <li><a href="#">blog</a></li>
-          <li><a href="contact.html">contact</a></li>
+          <li><a href="/index.php?route=information/contact">contact</a></li>
         <div class="mobile-category">
           <?php foreach ($categories as $category) { ?>
             <li><a href="<?php echo $category['href']; ?>">
