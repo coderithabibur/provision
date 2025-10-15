@@ -286,7 +286,7 @@
                   <?php } ?>
                 </ul>
                 <div class="cat-submenu-image">
-                  <img src="assets/images/product-1.jpg" class="submenu-preview">
+                  <img src="<?php echo $category['icon']; ?>" class="submenu-preview">
                 </div>
               </div>
               <?php } ?>
