@@ -135,19 +135,19 @@
       </div>
       <div class="header-top-right">
         <?php if ($logged) { ?>
-            <a href="<?php echo $account; ?>" class="nav-link">
-                <i class="fa-solid fa-user"></i> <?php echo $text_account; ?>
-            </a>
-            <a href="<?php echo $logout; ?>" class="nav-link">
-                <i class="fa-solid fa-right-from-bracket"></i> <?php echo $text_logout; ?>
-            </a>
+          <a href="<?php echo $account; ?>" class="nav-link">
+              <i class="fa-solid fa-user"></i> <?php echo $text_account; ?>
+          </a>
+          <a href="<?php echo $logout; ?>" class="nav-link">
+              <i class="fa-solid fa-right-from-bracket"></i> <?php echo $text_logout; ?>
+          </a>
         <?php } else { ?>
-            <a href="<?php echo $login; ?>" class="nav-link">
-                <i class="fa-solid fa-right-to-bracket"></i> <?php echo $text_login; ?>
-            </a>
-            <a href="<?php echo $register; ?>" class="nav-link">
-                <i class="fa-solid fa-user-plus"></i> <?php echo $text_register; ?>
-            </a>
+          <a href="<?php echo $login; ?>" class="nav-link">
+              <i class="fa-solid fa-right-to-bracket"></i> <?php echo $text_login; ?>
+          </a>
+          <a href="<?php echo $register; ?>" class="nav-link">
+              <i class="fa-solid fa-user-plus"></i> <?php echo $text_register; ?>
+          </a>
         <?php } ?>
       </div>
 
@@ -199,12 +199,21 @@
         </ul>
         <div class="mobile-nav-bottom">
           <div class="mobile-nav-account-info">
-            <a href="<?php echo $login; ?>">
-              <i class="fa-solid fa-right-to-bracket"></i> Login
-            </a>
-            <a href="<?php echo $register; ?>">
-              <i class="fa-solid fa-user-plus"></i> Register
-            </a>
+            <?php if ($logged) { ?>
+              <a href="<?php echo $account; ?>" class="nav-link">
+                  <i class="fa-solid fa-user"></i> <?php echo $text_account; ?>
+              </a>
+              <a href="<?php echo $logout; ?>" class="nav-link">
+                  <i class="fa-solid fa-right-from-bracket"></i> <?php echo $text_logout; ?>
+              </a>
+            <?php } else { ?>
+              <a href="<?php echo $login; ?>" class="nav-link">
+                  <i class="fa-solid fa-right-to-bracket"></i> <?php echo $text_login; ?>
+              </a>
+              <a href="<?php echo $register; ?>" class="nav-link">
+                  <i class="fa-solid fa-user-plus"></i> <?php echo $text_register; ?>
+              </a>
+            <?php } ?>
           </div>
           <div class="header-phone">
             <a href="tel:<?php echo $telephone;?>"><i class="fas fa-headset"></i>
