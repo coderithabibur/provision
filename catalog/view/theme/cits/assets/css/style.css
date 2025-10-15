@@ -288,7 +288,6 @@
 
   .minicart-item {
     display: flex;
-    align-items: center;
     margin-bottom: 25px;
     position: relative;
     border-bottom: 1px solid #ccc;
@@ -306,7 +305,7 @@
   .minicart-item-info h4 {
     font-size: 14px;
     line-height: 20px;
-    margin: 0 0 10px 0;
+    margin: 0 15px 10px 0;
   }
 
   .minicart-quantity-price {
@@ -353,7 +352,7 @@
     background: none;
     font-size: 18px;
     cursor: pointer;
-    color: #333;
+    color: var(--brand-color);
   }
 
   .minicart-subtotal {
@@ -487,12 +486,12 @@
     visibility: hidden;
     position: absolute;
     background: var(--white-color);
-    width: 45rem;
-    right: -45rem;
+    width: 100rem;
+    left: 30rem;
     top: 20px;
     z-index: 1;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 2fr;
     transition: 0.3s;
   }
 
