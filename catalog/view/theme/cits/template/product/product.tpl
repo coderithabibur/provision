@@ -101,7 +101,6 @@
             <?php } ?>
           </div>
 
-
           <?php if ($discounts) { ?>
           <?php foreach ($discounts as $discount) { ?>
           <p class="splDes">
@@ -249,23 +248,39 @@
           </div>
         </div>
       </div>
-
     <?php } elseif ($section['section_type'] == 'video') { ?>
-      <div class="single-product-featured video-section">
+      <div class="video-hero">
         <video autoplay muted loop playsinline class="background-video">
           <source src="<?php echo $section['video_path']; ?>" type="video/mp4">
         </video>
-        <div class="container">
-          <div class="single-product-featured-content">
-            <?php if (!empty($section['title'])) { ?>
-              <h2><?php echo $section['title']; ?></h2>
-            <?php } ?>
-            <?php if (!empty($section['description'])) { ?>
-              <p><?php echo $section['description']; ?></p>
-            <?php } ?>
-          </div>
+        <div class="video-overlay"></div>
+        <div class="video-content">
+          <?php if (!empty($section['title'])) { ?>
+            <h1><?php echo $section['title']; ?></h1>
+          <?php } ?>
+          <?php if (!empty($section['description'])) { ?>
+            <p><?php echo $section['description']; ?></p>
+          <?php } ?>
+          <a href="#">Shop now </a>
         </div>
       </div>
+
+      <!-- <div class="single-product-featured video-section">
+        <video autoplay muted loop playsinline class="background-video">
+          <source src="<?php// echo $section['video_path']; ?>" type="video/mp4">
+        </video>
+        <div class="container">
+          <div class="single-product-featured-content">
+            <?php //if (!empty($section['title'])) { ?>
+              <h2><?php //echo $section['title']; ?></h2>
+            <?php// } ?>
+            <?php //if (!empty($section['description'])) { ?>
+              <p><?php //echo $section['description']; ?></p>
+            <?php// } ?>
+          </div>
+        </div>
+      </div> -->
+
     <?php } ?>
 
   <?php } ?>
@@ -299,27 +314,7 @@
   </div>
 </section>
 
-<section class="video-hero">
-  <video autoplay muted loop playsinline class="video-bg">
-    <source src="https://cdn.shopify.com/videos/c/o/v/18c2e078311d40b38447d79e0db19bc8.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
-  <!-- <iframe class="video-iframe" width="100%" height="320" src="<?php// echo $video_link?>"
-    frameborder="0"
-    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen></iframe> -->
-
-  <div class="video-overlay"></div>
-
-  <div class="video-content">
-    <h1>NEXT GEN - 8.5" SPOT LIGHT KIT</h1>
-    <p>Ranger/Everest Stealth Kit</p>
-    <a href="#">Shop now </a>
-  </div>
-</section>
-
-<section class="product-reviews-content">
+<section class="product-reviews-content" id="customerReview">
   <div class="container">
     <h2>Reviews</h2>
     <?php if ($review_status) { ?>
@@ -332,11 +327,11 @@
         <form class="form-horizontal" id="form-review">
           <label><?php echo $entry_rating; ?> *</label>
           <div class="rating-stars">
-            <input type="radio" id="star-5" name="rating" value="5"><label for="star-5">☆</label>
-            <input type="radio" id="star-4" name="rating" value="4"><label for="star-4">☆</label>
-            <input type="radio" id="star-3" name="rating" value="3"><label for="star-3">☆</label>
-            <input type="radio" id="star-2" name="rating" value="2"><label for="star-2">☆</label>
-            <input type="radio" id="star-1" name="rating" value="1"><label for="star-1">☆</label>
+            <input type="radio" id="star-5" name="rating" value="5"><label for="star-5"><i class="active fa fa-star" aria-hidden="true"></i></label>
+            <input type="radio" id="star-4" name="rating" value="4"><label for="star-4"><i class="active fa fa-star" aria-hidden="true"></i></label>
+            <input type="radio" id="star-3" name="rating" value="3"><label for="star-3"><i class="active fa fa-star" aria-hidden="true"></i></label>
+            <input type="radio" id="star-2" name="rating" value="2"><label for="star-2"><i class="active fa fa-star" aria-hidden="true"></i></label>
+            <input type="radio" id="star-1" name="rating" value="1"><label for="star-1"><i class="active fa fa-star" aria-hidden="true"></i></label>
           </div>
 
           <label><?php echo $entry_review; ?> *</label>

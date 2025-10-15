@@ -33,7 +33,7 @@
       <p><?php echo $text_no_reviews; ?></p>
     </div>
     <?php } ?>
-    <div class="col-sm-12">
+    <div class="col-sm-12 pro-policy">
         <a style="font-size:16px;text-decoration: underline;" href="https://www.pro-vision-lighting.com/returnandrefundpolicy" title="RETURN AND REFUND POLICY" >RETURN AND REFUND POLICY</a>
     </div>
   </div>

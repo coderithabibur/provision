@@ -2012,6 +2012,8 @@
   .rating-stars {
     display: flex;
     align-items: center;
+    flex-direction: row-reverse;
+    justify-content: left;
   }
 
   .rating-stars input {
@@ -2042,6 +2044,52 @@
   .rating-stars span:hover,
   .rating-stars span.active {
     color: #ff9900;
+  }
+
+
+  .rating-stars input[type="radio"] {
+    display: none;
+  }
+
+  .rating-stars label {
+    color: #e4e4e4;
+    font-size: 22px;
+    padding: 0;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    width: auto;
+    margin: 0 4px;
+  }
+
+  .rating-stars input[type="radio"]:checked ~ label, .rating-stars label:hover, .rating-stars label:hover ~ label {
+    color: var(--brand-color);
+  }
+
+  .product-reviews-content .pagination {
+    float: right;
+    display: flex;
+    align-items: center;
+  }
+
+  .product-reviews-content .pagination li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: unset !important;
+    line-height: 0;
+  }
+
+  .pro-policy {
+    padding-left: 0;
+    margin-bottom: 20px;
+  }
+
+  .add-review .captcha > div {
+    margin-left: 0;
+    padding-left: 0;
+    width: 100%;
+    margin-top: 10px;
   }
 
   /* Product Featured Image Section */
