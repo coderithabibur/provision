@@ -180,12 +180,12 @@
                 <ul>
                   <?php foreach ($category['children'] as $child) { ?>
                     <li><a href="<?php echo $child['href']; ?>">
-                      <img src="<?php echo $child['icon']; ?>"><?php echo $child['name']; ?></a>
+                      <?php echo $child['name']; ?></a>
                     </li>
                     <?php if ($child['subChild']) { ?>
                       <?php foreach ($child['subChild'] as $subchild) { ?>
                         <li><a href="<?php echo $subchild['href']; ?>">
-                          <img src="<?php echo $subchild['icon']; ?>"><?php echo $subchild['name']; ?></a>
+                          <?php echo $subchild['name']; ?></a>
                         </li>
                       <?php } ?>
                     <?php } ?>
@@ -325,7 +325,7 @@
             <?php } ?>
             <?php } ?>
             <?php } ?>
-          </select>  
+          </select>
           <input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_keyword; ?>" id="input-search" class="form-control" />
           
           <!-- <input type="button" value="Search" id="button-search2" class="yellowbtn" /> -->
