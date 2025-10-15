@@ -307,6 +307,10 @@
     line-height: 38px;
   }
 
+  .qtyValue {
+    margin-bottom: 10px;
+  }
+
 
 }
 
@@ -506,6 +510,15 @@
     grid-template-columns: repeat(1, 1fr);
   }
 
+  .cart-coupon-info h2 {
+    font-size: 25px;
+    line-height: 35px;
+  }
+
+  .cart-title {
+    padding-top: 50px;
+  }
+
 
 }
 
@@ -627,6 +640,10 @@
   .feature-icon {
     font-size: 35px;
   }
+
+  .cartbtnArea a {
+    font-size: 14px;
+  } 
 
 }
 

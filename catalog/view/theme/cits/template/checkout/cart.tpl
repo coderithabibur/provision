@@ -103,7 +103,7 @@
                       <button type="button" data-toggle="tooltip" title="<?php echo $button_remove; ?>"
                         class="crossIcon" value="Delete Row"
                         onclick="cart.remove('<?php echo $product['cart_id']; ?>'); window.location.reload();"><img
-                          src="catalog/view/theme/hidlighting/images/crossicon02.png" alt=""></button></td>
+                          src="catalog/view/theme/cits/assets/images/crossicon.png" alt=""></button></td>
                     <td class="text-right"><?php echo $product['price']; ?></td>
                     <td><?php echo $product['total']; ?></td>
                   </tr>
@@ -129,39 +129,30 @@
                 </tbody>
               </table>
             </div>
-            <p class="slideView01">Slide table to view </p>
+            <!-- <p class="slideView01">Slide table to view </p> -->
           </div>
         </form>
-        <?php if ($coupon || $voucher || $reward || $shipping) { ?>
-        <h2><?php echo $text_next; ?></h2>
-        <p><?php echo $text_next_choice; ?></p>
-        <div class="panel-group" id="accordion">
-          <?php echo $coupon; ?><?php echo $voucher; ?><?php echo $reward; ?><?php echo $shipping; ?></div>
-        <?php } ?>
-        <br />
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-6">
-            <div class="purchaseTotal">
-              <!--
-            <div class="fullwidth">
-              <label>Sub-Total:</label>
-              <div class="labelInfo">$500.00</div>
-            </div>
--->
-              <?php foreach ($totals as $total) { ?>
-              <div class="fullwidth">
-                <label><?php echo $total['title']; ?>:</label>
-                <div class="labelInfo"><?php echo $total['text']; ?></div>
-              </div>
-              <?php } ?>
-            </div>
-          </div>
+        <div class="cart-coupon-info">
+          <?php if ($coupon || $voucher || $reward || $shipping) { ?>
+          <h2><?php echo $text_next; ?></h2>
+          <p><?php echo $text_next_choice; ?></p>
+          <div class="panel-group cartCouponAccordion" id="accordion">
+            <?php echo $coupon; ?><?php echo $voucher; ?><?php echo $reward; ?><?php echo $shipping; ?></div>
+          <?php } ?>
         </div>
-        <div class="buttonOuter">
-          <div class="pull-left"><a href="<?php echo $continue; ?>"
-              class="continue yellowbtn"><?php echo $button_shopping; ?></a></div>
-          <div class="pull-right"><a href="<?php echo $checkout; ?>"
-              class="continue proceedCheckout yellowbtn"><?php echo $button_checkout; ?></a></div>
+        
+        <div class="cartTotal">
+          <?php foreach ($totals as $total) { ?>
+          <div class="cartAmount">
+            <label><?php echo $total['title']; ?>: </label>
+            <div class="labelInfo"><?php echo $total['text']; ?></div>
+          </div>
+          <?php } ?>
+        </div>
+
+        <div class="cartbtnArea">
+          <a href="<?php echo $continue; ?>"><?php echo $button_shopping; ?></a>
+          <a href="<?php echo $checkout; ?>"><?php echo $button_checkout; ?></a>
         </div>
         <?php echo $content_bottom; ?>
       </div>
