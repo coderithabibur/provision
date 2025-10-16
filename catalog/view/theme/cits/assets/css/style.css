@@ -1748,6 +1748,26 @@
     color: #555;
   }
 
+  .ratingsAndReviews {
+    margin-bottom: 5px;
+  }
+
+  .ratingsAndReviews .ratingInfo {
+    display: flex;
+    gap: 7px;
+  }
+
+  .ratingsAndReviews .reviews a {
+    color: var(--black-color);
+    transition: 0.3s;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .ratingsAndReviews .reviews a:hover {
+    color: var(--brand-color);
+  }
+
   .product-variation {
     margin-bottom: 15px;
     display: flex;
@@ -1823,7 +1843,7 @@
   .product-cart {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin: 10px 0;
   }
 
   .quantity {

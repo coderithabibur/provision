@@ -121,26 +121,26 @@
               <?php //echo round($disc,2);?>% </span>
           </p> -->
 
-          <div class="ratingsAndReviews">
-            <?php if ($product['rating']) { ?>
-              <div class="rating">
-                <?php for ($i = 1; $i <= 5; $i++) { ?>
-                <?php if ($product['rating'] < $i) { ?>
-                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                <?php } else { ?>
-                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i
-                    class="fa fa-star-o fa-stack-2x"></i></span>
-                <?php } ?>
-                <?php } ?>
+          <?php if ($review_status) { ?>
+            <div class="ratingsAndReviews">
+              <div class="ratingInfo">
+                <div class="ratingBox">
+                  <?php for ($i = 1; $i <= 5; $i++) { ?>
+                  <?php if ($rating < $i) { ?>
+                  <a href=""onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"> <i class="fas fa-star"></i> </a>
+                  <?php } else { ?>
+                  <a class="active" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><i class="fas fa-star"></i></a>
+                  <?php } ?>
+                  <?php } ?>
+                </div>
+                <div class="reviews">  <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $reviews; ?></a> | <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $text_write; ?></a></div>            
+                <!-- AddThis Button BEGIN>
+                <div class="addthis_toolbox addthis_default_style"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
+                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
+                <!-- AddThis Button END -->
               </div>
-            <?php } ?>
-
-            <div class="reviews">
-              <a href="<?php echo $product['href']; ?>#customerReview"><?php echo $product['reviews']; ?></a>
-              |
-              <a href="<?php echo $product['href']; ?>#customerReview"><?php echo $text_write; ?></a>
             </div>
-          </div>
+          <?php } ?>
 
           <?php if ($manufacturer) { ?>
           <p class="spl"><?php echo $text_manufacturer; ?> <a
@@ -205,31 +205,6 @@
     </div>
   </div>
 </section>
-
-<!-- <section class="product-page-gallery">
-  <div class="pro-left-image">
-    <a href="assets/images/product-1.jpg" class="popup-link">
-      <img src="assets/images/product-1.jpg">
-    </a>
-  </div>
-  <div class="pro-right-images">
-    <a href="assets/images/product-2.jpg" class="popup-link">
-      <img src="assets/images/product-2.jpg">
-    </a>
-    <a href="assets/images/product-3.jpg" class="popup-link">
-      <img src="assets/images/product-3.jpg">
-    </a>
-    <a href="assets/images/product-1.jpg" class="popup-link">
-      <img src="assets/images/product-1.jpg">
-    </a>
-    <a href="assets/images/product-2.jpg" class="popup-link">
-      <img src="assets/images/product-2.jpg">
-    </a>
-  </div>
-</section> -->
-
-
-
 
 <div class="product-featured-section" style="padding-top: 0;">
 <?php if (!empty($product_sections)) { ?>
@@ -314,7 +289,7 @@
   </div>
 </section>
 
-<section class="product-reviews-content" id="customerReview">
+<section class="product-reviews-content" id="tab-review">
   <div class="container">
     <h2>Reviews</h2>
     <?php if ($review_status) { ?>
