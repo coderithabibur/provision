@@ -333,7 +333,7 @@
     position: absolute;
     top: -7px;
     background: transparent;
-    right: 6px;
+    right: 7px;
     color: var(--white-color);
     font-size: 12px;
   }
@@ -1838,7 +1838,6 @@
     background: var(--brand-color);
     color: var(--white-color);
   }
-
 
   .product-cart {
     display: flex;
