@@ -189,9 +189,9 @@
   </video>
   <div class="video-overlay"></div>
   <div class="video-content">
-    <h1>NEXT GEN - 8.5" SPOT LIGHT KIT</h1>
-    <p>Ranger/Everest Stealth Kit</p>
-    <a href="#">Shop now </a>
+    <h1><?php echo $data['buy1get1']['name']; ?></h1>
+    <p><?php echo $data['buy1get12']['model']; ?></p>
+    <a href="<?php echo $data['buy1get1']['href'] ?>">Shop now </a>
   </div>
 </section>
 
