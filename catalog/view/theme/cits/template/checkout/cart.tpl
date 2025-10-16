@@ -140,7 +140,7 @@
             <?php echo $coupon; ?><?php echo $voucher; ?><?php echo $reward; ?><?php echo $shipping; ?></div>
           <?php } ?>
         </div>
-        
+
         <div class="cartTotal">
           <?php foreach ($totals as $total) { ?>
           <div class="cartAmount">

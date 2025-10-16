@@ -169,9 +169,16 @@ var cart = {
 					$('#content').before('<div class="alert alert-success"><i class="glyphicon glyphicon-ok"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
 					// Need to set timeout otherwise it wont update the total
+					// setTimeout(function () {
+					// 	$('#cart > button').html( json['total'] );
+					// }, 100);
+
 					setTimeout(function () {
-						$('#cart > button').html( json['total'] );
-					}, 100);
+						const totalText = json['total'];
+						const match = totalText.match(/\d+/);
+						const itemCount = match ? match[0] : 0;
+						$('#cart > button').text(itemCount);
+					  }, 100);
 
 					$('html, body').animate({ scrollTop: 0 }, 'slow');
 
@@ -197,9 +204,16 @@ var cart = {
 			},
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
+				// setTimeout(function () {
+				// 	$('#cart > button').html(json['total'] );
+				// }, 100);
+
 				setTimeout(function () {
-					$('#cart > button').html(json['total'] );
-				}, 100);
+					const totalText = json['total'];
+					const match = totalText.match(/\d+/);
+					const itemCount = match ? match[0] : 0;
+					$('#cart > button').text(itemCount);
+				  }, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
 					location = 'index.php?route=checkout/cart';
@@ -227,9 +241,16 @@ var cart = {
 			success: function(json) {
 				gaRemovefromcart(json.product_id);
 				// Need to set timeout otherwise it wont update the total
+				// setTimeout(function () {
+				// 	$('#cart > button').html( json['total'] );
+				// }, 100);
+
 				setTimeout(function () {
-					$('#cart > button').html( json['total'] );
-				}, 100);
+					const totalText = json['total'];
+					const match = totalText.match(/\d+/);
+					const itemCount = match ? match[0] : 0;
+					$('#cart > button').text(itemCount);
+				  }, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
 					location = 'index.php?route=checkout/cart';

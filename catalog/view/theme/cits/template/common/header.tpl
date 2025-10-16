@@ -229,35 +229,9 @@
           <img src="catalog/view/theme/cits/assets/images/Trustpilot_logo-1.png"> 651 reviews on <span class="header-trust">Trustpilot</span>
         </a>
         <div class="header-cart">
-          <button><i class="fa-solid fa-shopping-cart"></i> <span class="header-cart-count"><?php echo $cart_count; ?></span></button>
+          <button><i class="fa-solid fa-shopping-cart"></i> <p class="header-cart-count"> <span><?php echo $cart_count; ?></span> </p></button>
           <div class="minicart">
-            <?php if ($cart_items) { ?>
-              <?php foreach ($cart_items as $item) { ?>
-                <div class="minicart-item">
-                  <img src="<?php echo $item['image']; ?>" alt="<?php echo $item['name']; ?>">
-                  <div class="minicart-item-info">
-                    <h4><?php echo $item['name']; ?></h4>
-                    <div class="minicart-quantity-price">
-                      <div class="minicart-quantity">
-                        <button class="minicart-minus" data-key="<?php echo $item['key']; ?>">-</button>
-                        <input type="text" value="<?php echo $item['quantity']; ?>" min="1" data-key="<?php echo $item['key']; ?>">
-                        <button class="minicart-plus" data-key="<?php echo $item['key']; ?>">+</button>
-                      </div>
-                      <span class="minicart-price"><?php echo $item['price']; ?></span>
-                    </div>
-                  </div>
-                  <button class="minicart-remove" data-key="<?php echo $item['key']; ?>">×</button>
-                </div>
-              <?php } ?>
-              <div class="minicart-subtotal">
-                <span>SUBTOTAL</span>
-                <span class="minicart-total"><?php echo $cart_total; ?></span>
-              </div>
-              <a href="/index.php?route=checkout/cart" class="minicart-btn minicart-view-cart">VIEW CART</a>
-              <a href="/index.php?route=checkout/checkout" class="minicart-btn minicart-checkout">CHECKOUT</a>
-            <?php } else { ?>
-              <p>Your cart is empty.</p>
-            <?php } ?>
+            <?php echo $cart; ?>
           </div>
         </div>
         <button class="mobile-menu-trigger"><i class="fa-solid fa-bars"></i></button>
