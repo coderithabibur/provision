@@ -1757,6 +1757,16 @@
     gap: 7px;
   }
 
+  .ratingsAndReviews .reviews {
+    display: flex;
+    gap: 10px;
+  }
+
+  .ratingsAndReviews .reviews p {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
   .ratingsAndReviews .reviews a {
     color: var(--black-color);
     transition: 0.3s;
@@ -1916,7 +1926,7 @@
   }
 
   .secure-checkout .cards img {
-    height: 30px;
+    height: 50px;
     margin: 0 5px;
   }
 

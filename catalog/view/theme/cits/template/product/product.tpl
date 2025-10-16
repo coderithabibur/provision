@@ -94,10 +94,10 @@
           <!-- Current Price -->
           <div class="product-current-price">
             <?php if ($special) { ?>
-                <span class="special-price"><?php echo $special; ?></span>
-                <del class="old-price"><?php echo $price; ?></del>
+              <span class="special-price"><?php echo $special; ?></span>
+              <del class="old-price"><?php echo $price; ?></del>
             <?php } else { ?>
-                <span class="regular-price"><?php echo $price; ?></span>
+              <span class="regular-price"><?php echo $price; ?></span>
             <?php } ?>
           </div>
 
@@ -127,13 +127,13 @@
                 <div class="ratingBox">
                   <?php for ($i = 1; $i <= 5; $i++) { ?>
                   <?php if ($rating < $i) { ?>
-                  <a href=""onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"> <i class="fas fa-star"></i> </a>
+                  <a href="" > <i class="fas fa-star"></i> </a>
                   <?php } else { ?>
-                  <a class="active" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><i class="fas fa-star"></i></a>
+                  <a class="active" href="" ><i class="fas fa-star"></i></a>
                   <?php } ?>
                   <?php } ?>
                 </div>
-                <div class="reviews">  <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $reviews; ?></a> | <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $text_write; ?></a></div>            
+                <div class="reviews"> <p><?php echo $reviews; ?></p> | <a href="#tab-review"><?php echo $text_write; ?></a></div>            
                 <!-- AddThis Button BEGIN>
                 <div class="addthis_toolbox addthis_default_style"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
                 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
@@ -159,8 +159,7 @@
               <button type="button" class="quantity-minus">-</button>
               <input type="text" id="input-quantity" name="quantity" value="1">
               <button type="button" class="quantity-plus">+</button>
-            </div>
-            
+            </div>            
             <button type="button" id="button-cart" class="add-to-cart">ADD TO CART</button>
           </form>
 
@@ -181,24 +180,36 @@
 
           <!-- Delivery Info -->
           <div class="delivery-info">
-            <p><i class="fa-solid fa-clock"></i> <span>Estimated Delivery</span> : 10 - 15 Aug, 2025</p>
+            <!-- <p><i class="fa-solid fa-clock"></i> <span>Estimated Delivery</span> : 10 - 15 Aug, 2025</p> -->
             <p><i class="fa-solid fa-truck"></i> <span>Free Shipping & Returns</span> : On all order over $200.00</p>
           </div>
 
           <!-- Meta Info -->
           <div class="meta">
-            <p><span>SKU:</span> Woo-Long-Sleeve-Tee</p>
-            <p><span>Categories:</span> Car Audio Systems, Headlight, Tires & Wheels</p>
-            <p><span><?php echo $text_tags; ?> </span> 
-              <?php for ($i = 0; $i < count($tags); $i++) { ?>
-              <?php if ($i < (count($tags) - 1)) { ?>
-              <a href="<?php echo $tags[$i]['href']; ?>"><?php echo $tags[$i]['tag']; ?></a>,
-              <?php } else { ?>
-              <a href="<?php echo $tags[$i]['href']; ?>"><?php echo $tags[$i]['tag']; ?></a>
-              <?php } ?>
-              <?php } ?>
-            </p>
+            <!-- SKU -->
+            <?php if (!empty($sku)) { ?>
+                <p><span>SKU:</span> <?php echo $sku; ?></p>
+            <?php } ?>
+
+            <!-- Categories -->
+            <?php if (!empty($categories)) { ?>
+                <p><span>Categories:</span>
+                    <?php foreach ($categories as $index => $category) { ?>
+                        <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a><?php if ($index < count($categories) - 1) { echo ', '; } ?>
+                    <?php } ?>
+                </p>
+            <?php } ?>
+
+            <!-- Tags -->
+            <?php if (!empty($tags)) { ?>
+                <p><span><?php echo $text_tags; ?></span>
+                    <?php foreach ($tags as $index => $tag) { ?>
+                        <a href="<?php echo $tag['href']; ?>"><?php echo $tag['tag']; ?></a><?php if ($index < count($tags) - 1) { echo ', '; } ?>
+                    <?php } ?>
+                </p>
+            <?php } ?>
           </div>
+
 
         </div>
       </div>
@@ -371,12 +382,12 @@
                 <del><?php echo $product['price']; ?></del>
                 <div class="save-price">
                   <p>save <?php
-                                $old = preg_replace('/[^\d.]/', '', $product['price']);
-                                $new = preg_replace('/[^\d.]/', '', $product['special']);
-                                if ($old > 0) {
-                                  echo round((($old - $new) / $old) * 100) . '%';
-                                }
-                              ?></p>
+                      $old = preg_replace('/[^\d.]/', '', $product['price']);
+                      $new = preg_replace('/[^\d.]/', '', $product['special']);
+                      if ($old > 0) {
+                        echo round((($old - $new) / $old) * 100) . '%';
+                      }
+                    ?></p>
                 </div>
                 <?php } else { ?>
                 <span><?php echo $product['price']; ?></span>
@@ -475,7 +486,6 @@
 
         });
     });
-
 
 </script>
 

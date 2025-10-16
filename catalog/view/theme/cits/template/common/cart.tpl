@@ -1,8 +1,4 @@
   <div id="cart" class="cartBoxTop">
-    <!-- <div class="cartInfo" id="cart">
-      <button type="button" data-loading-text="<?php echo $text_loading; ?>" class="item"><?php echo $text_items; ?></button>
-    </div> -->
-
     <div class="cartInfo" id="cart">
         <?php
           preg_match('/\d+/', $text_items, $matches);
