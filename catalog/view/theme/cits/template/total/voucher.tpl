@@ -4,12 +4,13 @@
   </div>
   <div id="collapse-voucher" class="panel-collapse collapse">
     <div class="panel-body">
-      <label class="col-sm-2 control-label" for="input-voucher"><?php echo $entry_voucher; ?></label>
+      <label class="control-label" for="input-voucher"><?php echo $entry_voucher; ?></label>
       <div class="input-group">
         <input type="text" name="voucher" value="<?php echo $voucher; ?>" placeholder="<?php echo $entry_voucher; ?>" id="input-voucher" class="form-control" />
         <span class="input-group-btn">
         <input type="submit" value="<?php echo $button_voucher; ?>" id="button-voucher" data-loading-text="<?php echo $text_loading; ?>"  class="yellowbtn voucher" />
-        </span> </div>
+        </span>
+      </div>
       <script type="text/javascript"><!--
 $('#button-voucher').on('click', function() {
   $.ajax({

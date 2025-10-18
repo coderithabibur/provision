@@ -102,8 +102,7 @@
                           alt=""></button>
                       <button type="button" data-toggle="tooltip" title="<?php echo $button_remove; ?>"
                         class="crossIcon" value="Delete Row"
-                        onclick="cart.remove('<?php echo $product['cart_id']; ?>'); window.location.reload();"><img
-                          src="catalog/view/theme/cits/assets/images/crossicon.png" alt=""></button></td>
+                        onclick="cart.remove('<?php echo $product['cart_id']; ?>'); window.location.reload();"> <i class="fa-solid fa-times" style="color: red; font-size: 23px; transform: translateY(3px);"></i> </button></td>
                     <td class="text-right"><?php echo $product['price']; ?></td>
                     <td><?php echo $product['total']; ?></td>
                   </tr>

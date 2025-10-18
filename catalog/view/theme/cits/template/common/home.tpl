@@ -14,7 +14,23 @@
           <h3>buy one</h3>
           <h3>get one free</h3>
           <p><?php echo $data['buy1get1']['model']; ?> - Now 50% Savings</p>
-          <span>Total = <strong><?php echo $data['buy1get1']['price']; ?></strong></span>
+          <!-- <span><strong><?php echo $data['buy1get1']['price']; ?></strong> <del>11</del> </span> -->
+          <?php 
+            // Extract numeric value (keeps decimals)
+            $price = preg_replace('/[^0-9.]/', '', $data['buy1get1']['price']); 
+            $price = (float)$price;
+
+            // Extract currency symbol if present (like $, ৳, etc.)
+            $currency = preg_replace('/[0-9.,]/', '', $data['buy1get1']['price']); 
+
+            // Format both prices with 2 decimals
+            $original = number_format($price, 2);
+            $double   = number_format($price * 2, 2);
+            ?>
+            <span>
+              <strong><?php echo $currency . $original; ?></strong>
+              <del><?php echo $currency . $double; ?></del>
+            </span>
           <a href="<?php echo $data['buy1get1']['href'] ?>">buy Now</a>
         </div>
         <div class="single-buy-get-free">
@@ -25,30 +41,7 @@
             </div>
             <a href="<?php echo $data['buy1get1']['href'] ?>"><img src="<?php echo $data['buy1get1']['image']; ?>"></a>
           </div>
-          <h2><a href="<?php echo $data['buy1get1']['href'] ?>"><?php echo $data['buy1get1']['name']; ?></a></h2>
-          <!-- <div class="best-sellers-item-price">
-            <?php if (!empty($data['buy1get12']['special'])) { ?>
-            <span><?php echo $data['buy1get12']['special']; ?></span>
-            <del><?php echo $data['buy1get12']['price']; ?></del>
-            <div class="save-price">
-              <p>
-                save
-                <?php
-                $old = (float) filter_var($data['buy1get12']['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                $new = (float) filter_var($data['buy1get12']['special'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-
-                if ($old > 0 && $new > 0 && $new < $old) {
-                    echo round((($old - $new) / $old) * 100) . '%';
-                } else {
-                    echo '0%';
-                }
-                ?>
-              </p>
-            </div>
-            <?php } else { ?>
-            <span><?php echo $data['buy1get12']['price']; ?></span>
-            <?php } ?>
-          </div> -->
+          <h2><a href="<?php echo $data['buy1get1']['href'] ?>"><?php echo $data['buy1get1']['name']; ?></a></h2>            
         </div>
       </div>
       <div class="category-card">
@@ -56,7 +49,22 @@
           <h3>buy one</h3>
           <h3>get one free</h3>
           <p><?php echo $data['buy1get12']['model']; ?> - Now 50% Savings</p>
-          <span>Total = <strong><?php echo $data['buy1get12']['price'] ?></strong></span>
+          <?php 
+          // Extract numeric value (keeps decimals)
+          $price = preg_replace('/[^0-9.]/', '', $data['buy1get12']['price']); 
+          $price = (float)$price;
+
+          // Extract currency symbol if present (like $, ৳, etc.)
+          $currency = preg_replace('/[0-9.,]/', '', $data['buy1get12']['price']); 
+
+          // Format both prices with 2 decimals
+          $original = number_format($price, 2);
+          $double   = number_format($price * 2, 2);
+          ?>
+          <span>
+            <strong><?php echo $currency . $original; ?></strong>
+            <del><?php echo $currency . $double; ?></del>
+          </span>
           <a href="<?php echo $data['buy1get12']['href'] ?>">buy Now</a>
         </div>
         <div class="single-buy-get-free">
@@ -67,30 +75,7 @@
             </div>
             <a href="<?php echo $data['buy1get12']['href'] ?>"><img src="<?php echo $data['buy1get1']['image']; ?>"></a>
           </div>
-          <h2><a href="<?php echo $data['buy1get12']['href'] ?>"><?php echo $data['buy1get12']['name']; ?></a></h2>
-          <!-- <div class="best-sellers-item-price">
-            <?php if (!empty($data['buy1get12']['special'])) { ?>
-            <span><?php echo $data['buy1get12']['special']; ?></span>
-            <del><?php echo $data['buy1get12']['price']; ?></del>
-            <div class="save-price">
-              <p>
-                save
-                <?php
-                  $old = (float) filter_var($data['buy1get12']['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                  $new = (float) filter_var($data['buy1get12']['special'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-
-                  if ($old > 0 && $new > 0 && $new < $old) {
-                      echo round((($old - $new) / $old) * 100) . '%';
-                  } else {
-                      echo '0%';
-                  }
-                  ?>
-              </p>
-            </div>
-            <?php } else { ?>
-            <span><?php echo $data['buy1get12']['price']; ?></span>
-            <?php } ?>
-          </div> -->
+          <h2><a href="<?php echo $data['buy1get12']['href'] ?>"><?php echo $data['buy1get12']['name']; ?></a></h2>          
         </div>
       </div>
     </div>

@@ -16,6 +16,16 @@ $(document).ready(function () {
     $(this).toggleClass('active');
   });
 
+  $(".minicart-trigger").click(function(){
+    $(".minicart").addClass('active');
+    $("body").addClass('active');
+  });
+
+  $(".sidebar-cart-close").click(function(){
+    $(".minicart").removeClass('active');
+    $("body").removeClass('active');
+  });
+
 
 });
 

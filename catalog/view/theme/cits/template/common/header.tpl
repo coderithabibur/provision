@@ -173,7 +173,10 @@
         <div class="mobile-category">
           <?php foreach ($categories as $category) { ?>
             <li><a href="<?php echo $category['href']; ?>">
-                <span><?php if ($category['icon']) { ?><img src="<?php echo $category['icon']; ?>"><?php } else { ?><img src="<?php echo $category['icon']; ?>"><?php } ?><?php echo $category['name']; ?></span>
+                <span>
+                  <img src="<?php echo $category['icon']; ?>">
+                  <?php echo $category['name']; ?>
+                </span>
                 <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-down"></i><?php } ?></a>
               <?php if ($category['children']) { ?>
               <div class="cat-submenu">
@@ -229,13 +232,16 @@
           <img src="catalog/view/theme/cits/assets/images/Trustpilot_logo-1.png"> 651 reviews on <span class="header-trust">Trustpilot</span>
         </a>
         <div class="header-cart">
-          <button><i class="fa-solid fa-shopping-cart"></i> <p class="header-cart-count"> <span><?php echo $cart_count; ?></span> </p></button>
-          <div class="minicart">
+          <button class="minicart-trigger"><i class="fa-solid fa-shopping-cart"></i> <p class="header-cart-count"> <span><?php echo $cart_count; ?></span> </p></button>
+          <div class="minicart just-count">
             <?php echo $cart; ?>
           </div>
         </div>
         <button class="mobile-menu-trigger"><i class="fa-solid fa-bars"></i></button>
       </div>
+    </div>
+    <div class="minicart">
+      <?php echo $cart; ?>
     </div>
   </header>
 
@@ -249,8 +255,12 @@
         </button>
         <ul class="category-list">
           <?php foreach ($categories as $category) { ?>
-            <li><a href="<?php echo $category['href']; ?>" data-image="<?php echo $category['icon']; ?>">
-                <span> <?php if ($category['icon']) { ?><img src="<?php echo $category['icon']; ?>"><?php } else { ?><img src="<?php echo $category['image']; ?>"><?php } ?><?php echo $category['name']; ?></span>
+            <li>
+              <a href="<?php echo $category['href']; ?>" data-image="<?php echo $category['image']; ?>">
+                <span>                  
+                  <img src="<?php echo $category['icon']; ?>">                    
+                  <?php echo $category['name']; ?>
+                </span>
                 <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-right"></i><?php } ?></a>
               <?php if ($category['children']) { ?>
               <div class="cat-submenu">
@@ -269,7 +279,7 @@
                   <?php } ?>
                 </ul>
                 <div class="cat-submenu-image">
-                  <img src="<?php echo $category['icon']; ?>" class="submenu-preview">
+                  <img src="<?php echo $category['image']; ?>" class="submenu-preview">
                 </div>
               </div>
               <?php } ?>
@@ -309,7 +319,7 @@
             <?php } ?>
             <?php } ?>
           </select>
-          <input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_keyword; ?>" id="input-search" class="form-control" />
+          <input type="text" name="search" value="<?php echo $search; ?>" placeholder="Search Products…" id="input-search" class="form-control" />
           
           <!-- <input type="button" value="Search" id="button-search2" class="yellowbtn" /> -->
           <button type="button" value="Search" id="button-search2"><i class="fas fa-search"></i></button>  

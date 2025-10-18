@@ -100,7 +100,7 @@ $(document).ready(function() {
             type: 'get',
             dataType: 'html',
             beforeSend: function() {
-                $('.category-product-grid').html('<p style="text-align: center; width: 100%; padding: 40px;">Loading...</p>');
+                $('.category-product-grid').html('<span class="loader"></span>');
                 $('.pagination').hide();  
             },
             success: function(html) {
