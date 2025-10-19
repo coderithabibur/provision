@@ -16,17 +16,30 @@ $(document).ready(function () {
     $(this).toggleClass('active');
   });
 
-  $(".minicart-trigger").click(function(){
-    $(".minicart").addClass('active');
-    $("body").addClass('active');
+  $(".minicart-trigger, .add-to-cart-btn").click(function (e) {
+    e.stopPropagation(); // prevent event bubbling
+    $(".minicart").addClass("active");
+    $("body").addClass("active");
   });
-
-  $(".sidebar-cart-close").click(function(){
-    $(".minicart").removeClass('active');
-    $("body").removeClass('active');
+  
+  // Close button click
+  $(".sidebar-cart-close").click(function (e) {
+    e.stopPropagation();
+    $(".minicart").removeClass("active");
+    $("body").removeClass("active");
   });
-
-
+  
+  // Click outside to close
+  $(document).click(function (e) {
+    if (
+      $(".minicart").hasClass("active") && // minicart is open
+      !$(e.target).closest(".minicart, .minicart-trigger, .add-to-cart-btn").length
+    ) {
+      $(".minicart").removeClass("active");
+      $("body").removeClass("active");
+    }
+  });
+  
 });
 
 

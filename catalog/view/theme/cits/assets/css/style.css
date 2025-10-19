@@ -36,6 +36,7 @@
     height: 100%;
     width: 100%;
     background-color: #00000065;
+    z-index: 999;
   }
 
   ul {
@@ -445,7 +446,7 @@
     background: none;
     font-size: 18px;
     cursor: pointer;
-    color: var(--brand-color);
+    color: red;
   }
 
   .minicart-subtotal {
@@ -465,6 +466,10 @@
     font-size: 14px;
     border-radius: 35px;
     text-align: center;
+  }
+
+  .minicart-btn strong {
+    font-weight: 600;
   }
 
   .minicart-btn:hover {
@@ -3022,6 +3027,21 @@
   }
 
   /* Checkout */
+
+  div#shipping_method form.hidden {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  #payment_address label {
+    font-size: 15px !important;
+  }
+
+  #d_quickcheckout .text-danger {
+    font-size: 13px;
+    padding-top: 5px;
+    line-height: 18px;
+  }
 
   #d_quickcheckout .btn-primary.active {
     background: var(--brand-color) !important;
