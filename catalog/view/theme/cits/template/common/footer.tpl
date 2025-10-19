@@ -55,7 +55,7 @@
         <div class="footer-links">
           <h2>Quick Links</h2>
            <?php if ($informations) { ?>
-          <ul>
+           <!-- <ul>
             <?php
               $i=1;
               foreach ($informations as $information) {
@@ -65,6 +65,13 @@
             ?>
             <li><a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a></li>
             <?php $i++; } ?>
+          </ul> -->
+          <ul>
+            <li><a href="/index.php?route=information/information&information_id=6">Disclaimers</a></li>
+            <li><a href="/index.php?route=information/information&information_id=4">About Us</a></li>
+            <li><a href="/index.php?route=information/information&information_id=3">Privacy Policy</a></li>
+            <li><a href="/index.php?route=information/information&information_id=5">Terms and Conditions</a></li>
+            <li><a href="/index.php?route=information/information&information_id=8">Return and Refund Policy</a></li>
           </ul>
           <?php } ?>
         </div>

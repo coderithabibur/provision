@@ -524,6 +524,10 @@
     gap: 20px;
   }
 
+  .product-reviews-content .pagination {
+    float: unset;
+  }
+
 
 }
 

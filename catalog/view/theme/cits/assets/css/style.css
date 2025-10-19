@@ -2383,6 +2383,28 @@
     margin-bottom: 10px;
   }
 
+  .feature-description {
+    max-height: 53rem;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.4s ease;
+  }
+  
+  .feature-description.expanded {
+    max-height: none; /* show all content when expanded */
+  }
+  
+  .read-more-btn {
+    background-color: var(--brand-color);
+    color: #fff;
+    border: none;
+    padding: 8px 25px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 35px;
+    font-size: 14px;
+}
+
   .product-info-container {
     display: flex;
     justify-content: space-between;
@@ -3101,4 +3123,13 @@
   opacity: 1 !important;
   color: red;
   font-size: 25px;
+}
+
+#d_quickcheckout .qc-col-2.col-md-6 {
+  display: none;
+}
+
+#d_quickcheckout .qc-col-3.col-md-6 {
+  max-width: 100%;
+  width: 100%;
 }

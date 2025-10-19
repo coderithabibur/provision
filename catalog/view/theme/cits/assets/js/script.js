@@ -16,7 +16,7 @@ $(document).ready(function () {
     $(this).toggleClass('active');
   });
 
-  $(".minicart-trigger, .add-to-cart-btn").click(function (e) {
+  $(".minicart-trigger, .add-to-cart-btn, .add-to-cart").click(function (e) {
     e.stopPropagation(); // prevent event bubbling
     $(".minicart").addClass("active");
     $("body").addClass("active");
@@ -40,6 +40,22 @@ $(document).ready(function () {
     }
   });
   
+});
+
+// Product Description Read More Button
+document.addEventListener("DOMContentLoaded", function() {
+  const desc = document.getElementById("featureDescription");
+  const btn = document.getElementById("readMoreBtn");
+
+  // Check if content is taller than max-height
+  if (desc.scrollHeight > desc.clientHeight) {
+    btn.style.display = "inline-block";
+  }
+
+  btn.addEventListener("click", function() {
+    desc.classList.toggle("expanded");
+    btn.textContent = desc.classList.contains("expanded") ? "Read less" : "Read more";
+  });
 });
 
 
