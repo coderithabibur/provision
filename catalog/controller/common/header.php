@@ -122,11 +122,14 @@ class ControllerCommonHeader extends Controller {
 
 		foreach ($categories as $category) {
 			if ($category['top']) {
+				$icon = '';
 				if ($category['icon']) {
 					$icon = HTTP_SERVER . 'image/' . $category['icon'];
-				} else {
-					$icon = false;
-				}
+				}  
+				$image = '';
+				if ($category['image'] && is_file(DIR_IMAGE . $category['image'])) { 
+					$image = HTTP_SERVER . 'image/' . $category['image'];
+				} 
 				// Level 2
 				$children_data = array();
 
@@ -160,6 +163,7 @@ class ControllerCommonHeader extends Controller {
 					'children' => $children_data,
 					'column'   => $category['column'] ? $category['column'] : 1,
 					'icon'     => $icon,
+					'image'    => $image,
 					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
 				);
 			}
