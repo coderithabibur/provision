@@ -1,11 +1,11 @@
 <?php
 // Heading
-$_['heading_title']    = 'Homepage Video Section - New';
+$_['heading_title']    = 'Home Banner Video - New';
 
 // Text
 $_['text_extension']   = 'Extensions';
-$_['text_success']     = 'Success: You have modified the homepage video module!';
-$_['text_edit']        = 'Edit Homepage Video Module';
+$_['text_success']     = 'Success: You have modified the home banner video module!';
+$_['text_edit']        = 'Edit Home Banner Video Module';
 
 // Entry
 $_['entry_video_url']  = 'Video File Path';
