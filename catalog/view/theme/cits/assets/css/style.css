@@ -251,7 +251,6 @@
   .header-right {
     display: flex;
     align-items: center;
-    gap: 20px;
   }
 
   .header-reviews {
@@ -406,6 +405,11 @@
     right: 7px;
     color: var(--white-color);
     font-size: 12px;
+    opacity: 0;
+  }
+
+  .just-count .cartInfo .item {
+    opacity: 1;
   }
 
   .minicart-quantity {
@@ -545,17 +549,16 @@
   }
 
   .header-categories button i {
-    font-size: 25px;
+    font-size: 20px;
   }
 
   .header-categories button p {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .header-categories button:hover {
     color: var(--brand-color);
   }
-
 
   .category-list {
     position: absolute;
@@ -970,6 +973,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    position: relative;
   }
 
   .single-product-item {
@@ -1124,6 +1128,10 @@
     display: block;
     border-bottom: 1px solid #eee;
     border-radius: 5px;
+  }
+
+  .single-buy-get-free h2 {
+    text-align: center;
   }
 
   .single-buy-get-free h2 a {
@@ -2395,15 +2403,12 @@
   }
   
   .read-more-btn {
-    background-color: var(--brand-color);
-    color: #fff;
-    border: none;
-    padding: 8px 25px;
+    color: var(--brand-color);
     margin-top: 20px;
     cursor: pointer;
-    border-radius: 35px;
-    font-size: 14px;
-}
+    font-size: 16px;
+    background: transparent;
+  }
 
   .product-info-container {
     display: flex;
