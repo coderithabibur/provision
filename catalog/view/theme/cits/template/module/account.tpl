@@ -4,6 +4,9 @@
     <!-- <div class="sidedown"><i aria-hidden="true" class="fa fa-angle-down"></i></div> -->
   </div>
   <div class="categories">
+    <button class="mobile-account-menu-toggle">
+      <i class="fa-solid fa-chevron-down"></i>
+    </button>
     <ul class="catListing accountList">
       <?php if (!$logged) { ?>
       <li> <a href="<?php echo $login; ?>"><?php echo $text_login; ?></a></li>

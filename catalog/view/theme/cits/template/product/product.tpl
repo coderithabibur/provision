@@ -294,7 +294,7 @@
       </div>
 
       <!-- Right Side: Technical Specifications -->
-      <div class="tech-specs">
+      <div class="tech-specs" id="techSpecs">
         <h2 class="section-title">TECH SPECS</h2>
         <?php echo $short_description; ?>
       </div>
@@ -354,6 +354,7 @@
   </div>
 </section>
 
+<?php if (!empty($products)) { ?>
 <!-- Related Products -->
 <section class="related-products-area">
   <div class="container">
@@ -437,6 +438,8 @@
 
   </div>
 </section>
+<?php } ?>
+
 
 
 <script type="text/javascript">
@@ -514,70 +517,76 @@
   </script>
 
   <!-- Button Cart -->
-  <script type="text/javascript">
-$('#button-cart').on('click', function() {
-    var quantity = $('#input-quantity').val();
+  <script>
+$(document).ready(function() {
 
-    if (!$.isNumeric(quantity) || quantity <= 0) {
-        alert('Invalid quantity supplied');
-        return false;
-    }
+    // Quantity buttons
+    $('.quantity-minus').on('click', function() {
+        var $input = $(this).siblings('#input-quantity');
+        var value = parseInt($input.val()) || 1;
+        if (value > 1) $input.val(value - 1);
+    });
 
-    $.ajax({
-        url: 'index.php?route=checkout/cart/add',
-        type: 'post',
-        data: $('#product input[type="text"], #product input[type="hidden"], #product input[type="radio"]:checked, #product input[type="checkbox"]:checked, #product select, #product textarea'),
-        dataType: 'json',
-        beforeSend: function() {
-            $('#button-cart').prop('disabled', true).text('Adding...');
-        },
-        complete: function() {
-            $('#button-cart').prop('disabled', false).text('ADD TO CART');
-        },
-        success: function(json) {
-            $('.alert, .text-danger').remove();
-            $('.form-group').removeClass('has-error');
+    $('.quantity-plus').on('click', function() {
+        var $input = $(this).siblings('#input-quantity');
+        var value = parseInt($input.val()) || 1;
+        $input.val(value + 1);
+    });
 
-            if (json.error) {
-                if (json.error.option) {
-                    for (let i in json.error.option) {
-                        let element = $('#input-option' + i.replace('_', '-'));
-                        if (element.parent().hasClass('input-group')) {
-                            element.parent().after('<div class="text-danger">' + json.error.option[i] + '</div>');
-                        } else {
-                            element.after('<div class="text-danger">' + json.error.option[i] + '</div>');
-                        }
-                    }
-                }
+    // Add to cart
+    $('#button-cart').on('click', function() {
+        var product_id = $('input[name="product_id"]').val();
+        var quantity = parseInt($('#input-quantity').val()) || 1;
 
-                if (json.error.recurring) {
-                    $('select[name="recurring_id"]').after('<div class="text-danger">' + json.error.recurring + '</div>');
-                }
-
-                $('.text-danger').parent().addClass('has-error');
-                return;
-            }
-
-            if (json.success) {
-                $('#content').before(
-                    '<div class="alert alert-success">' + 
-                    json.success + 
-                    '<button type="button" class="close" data-dismiss="alert">&times;</button></div>'
-                );
-
-                // Update mini cart total
-                $('#cart > button').html(json.total);
-
-                // Refresh mini cart content
-                $('#cart > ul').load('index.php?route=common/cart/info ul li');
-
-                console.log("Add to cart successful, item count = " + json.total);
-            }
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-            $('#button-cart').prop('disabled', false).text('ADD TO CART');
+        if (quantity <= 0) {
+            alert('Invalid quantity supplied');
+            return false;
         }
+
+        // Call global cart.add function
+        $.ajax({
+            url: 'index.php?route=checkout/cart/add',
+            type: 'post',
+            data: 'product_id=' + product_id + '&quantity=' + quantity,
+            dataType: 'json',
+            beforeSend: function() {
+                $('#button-cart').prop('disabled', true).text('Adding...');
+            },
+            complete: function() {
+                $('#button-cart').prop('disabled', false).text('ADD TO CART');
+            },
+            success: function(json) {
+                $('.alert, .text-danger').remove();
+
+                if (json['error']) {
+                    alert(json['error']); // simple error alert
+                    return;
+                }
+
+                if (json['success']) {
+                    // Success alert
+                    $('#content').before(
+                        '<div class="alert alert-success">' + 
+                        json['success'] + 
+                        '<button type="button" class="close" data-dismiss="alert">&times;</button></div>'
+                    );
+
+                    // Update mini-cart total
+                    const match = json['total'].match(/\d+/);
+                    const itemCount = match ? match[0] : 0;
+                    $('.cartInfo .item').text(itemCount);
+
+                    // Refresh mini-cart items
+                    $('.cartInputBox').load('index.php?route=common/cart/info ul li');
+
+                    $('html, body').animate({ scrollTop: 0 }, 'slow');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                $('#button-cart').prop('disabled', false).text('ADD TO CART');
+            }
+        });
     });
 });
 </script>
@@ -732,79 +741,6 @@ $('#button-cart').on('click', function() {
         $('#section-product-question-form').hide();
     });
 
-    // Quantity increment/decrement
-    $('.quantity-plus').on('click', function() {
-        var input = $(this).siblings('input[name="quantity"]');
-        var currentVal = parseInt(input.val());
-        if (!isNaN(currentVal)) {
-            input.val(currentVal + 1);
-        }
-    });
-
-    $('.quantity-minus').on('click', function() {
-        var input = $(this).siblings('input[name="quantity"]');
-        var currentVal = parseInt(input.val());
-        if (!isNaN(currentVal) && currentVal > 1) {
-            input.val(currentVal - 1);
-        }
-    });
-    //--></script>
-
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org/",
-    "@type": "Product",
-    "name": "<?php echo htmlspecialchars($heading_title, ENT_QUOTES, 'UTF-8'); ?>",
-    "image": [
-      "<?php echo htmlspecialchars($popup, ENT_QUOTES, 'UTF-8'); ?>"
-    ],
-    "description": "<?php echo htmlspecialchars(strip_tags($description), ENT_QUOTES, 'UTF-8'); ?>",
-    "sku": "<?php echo htmlspecialchars($product_id, ENT_QUOTES, 'UTF-8'); ?>",
-    "mpn": "<?php echo !empty($model) ? htmlspecialchars($model, ENT_QUOTES, 'UTF-8') : htmlspecialchars($product_id, ENT_QUOTES, 'UTF-8'); ?>",
-    "brand": {
-      "@type": "Brand",
-      "name": "<?php echo $manufacturer ? htmlspecialchars($manufacturer, ENT_QUOTES, 'UTF-8') : 'Pro Vision'; ?>"
-    },
-    <?php if (!empty($rating)) { ?>
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "<?php echo $rating; ?>",
-      "reviewCount": "<?php echo $reviews; ?>"
-    },
-    <?php } ?>
-    "offers": {
-      "@type": "Offer",
-      "url": "<?php echo htmlspecialchars($this->url->link('product/product', 'product_id=' . $product_id), ENT_QUOTES, 'UTF-8'); ?>",
-      "priceCurrency": "AUD",
-      "price": "<?php echo $special ? htmlspecialchars($special, ENT_QUOTES, 'UTF-8') : htmlspecialchars($price, ENT_QUOTES, 'UTF-8'); ?>",
-      "priceValidUntil": "2025-12-31",
-      "itemCondition": "https://schema.org/NewCondition",
-      "availability": "https://schema.org/<?php echo ($quantity > 0) ? 'InStock' : 'OutOfStock'; ?>"
-    }
-  }
 </script>
-
-<?php if (!empty($product_faqs)) { ?>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      <?php foreach ($product_faqs as $i => $faq) { ?>
-      {
-        "@type": "Question",
-        "name": "<?php echo htmlspecialchars($faq['question'], ENT_QUOTES, 'UTF-8'); ?>",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "<?php echo htmlspecialchars($faq['answer'], ENT_QUOTES, 'UTF-8'); ?>"
-        }
-      }<?php if ($i < count($product_faqs) - 1) echo ','; ?>
-      <?php } ?>
-    ]
-  }
-  </script>
-<?php } ?>
-
-
 
 <?php echo $footer; ?>

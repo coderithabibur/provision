@@ -528,10 +528,58 @@
     float: unset;
   }
 
+  .account-sidebar ul li {
+    display: none;
+  }
+
+  .account-sidebar ul li:first-child, .account-sidebar ul li:last-child {
+    display: block;
+  }
+
+  .accountList.clicked li {
+    display: block;
+  }
+
+  .mobile-account-menu-toggle {
+    display: block;
+  }
+
+  .mobile-account-menu-toggle i {
+    transition: 0.3s;
+  }
+
+  .mobile-account-menu-toggle.active i {
+    transform: rotate(180deg);
+  }
+
+  .account-sidebar .categories {
+    position: relative;
+  }
+
+  .mobile-account-menu-toggle {
+    background: transparent;
+    position: absolute;
+    z-index: 2;
+    right: 16px;
+    font-size: 20px;
+    color: var(--white-color);
+    top: 7px;
+  }
+
+  .account-sidebar {
+    margin-bottom: 20px;
+  }
+
+
+
 
 }
 
 @media all and (max-width:575px) {
+
+  .acccount-section {
+    padding: 40px 0 20px;
+  }
 
   .header-search-category {
     display: none;

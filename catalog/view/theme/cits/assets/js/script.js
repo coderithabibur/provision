@@ -39,25 +39,34 @@ $(document).ready(function () {
       $("body").removeClass("active");
     }
   });
+
+  $('.mobile-account-menu-toggle').click(function() {
+    $(this).toggleClass('active');
+    $(this).parent().children('ul').toggleClass('clicked');
+  });
   
 });
 
-// Product Description Read More Button
+// Read More Btn
 document.addEventListener("DOMContentLoaded", function() {
   const desc = document.getElementById("featureDescription");
   const btn = document.getElementById("readMoreBtn");
+  const tech = document.getElementById("techSpecs");
 
-  // Check if content is taller than max-height
+  // Set initial max-height same as tech-specs height minus 80px
+  const techHeight = tech.offsetHeight - 80;
+  desc.style.maxHeight = techHeight + "px";
+
+  // Show Read More button if description is taller
   if (desc.scrollHeight > desc.clientHeight) {
-    btn.style.display = "inline-block";
+      btn.style.display = "inline-block";
   }
 
   btn.addEventListener("click", function() {
-    desc.classList.toggle("expanded");
-    btn.textContent = desc.classList.contains("expanded") ? "Read less" : "Read more";
+      desc.classList.toggle("expanded");
+      btn.textContent = desc.classList.contains("expanded") ? "Read less" : "Read more";
   });
 });
-
 
 // Main Category Image Hover Script
 document.querySelectorAll('.category-list > li > a').forEach(link => {
