@@ -1,5 +1,8 @@
 <?php echo $header; ?>
 
+<?php print_r($data['buy_one_get_one_title']); ?> 
+<?php print_r($data['buy_one_get_one_offers']); ?> 
+
 <?php echo $my_video_section; ?>
 
 <!-- Features -->

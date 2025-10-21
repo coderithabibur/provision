@@ -59,7 +59,23 @@ class ControllerCommonHome extends Controller {
             );
         }
 
-
+        // Buy One Get One Free Module Data
+        $data['buy_one_get_one_offers'] = array();  
+        if ($this->config->get('module_buy_one_get_one_status')) { 
+            $data['buy_one_get_one_title'] = $this->config->get('module_buy_one_get_one_title');
+            $offers = $this->config->get('module_buy_one_get_one_offer'); 
+            if ($offers) { 
+                foreach ($offers as $offer) {
+                    if (isset($offer['product_id'])) {
+                        $product_data = $this->getProductInfoById($offer['product_id']);
+                        if ($product_data) {
+                            $data['buy_one_get_one_offers'][] = $product_data;
+                        }
+                    }
+                }
+            }
+        }
+        
 		$data['buy1get1'] = $this->getProductInfoById(290);
         $data['buy1get12'] = $this->getProductInfoById(251);
   
