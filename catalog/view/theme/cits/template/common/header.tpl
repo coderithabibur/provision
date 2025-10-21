@@ -232,8 +232,17 @@
 
       <!-- Right Side -->
       <div class="header-right">
-        <a href="#" class="header-reviews">
-          <img src="catalog/view/theme/cits/assets/images/Trustpilot_logo-1.png"> 651 reviews on <span class="header-trust">Trustpilot</span>
+        <a href="#" class="header-reviews">          
+          <!-- TrustBox script -->
+          <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+          <!-- End TrustBox script -->
+
+
+          <!-- TrustBox widget - Micro Review Count -->
+          <div class="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="5d425ee701425c0001a15e2b" data-style-height="24px" data-style-width="100%" data-theme="light" data-style-alignment="center">
+            <a href="https://uk.trustpilot.com/review/pro-vision-lighting.com" target="_blank" rel="noopener">Trustpilot</a>
+          </div>
+          <!-- End TrustBox widget -->
         </a>
         <div class="header-cart">
           <button class="minicart-trigger"><i class="fa-solid fa-shopping-cart"></i> <p class="header-cart-count"> <span><?php echo $cart_count; ?></span> </p></button>
@@ -336,6 +345,26 @@
       </div>
     </div>
   </div>
+
+  <?php if (!empty($breadcrumbs)) { ?>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+      <?php foreach ($breadcrumbs as $i => $breadcrumb) { ?>
+        {
+          "@type": "ListItem",
+          "position": <?php echo $i + 1; ?>,
+          "name": "<?php echo htmlspecialchars($breadcrumb['text'], ENT_QUOTES, 'UTF-8'); ?>",
+          "item": "<?php echo htmlspecialchars($breadcrumb['href'], ENT_QUOTES, 'UTF-8'); ?>"
+        }<?php if ($i < count($breadcrumbs) - 1) { echo ","; } ?>
+      <?php } ?>
+      ]
+    }
+    </script>
+  <?php } ?>
+
 
   <!-- End Header -->
 

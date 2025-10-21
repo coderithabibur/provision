@@ -750,4 +750,61 @@ $('#button-cart').on('click', function() {
     });
     //--></script>
 
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "<?php echo htmlspecialchars($heading_title, ENT_QUOTES, 'UTF-8'); ?>",
+    "image": [
+      "<?php echo htmlspecialchars($popup, ENT_QUOTES, 'UTF-8'); ?>"
+    ],
+    "description": "<?php echo htmlspecialchars(strip_tags($description), ENT_QUOTES, 'UTF-8'); ?>",
+    "sku": "<?php echo htmlspecialchars($product_id, ENT_QUOTES, 'UTF-8'); ?>",
+    "mpn": "<?php echo !empty($model) ? htmlspecialchars($model, ENT_QUOTES, 'UTF-8') : htmlspecialchars($product_id, ENT_QUOTES, 'UTF-8'); ?>",
+    "brand": {
+      "@type": "Brand",
+      "name": "<?php echo $manufacturer ? htmlspecialchars($manufacturer, ENT_QUOTES, 'UTF-8') : 'Pro Vision'; ?>"
+    },
+    <?php if (!empty($rating)) { ?>
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "<?php echo $rating; ?>",
+      "reviewCount": "<?php echo $reviews; ?>"
+    },
+    <?php } ?>
+    "offers": {
+      "@type": "Offer",
+      "url": "<?php echo htmlspecialchars($this->url->link('product/product', 'product_id=' . $product_id), ENT_QUOTES, 'UTF-8'); ?>",
+      "priceCurrency": "AUD",
+      "price": "<?php echo $special ? htmlspecialchars($special, ENT_QUOTES, 'UTF-8') : htmlspecialchars($price, ENT_QUOTES, 'UTF-8'); ?>",
+      "priceValidUntil": "2025-12-31",
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": "https://schema.org/<?php echo ($quantity > 0) ? 'InStock' : 'OutOfStock'; ?>"
+    }
+  }
+</script>
+
+<?php if (!empty($product_faqs)) { ?>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      <?php foreach ($product_faqs as $i => $faq) { ?>
+      {
+        "@type": "Question",
+        "name": "<?php echo htmlspecialchars($faq['question'], ENT_QUOTES, 'UTF-8'); ?>",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<?php echo htmlspecialchars($faq['answer'], ENT_QUOTES, 'UTF-8'); ?>"
+        }
+      }<?php if ($i < count($product_faqs) - 1) echo ','; ?>
+      <?php } ?>
+    ]
+  }
+  </script>
+<?php } ?>
+
+
+
 <?php echo $footer; ?>

@@ -121,5 +121,58 @@ $(document).ready(function() {
 }
 </style>
 
+<?php if (!empty($products)) { ?>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "<?php echo htmlspecialchars($heading_title, ENT_QUOTES, 'UTF-8'); ?>",
+  "numberOfItems": <?php echo count($products); ?>,
+  "itemListElement": [
+    <?php foreach ($products as $i => $product) { ?>
+    {
+      "@type": "ListItem",
+      "position": <?php echo $i + 1; ?>,
+      "item": {
+        "@type": "Product",
+        "name": "<?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?>",
+        "url": "<?php echo htmlspecialchars($product['href'], ENT_QUOTES, 'UTF-8'); ?>",
+        "image": "<?php echo htmlspecialchars($product['thumb'], ENT_QUOTES, 'UTF-8'); ?>",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "<?php echo htmlspecialchars($this->session->data['currency'], ENT_QUOTES, 'UTF-8'); ?>",
+          "price": "<?php echo preg_replace('/[^0-9.]/', '', $product['special'] ? $product['special'] : $product['price']); ?>"
+        }
+      }
+    }<?php if ($i < count($products) - 1) { echo ","; } ?>
+    <?php } ?>
+  ]
+}
+</script>
+<?php } ?>
+
+<?php if (!empty($product_faqs)) { ?>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    <?php foreach ($product_faqs as $i => $faq) { ?>
+    {
+      "@type": "Question",
+      "name": "<?php echo htmlspecialchars($faq['question'], ENT_QUOTES, 'UTF-8'); ?>",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<?php echo htmlspecialchars($faq['answer'], ENT_QUOTES, 'UTF-8'); ?>"
+      }
+    }<?php if ($i < count($product_faqs) - 1) echo ','; ?>
+    <?php } ?>
+  ]
+}
+</script>
+<?php } ?>
+
+
+
 <?php echo $footer; ?>
 

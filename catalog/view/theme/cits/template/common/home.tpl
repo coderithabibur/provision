@@ -1,8 +1,5 @@
 <?php echo $header; ?>
 
-<?php print_r($data['buy_one_get_one_title']); ?> 
-<?php print_r($data['buy_one_get_one_offers']); ?> 
-
 <?php echo $my_video_section; ?>
 
 <!-- Features -->
@@ -10,80 +7,45 @@
 
 <section class="buy-one-get-on-free">
   <div class="container">
-    <h2>buy one get one free</h2>
+    <h2><?php echo $data['buy_one_get_one_title']; ?></h2>
     <div class="category-cards">
+      <?php foreach ($data['buy_one_get_one_offers'] as $offer) : 
+        // Extract numeric value (keeps decimals)
+        $price = preg_replace('/[^0-9.]/', '', $offer['price']); 
+        $price = (float)$price;
+
+        // Extract currency symbol if present (like $, ৳, etc.)
+        $currency = preg_replace('/[0-9.,]/', '', $offer['price']); 
+
+        // Format both prices with 2 decimals
+        $original = number_format($price, 2);
+        $double   = number_format($price * 2, 2);
+      ?>
       <div class="category-card">
         <div class="category-card-content">
           <h3>buy one</h3>
           <h3>get one free</h3>
-          <p><?php echo $data['buy1get1']['model']; ?> - Now 50% Savings</p>
-          <!-- <span><strong><?php echo $data['buy1get1']['price']; ?></strong> <del>11</del> </span> -->
-          <?php 
-            // Extract numeric value (keeps decimals)
-            $price = preg_replace('/[^0-9.]/', '', $data['buy1get1']['price']); 
-            $price = (float)$price;
-
-            // Extract currency symbol if present (like $, ৳, etc.)
-            $currency = preg_replace('/[0-9.,]/', '', $data['buy1get1']['price']); 
-
-            // Format both prices with 2 decimals
-            $original = number_format($price, 2);
-            $double   = number_format($price * 2, 2);
-            ?>
-            <span>
-              <strong><?php echo $currency . $original; ?></strong>
-              <del><?php echo $currency . $double; ?></del>
-            </span>
-          <a href="<?php echo $data['buy1get1']['href'] ?>">buy Now</a>
-        </div>
-        <div class="single-buy-get-free">
-          <div class="buy-get-free-images">
-            <a href="<?php echo $data['buy1get1']['href'] ?>"><img src="<?php echo $data['buy1get1']['image']; ?>"></a>            
-            <div class="plus-sybol">
-              <p>+</p>
-            </div>
-            <a href="<?php echo $data['buy1get1']['href'] ?>"><img src="<?php echo $data['buy1get1']['image']; ?>"></a>
-          </div>
-          <h2><a href="<?php echo $data['buy1get1']['href'] ?>"><?php echo $data['buy1get1']['name']; ?></a></h2>            
-        </div>
-      </div>
-      <div class="category-card">
-        <div class="category-card-content">
-          <h3>buy one</h3>
-          <h3>get one free</h3>
-          <p><?php echo $data['buy1get12']['model']; ?> - Now 50% Savings</p>
-          <?php 
-          // Extract numeric value (keeps decimals)
-          $price = preg_replace('/[^0-9.]/', '', $data['buy1get12']['price']); 
-          $price = (float)$price;
-
-          // Extract currency symbol if present (like $, ৳, etc.)
-          $currency = preg_replace('/[0-9.,]/', '', $data['buy1get12']['price']); 
-
-          // Format both prices with 2 decimals
-          $original = number_format($price, 2);
-          $double   = number_format($price * 2, 2);
-          ?>
+          <p><?php echo $offer['model']; ?> - Now 50% Savings</p>
           <span>
             <strong><?php echo $currency . $original; ?></strong>
             <del><?php echo $currency . $double; ?></del>
           </span>
-          <a href="<?php echo $data['buy1get12']['href'] ?>">buy Now</a>
+          <a href="<?php echo $offer['href']; ?>">buy Now</a>
         </div>
         <div class="single-buy-get-free">
           <div class="buy-get-free-images">
-            <a href="<?php echo $data['buy1get12']['href'] ?>"><img src="<?php echo $data['buy1get1']['image']; ?>"></a>
-            <div class="plus-sybol">
-              <p>+</p>
-            </div>
-            <a href="<?php echo $data['buy1get12']['href'] ?>"><img src="<?php echo $data['buy1get1']['image']; ?>"></a>
+            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>"></a>
+            <div class="plus-sybol"><p>+</p></div>
+            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>"></a>
           </div>
-          <h2><a href="<?php echo $data['buy1get12']['href'] ?>"><?php echo $data['buy1get12']['name']; ?></a></h2>          
+          <h2><a href="<?php echo $offer['href']; ?>"><?php echo $offer['name']; ?></a></h2>
         </div>
       </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
+
 
 <!-- Featured Categories Section -->
 <section class="best-seller-area">
@@ -197,7 +159,7 @@
         dataType: 'html',
         beforeSend: function () {
           $('.best-seller-product-grid').html(
-            '<p style="text-align: center; width: 100%; padding: 20px;">Loading...</p>');
+            '<span class="loader"></span>');
         },
         success: function (html) {
           $('.best-seller-product-grid').html(html);
@@ -209,4 +171,88 @@
     });
   });
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoPartsStore",
+  "name": "<?php echo addslashes($name); ?>",
+  "url": "<?php echo $home; ?>",
+  "logo": "<?php echo $logo; ?>",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+61-2-9698-2543",
+    "contactType": "Customer Service"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "PO Box 7180",
+    "addressLocality": "Urangan",
+    "addressRegion": "QLD",
+    "postalCode": "4655",
+    "addressCountry": "AU"
+  },
+  "sameAs": [ 
+    "https://www.facebook.com/provisionlights/",
+    "https://www.youtube.com/channel/UCZTBBnEykt7tK5amksqmABQ",
+    "https://www.instagram.com/pro_vision_led_lighting/"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "<?php echo HTTPS_SERVER; ?>",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "<?php echo HTTPS_SERVER; ?>index.php?route=product/search&search={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+</script>
+
+<?php if (!empty($initial_products)) { ?>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Best Selling Products",
+    "numberOfItems": <?php echo count($initial_products); ?>,
+    "itemListElement": [
+      <?php foreach ($initial_products as $i => $product) { ?>
+      {
+        "@type": "ListItem",
+        "position": <?php echo $i + 1; ?>,
+        "item": {
+          "@type": "Product",
+          "name": "<?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?>",
+          "url": "<?php echo htmlspecialchars($product['href'], ENT_QUOTES, 'UTF-8'); ?>",
+          "image": "<?php echo htmlspecialchars($product['image'], ENT_QUOTES, 'UTF-8'); ?>",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "<?php echo htmlspecialchars($this->session->data['currency'], ENT_QUOTES, 'UTF-8'); ?>",
+            "price": "<?php echo preg_replace('/[^0-9.]/', '', $product['special'] ? $product['special'] : $product['price']); ?>",
+            "availability": "<?php echo ($product['quantity'] > 0) ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'; ?>",
+            "url": "<?php echo htmlspecialchars($product['href'], ENT_QUOTES, 'UTF-8'); ?>"
+          }
+        }
+      }<?php if ($i < count($initial_products) - 1) echo ','; ?>
+      <?php } ?>
+    ]
+  }
+  </script>
+<?php } ?>
+
+<?php if ($review_status) { ?>
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "<?php echo $rating; ?>",
+    "reviewCount": "<?php echo $reviews; ?>"
+  },
+<?php } ?>
+
+
+
 <?php echo $footer; ?>
