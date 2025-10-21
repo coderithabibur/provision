@@ -72,6 +72,15 @@ class ControllerCommonFooter extends Controller {
 
 		$data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 
+		// Custom Footer Codes Options
+		$this->load->model('setting/setting');
+		$custom_code_settings = $this->model_setting_setting->getSetting('module_custom_code');
+		if (!empty($custom_code_settings['module_custom_code_status']) && !empty($custom_code_settings['module_custom_code_footer_code'])) {
+			$data['custom_footer_code'] = html_entity_decode($custom_code_settings['module_custom_code_footer_code'], ENT_QUOTES, 'UTF-8');
+		} else {
+			$data['custom_footer_code'] = '';
+		}
+
 		// ===========================
 		// === CLIENT LOGOS MODULE ===
 		// ===========================

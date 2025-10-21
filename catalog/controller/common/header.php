@@ -203,7 +203,28 @@ class ControllerCommonHeader extends Controller {
 			$data['route'] = '';
 		}
 
+		// Header options 
+		$custom_code_settings = $this->model_setting_setting->getSetting('module_custom_code');
 
+		// Custom Header Codes Options
+		if (!empty($custom_code_settings['module_custom_code_status'])) {
+			// Top Bar Text
+			$data['delivery_text'] = $custom_code_settings['module_custom_code_delivery_text'];
+			$data['flash_sale_text'] = $custom_code_settings['module_custom_code_flash_sale_text'];
+
+			// Custom Scripts
+			if (!empty($custom_code_settings['module_custom_code_header_code'])) {
+				$data['custom_header_code'] = html_entity_decode($custom_code_settings['module_custom_code_header_code'], ENT_QUOTES, 'UTF-8');
+			} else {
+				$data['custom_header_code'] = '';
+			}
+			if (!empty($custom_code_settings['module_custom_code_body_code'])) {
+				$data['custom_body_code'] = html_entity_decode($custom_code_settings['module_custom_code_body_code'], ENT_QUOTES, 'UTF-8');
+			} else {
+				$data['custom_body_code'] = '';
+			}
+		} 
+ 
 		// For page specific css
 		if (isset($this->request->get['route'])) {
 			if (isset($this->request->get['product_id'])) {

@@ -219,6 +219,8 @@ $('select[name=\'category_id\']').trigger('change');
   
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="catalog/view/theme/cits/assets/js/script.js"></script>
- 
+  
+  <?php echo $custom_footer_code; ?>
+  
 </body>
 </html>

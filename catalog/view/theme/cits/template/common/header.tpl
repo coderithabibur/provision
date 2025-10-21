@@ -119,19 +119,23 @@
     </script>
     <?php } ?>
 
+  <?php echo $custom_header_code; ?>
 
 </head>
 <body  class="<?php echo $class; ?>">
-
+<?php echo $custom_body_code; ?>
 <!-- Header Top Bar -->
   <div class="header-top">
     <div class="container">
       <div class="header-top-left">
-        <p> <i class="fa-solid fa-truck-fast"></i> Delivery Costs are Included in the Price</p>
+        <?php if ($delivery_text) { ?>
+          <p> <i class="fa-solid fa-truck-fast"></i> <?php echo $delivery_text; ?></p>
+        <?php } ?>
       </div>
       <div class="header-top-center">
-        <p><i class="fa-solid fa-bolt-lightning"></i> <strong>FLASH SALE:</strong> 60% OFF CAR BATTERIES | USE CODE
-          "BATT60"</p>
+        <?php if ($flash_sale_text) { ?>
+          <p><i class="fa-solid fa-bolt-lightning"></i> <?php echo $flash_sale_text; ?></p>
+        <?php } ?>
       </div>
       <div class="header-top-right">
         <?php if ($logged) { ?>
