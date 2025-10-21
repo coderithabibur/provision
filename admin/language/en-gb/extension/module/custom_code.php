@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']    = 'Header Footer Options';
+$_['heading_title']    = 'Header Footer Options - New';
 
 // Text
 $_['text_extension']   = 'Extensions';
