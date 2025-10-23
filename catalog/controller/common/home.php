@@ -24,6 +24,12 @@ class ControllerCommonHome extends Controller {
 			$this->document->addLink(HTTP_SERVER, 'canonical');
 		}
 
+        // Add variables for JSON-LD schema
+        $data['name'] = $this->config->get('config_name');
+        $data['home'] = $this->url->link('common/home');
+        $data['logo'] = $this->config->get('config_logo') ? (HTTP_SERVER . 'image/' . $this->config->get('config_logo')) : '';
+
+
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
 		$data['content_top'] = $this->load->controller('common/content_top');

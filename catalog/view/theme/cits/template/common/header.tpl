@@ -232,18 +232,17 @@
 
       <!-- Right Side -->
       <div class="header-right">
-        <a href="#" class="header-reviews">          
+        <div class="header-reviews">          
           <!-- TrustBox script -->
           <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
           <!-- End TrustBox script -->
-
 
           <!-- TrustBox widget - Micro Review Count -->
           <div class="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="5d425ee701425c0001a15e2b" data-style-height="24px" data-style-width="100%" data-theme="light" data-style-alignment="center">
             <a href="https://uk.trustpilot.com/review/pro-vision-lighting.com" target="_blank" rel="noopener">Trustpilot</a>
           </div>
           <!-- End TrustBox widget -->
-        </a>
+        </div>
         <div class="header-cart">
           <button class="minicart-trigger"><i class="fa-solid fa-shopping-cart"></i> <p class="header-cart-count"> <span><?php echo $cart_count; ?></span> </p></button>
           <div class="minicart just-count">

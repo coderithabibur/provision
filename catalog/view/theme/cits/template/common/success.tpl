@@ -59,16 +59,16 @@ if(!empty($testData)){?>
     </script>
 <?php	} ?>
 <?php } ?>
-<section class="bannerOuter paddingless">
+<!-- <section class="bannerOuter paddingless cart-title">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <div class="pageTitle"><h1><?php echo $heading_title; ?>
+        <div class="pageTitle"><h1><?php// echo $heading_title; ?>
        </h1></div>
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <section class="greyBg paddingtop30">
   <div class="container">
     <div class="row">
@@ -88,10 +88,13 @@ if(!empty($testData)){?>
     <?php } else { ?>
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
-    <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>     
-      <?php echo $text_message; ?>
-      <div class="buttons">
-        <div class="pull-right"><a href="<?php echo $continue; ?>" class="yellowbtn"><?php echo $button_continue; ?></a></div>
+    <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?> 
+      <div class="place-order-content">
+        <i class="fa-regular fa-circle-check"></i>
+        <?php echo $text_message; ?>
+      </div>
+      <div class="buttons success-btn" style="text-align: center; margin-bottom: 30px;">
+        <a href="<?php echo $continue; ?>" class="yellowbtn"><?php echo $button_continue; ?></a>
       </div>
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>

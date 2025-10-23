@@ -1,9 +1,17 @@
 $(document).ready(function () {
 
-  $(".header-categories button").click(function () {
+  $(".header-categories button").click(function (e) {
+    e.stopPropagation(); // prevent click from bubbling to document
     $(this).parent().children("ul").toggleClass('active');
   });
-
+  
+  // Click outside to remove 'active'
+  $(document).click(function (e) {
+    if (!$(e.target).closest('.header-categories').length) {
+      $(".header-categories ul").removeClass('active');
+    }
+  });
+  
   $(".mobile-menu-trigger").click(function () {
     $(".header-nav").addClass('active');
   });
@@ -69,17 +77,28 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Main Category Image Hover Script
+// document.querySelectorAll('.category-list > li > a').forEach(link => {
+//   const mainImg = link.querySelector('img'); // get main category image
+
+//   link.addEventListener('mouseenter', function() {
+//       const newImage = this.getAttribute('data-image');
+//       if (mainImg && newImage) {
+//           mainImg.setAttribute('src', newImage);
+//       }
+//   });
+// });
+
+// Main Category Hover Image Script
 document.querySelectorAll('.category-list > li > a').forEach(link => {
-  const mainImg = link.querySelector('img'); // get main category image
+  const submenuImage = document.querySelector('.cat-submenu-image .submenu-preview'); // Target the main preview image
 
   link.addEventListener('mouseenter', function() {
-      const newImage = this.getAttribute('data-image');
-      if (mainImg && newImage) {
-          mainImg.setAttribute('src', newImage);
-      }
+    const newImage = this.getAttribute('data-image');
+    if (submenuImage && newImage) {
+      submenuImage.setAttribute('src', newImage);
+    }
   });
 });
-
 
 // Hero slider
 const heroSwiper = new Swiper('.hero-slider', {

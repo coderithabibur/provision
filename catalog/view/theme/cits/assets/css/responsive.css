@@ -773,6 +773,16 @@
     height: 35rem;
   }
 
+  .place-order-content i {
+    font-size: 75px;
+  }
+
+  .place-order-content p:nth-child(2) {
+    font-size: 22px;
+    margin: 12px 0;
+    line-height: 28px;
+  }
+
 }
 
 

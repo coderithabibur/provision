@@ -173,32 +173,32 @@
 </script>
 
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "AutoPartsStore",
-  "name": "<?php echo addslashes($name); ?>",
-  "url": "<?php echo $home; ?>",
-  "logo": "<?php echo $logo; ?>",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+61-2-9698-2543",
-    "contactType": "Customer Service"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "PO Box 7180",
-    "addressLocality": "Urangan",
-    "addressRegion": "QLD",
-    "postalCode": "4655",
-    "addressCountry": "AU"
-  },
-  "sameAs": [ 
-    "https://www.facebook.com/provisionlights/",
-    "https://www.youtube.com/channel/UCZTBBnEykt7tK5amksqmABQ",
-    "https://www.instagram.com/pro_vision_led_lighting/"
-  ]
-}
-</script>
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoPartsStore",
+    "name": "<?php echo htmlspecialchars($name, ENT_QUOTES, 'UTF-8'); ?>",
+    "url": "<?php echo htmlspecialchars($home, ENT_QUOTES, 'UTF-8'); ?>",
+    "logo": "<?php echo htmlspecialchars($logo, ENT_QUOTES, 'UTF-8'); ?>",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+61-2-9698-2543",
+      "contactType": "Customer Service"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "PO Box 7180",
+      "addressLocality": "Urangan",
+      "addressRegion": "QLD",
+      "postalCode": "4655",
+      "addressCountry": "AU"
+    },
+    "sameAs": [
+      "https://www.facebook.com/provisionlights/",
+      "https://www.youtube.com/channel/UCZTBBnEykt7tK5amksqmABQ",
+      "https://www.instagram.com/pro_vision_led_lighting/"
+    ]
+  }
+  </script>
 
 <script type="application/ld+json">
   {

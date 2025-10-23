@@ -133,11 +133,7 @@
                   <?php } ?>
                   <?php } ?>
                 </div>
-                <div class="reviews"> <p><?php echo $reviews; ?></p> | <a href="#tab-review"><?php echo $text_write; ?></a></div>            
-                <!-- AddThis Button BEGIN>
-                <div class="addthis_toolbox addthis_default_style"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
-                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
-                <!-- AddThis Button END -->
+                <div class="reviews"> <p><?php echo $reviews; ?></p> | <a href="#tab-review"><?php echo $text_write; ?></a></div>
               </div>
             </div>
           <?php } ?>
@@ -742,5 +738,38 @@ $(document).ready(function() {
     });
 
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "<?php echo htmlspecialchars($heading_title, ENT_QUOTES, 'UTF-8'); ?>",
+  "image": [
+    "<?php echo isset($popup) ? htmlspecialchars($popup, ENT_QUOTES, 'UTF-8') : ''; ?>"
+  ],
+  "description": "<?php echo htmlspecialchars(strip_tags($description), ENT_QUOTES, 'UTF-8'); ?>",
+  "sku": "<?php echo htmlspecialchars($sku, ENT_QUOTES, 'UTF-8'); ?>",
+  "mpn": "<?php echo isset($model) ? htmlspecialchars($model, ENT_QUOTES, 'UTF-8') : ''; ?>",
+  "brand": {
+    "@type": "Brand",
+    "name": "<?php echo htmlspecialchars($manufacturer, ENT_QUOTES, 'UTF-8'); ?>"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "<?php echo isset($rating) ? htmlspecialchars($rating, ENT_QUOTES, 'UTF-8') : '5'; ?>",
+    "reviewCount": "<?php echo isset($review_total) ? htmlspecialchars($review_total, ENT_QUOTES, 'UTF-8') : '1'; ?>"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "<?php echo htmlspecialchars($share, ENT_QUOTES, 'UTF-8'); ?>",
+    "priceCurrency": "<?php echo htmlspecialchars($currency_code, ENT_QUOTES, 'UTF-8'); ?>",
+    "price": "<?php echo htmlspecialchars($price_value, ENT_QUOTES, 'UTF-8'); ?>",
+    "priceValidUntil": "2025-12-31",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "<?php echo ($quantity > 0) ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'; ?>"
+  }
+}
+</script>
+
 
 <?php echo $footer; ?>
