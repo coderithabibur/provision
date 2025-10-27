@@ -2,6 +2,10 @@
 class Weight {
 	private $weights = array();
 
+	// ✅ Added these two lines:
+	private $db;
+	private $config;
+
 	public function __construct($registry) {
 		$this->db = $registry->get('db');
 		$this->config = $registry->get('config');

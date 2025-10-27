@@ -4,8 +4,19 @@ final class Openbay {
 	private $installed_modules = array();
 	public $installed_markets = array();
 
+	// ✅ Add these lines:
+	private $db;
+	private $config;
+	private $load;
+	private $logger;
+
 	public function __construct($registry) {
 		$this->registry = $registry;
+
+		// ✅ Get core dependencies from registry
+		$this->db = $registry->get('db');
+		$this->config = $registry->get('config');
+		$this->load = $registry->get('load');
 
 		$this->getInstalled();
 

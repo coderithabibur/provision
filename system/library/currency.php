@@ -3,6 +3,13 @@ class Currency {
 	private $code;
 	private $currencies = array();
 
+	 // ✅ Add these lines:
+    private $config;
+    private $db;
+    private $language;
+    private $request;
+    private $session;
+
 	public function __construct($registry) {
 		$this->config = $registry->get('config');
 		$this->db = $registry->get('db');

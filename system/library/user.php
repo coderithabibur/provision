@@ -4,6 +4,12 @@ class User {
 	private $username;
 	private $permission = array();
 
+	// ✅ Added missing properties:
+	private $db;
+	private $request;
+	private $session;
+	private $user_group_id;
+
 	public function __construct($registry) {
 		$this->db = $registry->get('db');
 		$this->request = $registry->get('request');
