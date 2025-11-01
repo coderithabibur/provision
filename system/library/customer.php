@@ -9,6 +9,10 @@ class Customer {
 	private $fax;
 	private $newsletter;
 	private $address_id;
+	private $config;
+	private $db;
+	private $request;
+	private $session;
 
 	public function __construct($registry) {
 		$this->config = $registry->get('config');
