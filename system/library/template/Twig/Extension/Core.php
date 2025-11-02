@@ -284,9 +284,9 @@ class Twig_Extension_Core extends Twig_Extension
             if ($test->getAlternative()) {
                 $message .= sprintf('. Use "%s" instead', $test->getAlternative());
             }
-            $message .= sprintf(' in %s at line %d.', $stream->getFilename(), $stream->getCurrent()->getLine());
+    $message .= sprintf(' in %s at line %d.', $stream->getFilename(), $stream->getCurrent()->getLine());
 
-            @trigger_error($message, E_USER_DEPRECATED);
+    trigger_error($message, E_USER_DEPRECATED);
         }
 
         $class = $this->getTestNodeClass($parser, $test);
@@ -539,10 +539,10 @@ function twig_replace_filter($str, $from, $to = null)
 {
     if ($from instanceof Traversable) {
         $from = iterator_to_array($from);
-    } elseif (is_string($from) && is_string($to)) {
-        @trigger_error('Using "replace" with character by character replacement is deprecated since version 1.22 and will be removed in Twig 2.0', E_USER_DEPRECATED);
+} elseif (is_string($from) && is_string($to)) {
+    trigger_error('Using "replace" with character by character replacement is deprecated since version 1.22 and will be removed in Twig 2.0', E_USER_DEPRECATED);
 
-        return strtr($str, $from, $to);
+    return strtr($str, $from, $to);
     } elseif (!is_array($from)) {
         throw new Twig_Error_Runtime(sprintf('The "replace" filter expects an array or "Traversable" as replace values, got "%s".',is_object($from) ? get_class($from) : gettype($from)));
     }
