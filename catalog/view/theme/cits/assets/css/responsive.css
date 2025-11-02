@@ -10,6 +10,31 @@
 
 @media all and (max-width:1200px) {
 
+  #preCheckout table tr.tableHead {
+    display: none;
+  }
+
+  #preCheckout table tr td:first-child {
+    width: 100px;
+  }
+
+  #preCheckout table tr td:first-child a, #preCheckout table tr td:first-child a img {
+    width: 100%;
+  }
+
+  #preCheckout table tr td p {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--black-color);
+  }
+
+  #preCheckout tbody td:not(:first-child) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px;
+  }
+
   .hero-slide h1 {
     font-size: 65px;
   }
@@ -80,6 +105,24 @@
 }
 
 @media all and (max-width:991px) {
+
+  .cits-shopping-cart-layout .container {
+    flex-direction: column;
+  }
+
+  .cits-shopping-tab-area {
+    display: none;
+  }
+
+  .cits-cart-right {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .cits-cart-right-payment-image {
+    width: fit-content;
+    margin: 30px auto 0;
+  }
 
   /* Menu */
 
