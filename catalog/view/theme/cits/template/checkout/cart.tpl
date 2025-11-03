@@ -3,10 +3,13 @@
   <div class="container">
     <div class="cits-shopping-tab-area">
       <ul>
-        <li><a class="active" href="/index.php?route=checkout/cart"><?php echo $heading_title; ?></a></li>
-        <li><a href="/index.php?route=checkout/checkout">checkout</a></li>
+        <li><a class="active" href="/index.php?route=checkout/cart"><span><?php echo $heading_title; ?> <span
+                class="num-text">01</span></span></a></li>
+        <li><a href="/index.php?route=checkout/checkout"><span>checkout <span class="num-text">02</span></span></a></li>
         <li>
-          <p>order complete</p>
+          <a href="#">
+            <span>order complete <span class="num-text">03</span></span>            
+          </a>
         </li>
       </ul>
     </div>
@@ -85,9 +88,11 @@
                           <span class="label label-info"><?php echo $text_recurring_item; ?></span>
                           <small><?php echo $product['recurring']; ?></small>
                           <?php } ?></td>
-                        <td class="text-left"><p>Model: </p><?php echo $product['model']; ?></td>
                         <td class="text-left">
-                            <p>Quantity: </p>
+                          <p>Model: </p><?php echo $product['model']; ?>
+                        </td>
+                        <td class="text-left">
+                          <p>Quantity: </p>
                           <input type="number" name="quantity[<?php echo $product['cart_id']; ?>]"
                             value="<?php echo $product['quantity']; ?>" class="qtyValue" />
                           <button type="submit" data-toggle="tooltip" title="<?php echo $button_update; ?>"
@@ -97,9 +102,14 @@
                             class="crossIcon" value="Delete Row"
                             onclick="cart.remove('<?php echo $product['cart_id']; ?>'); window.location.reload();"> <i
                               class="fa-solid fa-times"
-                              style="color: red; font-size: 23px; transform: translateY(3px);"></i> </button></td>
-                        <td class="text-left"><p>Unit Price: </p><?php echo $product['price']; ?></td>
-                        <td><p>Total Price: </p><?php echo $product['total']; ?></td>
+                              style="color: red; font-size: 23px; transform: translateY(3px);"></i> </button>
+                        </td>
+                        <td class="text-left">
+                          <p>Unit Price: </p><?php echo $product['price']; ?>
+                        </td>
+                        <td>
+                          <p>Total Price: </p><?php echo $product['total']; ?>
+                        </td>
                       </tr>
                       <?php $i++; ?>
                       <?php } ?>
@@ -126,17 +136,17 @@
                 <!-- <p class="slideView01">Slide table to view </p> -->
               </div>
             </form>
-            
+
             <div class="cart-coupon-info">
               <?php if ($coupon || $voucher || $reward || $shipping) { ?>
-                <h2><?php echo $text_next; ?></h2>
-                <p><?php echo $text_next_choice; ?></p>
-                <div class="panel-group cartCouponAccordion" id="accordion">
-                  <?php echo $coupon; ?>
-                  <?php echo $voucher; ?>
-                  <?php echo $reward; ?>
-                  <?php echo $shipping; ?>
-                </div>
+              <h2><?php echo $text_next; ?></h2>
+              <p><?php echo $text_next_choice; ?></p>
+              <div class="cartCouponArea" id="accordion">
+                <?php echo $coupon; ?>
+                <?php echo $voucher; ?>
+                <?php echo $reward; ?>
+                <?php echo $shipping; ?>
+              </div>
               <?php } ?>
             </div>
 
@@ -162,7 +172,7 @@
         <?php echo $content_bottom; ?>
         <div class="cits-cart-right-payment-image">
           <img src="catalog/view/theme/cits/assets/images/Payment Option.webp">
-        </div>        
+        </div>
       </div>
     </div>
   </div>

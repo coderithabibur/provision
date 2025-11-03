@@ -3280,13 +3280,32 @@
     align-items: center;
     justify-content: center;
     text-transform: capitalize;
-    transition: 0.3s;
+    transition: 0.3s;    
+  }
+
+  .cits-shopping-tab-area ul li span {
+    position: relative;
+  }
+
+  .cits-shopping-tab-area ul li span span {
+    font-size: 45px;
+    font-weight: 600;
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    color: #191919;
+    opacity: .15;
+    transform: translateY(-50%) translateX(-15px);
   }
 
   .cits-shopping-tab-area ul li a:hover,
   .cits-shopping-tab-area ul li a.active {
     background: var(--brand-color);
     color: var(--white-color);
+  }
+
+  .cits-shopping-tab-area ul li:last-child a {
+    pointer-events: none;
   }
 
   .cits-cart-right-payment-image {
@@ -3298,3 +3317,38 @@
   .cits-cart-right-payment-image img {
     border-radius: 7px;
   }
+
+  .cartCouponArea {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.single-coupon-item .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.single-coupon-item input {
+  min-width: 350px;
+}
+
+.single-coupon-item .input-group-btn input {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+  font-weight: 600;
+  padding: 10px 30px;
+  border-radius: 35px;
+  text-transform: uppercase;
+  transition: 0.3s;
+  text-align: center;
+  font-size: 16px;
+  border: none;  
+}
+
+.single-coupon-item .input-group-btn input:hover {
+  background-color: var(--brand-color);
+}

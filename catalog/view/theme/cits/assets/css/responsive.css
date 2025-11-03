@@ -835,4 +835,12 @@
     right: -40px;
   }
 
+  .single-coupon-item {
+    width: 100%;
+}
+
+.single-coupon-item input {
+  min-width: unset;
+}
+
 }

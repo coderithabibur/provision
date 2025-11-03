@@ -17,7 +17,25 @@ body > #d_quickcheckout{
 }
 {% endif %} 
 </style>
-<div id="d_quickcheckout">
+
+<div class="cits-shopping-cart-layout">
+	<div class="container">
+		<div class="cits-shopping-tab-area">
+			<ul>
+			  <li><a href="/index.php?route=checkout/cart"><span> Shopping Cart <span
+					  class="num-text">01</span></span></a></li>
+			  <li><a class="active" href="/index.php?route=checkout/checkout"><span>checkout <span class="num-text">02</span></span></a></li>
+			  <li>
+				<a href="#">
+				  <span>order complete <span class="num-text">03</span></span>            
+				</a>
+			  </li>
+			</ul>
+		</div>
+  	</div>
+</div>
+
+<div id="d_quickcheckout">	
 	{% if config.design.only_quickcheckout %} 
 	<div id="d_logo" class="center-block text-center"></div>
 	{% endif %} 
