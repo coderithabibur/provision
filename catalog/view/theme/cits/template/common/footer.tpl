@@ -40,7 +40,7 @@
           <a href="<?php echo $home; ?>" class="footer-logo">
             <img src="catalog/view/theme/cits/assets/images/footer-logo.jpg" alt="<?php echo $name; ?>">
           </a>
-          <p>The small round table in the dinette may be great for casual me. Is simply dummy text of the printing.</p>
+          <p>Preferred supplier of lighting to professionals for more than 20 years.</p>
           <h2>Social Links</h2>
           <div class="footer-social">
             <ul>
@@ -75,25 +75,12 @@
           </ul>
           <?php } ?>
         </div>
-
-        <!-- <div class="footer-links">
-          <h2>Company</h2>
-          <ul>
-            <li><a href="#">Advertising</a></li>
-            <li><a href="#">Business Development</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Permissions</a></li>
-            <li><a href="#">Contact Us</a></li>
-          </ul>
-        </div> -->
-         <!-- i. Disclaimers ii. About Us iii. Privacy Policy iv. Terms and Conditions v. Return and Refund Policy -->
-
-
+ 
         <div class="footer-contact">
           <h2>Contact</h2>
           <a href="tel:<?php echo $telephone;?>" class="contact-item">
             <i class="fas fa-headset"></i>
-            <span>Call us 24/7</span>
+            <span>8-4pm Mon-Fri AEST</span>
             <h3><?php echo $telephone;?></h3>
           </a>
           <p><i class="fa-solid fa-location-dot"></i><span><?php echo $address;?></span></p>

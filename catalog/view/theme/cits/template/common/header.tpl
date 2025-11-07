@@ -224,7 +224,7 @@
           </div>
           <div class="header-phone">
             <a href="tel:<?php echo $telephone;?>"><i class="fas fa-headset"></i>
-              <p>Call us 24/7 <br> <span class="header-phone-number"><?php echo $telephone;?></span></p>
+              <p>8-4pm Mon-Fri AEST <br> <span class="header-phone-number"><?php echo $telephone;?></span></p>
             </a>
           </div>
         </div>
@@ -339,7 +339,7 @@
       
       <div class="header-phone">
         <a href="tel:<?php echo $telephone;?>"><i class="fas fa-headset"></i>
-          <p>Call us 24/7 <br> <span class="header-phone-number"><?php echo $telephone;?></span></p>
+          <p>8-4pm Mon-Fri AEST <br> <span class="header-phone-number"><?php echo $telephone;?></span></p>
         </a>
       </div>
     </div>
