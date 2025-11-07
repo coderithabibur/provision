@@ -115,7 +115,7 @@
   </div>
 </section>
 
-<section class="hightlights-area">
+<section class="hightlights-area" style="padding-bottom:0;">
   <div class="hightlights-content-area">
     <?php if ($data['highlight_categories']) { ?>
     <?php foreach($data['highlight_categories'] as $category) { ?>
@@ -130,21 +130,7 @@
     <?php } ?>
   </div>
 </section>
-
-<!-- Video -->
-<section class="video-hero">
-  <video autoplay muted loop playsinline class="video-bg">
-    <source src="https://cdn.shopify.com/videos/c/o/v/18c2e078311d40b38447d79e0db19bc8.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="video-overlay"></div>
-  <div class="video-content">
-    <h1><?php echo $data['buy1get1']['name']; ?></h1>
-    <p><?php echo $data['buy1get12']['model']; ?></p>
-    <a href="<?php echo $data['buy1get1']['href'] ?>">Shop now </a>
-  </div>
-</section>
-
+ 
 <script type="text/javascript">
   $(document).ready(function () {
     $('.category-filter').on('click', function (e) {

@@ -41,28 +41,59 @@ class ControllerCommonHome extends Controller {
 		$data['categories'] = $this->model_catalog_category->getCategories();
 
         // highlight categories
-        $data['highlight_categories'] = array(); 
-        $categories = $this->model_catalog_category->getCategories(0); 
-        foreach ($categories as $category) { 
-            // $product_total = $this->model_catalog_product->getTotalProducts(array('filter_category_id' => $category['category_id']));
+        // $data['highlight_categories'] = array(); 
+        // $categories = $this->model_catalog_category->getCategories(0); 
+        // foreach ($categories as $category) { 
+        //     // $product_total = $this->model_catalog_product->getTotalProducts(array('filter_category_id' => $category['category_id']));
 
-            $filter_data = array(
-                'filter_category_id'  => $category['category_id'],
-                'filter_sub_category' => true
-            ); 
-            $product_total = $this->model_catalog_product->getTotalProducts($filter_data);
+        //     $filter_data = array(
+        //         'filter_category_id'  => $category['category_id'],
+        //         'filter_sub_category' => true
+        //     ); 
+        //     $product_total = $this->model_catalog_product->getTotalProducts($filter_data);
  
-            if ($category['image'] && is_file(DIR_IMAGE . $category['image'])) { 
-                $image_url = HTTP_SERVER . 'image/' . $category['image'];
-            } else { 
-                $image_url = $this->model_tool_image->resize('placeholder.png', 500, 500);
-            } 
-            $data['highlight_categories'][] = array(
-                'name'          => $category['name'],
-                'image'         => $image_url,
-                'product_total' => $product_total,
-                'href'          => $this->url->link('product/category', 'path=' . $category['category_id'])
-            );
+        //     if ($category['image'] && is_file(DIR_IMAGE . $category['image'])) { 
+        //         $image_url = HTTP_SERVER . 'image/' . $category['image'];
+        //     } else { 
+        //         $image_url = $this->model_tool_image->resize('placeholder.png', 500, 500);
+        //     } 
+        //     $data['highlight_categories'][] = array(
+        //         'name'          => $category['name'],
+        //         'image'         => $image_url,
+        //         'product_total' => $product_total,
+        //         'href'          => $this->url->link('product/category', 'path=' . $category['category_id'])
+        //     );
+        // }
+
+        $data['highlight_categories'] = array(); 
+        
+        // --- 1. DEFINE THE SPECIFIC CATEGORY IDS YOU WANT TO SHOW ---
+        $highlight_category_ids = array(115, 24, 144, 142); // e.g., LED, HID, Laser Driving Lights, Laser Light Bar
+
+        // 2. Loop through your specific IDs and get the info for each one
+        foreach ($highlight_category_ids as $category_id) { 
+            $category_info = $this->model_catalog_category->getCategory($category_id);
+
+            if ($category_info) {  
+                $filter_data = array(
+                    'filter_category_id'  => $category_info['category_id'],
+                    'filter_sub_category' => true
+                ); 
+                $product_total = $this->model_catalog_product->getTotalProducts($filter_data);
+     
+                if ($category_info['image'] && is_file(DIR_IMAGE . $category_info['image'])) { 
+                    $image_url = HTTP_SERVER . 'image/' . $category_info['image'];
+                } else { 
+                    $image_url = $this->model_tool_image->resize('placeholder.png', 500, 500);
+                } 
+                
+                $data['highlight_categories'][] = array(
+                    'name'          => $category_info['name'],
+                    'image'         => $image_url,
+                    'product_total' => $product_total,
+                    'href'          => $this->url->link('product/category', 'path=' . $category_info['category_id'])
+                );
+            }
         }
 
         // Buy One Get One Free Module Data
