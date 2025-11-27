@@ -9,17 +9,19 @@
   <div class="container">
     <h2><?php echo $data['buy_one_get_one_title']; ?></h2>
     <div class="category-cards">
-      <?php  
+      <?php   
       foreach ($data['buy_one_get_one_offers'] as $offer) : 
-        // Extract numeric value (keeps decimals)
-        $price = preg_replace('/[^0-9.]/', '', $offer['special'] ?? $offer['price']); 
-        $price = (float)$price;
-
-        // Extract currency symbol if present (like $, ৳, etc.)
-        $currency = preg_replace('/[0-9.,]/', '', $offer['special'] ?? $offer['price']); 
+        $price_value = (float)preg_replace('/[^0-9.]/', '', $offer['price']);
+        $special_value = (float)preg_replace('/[^0-9.]/', '', $offer['special']);
+        if ($special_value > 0) {
+          $current_price = $special_value;
+        } else {
+          $current_price = $price_value;
+        }
+        $currency = preg_replace('/[0-9.,]/', '', $current_price); 
         // Format both prices with 2 decimals
-        $original = number_format($price, 2);
-        $double   = number_format($price * 2, 2);
+        $original = number_format($current_price, 2);
+        $double   = number_format($current_price * 2, 2);
       ?>
       <div class="category-card">
         <div class="category-card-content">
