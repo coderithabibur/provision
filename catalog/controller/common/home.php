@@ -136,6 +136,9 @@ class ControllerCommonHome extends Controller {
 	}
 
 	private function getProductInfoById($product_id) {
+        $this->load->model('catalog/product');
+        $this->load->model('tool/image');
+        
         $product_info = $this->model_catalog_product->getProduct($product_id);
 
         if ($product_info) {
@@ -151,13 +154,18 @@ class ControllerCommonHome extends Controller {
                 $price = false;
             }
             
-            // Return a formatted array of data
+            if ((float)$product_info['special']) {
+                $special = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+            } else {
+                $special = false;
+            }
             return array(
-                'name'  => $product_info['name'],
-                'model' => $product_info['model'],
-                'image' => $image,
-                'price' => $price,
-                'href'  => $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
+                'name'    => $product_info['name'],
+                'model'   => $product_info['model'],
+                'image'   => $image,
+                'price'   => $price,
+                'special' => $special,
+                'href'    => $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
             );
         }
 

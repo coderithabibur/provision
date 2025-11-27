@@ -9,14 +9,14 @@
   <div class="container">
     <h2><?php echo $data['buy_one_get_one_title']; ?></h2>
     <div class="category-cards">
-      <?php foreach ($data['buy_one_get_one_offers'] as $offer) : 
+      <?php  
+      foreach ($data['buy_one_get_one_offers'] as $offer) : 
         // Extract numeric value (keeps decimals)
-        $price = preg_replace('/[^0-9.]/', '', $offer['price']); 
+        $price = preg_replace('/[^0-9.]/', '', $offer['special'] ?? $offer['price']); 
         $price = (float)$price;
 
         // Extract currency symbol if present (like $, ৳, etc.)
-        $currency = preg_replace('/[0-9.,]/', '', $offer['price']); 
-
+        $currency = preg_replace('/[0-9.,]/', '', $offer['special'] ?? $offer['price']); 
         // Format both prices with 2 decimals
         $original = number_format($price, 2);
         $double   = number_format($price * 2, 2);
