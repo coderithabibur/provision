@@ -5,51 +5,23 @@
 <!-- Features -->
 <?php echo $feature_section_module; ?>
 
-<section class="buy-one-get-on-free">
-  <div class="container">
-    <h2><?php echo $data['buy_one_get_one_title']; ?></h2>
-    <div class="category-cards">
-      <?php   
-      foreach ($data['buy_one_get_one_offers'] as $offer) : 
-        $price_value = (float)preg_replace('/[^0-9.]/', '', $offer['price']);
-        $special_value = (float)preg_replace('/[^0-9.]/', '', $offer['special']);
-        if ($special_value > 0) {
-          $current_price = $special_value;
-        } else {
-          $current_price = $price_value;
-        }
-        $currency = preg_replace('/[0-9.,]/', '', $current_price); 
-        // Format both prices with 2 decimals
-        $original = number_format($current_price, 2);
-        $double   = number_format($current_price * 2, 2);
-      ?>
-      <div class="category-card">
-        <div class="category-card-content">
-          <h3>buy one</h3>
-          <h3>get one free</h3>
-          <p><?php echo $offer['model']; ?> - Now 50% Savings</p>
-          <span>
-            <strong><?php echo $currency . $original; ?></strong>
-            <del><?php echo $currency . $double; ?></del>
-          </span>
-          <a href="<?php echo $offer['href']; ?>">buy Now</a>
-        </div>
-        <div class="single-buy-get-free">
-          <div class="buy-get-free-images">
-            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>"></a>
-            <div class="plus-sybol"><p>+</p></div>
-            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>"></a>
-          </div>
-          <h2><a href="<?php echo $offer['href']; ?>"><?php echo $offer['name']; ?></a></h2>
-        </div>
+<section class="hightlights-area" style="padding-bottom:0;">
+  <div class="hightlights-content-area">
+    <?php if ($data['highlight_categories']) { ?>
+    <?php foreach($data['highlight_categories'] as $category) { ?>
+    <div class="single-highlights-item" style="background-image: url('<?php echo $category['image']; ?>');">
+      <div class="highlights-item-info">
+        <span><?php echo $category['product_total']; ?> products</span>
+        <h2><?php echo $category['name']; ?></h2>
       </div>
-      <?php endforeach; ?>
+      <a href="<?php echo $category['href']; ?>">Shop now</a>
     </div>
+    <?php } ?>
+    <?php } ?>
   </div>
 </section>
 
-
-<!-- Featured Categories Section -->
+<!-- Featured Section -->
 <section class="best-seller-area">
   <div class="container">
     <div class="best-seller-title">
@@ -117,19 +89,47 @@
   </div>
 </section>
 
-<section class="hightlights-area" style="padding-bottom:0;">
-  <div class="hightlights-content-area">
-    <?php if ($data['highlight_categories']) { ?>
-    <?php foreach($data['highlight_categories'] as $category) { ?>
-    <div class="single-highlights-item" style="background-image: url('<?php echo $category['image']; ?>');">
-      <div class="highlights-item-info">
-        <span><?php echo $category['product_total']; ?> products</span>
-        <h2><?php echo $category['name']; ?></h2>
+<section class="buy-one-get-on-free">
+  <div class="container">
+    <h2><?php echo $data['buy_one_get_one_title']; ?></h2>
+    <div class="category-cards">
+      <?php   
+      foreach ($data['buy_one_get_one_offers'] as $offer) :  
+        $price_value = (float)preg_replace('/[^0-9.]/', '', $offer['price']);
+        $special_value = (float)preg_replace('/[^0-9.]/', '', $offer['special']);
+        if ($special_value > 0) {
+          $current_price = $special_value;
+        } else {
+          $current_price = $price_value;
+        }
+        $currency = preg_replace('/[0-9.,]/', '', $current_price); 
+        // Format both prices with 2 decimals
+        $original = number_format($current_price, 2); 
+      ?>
+      <div class="category-card">
+        <div class="category-card-content">
+          <h3>buy one</h3>
+          <h3>get one free</h3>
+          <p><?php echo $offer['model']; ?> - Now 50% Savings</p>
+          <span>
+            <strong>$<?php echo $currency . $original; ?></strong>
+            <?php if($price_value > $original) : ?>
+            <del>$<?php echo $currency . $price_value; ?></del>
+            <?php endif;?>
+          </span>
+          <a href="<?php echo $offer['href']; ?>">buy Now</a>
+        </div>
+        <div class="single-buy-get-free">
+          <div class="buy-get-free-images">
+            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>"></a>
+            <div class="plus-sybol"><p>+</p></div>
+            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>"></a>
+          </div>
+          <h2><a href="<?php echo $offer['href']; ?>"><?php echo $offer['name']; ?></a></h2>
+        </div>
       </div>
-      <a href="<?php echo $category['href']; ?>">Shop now</a>
+      <?php endforeach; ?>
     </div>
-    <?php } ?>
-    <?php } ?>
   </div>
 </section>
  
