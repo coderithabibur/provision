@@ -296,7 +296,7 @@
     <div class="product-info-container">
       <!-- Left Side: Product Features -->
       <div class="product-features">
-        <div class="section-title">Description</div>
+        <h2 class="section-title">Description</h2>
         <div class="feature-description-wrapper">
           <div class="feature-description" id="featureDescription">
             <?php echo $description; ?>

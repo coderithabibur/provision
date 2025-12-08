@@ -965,20 +965,25 @@
     transform: scale(1.1);
   }
 
-  .single-product-item-info {
+.single-product-item-info {
     padding: 20px;
-    min-height: 285px;
+    min-height: 240px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
+}
 
-  .single-product-item-info h2 a {
+.single-product-item-info h2 a {
     color: var(--black-color);
     font-size: 20px;
     transition: 0.3s;
     line-height: 30px;
-  }
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
   .single-product-item-info h2 a:hover {
     color: var(--brand-color);
@@ -1012,7 +1017,6 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    margin: 15px 0;
   }
 
   .save-price {
@@ -1041,7 +1045,6 @@
   .single-product-btn-group {
     display: flex;
     gap: 10px;
-    margin-top: 20px;
   }
 
   .single-product-item-info button {
@@ -1876,21 +1879,24 @@
     border-color: var(--brand-color);
   }
 
-  .product-option-box select {
-    background-image: url(data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/></svg>);
+ .product-option-box select {
+    background-image: url(../images/down-chevron.png);
     background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 20px;
-  }
+    background-size: 17px;
+    background-position: 98%;
+    appearance: none;
+ }
 
-  /* 
-  .product-variation select {
-    padding: 8px 25px;
-    border: 1px solid var(--brand-color);
-    border-radius: 35px;
-    background: transparent;
+  .product-option-box select::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 12px;
     color: #555;
-  } */
+  }
 
   .product-current-price {
     font-size: 28px;
@@ -2371,6 +2377,12 @@
     padding: 80px 0;
   }
 
+  .feature-description h1 {
+    font-size: 28px;
+    line-height: 35px;
+    margin-bottom: 10px;
+  }
+
   .feature-description h2 {
     margin-bottom: 10px;
     font-size: 25px;
@@ -2462,6 +2474,10 @@
     margin-bottom: 10px;
     gap: 15px;
     text-align: right;
+  }
+
+  .tech-specs ul li span {
+    text-align: left;
   }
 
   .tech-specs ul li b {
