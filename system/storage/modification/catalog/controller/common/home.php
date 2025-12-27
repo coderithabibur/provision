@@ -128,11 +128,22 @@ $this->load->controller("common/seo_content");
 
         // --- Load the categories for the filter buttons ---
         $data['filter_categories'] = $this->model_catalog_category->getCategories(0); 
+        
+        // Sort categories ASC by name
+        if (!empty($data['filter_categories'])) {
+            usort($data['filter_categories'], function($a, $b) {
+                return strcmp(strtoupper($a['name']), strtoupper($b['name']));
+            });
+        } 
 
         // --- Load the initial set of products from the VERY FIRST category ---
         if ($data['filter_categories']) {
             $first_category_id = $data['filter_categories'][0]['category_id'];
             $data['initial_products'] = $this->getProductsByCategoryId($first_category_id, 6);
+
+            if (count($data['initial_products']) < 6) {
+                $data['initial_products'] = $this->getProductsByCategoryId($first_category_id, 6, true);
+            }
         } else {
             $data['initial_products'] = array();
         }
