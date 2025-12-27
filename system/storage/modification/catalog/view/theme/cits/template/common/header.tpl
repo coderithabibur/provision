@@ -277,6 +277,9 @@
 
       <!-- Right Side -->
       <div class="header-right">
+        <div class="header-google-reviews">
+        	<a href="https://www.google.com/m/storepages?q=pro-vision-lighting.com&c=AU&hl=en-AU" target="_blank"><img src="/catalog/view/theme/cits/assets/images/google-reviews.png" /></a>
+        </div>
         <div class="header-reviews">          
           <!-- TrustBox script -->
           <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>

@@ -216,8 +216,17 @@ if(file_exists('catalog/model/extension/bganycombi.php')) {
 
 		$categories = $this->model_catalog_category->getCategories(0);
 
+		foreach ($categories as $key => $category) {
+			if (trim($category['name']) == 'Laser') {
+				$laser = $categories[$key];
+				unset($categories[$key]);
+				$categories[] = $laser;
+				break;
+			}
+		}
+		
 		foreach ($categories as $category) {
-			if ($category['top']) {
+			// if ($category['top']) {
 				$icon = '';
 				if ($category['icon']) {
 					$icon = HTTP_SERVER . 'image/' . $category['icon'];
@@ -267,7 +276,7 @@ if($this->config->get("nerdherd_direct_links")) {
 					'image'    => $image,
 					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
 				);
-			}
+			// }
 		}
 
 		$data['language'] = $this->load->controller('common/language');
