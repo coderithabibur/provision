@@ -77,7 +77,7 @@ $this->load->controller("common/seo_content");
         $data['highlight_categories'] = array(); 
         
         // --- 1. DEFINE THE SPECIFIC CATEGORY IDS YOU WANT TO SHOW ---
-        $highlight_category_ids = array(115, 24, 144, 142); // e.g., LED, HID, Laser Driving Lights, Laser Light Bar
+        $highlight_category_ids = array(115, 24, 164,); // e.g., LED, HID, Laser Driving Lights, Laser Light Bar
 
         // 2. Loop through your specific IDs and get the info for each one
         foreach ($highlight_category_ids as $category_id) { 
