@@ -209,7 +209,7 @@ if(file_exists('catalog/model/extension/bganycombi.php')) {
 
 		// Menu
 		$this->load->model('catalog/category');
-
+		$this->load->model('tool/image');
 		$this->load->model('catalog/product');
 
 		$data['categories'] = array();
@@ -218,11 +218,14 @@ if(file_exists('catalog/model/extension/bganycombi.php')) {
 
 		foreach ($categories as $category) {
 			if ($category['top']) {
+				$icon = '';
 				if ($category['icon']) {
-					$icon = $this->model_tool_image->resize($category['icon'], 25, 25);
-				} else {
-					$icon = false;
-				}
+					$icon = HTTP_SERVER . 'image/' . $category['icon'];
+				}  
+				$image = '';
+				if ($category['image'] && is_file(DIR_IMAGE . $category['image'])) { 
+					$image = HTTP_SERVER . 'image/' . $category['image'];
+				} 
 				// Level 2
 				$children_data = array();
 
@@ -261,18 +264,17 @@ if($this->config->get("nerdherd_direct_links")) {
 					'children' => $children_data,
 					'column'   => $category['column'] ? $category['column'] : 1,
 					'icon'     => $icon,
+					'image'    => $image,
 					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
 				);
 			}
 		}
 
 		$data['language'] = $this->load->controller('common/language');
-		$data['currency'] = $this->load->controller('common/currency');
-		$data['search'] = $this->load->controller('common/search');
+		$data['currency'] = $this->load->controller('common/currency'); 
 		$data['cart'] = $this->load->controller('common/cart');
 
-		// Mini cart data
-		$this->load->model('tool/image');
+		// Mini cart data 
 		$this->load->language('checkout/cart');
 
 		$data['cart_count'] = $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0);
@@ -302,7 +304,28 @@ if($this->config->get("nerdherd_direct_links")) {
 			$data['route'] = '';
 		}
 
+		// Header options 
+		$custom_code_settings = $this->model_setting_setting->getSetting('module_custom_code');
 
+		// Custom Header Codes Options
+		if (!empty($custom_code_settings['module_custom_code_status'])) {
+			// Top Bar Text
+			$data['delivery_text'] = $custom_code_settings['module_custom_code_delivery_text'];
+			$data['flash_sale_text'] = $custom_code_settings['module_custom_code_flash_sale_text'];
+
+			// Custom Scripts
+			if (!empty($custom_code_settings['module_custom_code_header_code'])) {
+				$data['custom_header_code'] = html_entity_decode($custom_code_settings['module_custom_code_header_code'], ENT_QUOTES, 'UTF-8');
+			} else {
+				$data['custom_header_code'] = '';
+			}
+			if (!empty($custom_code_settings['module_custom_code_body_code'])) {
+				$data['custom_body_code'] = html_entity_decode($custom_code_settings['module_custom_code_body_code'], ENT_QUOTES, 'UTF-8');
+			} else {
+				$data['custom_body_code'] = '';
+			}
+		} 
+ 
 		// For page specific css
 		if (isset($this->request->get['route'])) {
 			if (isset($this->request->get['product_id'])) {

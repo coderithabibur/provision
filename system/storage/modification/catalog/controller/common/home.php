@@ -9,10 +9,13 @@ class ControllerCommonHome extends Controller {
 
 
         // Settings for video module
-        $homepage_video_settings = $this->model_setting_setting->getSetting('homepage_video');
-        
+        $homepage_video_settings = $this->model_setting_setting->getSetting('homepage_video'); 
         $data['my_video_section'] = $this->load->controller('extension/module/homepage_video', $homepage_video_settings);
-
+        
+        // Feature Section Module 
+        $feature_section_settings = $this->model_setting_setting->getSetting('module_feature_section');
+        $data['feature_section_module'] = $this->load->controller('extension/module/feature_section', $feature_section_settings);
+ 
 		$this->document->setTitle($this->config->get('config_meta_title'));
 		$this->document->setDescription($this->config->get('config_meta_description'));
 		$this->document->setKeywords($this->config->get('config_meta_keyword'));
@@ -29,6 +32,12 @@ class ControllerCommonHome extends Controller {
 			 
 		}
 
+        // Add variables for JSON-LD schema
+        $data['name'] = $this->config->get('config_name');
+        $data['home'] = $this->url->link('common/home');
+        $data['logo'] = $this->config->get('config_logo') ? (HTTP_SERVER . 'image/' . $this->config->get('config_logo')) : '';
+
+
 $this->load->controller("common/seo_content");
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
@@ -41,31 +50,78 @@ $this->load->controller("common/seo_content");
 		$data['categories'] = $this->model_catalog_category->getCategories();
 
         // highlight categories
-        $data['highlight_categories'] = array(); 
-        $categories = $this->model_catalog_category->getCategories(0); 
-        foreach ($categories as $category) { 
-            // $product_total = $this->model_catalog_product->getTotalProducts(array('filter_category_id' => $category['category_id']));
+        // $data['highlight_categories'] = array(); 
+        // $categories = $this->model_catalog_category->getCategories(0); 
+        // foreach ($categories as $category) { 
+        //     // $product_total = $this->model_catalog_product->getTotalProducts(array('filter_category_id' => $category['category_id']));
 
-            $filter_data = array(
-                'filter_category_id'  => $category['category_id'],
-                'filter_sub_category' => true
-            ); 
-            $product_total = $this->model_catalog_product->getTotalProducts($filter_data);
+        //     $filter_data = array(
+        //         'filter_category_id'  => $category['category_id'],
+        //         'filter_sub_category' => true
+        //     ); 
+        //     $product_total = $this->model_catalog_product->getTotalProducts($filter_data);
  
-            if ($category['image'] && is_file(DIR_IMAGE . $category['image'])) { 
-                $image_url = HTTP_SERVER . 'image/' . $category['image'];
-            } else { 
-                $image_url = $this->model_tool_image->resize('placeholder.png', 500, 500);
-            } 
-            $data['highlight_categories'][] = array(
-                'name'          => $category['name'],
-                'image'         => $image_url,
-        'product_total' => $product_total,
-                'href'          => $this->url->link('product/category', 'path=' . $category['category_id'])
-            );
+        //     if ($category['image'] && is_file(DIR_IMAGE . $category['image'])) { 
+        //         $image_url = HTTP_SERVER . 'image/' . $category['image'];
+        //     } else { 
+        //         $image_url = $this->model_tool_image->resize('placeholder.png', 500, 500);
+        //     } 
+        //     $data['highlight_categories'][] = array(
+        //         'name'          => $category['name'],
+        //         'image'         => $image_url,
+        //         'product_total' => $product_total,
+        //         'href'          => $this->url->link('product/category', 'path=' . $category['category_id'])
+        //     );
+        // }
+
+        $data['highlight_categories'] = array(); 
+        
+        // --- 1. DEFINE THE SPECIFIC CATEGORY IDS YOU WANT TO SHOW ---
+        $highlight_category_ids = array(115, 24, 144, 142); // e.g., LED, HID, Laser Driving Lights, Laser Light Bar
+
+        // 2. Loop through your specific IDs and get the info for each one
+        foreach ($highlight_category_ids as $category_id) { 
+            $category_info = $this->model_catalog_category->getCategory($category_id);
+
+            if ($category_info) {  
+                $filter_data = array(
+                    'filter_category_id'  => $category_info['category_id'],
+                    'filter_sub_category' => true
+                ); 
+                $product_total = $this->model_catalog_product->getTotalProducts($filter_data);
+     
+                if ($category_info['image'] && is_file(DIR_IMAGE . $category_info['image'])) { 
+                    $image_url = HTTP_SERVER . 'image/' . $category_info['image'];
+                } else { 
+                    $image_url = $this->model_tool_image->resize('placeholder.png', 500, 500);
+                } 
+                
+                $data['highlight_categories'][] = array(
+                    'name'          => $category_info['name'],
+                    'image'         => $image_url,
+                    'product_total' => $product_total,
+                    'href'          => $this->url->link('product/category', 'path=' . $category_info['category_id'])
+                );
+            }
         }
 
-
+        // Buy One Get One Free Module Data
+        $data['buy_one_get_one_offers'] = array();  
+        if ($this->config->get('module_buy_one_get_one_status')) { 
+            $data['buy_one_get_one_title'] = $this->config->get('module_buy_one_get_one_title');
+            $offers = $this->config->get('module_buy_one_get_one_offer'); 
+            if ($offers) { 
+                foreach ($offers as $offer) {
+                    if (isset($offer['product_id'])) {
+                        $product_data = $this->getProductInfoById($offer['product_id']);
+                        if ($product_data) {
+                            $data['buy_one_get_one_offers'][] = $product_data;
+                        }
+                    }
+                }
+            }
+        }
+        
 		$data['buy1get1'] = $this->getProductInfoById(290);
         $data['buy1get12'] = $this->getProductInfoById(251);
   
@@ -89,6 +145,9 @@ $this->load->controller("common/seo_content");
 	}
 
 	private function getProductInfoById($product_id) {
+        $this->load->model('catalog/product');
+        $this->load->model('tool/image');
+        
         $product_info = $this->model_catalog_product->getProduct($product_id);
 
         if ($product_info) {
@@ -104,21 +163,35 @@ $this->load->controller("common/seo_content");
                 $price = false;
             }
             
-            // Return a formatted array of data
+            if ((float)$product_info['special']) {
+                $special = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+            } else {
+                $special = false;
+            }
             return array(
-                'name'  => $product_info['name'],
-                'model' => $product_info['model'],
-                'image' => $image,
-                'price' => $price,
-                'href'  => $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
+                'name'    => $product_info['name'],
+                'model'   => $product_info['model'],
+                'image'   => $image,
+                'price'   => $price,
+                'special' => $special,
+                'href'    => $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
             );
         }
 
         // Return an empty array if the product is not found
         return array();
     }
-    private function getProductsByCategoryId($category_id, $limit = 6) { 
-        $results = $this->model_catalog_product->getProducts(['filter_category_id' => $category_id, 'start' => 0, 'limit' => $limit]);
+    private function getProductsByCategoryId($category_id, $limit = 6, $include_sub_categories = false) { 
+        $filter_data = array(
+            'filter_category_id' => $category_id,
+            'start'              => 0,
+            'limit'              => $limit
+        ); 
+        if ($include_sub_categories) {
+            $filter_data['filter_sub_category'] = true;
+        } 
+        $results = $this->model_catalog_product->getProducts($filter_data);
+
         $products_data = array();
         foreach ($results as $result) {
             if ($result['image']) {
@@ -157,9 +230,14 @@ $this->load->controller("common/seo_content");
             $this->load->model('catalog/product');
             $this->load->model('tool/image'); 
 
-            $category_id = (int)$this->request->get['category_id'];
-            $products = $this->getProductsByCategoryId($category_id, 6);
-            
+            $category_id = (int)$this->request->get['category_id']; 
+            $limit = 6; 
+            $products = $this->getProductsByCategoryId($category_id, $limit, false);
+ 
+            if (count($products) < $limit) {
+                $products = $this->getProductsByCategoryId($category_id, $limit, true);
+            }
+ 
             $output = '';
 
             if ($products) {

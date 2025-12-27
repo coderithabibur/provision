@@ -60,11 +60,10 @@
         <div class="product-info">
           <h2 class="product-title"><?php echo $heading_title; ?></h2>
           <p class="product-desc">
-            <?php echo $short_description; ?>
           </p>
 
           <!-- Variation -->
-          <div class="product-variation">
+          <!-- <div class="product-variation">
             <label>Size: 18 inch</label>
             <div class="pro-var-group">
               <label for="size-18">
@@ -80,8 +79,8 @@
                 22 inch
               </label>
             </div>
-          </div>
-
+          </div> 
+          
           <div class="more-quantity-area">
             <ul>
               <li><button>2 or more $186.00 <p>(Each)</p></button></li>
@@ -90,10 +89,17 @@
               <li><button>8 or more $145.25 <p>(Each)</p></button></li>
               <li><button>10 or more $135.00 <p>(Each)</p></button></li>
             </ul>
-          </div>
+          </div> -->
 
           <!-- Current Price -->
-          <div class="product-current-price"><?php echo $price; ?> <del>$150.00</del></div>
+          <div class="product-current-price">
+            <?php if ($special) { ?>
+              <span class="special-price"><?php echo $special; ?></span>
+              <del class="old-price"><?php echo $price; ?></del>
+            <?php } else { ?>
+              <span class="regular-price"><?php echo $price; ?></span>
+            <?php } ?>
+          </div>
 
           <?php if ($discounts) { ?>
           <?php foreach ($discounts as $discount) { ?>
@@ -115,26 +121,22 @@
               <?php //echo round($disc,2);?>% </span>
           </p> -->
 
-          <div class="ratingsAndReviews">
-            <?php if ($product['rating']) { ?>
-              <div class="rating">
-                <?php for ($i = 1; $i <= 5; $i++) { ?>
-                <?php if ($product['rating'] < $i) { ?>
-                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                <?php } else { ?>
-                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i
-                    class="fa fa-star-o fa-stack-2x"></i></span>
-                <?php } ?>
-                <?php } ?>
+          <?php if ($review_status) { ?>
+            <div class="ratingsAndReviews">
+              <div class="ratingInfo">
+                <div class="ratingBox">
+                  <?php for ($i = 1; $i <= 5; $i++) { ?>
+                  <?php if ($rating < $i) { ?>
+                  <a href="" > <i class="fas fa-star"></i> </a>
+                  <?php } else { ?>
+                  <a class="active" href="" ><i class="fas fa-star"></i></a>
+                  <?php } ?>
+                  <?php } ?>
+                </div>
+                <div class="reviews"> <p><?php echo $reviews; ?></p> | <a href="#tab-review"><?php echo $text_write; ?></a></div>
               </div>
-            <?php } ?>
-
-            <div class="reviews">
-              <a href="<?php echo $product['href']; ?>#customerReview"><?php echo $product['reviews']; ?></a>
-              |
-              <a href="<?php echo $product['href']; ?>#customerReview"><?php echo $text_write; ?></a>
             </div>
-          </div>
+          <?php } ?>
 
           <?php if ($manufacturer) { ?>
           <p class="spl"><?php echo $text_manufacturer; ?> <a
@@ -153,37 +155,55 @@
               <button type="button" class="quantity-minus">-</button>
               <input type="text" id="input-quantity" name="quantity" value="1">
               <button type="button" class="quantity-plus">+</button>
-            </div>
-            
-            <button type="button" id="button-cart" class="btn btn-primary">ADD TO CART</button>
+            </div>            
+            <button type="button" id="button-cart" class="add-to-cart">ADD TO CART</button>
           </form>
 
           <!-- Extra Actions -->
           <div class="extra-actions">
             <a href="#"><i class="fa-solid fa-code-compare"></i>Compare</a>
-            <a href="#"><i class="fa-solid fa-circle-question"></i>Ask a Question</a>
-            <a href="#"><i class="fa-solid fa-share-nodes"></i>Social Share</a>
+            <a href="/index.php?route=information/contact"><i class="fa-solid fa-circle-question"></i>Ask a Question</a>
+            <!-- <a href="#"><i class="fa-solid fa-share-nodes"></i>Social Share</a> -->
           </div>
 
           <!-- Secure Checkout -->
           <div class="secure-checkout">
             <p>Guarantee safe & secure checkout</p>
             <div class="cards">
-              <img src="assets/images/payment-method.png">
+              <img src="/catalog/view/theme/cits/assets/images/payment-method.png">
             </div>
           </div>
 
           <!-- Delivery Info -->
           <div class="delivery-info">
-            <p><i class="fa-solid fa-clock"></i> <span>Estimated Delivery</span> : 10 - 15 Aug, 2025</p>
+            <!-- <p><i class="fa-solid fa-clock"></i> <span>Estimated Delivery</span> : 10 - 15 Aug, 2025</p> -->
             <p><i class="fa-solid fa-truck"></i> <span>Free Shipping & Returns</span> : On all order over $200.00</p>
           </div>
 
           <!-- Meta Info -->
           <div class="meta">
-            <p><span>SKU:</span> Woo-Long-Sleeve-Tee</p>
-            <p><span>Categories:</span> Car Audio Systems, Headlight, Tires & Wheels</p>
-            <p><span>Tags:</span> Ducati, Hyundai, Kia, Lamborghini, Toyota, Triumph</p>
+            <!-- SKU -->
+            <?php if (!empty($sku)) { ?>
+                <p><span>SKU:</span> <?php echo $sku; ?></p>
+            <?php } ?>
+
+            <!-- Categories -->
+            <?php if (!empty($categories)) { ?>
+                <p><span>Categories:</span>
+                    <?php foreach ($categories as $index => $category) { ?>
+                        <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a><?php if ($index < count($categories) - 1) { echo ', '; } ?>
+                    <?php } ?>
+                </p>
+            <?php } ?>
+
+            <!-- Tags -->
+            <?php if (!empty($tags)) { ?>
+                <p><span><?php echo $text_tags; ?></span>
+                    <?php foreach ($tags as $index => $tag) { ?>
+                        <a href="<?php echo $tag['href']; ?>"><?php echo $tag['tag']; ?></a><?php if ($index < count($tags) - 1) { echo ', '; } ?>
+                    <?php } ?>
+                </p>
+            <?php } ?>
           </div>
 
         </div>
@@ -192,66 +212,68 @@
   </div>
 </section>
 
-<!-- <section class="product-page-gallery">
-  <div class="pro-left-image">
-    <a href="assets/images/product-1.jpg" class="popup-link">
-      <img src="assets/images/product-1.jpg">
-    </a>
-  </div>
-  <div class="pro-right-images">
-    <a href="assets/images/product-2.jpg" class="popup-link">
-      <img src="assets/images/product-2.jpg">
-    </a>
-    <a href="assets/images/product-3.jpg" class="popup-link">
-      <img src="assets/images/product-3.jpg">
-    </a>
-    <a href="assets/images/product-1.jpg" class="popup-link">
-      <img src="assets/images/product-1.jpg">
-    </a>
-    <a href="assets/images/product-2.jpg" class="popup-link">
-      <img src="assets/images/product-2.jpg">
-    </a>
-  </div>
-</section> -->
-
 <div class="product-featured-section" style="padding-top: 0;">
-  <div class="single-product-featured" style="background-image: url(assets/images/img-1.jpg);">
-    <div class="container">
-      <div class="single-product-featured-content">
-        <h2>the pro standard</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi eius tenetur recusandae natus illum
-          architecto nemo repellendus iste, ab autem accusantium laudantium eaque sint culpa fugiat vero. Repellat,
-          consequatur ab?</p>
+<?php if (!empty($product_sections)) { ?>
+  <?php foreach ($product_sections as $section) { ?>
+
+    <?php if ($section['section_type'] == 'image') { ?>
+      <div class="single-product-featured" style="background-image: url('<?php echo $section['background_image']; ?>');">
+        <div class="container">
+          <div class="single-product-featured-content">
+            <?php if (!empty($section['title'])) { ?>
+              <h2><?php echo $section['title']; ?></h2>
+            <?php } ?>
+            <?php if (!empty($section['description'])) { ?>
+              <p><?php echo $section['description']; ?></p>
+            <?php } ?>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="single-product-featured" style="background-image: url(assets/images/img-4.jpg);">
-    <div class="container">
-      <div class="single-product-featured-content">
-        <h2>the pro standard</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi eius tenetur recusandae natus illum
-          architecto nemo repellendus iste, ab autem accusantium laudantium eaque sint culpa fugiat vero. Repellat,
-          consequatur ab?</p>
+    <?php } elseif ($section['section_type'] == 'video') { ?>
+      <div class="video-hero">
+        <video autoplay muted loop playsinline class="background-video">
+          <source src="<?php echo $section['video_path']; ?>" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        <div class="video-content">
+          <?php if (!empty($section['title'])) { ?>
+            <h1><?php echo $section['title']; ?></h1>
+          <?php } ?>
+          <?php if (!empty($section['description'])) { ?>
+            <p><?php echo $section['description']; ?></p>
+          <?php } ?>
+          <a href="#">Shop now </a>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="single-product-featured" style="background-image: url(assets/images/img-3.jpg);">
-    <div class="container">
-      <div class="single-product-featured-content">
-        <h2>the pro standard</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi eius tenetur recusandae natus illum
-          architecto nemo repellendus iste, ab autem accusantium laudantium eaque sint culpa fugiat vero. Repellat,
-          consequatur ab?</p>
-      </div>
-    </div>
-  </div>
+
+      <!-- <div class="single-product-featured video-section">
+        <video autoplay muted loop playsinline class="background-video">
+          <source src="<?php// echo $section['video_path']; ?>" type="video/mp4">
+        </video>
+        <div class="container">
+          <div class="single-product-featured-content">
+            <?php //if (!empty($section['title'])) { ?>
+              <h2><?php //echo $section['title']; ?></h2>
+            <?php// } ?>
+            <?php //if (!empty($section['description'])) { ?>
+              <p><?php //echo $section['description']; ?></p>
+            <?php// } ?>
+          </div>
+        </div>
+      </div> -->
+
+    <?php } ?>
+
+  <?php } ?>
+<?php } ?>
+
 </div>
 
-<section class="dimensions-area">
+<!-- <section class="dimensions-area">
   <div class="container">
-    <img src="assets/images/d3s-01.avif">
+    <img src="/catalog/view/theme/cits/assets/images/d3s-01.avif">
   </div>
-</section>
+</section> -->
 
 <section class="product-tech-info-area">
   <div class="container">
@@ -259,13 +281,16 @@
       <!-- Left Side: Product Features -->
       <div class="product-features">
         <div class="section-title">Description</div>
-        <div class="feature-description">
-          <?php echo $description; ?>
+        <div class="feature-description-wrapper">
+          <div class="feature-description" id="featureDescription">
+            <?php echo $description; ?>
+          </div>
+          <button class="read-more-btn" id="readMoreBtn" style="display:none;">Read more</button>
         </div>
       </div>
 
       <!-- Right Side: Technical Specifications -->
-      <div class="tech-specs">
+      <div class="tech-specs" id="techSpecs">
         <h2 class="section-title">TECH SPECS</h2>
         <?php echo $short_description; ?>
       </div>
@@ -273,27 +298,7 @@
   </div>
 </section>
 
-<section class="video-hero">
-  <video autoplay muted loop playsinline class="video-bg">
-    <source src="https://cdn.shopify.com/videos/c/o/v/18c2e078311d40b38447d79e0db19bc8.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
-  <iframe class="video-iframe" width="100%" height="320" src="<?php echo $video_link?>"
-    frameborder="0"
-    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen></iframe>
-
-  <div class="video-overlay"></div>
-
-  <div class="video-content">
-    <h1>NEXT GEN - 8.5" SPOT LIGHT KIT</h1>
-    <p>Ranger/Everest Stealth Kit</p>
-    <a href="#">Shop now </a>
-  </div>
-</section>
-
-<section class="product-reviews-content">
+<section class="product-reviews-content" id="tab-review">
   <div class="container">
     <h2>Reviews</h2>
     <?php if ($review_status) { ?>
@@ -306,11 +311,11 @@
         <form class="form-horizontal" id="form-review">
           <label><?php echo $entry_rating; ?> *</label>
           <div class="rating-stars">
-            <input type="radio" id="star-5" name="rating" value="5"><label for="star-5">☆</label>
-            <input type="radio" id="star-4" name="rating" value="4"><label for="star-4">☆</label>
-            <input type="radio" id="star-3" name="rating" value="3"><label for="star-3">☆</label>
-            <input type="radio" id="star-2" name="rating" value="2"><label for="star-2">☆</label>
-            <input type="radio" id="star-1" name="rating" value="1"><label for="star-1">☆</label>
+            <input type="radio" id="star-5" name="rating" value="5"><label for="star-5"><i class="active fa fa-star" aria-hidden="true"></i></label>
+            <input type="radio" id="star-4" name="rating" value="4"><label for="star-4"><i class="active fa fa-star" aria-hidden="true"></i></label>
+            <input type="radio" id="star-3" name="rating" value="3"><label for="star-3"><i class="active fa fa-star" aria-hidden="true"></i></label>
+            <input type="radio" id="star-2" name="rating" value="2"><label for="star-2"><i class="active fa fa-star" aria-hidden="true"></i></label>
+            <input type="radio" id="star-1" name="rating" value="1"><label for="star-1"><i class="active fa fa-star" aria-hidden="true"></i></label>
           </div>
 
           <label><?php echo $entry_review; ?> *</label>
@@ -345,6 +350,7 @@
   </div>
 </section>
 
+<?php if (!empty($products)) { ?>
 <!-- Related Products -->
 <section class="related-products-area">
   <div class="container">
@@ -375,12 +381,12 @@
                 <del><?php echo $product['price']; ?></del>
                 <div class="save-price">
                   <p>save <?php
-                                $old = preg_replace('/[^\d.]/', '', $product['price']);
-                                $new = preg_replace('/[^\d.]/', '', $product['special']);
-                                if ($old > 0) {
-                                  echo round((($old - $new) / $old) * 100) . '%';
-                                }
-                              ?></p>
+                      $old = preg_replace('/[^\d.]/', '', $product['price']);
+                      $new = preg_replace('/[^\d.]/', '', $product['special']);
+                      if ($old > 0) {
+                        echo round((($old - $new) / $old) * 100) . '%';
+                      }
+                    ?></p>
                 </div>
                 <?php } else { ?>
                 <span><?php echo $product['price']; ?></span>
@@ -428,6 +434,8 @@
 
   </div>
 </section>
+<?php } ?>
+
 
 
 <script type="text/javascript">
@@ -480,11 +488,10 @@
         });
     });
 
-
 </script>
 
 
-<script type="text/javascript"><!--
+  <script type="text/javascript"><!--
     $('select[name=\'recurring_id\'], input[name="quantity"]').change(function(){
         $.ajax({
             url: 'index.php?route=product/product/getRecurringDescription',
@@ -503,80 +510,83 @@
             }
         });
     });
-    //--></script>
-<script type="text/javascript"><!--
-    $('#button-cart').on('click', function() {
-        var quantity = $('#input-quantity').val();
-        //~ var requiredQuantity = $("#requiredQuantity").val();
-        //~ if(quantity < requiredQuantity ){
-        //~ alert('Required quantity is: ' + requiredQuantity);
-        //~ return false;
-        //~ }
-        var result = $.isNumeric(quantity);
-        if(result == true){
-            $.ajax({
-                url: 'index.php?route=checkout/cart/add',
-                type: 'post',
-                data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
-                dataType: 'json',
-                beforeSend: function() {
-                    $('#button-cart').button('loading');
-                },
-                complete: function() {
-                    $('#button-cart').button('reset');
-                },
-                success: function(json) {
-                    $('.alert, .text-danger').remove();
-                    $('.form-group').removeClass('has-error');
+  </script>
 
-                    if (json['error']) {
-                        if (json['error']['option']) {
-                            for (i in json['error']['option']) {
-                                var element = $('#input-option' + i.replace('_', '-'));
+  <!-- Button Cart -->
+  <script>
+$(document).ready(function() {
 
-                                if (element.parent().hasClass('input-group')) {
-                                    element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
-                                } else {
-                                    element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
-                                }
-                            }
-                        }
-
-                        if (json['error']['recurring']) {
-                            $('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
-                        }
-
-                        // Highlight any found errors
-                        $('.text-danger').parent().addClass('has-error');
-                        /*$('#button-cart').hide();
-                        $('#button-cart1').show();*/
-                    }
-
-                    if (json['success']) {
-                        $('#content').before('<div class="alert alert-success">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-
-                        $('#cart > button').html(json['total']);
-                        // $('#button-cart').hide();
-                        $('#button-cart1').show();
-
-                        //$('html, body').animate({ scrollTop: 0 }, 'slow');
-
-                        $('#cart > ul').load('index.php?route=common/cart/info ul li');
-
-                        // Log success message with item count to console
-                        console.log("Add to cart successful item = " + json['total']);
-                    }
-
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                }
-            });
-        }else{
-            alert('Invalid quanity supplied');
-        }
+    // Quantity buttons
+    $('.quantity-minus').on('click', function() {
+        var $input = $(this).siblings('#input-quantity');
+        var value = parseInt($input.val()) || 1;
+        if (value > 1) $input.val(value - 1);
     });
-    //--></script>
+
+    $('.quantity-plus').on('click', function() {
+        var $input = $(this).siblings('#input-quantity');
+        var value = parseInt($input.val()) || 1;
+        $input.val(value + 1);
+    });
+
+    // Add to cart
+    $('#button-cart').on('click', function() {
+        var product_id = $('input[name="product_id"]').val();
+        var quantity = parseInt($('#input-quantity').val()) || 1;
+
+        if (quantity <= 0) {
+            alert('Invalid quantity supplied');
+            return false;
+        }
+
+        // Call global cart.add function
+        $.ajax({
+            url: 'index.php?route=checkout/cart/add',
+            type: 'post',
+            data: 'product_id=' + product_id + '&quantity=' + quantity,
+            dataType: 'json',
+            beforeSend: function() {
+                $('#button-cart').prop('disabled', true).text('Adding...');
+            },
+            complete: function() {
+                $('#button-cart').prop('disabled', false).text('ADD TO CART');
+            },
+            success: function(json) {
+                $('.alert, .text-danger').remove();
+
+                if (json['error']) {
+                    alert(json['error']); // simple error alert
+                    return;
+                }
+
+                if (json['success']) {
+                    // Success alert
+                    $('#content').before(
+                        '<div class="alert alert-success">' + 
+                        json['success'] + 
+                        '<button type="button" class="close" data-dismiss="alert">&times;</button></div>'
+                    );
+
+                    // Update mini-cart total
+                    const match = json['total'].match(/\d+/);
+                    const itemCount = match ? match[0] : 0;
+                    $('.cartInfo .item').text(itemCount);
+
+                    // Refresh mini-cart items
+                    $('.cartInputBox').load('index.php?route=common/cart/info ul li');
+
+                    $('html, body').animate({ scrollTop: 0 }, 'slow');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                $('#button-cart').prop('disabled', false).text('ADD TO CART');
+            }
+        });
+    });
+});
+</script>
+
 <script type="text/javascript"><!--
     $('.date').datetimepicker({
         pickTime: false
@@ -727,23 +737,40 @@
         $('#section-product-question-form').hide();
     });
 
-    // Quantity increment/decrement
-    $('.quantity-plus').on('click', function() {
-        var input = $(this).siblings('input[name="quantity"]');
-        var currentVal = parseInt(input.val());
-        if (!isNaN(currentVal)) {
-            input.val(currentVal + 1);
-        }
-    });
+</script>
 
-    $('.quantity-minus').on('click', function() {
-        var input = $(this).siblings('input[name="quantity"]');
-        var currentVal = parseInt(input.val());
-        if (!isNaN(currentVal) && currentVal > 1) {
-            input.val(currentVal - 1);
-        }
-    });
-    //--></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "<?php echo htmlspecialchars($heading_title, ENT_QUOTES, 'UTF-8'); ?>",
+  "image": [
+    "<?php echo isset($popup) ? htmlspecialchars($popup, ENT_QUOTES, 'UTF-8') : ''; ?>"
+  ],
+  "description": "<?php echo htmlspecialchars(strip_tags($description), ENT_QUOTES, 'UTF-8'); ?>",
+  "sku": "<?php echo htmlspecialchars($sku, ENT_QUOTES, 'UTF-8'); ?>",
+  "mpn": "<?php echo isset($model) ? htmlspecialchars($model, ENT_QUOTES, 'UTF-8') : ''; ?>",
+  "brand": {
+    "@type": "Brand",
+    "name": "<?php echo htmlspecialchars($manufacturer, ENT_QUOTES, 'UTF-8'); ?>"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "<?php echo isset($rating) ? htmlspecialchars($rating, ENT_QUOTES, 'UTF-8') : '5'; ?>",
+    "reviewCount": "<?php echo isset($review_total) ? htmlspecialchars($review_total, ENT_QUOTES, 'UTF-8') : '1'; ?>"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "<?php echo htmlspecialchars($share, ENT_QUOTES, 'UTF-8'); ?>",
+    "priceCurrency": "<?php echo htmlspecialchars($currency_code, ENT_QUOTES, 'UTF-8'); ?>",
+    "price": "<?php echo htmlspecialchars($price_value, ENT_QUOTES, 'UTF-8'); ?>",
+    "priceValidUntil": "2025-12-31",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "<?php echo ($quantity > 0) ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'; ?>"
+  }
+}
+</script>
+
 
 
 			<?php if($config_gr_status) { ?>

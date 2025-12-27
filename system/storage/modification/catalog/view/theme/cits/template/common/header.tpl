@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="catalog/view/theme/cits/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/cits/assets/css/responsive.css">
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -163,28 +164,42 @@
     </script>
     <?php } ?>
 
+  <?php echo $custom_header_code; ?>
 
 </head>
 <body  class="<?php echo $class; ?>">
-
+<?php echo $custom_body_code; ?>
 <!-- Header Top Bar -->
   <div class="header-top">
     <div class="container">
       <div class="header-top-left">
-        <p> <i class="fa-solid fa-truck-fast"></i> Delivery Costs are Included in the Price</p>
+        <?php if ($delivery_text) { ?>
+          <p> <i class="fa-solid fa-truck-fast"></i> <?php echo $delivery_text; ?></p>
+        <?php } ?>
       </div>
       <div class="header-top-center">
-        <p><i class="fa-solid fa-bolt-lightning"></i> <strong>FLASH SALE:</strong> 60% OFF CAR BATTERIES | USE CODE
-          "BATT60"</p>
+        <?php if ($flash_sale_text) { ?>
+          <p><i class="fa-solid fa-bolt-lightning"></i> <?php echo $flash_sale_text; ?></p>
+        <?php } ?>
       </div>
       <div class="header-top-right">
-        <a href="/login">
-          <i class="fa-solid fa-right-to-bracket"></i> Login
-        </a>
-        <a href="/register">
-          <i class="fa-solid fa-user-plus"></i> Register
-        </a>
+        <?php if ($logged) { ?>
+          <a href="<?php echo $account; ?>" class="nav-link">
+              <i class="fa-solid fa-user"></i> <?php echo $text_account; ?>
+          </a>
+          <a href="<?php echo $logout; ?>" class="nav-link">
+              <i class="fa-solid fa-right-from-bracket"></i> <?php echo $text_logout; ?>
+          </a>
+        <?php } else { ?>
+          <a href="<?php echo $login; ?>" class="nav-link">
+              <i class="fa-solid fa-right-to-bracket"></i> <?php echo $text_login; ?>
+          </a>
+          <a href="<?php echo $register; ?>" class="nav-link">
+              <i class="fa-solid fa-user-plus"></i> <?php echo $text_register; ?>
+          </a>
+        <?php } ?>
       </div>
+
     </div>
   </div>
 
@@ -200,41 +215,29 @@
           <button class="menu-close-btn"><i class="fa-solid fa-close"></i></button>
         </div>
         <ul>
-
           <li><a href="/">home</a></li>
-          <li><a href="#">pages <i class="fa-solid fa-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Menu Item 1</a></li>
-              <li><a href="#">Menu Item 2</a></li>
-              <li><a href="#">Menu Item 3</a></li>
-              <li><a href="#">Menu Item 4</a></li>
-              <li><a href="#">Menu Item 5</a></li>
-              <li><a href="#">Menu Item 6</a></li>
-              <li><a href="#">Menu Item 7</a></li>
-              <li><a href="#">Menu Item 8</a></li>
-              <li><a href="#">Menu Item 9</a></li>
-            </ul>
-          </li>
-          <li><a href="#">shop</a></li>
-          <li><a href="about-us.html">about</a></li>
-          <li><a href="#">blog</a></li>
-          <li><a href="contact.html">contact</a></li>
+          <li><a href="/index.php?route=product/category&path=115">shop</a></li>
+          <li><a href="/index.php?route=information/information&information_id=4">about</a></li>
+          <li><a href="/index.php?route=information/contact">contact</a></li>
         <div class="mobile-category">
           <?php foreach ($categories as $category) { ?>
             <li><a href="<?php echo $category['href']; ?>">
-                <span><?php if ($category['icon']) { ?><img src="<?php echo $category['icon']; ?>" alt=""><?php } else { ?><img src="catalog/view/theme/cits/assets/images/light-icons/light-bulb.png" alt=""><?php } ?><?php echo $category['name']; ?></span>
+                <span>
+                  <img src="<?php echo $category['icon']; ?>">
+                  <?php echo $category['name']; ?>
+                </span>
                 <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-down"></i><?php } ?></a>
               <?php if ($category['children']) { ?>
               <div class="cat-submenu">
                 <ul>
                   <?php foreach ($category['children'] as $child) { ?>
                     <li><a href="<?php echo $child['href']; ?>">
-                        <img src="assets/images/light-icons/day-mode.png"><?php echo $child['name']; ?></a>
+                      <?php echo $child['name']; ?></a>
                     </li>
                     <?php if ($child['subChild']) { ?>
                       <?php foreach ($child['subChild'] as $subchild) { ?>
                         <li><a href="<?php echo $subchild['href']; ?>">
-                            <img src="assets/images/light-icons/day-mode.png"><?php echo $subchild['name']; ?></a>
+                          <?php echo $subchild['name']; ?></a>
                         </li>
                       <?php } ?>
                     <?php } ?>
@@ -248,16 +251,25 @@
         </ul>
         <div class="mobile-nav-bottom">
           <div class="mobile-nav-account-info">
-            <a href="<?php echo $login; ?>">
-              <i class="fa-solid fa-right-to-bracket"></i> Login
-            </a>
-            <a href="<?php echo $register; ?>">
-              <i class="fa-solid fa-user-plus"></i> Register
-            </a>
+            <?php if ($logged) { ?>
+              <a href="<?php echo $account; ?>" class="nav-link">
+                  <i class="fa-solid fa-user"></i> <?php echo $text_account; ?>
+              </a>
+              <a href="<?php echo $logout; ?>" class="nav-link">
+                  <i class="fa-solid fa-right-from-bracket"></i> <?php echo $text_logout; ?>
+              </a>
+            <?php } else { ?>
+              <a href="<?php echo $login; ?>" class="nav-link">
+                  <i class="fa-solid fa-right-to-bracket"></i> <?php echo $text_login; ?>
+              </a>
+              <a href="<?php echo $register; ?>" class="nav-link">
+                  <i class="fa-solid fa-user-plus"></i> <?php echo $text_register; ?>
+              </a>
+            <?php } ?>
           </div>
           <div class="header-phone">
-            <a href="#"><i class="fas fa-headset"></i>
-              <p>Call us 24/7 <br> <span class="header-phone-number">+08 9229 8228</span></p>
+            <a href="tel:<?php echo $telephone;?>"><i class="fas fa-headset"></i>
+              <p>8-4pm Mon-Fri AEST <br> <span class="header-phone-number"><?php echo $telephone;?></span></p>
             </a>
           </div>
         </div>
@@ -265,43 +277,28 @@
 
       <!-- Right Side -->
       <div class="header-right">
-        <a href="#" class="header-reviews">
-          <img src="catalog/view/theme/cits/assets/images/Trustpilot_logo-1.png"> 651 reviews on <span class="header-trust">Trustpilot</span>
-        </a>
+        <div class="header-reviews">          
+          <!-- TrustBox script -->
+          <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+          <!-- End TrustBox script -->
+
+          <!-- TrustBox widget - Micro Review Count -->
+          <div class="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="5d425ee701425c0001a15e2b" data-style-height="24px" data-style-width="100%" data-theme="light" data-style-alignment="center">
+            <a href="https://uk.trustpilot.com/review/pro-vision-lighting.com" target="_blank" rel="noopener">Trustpilot</a>
+          </div>
+          <!-- End TrustBox widget -->
+        </div>
         <div class="header-cart">
-          <button><i class="fa-solid fa-shopping-cart"></i> <span class="header-cart-count"><?php echo $cart_count; ?></span></button>
-          <div class="minicart">
-            <?php if ($cart_items) { ?>
-              <?php foreach ($cart_items as $item) { ?>
-                <div class="minicart-item">
-                  <img src="<?php echo $item['image']; ?>" alt="<?php echo $item['name']; ?>">
-                  <div class="minicart-item-info">
-                    <h4><?php echo $item['name']; ?></h4>
-                    <div class="minicart-quantity-price">
-                      <div class="minicart-quantity">
-                        <button class="minicart-minus" data-key="<?php echo $item['key']; ?>">-</button>
-                        <input type="text" value="<?php echo $item['quantity']; ?>" min="1" data-key="<?php echo $item['key']; ?>">
-                        <button class="minicart-plus" data-key="<?php echo $item['key']; ?>">+</button>
-                      </div>
-                      <span class="minicart-price"><?php echo $item['price']; ?></span>
-                    </div>
-                  </div>
-                  <button class="minicart-remove" data-key="<?php echo $item['key']; ?>">×</button>
-                </div>
-              <?php } ?>
-              <div class="minicart-subtotal">
-                <span>SUBTOTAL</span>
-                <span class="minicart-total"><?php echo $cart_total; ?></span>
-              </div>
-              <a href="/cart" class="minicart-btn minicart-view-cart">VIEW CART</a>
-              <a href="/checkout" class="minicart-btn minicart-checkout">CHECKOUT</a>
-            <?php } else { ?>
-              <p>Your cart is empty.</p>
-            <?php } ?>
+          <button class="minicart-trigger"><i class="fa-solid fa-shopping-cart"></i> <p class="header-cart-count"> <span><?php echo $cart_count; ?></span> </p></button>
+          <div class="minicart just-count">
+            <?php echo $cart; ?>
           </div>
         </div>
         <button class="mobile-menu-trigger"><i class="fa-solid fa-bars"></i></button>
       </div>
+    </div>
+    <div class="minicart">
+      <?php echo $cart; ?>
     </div>
   </header>
 
@@ -315,27 +312,31 @@
         </button>
         <ul class="category-list">
           <?php foreach ($categories as $category) { ?>
-            <li><a href="<?php echo $category['href']; ?>">
-                <span> <?php if ($category['icon']) { ?><img src="<?php echo $category['icon']; ?>"><?php } else { ?><img src="<?php echo $category['image']; ?>"><?php } ?><?php echo $category['name']; ?></span>
+            <li>
+              <a href="<?php echo $category['href']; ?>" data-image="<?php echo $category['image']; ?>">
+                <span>                  
+                  <img src="<?php echo $category['icon']; ?>">                    
+                  <?php echo $category['name']; ?>
+                </span>
                 <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-right"></i><?php } ?></a>
               <?php if ($category['children']) { ?>
               <div class="cat-submenu">
                 <ul>
                   <?php foreach ($category['children'] as $child) { ?>
-                    <li><a href="<?php echo $child['href']; ?>" data-image="<?php echo $category['image']; ?>">
-                        <img src="<?php echo $category['image']; ?>"><?php echo $child['name']; ?></a>
+                    <li><a href="<?php echo $child['href']; ?>">
+                        <?php echo $child['name']; ?></a>
                     </li>
                     <?php if ($child['subChild']) { ?>
                       <?php foreach ($child['subChild'] as $subchild) { ?>
-                        <li><a href="<?php echo $subchild['href']; ?>" data-image="<?php echo $category['image']; ?>">
-                            <img src="<?php echo $category['image']; ?>"><?php echo $subchild['name']; ?></a>
+                        <li><a href="<?php echo $subchild['href']; ?>">
+                            <?php echo $subchild['name']; ?></a>
                         </li>
                       <?php } ?>
                     <?php } ?>
                   <?php } ?>
                 </ul>
                 <div class="cat-submenu-image">
-                  <img src="assets/images/product-1.jpg" class="submenu-preview">
+                  <img src="<?php echo $category['image']; ?>" class="submenu-preview">
                 </div>
               </div>
               <?php } ?>
@@ -344,17 +345,70 @@
         </ul>
       </div>
       <!-- Search Box -->
-      <div class="header-search-box">
+      <!-- <div class="header-search-box">
         <input type="text" placeholder="Search for products">
         <button type="submit"><i class="fas fa-search"></i></button>
+      </div> -->
+
+      <!-- Search Box -->
+      <div class="header-search-box">
+          <select name="category_id" class="header-search-category" style="width:200px">
+            <option value="0">All Categories</option>
+            <?php foreach ($categories as $category_1) { ?>
+            <?php if ($category_1['category_id'] == $category_id) { ?>
+            <option value="<?php echo $category_1['category_id']; ?>"><?php echo $category_1['name']; ?></option>
+            <?php } else { ?>
+            <option value="<?php echo $category_1['category_id']; ?>"><?php echo $category_1['name']; ?></option>
+            <?php } ?>
+            <?php foreach ($category_1['children'] as $category_2) { ?>
+            <?php if ($category_2['category_id'] == $category_id) { ?>
+            <option value="<?php echo $category_2['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_2['name']; ?></option>
+            <?php } else { ?>
+            <option value="<?php echo $category_2['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_2['name']; ?></option>
+            <?php } ?>
+            <?php foreach ($category_2['children'] as $category_3) { ?>
+            <?php if ($category_3['category_id'] == $category_id) { ?>
+            <option value="<?php echo $category_3['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_3['name']; ?></option>
+            <?php } else { ?>
+            <option value="<?php echo $category_3['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_3['name']; ?></option>
+            <?php } ?>
+            <?php } ?>
+            <?php } ?>
+            <?php } ?>
+          </select>
+          <input type="text" name="search" value="<?php echo $search; ?>" placeholder="Search Products…" id="input-search" class="form-control" />
+          
+          <!-- <input type="button" value="Search" id="button-search2" class="yellowbtn" /> -->
+          <button type="button" value="Search" id="button-search2"><i class="fas fa-search"></i></button>  
       </div>
+      
       <div class="header-phone">
-        <a href="#"><i class="fas fa-headset"></i>
-          <p>Call us 24/7 <br> <span class="header-phone-number">+08 9229 8228</span></p>
+        <a href="tel:<?php echo $telephone;?>"><i class="fas fa-headset"></i>
+          <p>8-4pm Mon-Fri AEST <br> <span class="header-phone-number"><?php echo $telephone;?></span></p>
         </a>
       </div>
     </div>
   </div>
+
+  <?php if (!empty($breadcrumbs)) { ?>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+      <?php foreach ($breadcrumbs as $i => $breadcrumb) { ?>
+        {
+          "@type": "ListItem",
+          "position": <?php echo $i + 1; ?>,
+          "name": "<?php echo htmlspecialchars($breadcrumb['text'], ENT_QUOTES, 'UTF-8'); ?>",
+          "item": "<?php echo htmlspecialchars($breadcrumb['href'], ENT_QUOTES, 'UTF-8'); ?>"
+        }<?php if ($i < count($breadcrumbs) - 1) { echo ","; } ?>
+      <?php } ?>
+      ]
+    }
+    </script>
+  <?php } ?>
+
 
   <!-- End Header -->
 

@@ -1,64 +1,77 @@
-  <div id="cart" class="cartBoxTop"> <img src="catalog/view/theme/hidlighting/images/carttopbar.png" alt="">
-            <div class="cartInfo" id="cart">              
-              <button type="button" data-loading-text="<?php echo $text_loading; ?>" class="item"><?php echo $text_items; ?></button>
-              <div class="icon"><i aria-hidden="true" class="fa fa-angle-down"></i> </div>
-            </div>
-             <ul class="cartInputBox pull-right">
-    <?php if ($products || $vouchers) { ?>
-    <li>
-      <table class="table cartTable">
-        <?php foreach ($products as $product) { ?> 
-        <tr>
-          <td class="text-center"><?php if ($product['thumb']) { ?>
-            <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-thumbnail" /></a>
-            <?php } else { ?>
-			 <a href="<?php echo $product['href']; ?>"><img height="47" width="47" src="<?php echo $base."image/cache/placeholder-239x247.png"; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-thumbnail" /></a>
-			 <?php } ?></td>
-          <td class="text-left"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
-            <?php if ($product['option']) { ?>
-            <?php foreach ($product['option'] as $option) { ?>
-            <br />
-            - <small><?php echo $option['name']; ?> <?php echo $option['value']; ?></small>
-            <?php } ?>
-            <?php } ?>
-            <?php if ($product['recurring']) { ?>
-            <br />
-            - <small><?php echo $text_recurring; ?> <?php echo $product['recurring']; ?></small>
-            <?php } ?></td>
-          <td class="text-right">x<?php echo $product['quantity']; ?></td>
-          <td class="text-right"><?php echo $product['total']; ?></td>
-          <td class="text-center"><button type="button" onclick="cart.remove('<?php echo $product['cart_id']; ?>');" title="<?php echo $button_remove; ?>" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
-        </tr>
-        <?php } ?>
-        <?php foreach ($vouchers as $voucher) { ?>
-        <tr>
-          <td class="text-center"></td>
-          <td class="text-left"><?php echo $voucher['description']; ?></td>
-          <td class="text-right">x&nbsp;1</td>
-          <td class="text-right"><?php echo $voucher['amount']; ?></td>
-          <td class="text-center text-danger"><button type="button" onclick="voucher.remove('<?php echo $voucher['key']; ?>');" title="<?php echo $button_remove; ?>" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
-        </tr>
-        <?php } ?>
-      </table>
-    </li>
-    <li>
-      <div>
-        <table class="table table-bordered tableCart">
-          <?php foreach ($totals as $total) { ?>
-          <tr>
-            <td class="text-right"><strong><?php echo $total['title']; ?></strong></td>
-            <td class="text-right"><?php echo $total['text']; ?></td>
-          </tr>
-          <?php } ?>
-        </table>
-        <p class="text-right"><a class="viewCart" href="<?php echo $cart; ?>"><strong><i class="fa fa-shopping-cart"></i> <?php echo $text_cart; ?></strong></a>&nbsp;&nbsp;&nbsp;<a class="viewCart" href="<?php echo $checkout; ?>"><strong><i class="fa fa-share"></i> <?php echo $text_checkout; ?></strong></a></p>
+  <div id="cart" class="cartBoxTop">
+    <div class="cartInfo" id="cart">
+      <?php
+        preg_match('/\d+/', $text_items, $matches);
+        $item_count = isset($matches[0]) ? $matches[0] : 0;
+      ?>
+      <button type="button" data-loading-text="<?php echo $text_loading; ?>" class="item">
+        <?php echo $item_count; ?>
+      </button>
+    </div>
+    <div class="sidebar-cart">
+      <div class="sidebar-cart-top">
+        <h3>Shopping Cart</h3> 
+        <button class="sidebar-cart-close">
+          <i class="fas fa-times"></i>
+        </button>
       </div>
-    </li>
-    <?php } else { ?>
-    <li>
-      <p class="text-center"><?php echo $text_empty; ?></p>
-    </li>
-    <?php } ?>
-  </ul>
+      <ul class="cartInputBox">      
+        <?php if ($products || $vouchers) { ?>
+        <li>
+          <table class="table cartTable">
+            <?php foreach ($products as $product) { ?>
+              <div class="minicart-item">
+                <img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>">
+                <div class="minicart-item-info">
+                  <a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
+
+                  <?php if ($product['option']) { ?>
+                  <?php foreach ($product['option'] as $option) { ?>
+                  <small>- <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small><br>
+                  <?php } ?>
+                  <?php } ?>
+
+                  <div class="minicart-quantity-price">
+                    <div class="minicart-quantity">
+                      x<?php echo $product['quantity']; ?>                  
+                    </div>
+                    <span class="minicart-price"><?php echo $product['total']; ?></span>
+                  </div>
+                </div>
+                <button class="minicart-remove" type="button" onclick="cart.remove('<?php echo $product['cart_id']; ?>');"
+                  title="<?php echo $button_remove; ?>" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>
+              </div>
+            <?php } ?>
+          </table>
+        </li>
+
+        <li>
+          <div>
+            <table class="table table-bordered tableCart">
+              <?php foreach ($totals as $total) { ?>
+              <tr>
+                <td class="text-right"><strong><?php echo $total['title']; ?></strong></td>
+                <td class="text-right"><?php echo $total['text']; ?></td>
+              </tr>
+              <?php } ?>
+            </table>
+            <p class="text-right">
+              <a class="viewCart minicart-btn minicart-view-cart" href="<?php echo $cart; ?>"><strong><i class="fa fa-shopping-cart"></i> 
+                <?php echo $text_cart; ?></strong>
+              </a>
+              <a class="viewCart minicart-btn minicart-checkout" href="<?php echo $checkout; ?>"><strong><i class="fa fa-share"></i>
+              <?php echo $text_checkout; ?></strong>
+            </a>
+          </p>
           </div>
+        </li>
+
+        <?php } else { ?>
+        <li>
+          <p class="text-center"><?php echo $text_empty; ?></p>
+        </li>
+        <?php } ?>
+      </ul>
+    </div>
+  </div>
                 <?php if (isset($nitropack_script)) { echo $nitropack_script; } ?>

@@ -94,12 +94,13 @@
     <div class="footer-bottom">
       <div class="container">
         <p><?php echo $powered; ?></p>
-        <div class="footer-payments">
+        <div class="footer-payments"> 
           <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/paypal.png">
           <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/visa.png">
           <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/discover.png">
           <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/mastercard.png">
-          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/american.png">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/american.png"> 
+          <img src="catalog/view/theme/cits/images/pp4.png">
         </div>
       </div>
     </div>
