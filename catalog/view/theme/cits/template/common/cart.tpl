@@ -1,13 +1,9 @@
   <div id="cart" class="cartBoxTop">
-    <div class="cartInfo" id="cart">
-      <?php
-        preg_match('/\d+/', $text_items, $matches);
-        $item_count = isset($matches[0]) ? $matches[0] : 0;
-      ?>
-      <button type="button" data-loading-text="<?php echo $text_loading; ?>" class="item">
-        <?php echo $item_count; ?>
-      </button>
-    </div>
+    <!-- Restoring button for JS compatibility (hidden via CSS if acceptable, or kept as invisible hook) -->
+    <button type="button" data-loading-text="<?php echo $text_loading; ?>" class="heading dropdown-toggle" style="display:none;">
+      <span id="cart-total"><?php echo $text_items; ?></span>
+    </button>
+
     <div class="sidebar-cart">
       <div class="sidebar-cart-top">
         <h3>Shopping Cart</h3> 
@@ -15,38 +11,33 @@
           <i class="fas fa-times"></i>
         </button>
       </div>
+      <!-- Changed back to ul for JS 'load' compatibility: $('#cart ul').load(...) -->
       <ul class="cartInputBox">      
         <?php if ($products || $vouchers) { ?>
-        <li>
-          <table class="table cartTable">
+        
+          <div class="cart-products-list">
             <?php foreach ($products as $product) { ?>
-              <div class="minicart-item">
-                <img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>">
+              <li class="minicart-item">
+                <div class="minicart-img">
+                  <img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>">
+                </div>
                 <div class="minicart-item-info">
-                  <a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
-
-                  <?php if ($product['option']) { ?>
-                  <?php foreach ($product['option'] as $option) { ?>
-                  <small>- <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small><br>
-                  <?php } ?>
-                  <?php } ?>
+                  <a href="<?php echo $product['href']; ?>" class="product-name"><?php echo $product['name']; ?></a>
 
                   <div class="minicart-quantity-price">
-                    <div class="minicart-quantity">
+                    <div class="minicart-qty">
                       x<?php echo $product['quantity']; ?>                  
                     </div>
                     <span class="minicart-price"><?php echo $product['total']; ?></span>
                   </div>
                 </div>
-                <button class="minicart-remove" type="button" onclick="cart.remove('<?php echo $product['cart_id']; ?>');"
-                  title="<?php echo $button_remove; ?>" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>
-              </div>
+                <button type="button" onclick="cart.remove('<?php echo $product['cart_id']; ?>');"
+                  title="<?php echo $button_remove; ?>" class="minicart-remove"><i class="fa fa-times"></i></button>
+              </li>
             <?php } ?>
-          </table>
-        </li>
+          </div>
 
-        <li>
-          <div>
+          <li class="cart-totals">
             <table class="table table-bordered tableCart">
               <?php foreach ($totals as $total) { ?>
               <tr>
@@ -55,21 +46,20 @@
               </tr>
               <?php } ?>
             </table>
-            <p class="text-right">
-              <a class="viewCart minicart-btn minicart-view-cart" href="<?php echo $cart; ?>"><strong><i class="fa fa-shopping-cart"></i> 
-                <?php echo $text_cart; ?></strong>
+            <div class="cart-buttons">
+              <a class="viewCart minicart-btn minicart-view-cart" href="<?php echo $cart; ?>">
+                <strong><i class="fa fa-shopping-cart"></i> <?php echo $text_cart; ?></strong>
               </a>
-              <a class="viewCart minicart-btn minicart-checkout" href="<?php echo $checkout; ?>"><strong><i class="fa fa-share"></i>
-              <?php echo $text_checkout; ?></strong>
-            </a>
-          </p>
-          </div>
-        </li>
+              <a class="viewCart minicart-btn minicart-checkout" href="<?php echo $checkout; ?>">
+                <strong><i class="fa fa-share"></i> <?php echo $text_checkout; ?></strong>
+              </a>
+            </div>
+          </li>
 
         <?php } else { ?>
-        <li>
-          <p class="text-center"><?php echo $text_empty; ?></p>
-        </li>
+          <li class="empty-cart-message">
+            <p class="text-center"><?php echo $text_empty; ?></p>
+          </li>
         <?php } ?>
       </ul>
     </div>
