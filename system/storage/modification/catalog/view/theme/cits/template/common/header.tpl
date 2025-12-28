@@ -366,17 +366,21 @@ if (!isset($search)) {
           <select name="category_id" class="header-search-category" style="width:200px">
             <option value="0">All Categories</option>
             <?php foreach ($categories as $category_1) { ?>
+            <?php if (isset($category_1['category_id'])) { ?>
             <?php if ($category_1['category_id'] == $category_id) { ?>
             <option value="<?php echo $category_1['category_id']; ?>"><?php echo $category_1['name']; ?></option>
             <?php } else { ?>
             <option value="<?php echo $category_1['category_id']; ?>"><?php echo $category_1['name']; ?></option>
             <?php } ?>
+            <?php } ?>
             <?php if (isset($category_1['children']) && is_array($category_1['children']) && !empty($category_1['children'])) { ?>
             <?php foreach ($category_1['children'] as $category_2) { ?>
+            <?php if (isset($category_2['category_id'])) { ?>
             <?php if ($category_2['category_id'] == $category_id) { ?>
             <option value="<?php echo $category_2['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_2['name']; ?></option>
             <?php } else { ?>
             <option value="<?php echo $category_2['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_2['name']; ?></option>
+            <?php } ?>
             <?php } ?>
             <?php if (isset($category_2['children']) && is_array($category_2['children']) && !empty($category_2['children'])) { ?>
             <?php foreach ($category_2['children'] as $category_3) { ?>
