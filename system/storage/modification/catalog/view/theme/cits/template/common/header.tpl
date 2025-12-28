@@ -223,10 +223,15 @@ if (!isset($search)) {
           <button class="menu-close-btn"><i class="fa-solid fa-close"></i></button>
         </div>
         <ul>
-          <li><a href="/">home</a></li>
-          <li><a href="/index.php?route=product/category&path=115">shop</a></li>
-          <li><a href="/index.php?route=information/information&information_id=4">about</a></li>
-          <li><a href="/index.php?route=information/contact">contact</a></li>
+          <?php 
+            $route = isset($_GET['route']) ? $_GET['route'] : 'common/home';
+            $path = isset($_GET['path']) ? $_GET['path'] : '';
+            $info_id = isset($_GET['information_id']) ? $_GET['information_id'] : '';
+          ?>
+          <li class="<?php echo ($route == 'common/home') ? 'active' : ''; ?>"><a href="/">home</a></li>
+          <li class="<?php echo ($route == 'product/category' || $path == '115') ? 'active' : ''; ?>"><a href="/index.php?route=product/category&path=115">shop</a></li>
+          <li class="<?php echo ($info_id == '4') ? 'active' : ''; ?>"><a href="/index.php?route=information/information&information_id=4">about</a></li>
+          <li class="<?php echo ($route == 'information/contact') ? 'active' : ''; ?>"><a href="/index.php?route=information/contact">contact</a></li>
         <div class="mobile-category">
           <?php foreach ($categories as $category) { ?>
             <li><a href="<?php echo $category['href']; ?>">
