@@ -209,6 +209,56 @@ $this->load->controller("common/seo_content");
 		} else {
 			$data['captcha'] = '';
 		}
+        
+        // --- Contact Page Info Module ---
+        // DEBUG: Check if module status is loaded
+        // error_log('ContactPageInfo Status: ' . $this->config->get('contact_page_info_status'));
+        
+        $data['contact_page_info_status'] = $this->config->get('contact_page_info_status');
+
+        if ($this->config->get('contact_page_info_status')) {
+             // Main Title & Desc
+             $main_title = $this->config->get('contact_page_info_main_title');
+             $data['contact_main_title'] = !empty($main_title) ? $main_title : 'Contact Us';
+             
+             $main_desc = $this->config->get('contact_page_info_main_desc');
+             $data['contact_main_desc'] = !empty($main_desc) ? nl2br($main_desc) : $data['address'];
+
+             // Customer Service
+            $cs_title = $this->config->get('contact_page_info_cs_title');
+            if (!empty($cs_title)) { $data['cs_title'] = $cs_title; } else { $data['cs_title'] = 'Customer service'; }
+
+            $cs_text = $this->config->get('contact_page_info_cs_text');
+             if (!empty($cs_text)) { $data['cs_text'] = $cs_text; } else { $data['cs_text'] = 'Call us from 8am to 8pm'; }
+
+            $cs_phone = $this->config->get('contact_page_info_cs_phone');
+            if (!empty($cs_phone)) { $data['telephone'] = $cs_phone; } // Override global telephone for this page if set
+            
+             // Write To Us
+            $wtu_title = $this->config->get('contact_page_info_wtu_title');
+            if (!empty($wtu_title)) { $data['wtu_title'] = $wtu_title; } else { $data['wtu_title'] = 'Write to us'; }
+
+            $wtu_email = $this->config->get('contact_page_info_wtu_email');
+            if (!empty($wtu_email)) { $data['e_mail'] = $wtu_email; } // Override global email for this page
+
+            // Follow Us
+            $fu_title = $this->config->get('contact_page_info_fu_title');
+            if (!empty($fu_title)) { $data['fu_title'] = $fu_title; } else { $data['fu_title'] = 'Follow us'; }
+
+            $data['facebook'] = $this->config->get('contact_page_info_facebook');
+            $data['youtube'] = $this->config->get('contact_page_info_youtube');
+            $data['blogger'] = $this->config->get('contact_page_info_blogger');
+            $data['instagram'] = $this->config->get('contact_page_info_instagram');
+
+        } else {
+             // Defaults if disabled - show nothing for custom vars? 
+             // Logic: If disabled, we rely on template checking 'contact_page_info_status' to hide the 3-box section.
+             // But for Header, we revert to default 'Contact Us' and 'Address'.
+             
+             $data['contact_main_title'] = 'contact us'; // Original lowercase hardcoded
+             $data['contact_main_desc'] = $data['address'];
+        }
+        // --------------------------------
 
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
