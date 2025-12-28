@@ -335,10 +335,12 @@ if (!isset($search)) {
             <?php } ?>
             <?php if (isset($category_2['children']) && is_array($category_2['children']) && !empty($category_2['children'])) { ?>
             <?php foreach ($category_2['children'] as $category_3) { ?>
+            <?php if (isset($category_3['category_id'])) { ?>
             <?php if ($category_3['category_id'] == $category_id) { ?>
             <option value="<?php echo $category_3['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_3['name']; ?></option>
             <?php } else { ?>
             <option value="<?php echo $category_3['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_3['name']; ?></option>
+            <?php } ?>
             <?php } ?>
             <?php } ?>
             <?php } ?>

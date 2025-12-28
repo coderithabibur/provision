@@ -78,8 +78,6 @@
 
           <div class="single-product-btn-group">
             <button type="button" class="add-to-cart-btn" onclick="cart.add('<?php echo $product['product_id']; ?>');">add to cart</button>
-            <button type="button" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i
-                class="fa-solid fa-code-compare"></i></button>
           </div>
         </div>
       </div>

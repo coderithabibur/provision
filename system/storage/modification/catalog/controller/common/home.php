@@ -278,7 +278,6 @@ $this->load->controller("common/seo_content");
                     $output .= '    </div>';
                     $output .= '    <div class="single-product-btn-group">';
                     $output .= '      <button type="button" onclick="cart.add(\'' . $product['product_id'] . '\');">add to cart</button>';
-                    $output .= '      <button type="button" onclick="compare.add(\'' . $product['product_id'] . '\');"><i class="fa-solid fa-code-compare"></i></button>';
                     $output .= '    </div>';
                     $output .= '  </div>';
                     $output .= '</div>';

@@ -71,7 +71,6 @@
                 <button onclick="cart.add('<?php echo $product['product_id']; ?>');">
                   <?php echo $button_cart; ?>
                 </button>
-                <button><i class="fa-solid fa-code-compare"></i></button>
               </div>
             </div>
           </div>

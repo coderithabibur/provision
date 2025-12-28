@@ -431,10 +431,6 @@
                 <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>');">
                   <?php echo $button_cart; ?>
                 </button>
-                <button type="button" onclick="compare.add('<?php echo $product['product_id']; ?>');"
-                  aria-label="Add to Compare">
-                  <i class="fa-solid fa-code-compare"></i>
-                </button>
               </div>
             </div>
           </div>
@@ -879,39 +875,7 @@ $(document).ready(function() {
 }
 </script>
 
-</script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org/",
-  "@type": "Product",
-  "name": "<?php echo htmlspecialchars($heading_title, ENT_QUOTES, 'UTF-8'); ?>",
-  "image": [
-    "<?php echo isset($popup) ? htmlspecialchars($popup, ENT_QUOTES, 'UTF-8') : ''; ?>"
-  ],
-  "description": "<?php echo htmlspecialchars(strip_tags($description), ENT_QUOTES, 'UTF-8'); ?>",
-  "sku": "<?php echo htmlspecialchars($sku, ENT_QUOTES, 'UTF-8'); ?>",
-  "mpn": "<?php echo isset($model) ? htmlspecialchars($model, ENT_QUOTES, 'UTF-8') : ''; ?>",
-  "brand": {
-    "@type": "Brand",
-    "name": "<?php echo htmlspecialchars($manufacturer, ENT_QUOTES, 'UTF-8'); ?>"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "<?php echo isset($rating) ? htmlspecialchars($rating, ENT_QUOTES, 'UTF-8') : '5'; ?>",
-    "reviewCount": "<?php echo isset($review_total) ? htmlspecialchars($review_total, ENT_QUOTES, 'UTF-8') : '1'; ?>"
-  },
-  "offers": {
-    "@type": "Offer",
-    "url": "<?php echo htmlspecialchars($share, ENT_QUOTES, 'UTF-8'); ?>",
-    "priceCurrency": "<?php echo htmlspecialchars($currency_code, ENT_QUOTES, 'UTF-8'); ?>",
-    "price": "<?php echo htmlspecialchars($price_value, ENT_QUOTES, 'UTF-8'); ?>",
-    "priceValidUntil": "2025-12-31",
-    "itemCondition": "https://schema.org/NewCondition",
-    "availability": "<?php echo ($quantity > 0) ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'; ?>"
-  }
-}
-</script>
 
 
 <?php echo $footer; ?>

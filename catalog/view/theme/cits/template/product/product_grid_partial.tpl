@@ -32,7 +32,6 @@
         </div>
         <div class="single-product-btn-group">
           <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>');"><?php echo $button_cart; ?></button>
-          <button type="button"><i class="fa-solid fa-code-compare"></i></button>
         </div>
       </div>
     </div>

@@ -1102,13 +1102,13 @@
   }
 
   .single-product-item-info button:first-child {
-    width: 80%;
+    width: 100%;
   }
 
-  .single-product-item-info button:last-child {
-    width: 20%;
+  /* .single-product-item-info button:last-child {
+    width: 100%;
     background: var(--mb-color);
-  }
+  } */
 
   /* Featured Categories */
 
