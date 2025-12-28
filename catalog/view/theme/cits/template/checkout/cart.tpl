@@ -135,21 +135,7 @@
                 </div>
                 <!-- <p class="slideView01">Slide table to view </p> -->
               </div>
-            </form>
-
-            <div class="cart-coupon-info">
-              <?php if ($coupon || $voucher || $reward || $shipping) { ?>
-              <h2><?php echo $text_next; ?></h2>
-              <p><?php echo $text_next_choice; ?></p>
-              <div class="cartCouponArea" id="accordion">
-                <?php echo $coupon; ?>
-                <?php echo $voucher; ?>
-                <?php echo $reward; ?>
-                <?php echo $shipping; ?>
-              </div>
-              <?php } ?>
-            </div>
-
+            </form> 
           </div>
           <?php echo $column_right; ?></div>
 
