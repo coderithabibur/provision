@@ -52,7 +52,7 @@
       </div>
 
       <div class="product-info">
-        <h2 class="product-title"><?php echo $heading_title; ?></h2>
+        <h1 class="product-title"><?php echo $heading_title; ?></h1>
         <p class="product-desc"></p>
 
         <form id="product" method="post" enctype="multipart/form-data">
@@ -199,7 +199,6 @@
 
         <!-- Extra Actions -->
         <div class="extra-actions">
-          <a href="#"><i class="fa-solid fa-code-compare"></i>Compare</a>
           <a href="/index.php?route=information/contact"><i class="fa-solid fa-circle-question"></i>Ask a Question</a>
           <!-- <a href="#"><i class="fa-solid fa-share-nodes"></i>Social Share</a> -->
         </div>
@@ -819,6 +818,44 @@ $(document).ready(function() {
     $('.product-faq-form').on('click', function() {
         $('#section-product-question-form').hide();
     });
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Product",
+  "name": "<?php echo $heading_title; ?>",
+  "image": [
+    "<?php echo $popup; ?>"
+    <?php if ($images) { ?>
+    <?php foreach ($images as $image) { ?>
+    , "<?php echo $image['popup']; ?>"
+    <?php } ?>
+    <?php } ?>
+   ],
+  "description": "<?php echo strip_tags($description); ?>",
+  "sku": "<?php echo $sku; ?>",
+  "brand": {
+    "@type": "Brand",
+    "name": "<?php echo $manufacturer; ?>"
+  },
+  <?php if ($rating) { ?>
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "<?php echo $rating; ?>",
+    "reviewCount": "<?php echo preg_replace('/[^0-9]/', '', $reviews); ?>"
+  },
+  <?php } ?>
+  "offers": {
+    "@type": "Offer",
+    "url": "<?php echo $base; ?>index.php?route=product/product&product_id=<?php echo $product_id; ?>",
+    "priceCurrency": "<?php echo $currency_code; ?>",
+    "price": "<?php echo ($special_value) ? $special_value : $price_value; ?>",
+    "availability": "<?php echo ($stock) ? 'http://schema.org/InStock' : 'http://schema.org/OutOfStock'; ?>",
+    "itemCondition": "http://schema.org/NewCondition"
+  }
+}
+</script>
 
 </script>
 
