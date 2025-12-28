@@ -536,3 +536,6 @@ admin/view/template/common/footer.tpl
 admin/view/template/extension/modification.tpl
 admin/model/setting/setting.php
 system/library/mail.php
+admin/controller/tool/error_log.php
+admin/language/english/tool/error_log.php
+admin/view/template/tool/error_log.tpl

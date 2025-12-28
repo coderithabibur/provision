@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <!--[if IE]><![endif]-->
+<?php
+if (!isset($category_id)) {
+    $category_id = 0;
+}
+if (!isset($search)) {
+    $search = '';
+}
+?>
 <!--[if IE 8 ]><html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>" class="ie8"><![endif]-->
 <!--[if IE 9 ]><html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>" class="ie9"><![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
@@ -189,8 +197,8 @@
                     <li><a href="<?php echo $child['href']; ?>">
                       <?php echo $child['name']; ?></a>
                     </li>
-                    <?php if ($child['subChild']) { ?>
-                      <?php foreach ($child['subChild'] as $subchild) { ?>
+                    <?php if ($child['children']) { ?>
+                      <?php foreach ($child['children'] as $subchild) { ?>
                         <li><a href="<?php echo $subchild['href']; ?>">
                           <?php echo $subchild['name']; ?></a>
                         </li>
@@ -284,8 +292,8 @@
                     <li><a href="<?php echo $child['href']; ?>">
                         <?php echo $child['name']; ?></a>
                     </li>
-                    <?php if ($child['subChild']) { ?>
-                      <?php foreach ($child['subChild'] as $subchild) { ?>
+                    <?php if ($child['children']) { ?>
+                      <?php foreach ($child['children'] as $subchild) { ?>
                         <li><a href="<?php echo $subchild['href']; ?>">
                             <?php echo $subchild['name']; ?></a>
                         </li>
@@ -318,17 +326,21 @@
             <?php } else { ?>
             <option value="<?php echo $category_1['category_id']; ?>"><?php echo $category_1['name']; ?></option>
             <?php } ?>
+            <?php if (isset($category_1['children']) && is_array($category_1['children']) && !empty($category_1['children'])) { ?>
             <?php foreach ($category_1['children'] as $category_2) { ?>
             <?php if ($category_2['category_id'] == $category_id) { ?>
             <option value="<?php echo $category_2['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_2['name']; ?></option>
             <?php } else { ?>
             <option value="<?php echo $category_2['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_2['name']; ?></option>
             <?php } ?>
+            <?php if (isset($category_2['children']) && is_array($category_2['children']) && !empty($category_2['children'])) { ?>
             <?php foreach ($category_2['children'] as $category_3) { ?>
             <?php if ($category_3['category_id'] == $category_id) { ?>
             <option value="<?php echo $category_3['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_3['name']; ?></option>
             <?php } else { ?>
             <option value="<?php echo $category_3['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_3['name']; ?></option>
+            <?php } ?>
+            <?php } ?>
             <?php } ?>
             <?php } ?>
             <?php } ?>

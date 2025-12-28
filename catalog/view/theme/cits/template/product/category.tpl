@@ -140,7 +140,7 @@ $(document).ready(function() {
         "image": "<?php echo htmlspecialchars($product['thumb'], ENT_QUOTES, 'UTF-8'); ?>",
         "offers": {
           "@type": "Offer",
-          "priceCurrency": "<?php echo htmlspecialchars($this->session->data['currency'], ENT_QUOTES, 'UTF-8'); ?>",
+          "priceCurrency": "<?php echo htmlspecialchars($currency_code, ENT_QUOTES, 'UTF-8'); ?>",
           "price": "<?php echo preg_replace('/[^0-9.]/', '', $product['special'] ? $product['special'] : $product['price']); ?>"
         }
       }

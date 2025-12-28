@@ -220,7 +220,7 @@
           "image": "<?php echo htmlspecialchars($product['image'], ENT_QUOTES, 'UTF-8'); ?>",
           "offers": {
             "@type": "Offer",
-            "priceCurrency": "<?php echo htmlspecialchars($this->session->data['currency'], ENT_QUOTES, 'UTF-8'); ?>",
+            "priceCurrency": "<?php echo htmlspecialchars($currency_code, ENT_QUOTES, 'UTF-8'); ?>",
             "price": "<?php echo preg_replace('/[^0-9.]/', '', $product['special'] ? $product['special'] : $product['price']); ?>",
             "availability": "<?php echo ($product['quantity'] > 0) ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'; ?>",
             "url": "<?php echo htmlspecialchars($product['href'], ENT_QUOTES, 'UTF-8'); ?>"
@@ -233,13 +233,7 @@
   </script>
 <?php } ?>
 
-<?php if ($review_status) { ?>
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "<?php echo $rating; ?>",
-    "reviewCount": "<?php echo $reviews; ?>"
-  },
-<?php } ?>
+
 
 
 

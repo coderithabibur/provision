@@ -38,6 +38,9 @@ class ControllerCommonHome extends Controller {
         $data['logo'] = $this->config->get('config_logo') ? (HTTP_SERVER . 'image/' . $this->config->get('config_logo')) : '';
 
 
+		$data['review_status'] = $this->config->get('config_review_status');
+		$data['currency_code'] = $this->session->data['currency'];
+
 $this->load->controller("common/seo_content");
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
@@ -222,7 +225,8 @@ $this->load->controller("common/seo_content");
                 $special = false;
                 $save_percent = false;
             }
-            $products_data[] = array(
+        $data['currency_code'] = $this->session->data['currency'];
+        $products_data[] = array(
                 'product_id'   => $result['product_id'],
                 'name'         => $result['name'],
                 'image'        => $image,
@@ -230,6 +234,7 @@ $this->load->controller("common/seo_content");
                 'special'      => $special,
                 'save_percent' => $save_percent,
                 'reviews'      => (int)$result['reviews'],
+                'quantity'     => $result['quantity'],
                 'href'         => $this->url->link('product/product', 'product_id=' . $result['product_id']),
             );
         }

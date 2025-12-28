@@ -1,6 +1,9 @@
 <?php
 final class Tax {
 	private $tax_rates = array();
+	public $config;
+	public $db;
+	public $session;
 
 	public function __construct($registry) {
 		$this->config = $registry->get('config');

@@ -151,6 +151,7 @@ if($this->config->get("nerdherd_direct_links")) {
 			// Load final variables and controllers
 			$data['button_cart'] = $this->language->get('button_cart');
 			$data['text_empty'] = $this->language->get('text_empty');
+			$data['currency_code'] = $this->session->data['currency'];
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');
 			$data['content_top'] = $this->load->controller('common/content_top');

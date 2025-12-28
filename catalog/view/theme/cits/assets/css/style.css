@@ -205,7 +205,6 @@
     padding: 20px;
     box-shadow: 0 4px 20px -10px rgba(0, 0, 0, 0.1);
     position: relative;
-    z-index: 100;
   }
 
   .header-inner {
@@ -346,7 +345,7 @@
     width: 350px;
     position: fixed;
     background: var(--white-color);
-    z-index: 999;
+    z-index: 1001;
     top: 0px;
     right: -350px;
     border-top: 2px solid var(--brand-color);

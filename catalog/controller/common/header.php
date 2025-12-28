@@ -116,6 +116,13 @@ class ControllerCommonHeader extends Controller {
 		$this->load->model('tool/image');
 		$this->load->model('catalog/product');
 
+		if (isset($this->request->get['path'])) {
+			$parts = explode('_', (string)$this->request->get['path']);
+			$data['category_id'] = (int)array_pop($parts);
+		} else {
+			$data['category_id'] = 0;
+		}
+
 		$data['categories'] = array();
 
 		$categories = $this->model_catalog_category->getCategories(0);
@@ -162,7 +169,7 @@ class ControllerCommonHeader extends Controller {
 						'category_id' => $child['category_id'],
 						'name' => $child['name'] /*. ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : '')*/,
 						'href' => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id']),
-						'subChild'	=>  $sub_childData,
+						'children'	=>  $sub_childData,
 					);
 				}
 
@@ -196,7 +203,7 @@ class ControllerCommonHeader extends Controller {
 				$image = '';
 			}
 			$data['cart_items'][] = array(
-				'key' => $product['key'],
+				'key' => $product['cart_id'],
 				'name' => $product['name'],
 				'image' => $image,
 				'quantity' => $product['quantity'],

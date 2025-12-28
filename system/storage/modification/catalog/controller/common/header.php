@@ -212,6 +212,13 @@ if(file_exists('catalog/model/extension/bganycombi.php')) {
 		$this->load->model('tool/image');
 		$this->load->model('catalog/product');
 
+		if (isset($this->request->get['path'])) {
+			$parts = explode('_', (string)$this->request->get['path']);
+			$data['category_id'] = (int)array_pop($parts);
+		} else {
+			$data['category_id'] = 0;
+		}
+
 		$data['categories'] = array();
 
 		$categories = $this->model_catalog_category->getCategories(0);
@@ -263,7 +270,7 @@ if($this->config->get("nerdherd_direct_links")) {
 						'category_id' => $child['category_id'],
 						'name' => $child['name'] /*. ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : '')*/,
 						'href' => $link,
-						'subChild'	=>  $sub_childData,
+						'children'	=>  $sub_childData,
 					);
 				}
 
@@ -297,7 +304,7 @@ if($this->config->get("nerdherd_direct_links")) {
 				$image = '';
 			}
 			$data['cart_items'][] = array(
-				'key' => $product['key'],
+				'key' => $product['cart_id'],
 				'name' => $product['name'],
 				'image' => $image,
 				'quantity' => $product['quantity'],

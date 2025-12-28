@@ -21,10 +21,10 @@
           <i class="fa-solid fa-user-plus"></i>
           <h2>Follow us</h2>
           <ul class="contact-social">
-            <li><a href="<?php echo $facebook; ?>" target="_blank"><i aria-hidden="true" class="fab fa-facebook"></i></a></li>
-            <li><a href="<?php echo $youtube; ?>" target="_blank"><i class="fab fa-youtube-play" aria-hidden="true"></i></a></li>
-            <li><a href="<?php echo $blogger; ?>" target="_blank"><i class="fab fa-blogger-b"></i></a></li>              
-            <li><a href="<?php echo $instagram; ?>" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+            <?php if (isset($facebook)) { ?><li><a href="<?php echo $facebook; ?>" target="_blank"><i aria-hidden="true" class="fab fa-facebook"></i></a></li><?php } ?>
+            <?php if (isset($youtube)) { ?><li><a href="<?php echo $youtube; ?>" target="_blank"><i class="fab fa-youtube-play" aria-hidden="true"></i></a></li><?php } ?>
+            <?php if (isset($blogger)) { ?><li><a href="<?php echo $blogger; ?>" target="_blank"><i class="fab fa-blogger-b"></i></a></li><?php } ?>
+            <?php if (isset($instagram)) { ?><li><a href="<?php echo $instagram; ?>" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i></a></li><?php } ?>
           </ul>
         </div>
       </div>
