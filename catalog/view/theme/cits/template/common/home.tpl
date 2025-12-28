@@ -6,18 +6,20 @@
 <?php echo $feature_section_module; ?>
 
 <section class="hightlights-area" style="padding-bottom:0;">
-  <div class="hightlights-content-area">
-    <?php if ($data['highlight_categories']) { ?>
-    <?php foreach($data['highlight_categories'] as $category) { ?>
-    <div class="single-highlights-item" style="background-image: url('<?php echo $category['image']; ?>');">
-      <div class="highlights-item-info">
-        <span><?php echo $category['product_total']; ?> products</span>
-        <h2><?php echo $category['name']; ?></h2>
+  <div class="container">
+    <div class="hightlights-content-area">
+      <?php if ($data['highlight_categories']) { ?>
+      <?php foreach($data['highlight_categories'] as $category) { ?>
+      <div class="single-highlights-item" style="background-image: url('<?php echo $category['image']; ?>');">
+        <div class="highlights-item-info">
+          <span><?php echo $category['product_total']; ?> products</span>
+          <h2><?php echo $category['name']; ?></h2>
+        </div>
+        <a href="<?php echo $category['href']; ?>">Shop now</a>
       </div>
-      <a href="<?php echo $category['href']; ?>">Shop now</a>
+      <?php } ?>
+      <?php } ?>
     </div>
-    <?php } ?>
-    <?php } ?>
   </div>
 </section>
 
