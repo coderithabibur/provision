@@ -24,7 +24,7 @@ $(document).ready(function () {
     $(this).toggleClass('active');
   });
 
-  $(".minicart-trigger, .add-to-cart-btn, .add-to-cart").click(function (e) {
+  $(".minicart-trigger").click(function (e) {
     e.stopPropagation(); // prevent event bubbling
     $(".minicart").addClass("active");
     $("body").addClass("active");

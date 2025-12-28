@@ -610,6 +610,7 @@ $(document).ready(function() {
         dataType: 'json',
 
         beforeSend: function() {
+          $('.text-danger').remove();
           $('#button-cart').prop('disabled', true).text('Adding...');
         },
 
@@ -622,16 +623,33 @@ $(document).ready(function() {
           $('.alert, .text-danger').remove();
 
           // OPTION / VALIDATION ERRORS
+          // OPTION / VALIDATION ERRORS
           if (json['error']) {
-
             if (json['error']['option']) {
-              for (var i in json['error']['option']) {
-                alert(json['error']['option'][i]);   // Exact OpenCart error msg
+              for (i in json['error']['option']) {
+                var element = $('[name="option[' + i + ']"]');
+                
+                if (element.length == 0) {
+                    element = $('[name="option[' + i + '][]"]');
+                }
+                
+                if (element.attr('type') == 'radio' || element.attr('type') == 'checkbox') {
+                    // Append after the group container
+                    element.closest('.product-option-box').append('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+                } else {
+                    // Select, text, textarea
+                     element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+                }
+              }
+              
+              // Scroll to the first error
+              if ($('.text-danger').length > 0) {
+                  $('html, body').animate({ scrollTop: $('.text-danger:first').offset().top - 150 }, 'slow');
               }
             }
 
             if (json['error']['recurring']) {
-              alert(json['error']['recurring']);
+              $('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
             }
 
             return;
@@ -655,6 +673,10 @@ $(document).ready(function() {
             $('.cartInputBox').load('index.php?route=common/cart/info ul li');
 
             $('html, body').animate({ scrollTop: 0 }, 'slow');
+            
+            // Open Sidecart on Success
+            $(".minicart").addClass("active");
+            $("body").addClass("active");
           }
         },
 
