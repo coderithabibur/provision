@@ -25,15 +25,22 @@
     </div>
 
     <?php } ?>
-    <div class="col-sm-12">
-      <div class="text-right"><?php echo $pagination; ?></div>
+    
+    <div class="row review-footer">
+        <div class="col-sm-6">
+            <div class="pro-policy">
+                 <a href="https://www.pro-vision-lighting.com/returnandrefundpolicy" target="_blank" title="Return and Refund Policy">Return and Refund Policy</a>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="text-right"><?php echo $pagination; ?></div>
+        </div>
     </div>
+
     <?php } else { ?>
-    <div class="col-sm-12">
+    <div class="no-reviews">
       <p><?php echo $text_no_reviews; ?></p>
+      <!-- Optional: Show Policy even if no reviews? No, standard OC just says no reviews. -->
     </div>
     <?php } ?>
-    <div class="col-sm-12 pro-policy">
-        <a style="font-size:16px;text-decoration: underline;" href="https://www.pro-vision-lighting.com/returnandrefundpolicy" title="RETURN AND REFUND POLICY" >RETURN AND REFUND POLICY</a>
-    </div>
   </div>

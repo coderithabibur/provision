@@ -22,9 +22,9 @@ function getURLVar(key) {
 	}
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
 	// Highlight any found errors
-	$('.text-danger').each(function() {
+	$('.text-danger').each(function () {
 		var element = $(this).parent().parent();
 
 		if (element.hasClass('form-group')) {
@@ -33,7 +33,7 @@ $(document).ready(function() {
 	});
 
 	// Currency
-	$('#currency .currency-select').on('click', function(e) {
+	$('#currency .currency-select').on('click', function (e) {
 		e.preventDefault();
 
 		$('#currency input[name=\'code\']').attr('value', $(this).attr('name'));
@@ -42,7 +42,7 @@ $(document).ready(function() {
 	});
 
 	// Language
-	$('#language a').on('click', function(e) {
+	$('#language a').on('click', function (e) {
 		e.preventDefault();
 
 		$('#language input[name=\'code\']').attr('value', $(this).attr('href'));
@@ -51,7 +51,7 @@ $(document).ready(function() {
 	});
 
 	/* Search */
-	$('#search input[name=\'search\']').parent().find('button').on('click', function() {
+	$('#search input[name=\'search\']').parent().find('button').on('click', function () {
 		url = $('base').attr('href') + 'index.php?route=product/search';
 
 		var value = $('header input[name=\'search\']').val();
@@ -59,23 +59,23 @@ $(document).ready(function() {
 		if (value) {
 			url += '&search=' + encodeURIComponent(value);
 		}
-		 var category_id = $('#searchCat').val();
-		 //alert(category_id);
-		 if(category_id != "0"){
-			 url += '&category_id=' + encodeURIComponent(category_id);
-		 }
+		var category_id = $('#searchCat').val();
+		//alert(category_id);
+		if (category_id != "0") {
+			url += '&category_id=' + encodeURIComponent(category_id);
+		}
 
 		location = url;
 	});
 
-	$('#search input[name=\'search\']').on('keydown', function(e) {
+	$('#search input[name=\'search\']').on('keydown', function (e) {
 		if (e.keyCode == 13) {
 			$('header input[name=\'search\']').parent().find('button').trigger('click');
 		}
 	});
 
 	// Menu
-	$('#menu .dropdown-menu').each(function() {
+	$('#menu .dropdown-menu').each(function () {
 		var menu = $('#menu').offset();
 		var dropdown = $(this).parent().offset();
 
@@ -87,7 +87,7 @@ $(document).ready(function() {
 	});
 
 	// Product List
-	$('#list-view').click(function() {
+	$('#list-view').click(function () {
 		$('#content .product-grid > .clearfix').remove();
 
 		//$('#content .product-layout').attr('class', 'product-layout product-list col-xs-12');
@@ -97,7 +97,7 @@ $(document).ready(function() {
 	});
 
 	// Product Grid
-	$('#grid-view').click(function() {
+	$('#grid-view').click(function () {
 		// What a shame bootstrap does not take into account dynamically loaded columns
 		cols = $('#column-right, #column-left').length;
 
@@ -109,7 +109,7 @@ $(document).ready(function() {
 			$('#content .product-list').attr('class', 'product-layout product-grid col-lg-3 col-md-3 col-sm-6 col-xs-12');
 		}
 
-		 localStorage.setItem('display', 'grid');
+		localStorage.setItem('display', 'grid');
 	});
 
 	if (localStorage.getItem('display') == 'list') {
@@ -119,45 +119,45 @@ $(document).ready(function() {
 	}
 
 	// Checkout
-	$(document).on('keydown', '#collapse-checkout-option input[name=\'email\'], #collapse-checkout-option input[name=\'password\']', function(e) {
+	$(document).on('keydown', '#collapse-checkout-option input[name=\'email\'], #collapse-checkout-option input[name=\'password\']', function (e) {
 		if (e.keyCode == 13) {
 			$('#collapse-checkout-option #button-login').trigger('click');
 		}
 	});
 
 	// tooltips on hover
-	$('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
+	$('[data-toggle=\'tooltip\']').tooltip({ container: 'body' });
 
 	// Makes tooltips work on ajax generated content
-	$(document).ajaxStop(function() {
-		$('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
+	$(document).ajaxStop(function () {
+		$('[data-toggle=\'tooltip\']').tooltip({ container: 'body' });
 	});
-    $('.Btn1').click(function() {
-    $('.Btn1').tooltip('hide');
-})
-	$('.Btn2').click(function() {
-    $('.Btn2').tooltip('hide');
-})
-	$('.btn').click(function() {
-    $('.btn').tooltip('hide');
-})
+	$('.Btn1').click(function () {
+		$('.Btn1').tooltip('hide');
+	})
+	$('.Btn2').click(function () {
+		$('.Btn2').tooltip('hide');
+	})
+	$('.btn').click(function () {
+		$('.btn').tooltip('hide');
+	})
 });
 
 // Cart add remove functions
 var cart = {
-	'add': function(product_id, quantity) {
+	'add': function (product_id, quantity) {
 		$.ajax({
 			url: 'index.php?route=checkout/cart/add',
 			type: 'post',
-			data: 'product_id=' + product_id + '&quantity=' + (typeof(quantity) != 'undefined' ? quantity : 1),
+			data: 'product_id=' + product_id + '&quantity=' + (typeof (quantity) != 'undefined' ? quantity : 1),
 			dataType: 'json',
-			beforeSend: function() {
+			beforeSend: function () {
 				$('#cart > button').button('loading');
 			},
-			complete: function() {
+			complete: function () {
 				$('#cart > button').button('reset');
 			},
-			success: function(json) {
+			success: function (json) {
 				$('.alert, .text-danger').remove();
 
 				if (json['redirect']) {
@@ -165,7 +165,7 @@ var cart = {
 				}
 
 				if (json['success']) {
-					gaAddtocart(product_id); 
+					gaAddtocart(product_id);
 					$('#content').before('<div class="alert alert-success"><i class="glyphicon glyphicon-ok"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
 					// Need to set timeout otherwise it wont update the total
@@ -178,31 +178,31 @@ var cart = {
 						const match = totalText.match(/\d+/);
 						const itemCount = match ? match[0] : 0;
 						$('#cart > button').text(itemCount);
-					  }, 100);
+					}, 100);
 
 					$('html, body').animate({ scrollTop: 0 }, 'slow');
 
 					$('#cart ul').load('index.php?route=common/cart/info ul li');
 				}
 			},
-	        error: function(xhr, ajaxOptions, thrownError) {
-	            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-	        }
+			error: function (xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
 		});
 	},
-	'update': function(key, quantity) {
+	'update': function (key, quantity) {
 		$.ajax({
 			url: 'index.php?route=checkout/cart/edit',
 			type: 'post',
-			data: 'key=' + key + '&quantity=' + (typeof(quantity) != 'undefined' ? quantity : 1),
+			data: 'key=' + key + '&quantity=' + (typeof (quantity) != 'undefined' ? quantity : 1),
 			dataType: 'json',
-			beforeSend: function() {
+			beforeSend: function () {
 				$('#cart > button').button('loading');
 			},
-			complete: function() {
+			complete: function () {
 				$('#cart > button').button('reset');
 			},
-			success: function(json) {
+			success: function (json) {
 				// Need to set timeout otherwise it wont update the total
 				// setTimeout(function () {
 				// 	$('#cart > button').html(json['total'] );
@@ -213,7 +213,7 @@ var cart = {
 					const match = totalText.match(/\d+/);
 					const itemCount = match ? match[0] : 0;
 					$('#cart > button').text(itemCount);
-				  }, 100);
+				}, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
 					location = 'index.php?route=checkout/cart';
@@ -221,24 +221,24 @@ var cart = {
 					$('#cart ul').load('index.php?route=common/cart/info ul li');
 				}
 			},
-	        error: function(xhr, ajaxOptions, thrownError) {
-	            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-	        }
+			error: function (xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
 		});
 	},
-	'remove': function(key) {
+	'remove': function (key) {
 		$.ajax({
 			url: 'index.php?route=checkout/cart/remove',
 			type: 'post',
 			data: 'key=' + key,
 			dataType: 'json',
-			beforeSend: function() {
+			beforeSend: function () {
 				$('#cart > button').button('loading');
 			},
-			complete: function() {
+			complete: function () {
 				$('#cart > button').button('reset');
 			},
-			success: function(json) {
+			success: function (json) {
 				gaRemovefromcart(json.product_id);
 				// Need to set timeout otherwise it wont update the total
 				// setTimeout(function () {
@@ -250,41 +250,6 @@ var cart = {
 					const match = totalText.match(/\d+/);
 					const itemCount = match ? match[0] : 0;
 					$('#cart > button').text(itemCount);
-				  }, 100);
-
-				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
-					location = 'index.php?route=checkout/cart';
-				} else {
-					$('#cart ul').load('index.php?route=common/cart/info ul li');
-				}
-			},
-	        error: function(xhr, ajaxOptions, thrownError) {
-	            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-	        }
-		});
-	}
-}
-
-var voucher = {
-	'add': function() {
-
-	},
-	'remove': function(key) {
-		$.ajax({
-			url: 'index.php?route=checkout/cart/remove',
-			type: 'post',
-			data: 'key=' + key,
-			dataType: 'json',
-			beforeSend: function() {
-				$('#cart > button').button('loading');
-			},
-			complete: function() {
-				$('#cart > button').button('reset');
-			},
-			success: function(json) {
-				// Need to set timeout otherwise it wont update the total
-				setTimeout(function () {
-					$('#cart > button').html( json['total']);
 				}, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
@@ -293,21 +258,56 @@ var voucher = {
 					$('#cart ul').load('index.php?route=common/cart/info ul li');
 				}
 			},
-	        error: function(xhr, ajaxOptions, thrownError) {
-	            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-	        }
+			error: function (xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+}
+
+var voucher = {
+	'add': function () {
+
+	},
+	'remove': function (key) {
+		$.ajax({
+			url: 'index.php?route=checkout/cart/remove',
+			type: 'post',
+			data: 'key=' + key,
+			dataType: 'json',
+			beforeSend: function () {
+				$('#cart > button').button('loading');
+			},
+			complete: function () {
+				$('#cart > button').button('reset');
+			},
+			success: function (json) {
+				// Need to set timeout otherwise it wont update the total
+				setTimeout(function () {
+					$('#cart > button').html(json['total']);
+				}, 100);
+
+				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
+					location = 'index.php?route=checkout/cart';
+				} else {
+					$('#cart ul').load('index.php?route=common/cart/info ul li');
+				}
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
 		});
 	}
 }
 
 var wishlist = {
-	'add': function(product_id) {
+	'add': function (product_id) {
 		$.ajax({
 			url: 'index.php?route=account/wishlist/add',
 			type: 'post',
 			data: 'product_id=' + product_id,
 			dataType: 'json',
-			success: function(json) {
+			success: function (json) {
 				$('.alert').remove();
 
 				if (json['redirect']) {
@@ -324,51 +324,51 @@ var wishlist = {
 				$('.btnwish').attr('data-original-title', 'Log In to View Wish List');
 				//$('html, body').animate({ scrollTop: 0 }, 'slow');
 			},
-	        error: function(xhr, ajaxOptions, thrownError) {
-	            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-	        }
+			error: function (xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
 		});
 	},
-	'remove': function() {
+	'remove': function () {
 
 	}
 }
 
 var compare = {
-	'add': function(product_id) {
+	'add': function (product_id) {
 		$.ajax({
 			url: 'index.php?route=product/compare/add',
 			type: 'post',
 			data: 'product_id=' + product_id,
 			dataType: 'json',
-			success: function(json) {
+			success: function (json) {
 				$('.alert').remove();
 
 				if (json['success']) {
 					$('#content').before('<div class="alert alert-success"><i class="glyphicon glyphicon-ok"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
 					$('#compare-total').html(json['total']);
-					$( ".Btn1" ).hide();
+					$(".Btn1").hide();
 					$('.Btn12').show();
-               $('.Btn12').attr('data-original-title', 'Compare Now');
-					$( '.Btn1' + product_id).hide();
-					$('.Btn12'+ product_id).show();
+					$('.Btn12').attr('data-original-title', 'Compare Now');
+					$('.Btn1' + product_id).hide();
+					$('.Btn12' + product_id).show();
 
 					//$('html, body').animate({ scrollTop: 0 }, 'slow');
 				}
 			},
-	        error: function(xhr, ajaxOptions, thrownError) {
-	            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-	        }
+			error: function (xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
 		});
 	},
-	'remove': function() {
+	'remove': function () {
 
 	}
 }
 
 /* Agree to Terms */
-$(document).delegate('.agree', 'click', function(e) {
+$(document).delegate('.agree', 'click', function (e) {
 	e.preventDefault();
 
 	$('#modal-agree').remove();
@@ -379,8 +379,8 @@ $(document).delegate('.agree', 'click', function(e) {
 		url: $(element).attr('href'),
 		type: 'get',
 		dataType: 'html',
-		success: function(data) {
-			html  = '<div id="modal-agree" class="modal">';
+		success: function (data) {
+			html = '<div id="modal-agree" class="modal">';
 			html += '  <div class="modal-dialog">';
 			html += '    <div class="modal-content">';
 			html += '      <div class="modal-header">';
@@ -400,9 +400,9 @@ $(document).delegate('.agree', 'click', function(e) {
 });
 
 // Autocomplete */
-(function($) {
-	$.fn.autocomplete = function(option) {
-		return this.each(function() {
+(function ($) {
+	$.fn.autocomplete = function (option) {
+		return this.each(function () {
 			this.timer = null;
 			this.items = new Array();
 
@@ -411,20 +411,20 @@ $(document).delegate('.agree', 'click', function(e) {
 			$(this).attr('autocomplete', 'off');
 
 			// Focus
-			$(this).on('focus', function() {
+			$(this).on('focus', function () {
 				this.request();
 			});
 
 			// Blur
-			$(this).on('blur', function() {
-				setTimeout(function(object) {
+			$(this).on('blur', function () {
+				setTimeout(function (object) {
 					object.hide();
 				}, 200, this);
 			});
 
 			// Keydown
-			$(this).on('keydown', function(event) {
-				switch(event.keyCode) {
+			$(this).on('keydown', function (event) {
+				switch (event.keyCode) {
 					case 27: // escape
 						this.hide();
 						break;
@@ -435,7 +435,7 @@ $(document).delegate('.agree', 'click', function(e) {
 			});
 
 			// Click
-			this.click = function(event) {
+			this.click = function (event) {
 				event.preventDefault();
 
 				value = $(event.target).parent().attr('data-value');
@@ -446,7 +446,7 @@ $(document).delegate('.agree', 'click', function(e) {
 			}
 
 			// Show
-			this.show = function() {
+			this.show = function () {
 				var pos = $(this).position();
 
 				$(this).siblings('ul.dropdown-menu').css({
@@ -458,21 +458,21 @@ $(document).delegate('.agree', 'click', function(e) {
 			}
 
 			// Hide
-			this.hide = function() {
+			this.hide = function () {
 				$(this).siblings('ul.dropdown-menu').hide();
 			}
 
 			// Request
-			this.request = function() {
+			this.request = function () {
 				clearTimeout(this.timer);
 
-				this.timer = setTimeout(function(object) {
+				this.timer = setTimeout(function (object) {
 					object.source($(object).val(), $.proxy(object.response, object));
 				}, 200, this);
 			}
 
 			// Response
-			this.response = function(json) {
+			this.response = function (json) {
 				html = '';
 
 				if (json.length) {
@@ -527,4 +527,4 @@ $(document).delegate('.agree', 'click', function(e) {
 })(window.jQuery);
 
 
-function gaAddtocart(e){$.ajax({url:"index.php?route=extension/module/google_ecommerce/get_product_info&product_id="+e,type:"post",dataType:"json",success:function(e){e.error?console.log(e.error):gtag("event","add_to_cart",{items:[{id:e.id+'_au',name:e.product_name,list_name:e.list_name,brand:e.brand,category:e.category,price:e.price}]})}})}function gaRemovefromcart(e){$.ajax({url:"index.php?route=extension/module/google_ecommerce/get_product_info&product_id="+e,type:"post",dataType:"json",success:function(e){e.error?console.log(e.error):gtag("event","remove_from_cart",{items:[{id:e.id,name:e.product_name,list_name:e.list_name,brand:e.brand,category:e.category,price:e.price}]})}})}
+function gaAddtocart(e) { $.ajax({ url: "index.php?route=extension/module/google_ecommerce/get_product_info&product_id=" + e, type: "post", dataType: "json", success: function (e) { e.error ? console.log(e.error) : gtag("event", "add_to_cart", { items: [{ id: e.id + '_au', name: e.product_name, list_name: e.list_name, brand: e.brand, category: e.category, price: e.price }] }) } }) } function gaRemovefromcart(e) { $.ajax({ url: "index.php?route=extension/module/google_ecommerce/get_product_info&product_id=" + e, type: "post", dataType: "json", success: function (e) { e.error ? console.log(e.error) : gtag("event", "remove_from_cart", { items: [{ id: e.id, name: e.product_name, list_name: e.list_name, brand: e.brand, category: e.category, price: e.price }] }) } }) }

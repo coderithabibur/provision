@@ -567,3 +567,16 @@ catalog/language/english/common/footer.php
 catalog/model/catalog/information.php
 catalog/model/setting/setting.php
 catalog/controller/extension/module/client_logos.php
+catalog/controller/common/home.php
+catalog/model/catalog/category.php
+catalog/model/catalog/product.php
+catalog/controller/extension/module/homepage_video.php
+catalog/controller/account/register.php
+catalog/model/account/custom_field.php
+catalog/controller/account/account.php
+catalog/model/localisation/country.php
+catalog/model/localisation/zone.php
+catalog/controller/extension/bganycombi.php
+catalog/model/extension/bganycombi.php
+catalog/controller/product/category.php
+catalog/language/english/product/category.php
