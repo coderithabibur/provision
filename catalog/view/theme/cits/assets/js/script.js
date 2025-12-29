@@ -4,14 +4,14 @@ $(document).ready(function () {
     e.stopPropagation(); // prevent click from bubbling to document
     $(this).parent().children("ul").toggleClass('active');
   });
-  
+
   // Click outside to remove 'active'
   $(document).click(function (e) {
     if (!$(e.target).closest('.header-categories').length) {
       $(".header-categories ul").removeClass('active');
     }
   });
-  
+
   $(".mobile-menu-trigger").click(function () {
     $(".header-nav").addClass('active');
   });
@@ -29,14 +29,14 @@ $(document).ready(function () {
     $(".minicart").addClass("active");
     $("body").addClass("active");
   });
-  
+
   // Close button click
   $(".sidebar-cart-close").click(function (e) {
     e.stopPropagation();
     $(".minicart").removeClass("active");
     $("body").removeClass("active");
   });
-  
+
   // Click outside to close
   $(document).click(function (e) {
     if (
@@ -48,15 +48,15 @@ $(document).ready(function () {
     }
   });
 
-  $('.mobile-account-menu-toggle').click(function() {
+  $('.mobile-account-menu-toggle').click(function () {
     $(this).toggleClass('active');
     $(this).parent().children('ul').toggleClass('clicked');
   });
-  
+
 });
 
 // Read More Btn
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const desc = document.getElementById("featureDescription");
   const btn = document.getElementById("readMoreBtn");
   const tech = document.getElementById("techSpecs");
@@ -67,12 +67,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Show Read More button if description is taller
   if (desc.scrollHeight > desc.clientHeight) {
-      btn.style.display = "inline-block";
+    btn.style.display = "inline-block";
   }
 
-  btn.addEventListener("click", function() {
-      desc.classList.toggle("expanded");
-      btn.textContent = desc.classList.contains("expanded") ? "Read less" : "Read more";
+  btn.addEventListener("click", function () {
+    desc.classList.toggle("expanded");
+    btn.textContent = desc.classList.contains("expanded") ? "Read less" : "Read more";
   });
 });
 
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
 document.querySelectorAll('.category-list > li > a').forEach(link => {
   const submenuImage = document.querySelector('.cat-submenu-image .submenu-preview'); // Target the main preview image
 
-  link.addEventListener('mouseenter', function() {
+  link.addEventListener('mouseenter', function () {
     const newImage = this.getAttribute('data-image');
     if (submenuImage && newImage) {
       submenuImage.setAttribute('src', newImage);
