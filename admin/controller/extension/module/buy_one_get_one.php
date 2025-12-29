@@ -58,14 +58,23 @@ class ControllerExtensionModuleBuyOneGetOne extends Controller {
             $offers = $this->config->get('module_buy_one_get_one_offer'); 
         }
 
+        $this->load->model('tool/image');
+
         if(!empty($offers)){
             foreach ($offers as $offer) {
                 if (isset($offer['product_id'])) {
                     $product_info = $this->model_catalog_product->getProduct($offer['product_id']);
                     if ($product_info) {
+                        if (is_file(DIR_IMAGE . $product_info['image'])) {
+                            $image = $this->model_tool_image->resize($product_info['image'], 40, 40);
+                        } else {
+                            $image = $this->model_tool_image->resize('no_image.png', 40, 40);
+                        }
+                        
                         $data['offers'][] = array(
                             'product_id' => $product_info['product_id'], 
-                            'name' => $product_info['name']
+                            'name'       => $product_info['name'],
+                            'thumb'      => $image
                         );
                     }
                 }

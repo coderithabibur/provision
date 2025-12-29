@@ -1103,7 +1103,7 @@
   .section-features {
     background: #F1F1F1;
     color: var(--white-color);
-    padding: 40px 0;
+    padding: 25px 0;
   }
 
   .features-inner {
@@ -1530,7 +1530,7 @@
   .section-features {
     background: #F1F1F1;
     color: var(--white-color);
-    padding: 60px 0;
+    padding: 25px 0;
     /* Increased padding */
   }
 
