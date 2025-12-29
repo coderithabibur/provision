@@ -20,7 +20,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->load->model('catalog/product');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			$this->model_catalog_product->addProduct($this->request->post);
+
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -81,8 +81,10 @@ class ControllerCatalogProduct extends Controller {
 			$this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
 			$this->session->data['success'] = $this->language->get('text_success');
  
-			if (isset($this->request->post['product_section'])) { 
-				$this->model_catalog_product->editProductSections($this->request->get['product_id'], $this->request->post['product_section']); 
+			if (isset($this->request->post['product_section'])) {
+				$this->model_catalog_product->editProductSections($this->request->get['product_id'], $this->request->post['product_section']);
+			} else {
+				$this->model_catalog_product->editProductSections($this->request->get['product_id'], array());
 			}
 			$url = '';
 

@@ -305,10 +305,21 @@ if (!isset($search)) {
           <!-- End TrustBox widget -->
         </div>
         <div class="header-cart">
-          <button class="minicart-trigger"><i class="fa-solid fa-shopping-cart"></i> <p class="header-cart-count"> <span><?php echo $cart_count; ?></span> </p></button>
+          <button class="minicart-trigger"><i class="fa-solid fa-shopping-cart"></i></button>
           <div class="minicart just-count">
             <?php echo $cart; ?>
           </div>
+
+          <div class="cartInfo" id="cart">
+            <?php
+              preg_match('/\d+/', $text_items, $matches);
+              $item_count = isset($matches[0]) ? $matches[0] : 0;
+            ?>
+            <button type="button" data-loading-text="<?php echo $text_loading; ?>" class="item">
+              <?php echo $item_count; ?>
+            </button>
+          </div>
+
         </div>
         <button class="mobile-menu-trigger"><i class="fa-solid fa-bars"></i></button>
       </div>
