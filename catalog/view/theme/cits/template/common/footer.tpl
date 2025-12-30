@@ -192,6 +192,15 @@ $('.header-search-box input[name=\'search\']').bind('keydown', function(e) {
     $('#button-search2').trigger('click');
   }
 });
+ 
+$(document).ready(function() {
+  $('.header-search-category').on('change', function() {
+      let $selectedOption = $(this).find('option:selected');
+      let optionText = $selectedOption.text();
+      let trimmedText = optionText.replace(/^(\s|\u00A0)+/g, '').trim();
+      $selectedOption.text(trimmedText);
+  });
+}); 
 
 $('select[name=\'category_id\']').on('change', function() {
   if (this.value == '0') {
