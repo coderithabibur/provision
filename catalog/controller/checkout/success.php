@@ -20,6 +20,9 @@ class ControllerCheckoutSuccess extends Controller {
             $data['order_currency']  = isset($this->session->data['currency']) ? $this->session->data['currency'] : '';
             $data['order_total']     = 0.0;
             $data['shipping_total']  = 0.0;
+            
+            // Initialize ga4_purchase to prevent undefined variable warning
+            $data['ga4_purchase'] = null;
 
             if ($order_info) {
                 // fill from order

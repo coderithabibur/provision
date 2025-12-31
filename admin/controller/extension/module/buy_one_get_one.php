@@ -70,11 +70,25 @@ class ControllerExtensionModuleBuyOneGetOne extends Controller {
                         } else {
                             $image = $this->model_tool_image->resize('no_image.png', 40, 40);
                         }
+
+                        if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+                            $price = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+                        } else {
+                            $price = false;
+                        }
+
+                        if ((float)$product_info['special']) {
+                            $special = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+                        } else {
+                            $special = false;
+                        }
                         
                         $data['offers'][] = array(
                             'product_id' => $product_info['product_id'], 
                             'name'       => $product_info['name'],
-                            'thumb'      => $image
+                            'thumb'      => $image,
+                            'price'      => $price,
+                            'special'    => $special
                         );
                     }
                 }

@@ -379,7 +379,7 @@ if (!isset($search)) {
 
       <!-- Search Box -->
       <div class="header-search-box">
-          <select name="category_id" class="header-search-category" style="width:200px">
+          <select name="category_id" class="header-search-category" style="width:250px">
             <option value="0">All Categories</option>
             <?php foreach ($categories as $category_1) { ?>
             <?php if (isset($category_1['category_id'])) { ?>

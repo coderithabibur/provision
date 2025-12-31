@@ -24,6 +24,12 @@ class ModelToolImage extends Model {
 			}
 
 			list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $old_image);
+
+			// --- FIX: Logic to handle missing fallback image to prevent errors ---
+            if (!is_file(DIR_IMAGE . $old_image)) {
+                return;
+            }
+			// --- END FIX ---
             // New Line added below to fix the admin image issue by sahib chadha
             //copy(DIR_IMAGE . $old_image, DIR_IMAGE . $new_image);
 			
@@ -39,6 +45,17 @@ class ModelToolImage extends Model {
 				copy(DIR_IMAGE . $old_image, DIR_IMAGE . $new_image);
 			}
 		}
+
+        // --- FIX: Fallback if cache generation failed ---
+        if (!is_file(DIR_IMAGE . $new_image)) {
+            // Try to use the no_image placeholder
+            if (is_file(DIR_IMAGE . 'no_image.jpg')) {
+                 copy(DIR_IMAGE . 'no_image.jpg', DIR_IMAGE . $new_image);
+            } elseif (is_file(DIR_IMAGE . 'no_image.png')) {
+                 copy(DIR_IMAGE . 'no_image.png', DIR_IMAGE . $new_image);
+            }
+        }
+        // --- END FIX ---
 
 		if ($this->request->server['HTTPS']) {
 			return HTTPS_CATALOG . 'image/' . $new_image;

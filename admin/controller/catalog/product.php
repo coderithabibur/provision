@@ -645,6 +645,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['button_image_add'] = $this->language->get('button_image_add');
 		$data['button_remove'] = $this->language->get('button_remove');
 		$data['button_recurring_add'] = $this->language->get('button_recurring_add');
+		$data['button_add'] = $this->language->get('button_add'); // Added to fix undefined variable warning
 
 		$data['tab_general'] = $this->language->get('tab_general');
 		$data['tab_data'] = $this->language->get('tab_data');

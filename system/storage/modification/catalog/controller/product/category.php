@@ -116,6 +116,9 @@ class ControllerProductCategory extends Controller {
 				} else {
 					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
 				}
+				// Define path safely
+				$path = isset($this->request->get['path']) ? $this->request->get['path'] : '';
+
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 					$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
 				} else { $price = false; }
@@ -135,7 +138,7 @@ if($this->config->get("nerdherd_direct_links")) {
 					'reviews'     => (int)$result['reviews'],
 					'price'       => $price,
 					'special'     => $special,
-					'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+					'href'        => $this->url->link('product/product', 'path=' . $path . '&product_id=' . $result['product_id'])
 				);
 			}
 			
@@ -144,7 +147,7 @@ if($this->config->get("nerdherd_direct_links")) {
 			$pagination->total = $product_total;
 			$pagination->page = $page;
 			$pagination->limit = $limit;
-			$pagination->url = $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&page={page}');
+			$pagination->url = $this->url->link('product/category', 'path=' . $path . '&page={page}');
 			$data['pagination'] = $pagination->render();
 			$data['results'] = sprintf($this->language->get('text_pagination'), ($product_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($product_total - $limit)) ? $product_total : ((($page - 1) * $limit) + $limit), $product_total, ceil($product_total / $limit));
 
@@ -177,6 +180,10 @@ if($this->config->get("nerdherd_direct_links")) {
 		if (isset($this->request->get['category_id'])) {
 			$category_id = (int)$this->request->get['category_id'];
 			
+			// Initialize variables to prevent undefined warnings
+			$url = '';
+			$path = isset($this->request->get['path']) ? $this->request->get['path'] : '';
+
 			// --- FIX #2: Fallback logic is now included for AJAX calls as well ---
 			$filter_data = array(
 				'filter_category_id' => $category_id, 
@@ -227,7 +234,7 @@ if($this->config->get("nerdherd_direct_links")) {
 					'price'       => $price,
 					'special'     => $special,
 					'reviews'     => (int)$result['reviews'],
-					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
+					'href'        => $this->url->link('product/product', 'path=' . $path . '&product_id=' . $result['product_id'])
 				);
 			}
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/product_grid_partial.tpl')) {

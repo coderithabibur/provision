@@ -47,7 +47,21 @@ class ModelToolImage extends Model {
 				copy(DIR_IMAGE . $old_image, DIR_IMAGE . $new_image);
 			}
 		}
-        if (!empty($this->config->get('config_cloudfront_url'))) {
+
+        // --- FIX: Fallback if cache generation failed ---
+        if (!is_file(DIR_IMAGE . $new_image)) {
+            // Try to use the no_image placeholder
+            if (is_file(DIR_IMAGE . 'no_image.jpg')) {
+                 copy(DIR_IMAGE . 'no_image.jpg', DIR_IMAGE . $new_image);
+            } elseif (is_file(DIR_IMAGE . 'no_image.png')) {
+                 copy(DIR_IMAGE . 'no_image.png', DIR_IMAGE . $new_image);
+            }
+        }
+        // --- END FIX ---
+        // Fix: Disable CloudFront on local environment
+        $is_local = (strpos($this->request->server['HTTP_HOST'], '.test') !== false) || (strpos($this->request->server['HTTP_HOST'], 'localhost') !== false);
+        
+        if (!empty($this->config->get('config_cloudfront_url')) && !$is_local) {
             if ($this->request->server['HTTPS']) {
                 return $this->config->get('config_cloudfront_url') . '/image/' . $new_image;
             } else {

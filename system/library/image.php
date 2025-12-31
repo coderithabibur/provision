@@ -24,6 +24,8 @@ class Image {
 				$this->image = imagecreatefrompng($file);
 			} elseif ($this->mime == 'image/jpeg') {
 				$this->image = imagecreatefromjpeg($file);
+			} elseif ($this->mime == 'image/webp') {
+				$this->image = imagecreatefromwebp($file);
 			}
 		} else {
 			exit('Error: Could not load image ' . $file . '!');
@@ -59,13 +61,15 @@ class Image {
 
 		$extension = strtolower($info['extension']);
 
-		if (is_resource($this->image)) {
+		if (is_resource($this->image) || $this->image instanceof \GdImage) {
 			if ($extension == 'jpeg' || $extension == 'jpg') {
 				imagejpeg($this->image, $file, $quality);
 			} elseif ($extension == 'png') {
 				imagepng($this->image, $file);
 			} elseif ($extension == 'gif') {
 				imagegif($this->image, $file);
+			} elseif ($extension == 'webp') {
+				imagewebp($this->image, $file);
 			}
              
 			imagedestroy($this->image);
@@ -73,7 +77,7 @@ class Image {
 	}
 
 	public function resize($width = 0, $height = 0, $default = '') {
-		if (!$this->width || !$this->height) {
+		if (!$this->width || !$this->height || !$this->image) {
 			return;
 		}
 
