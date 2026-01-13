@@ -5,7 +5,7 @@
 	<code>2.0_compatibility_fix</code>
 	<version>2017-10-09</version>
 	<author>Clear Thinking, LLC</author>
-	<link>http://www.getclearthinking.com/contact?inquiry=Question regarding 2.0 Compatibility Fix: </link>
+	<link>https://www.getclearthinking.com/contact?inquiry=Question regarding 2.0 Compatibility Fix: </link>
 	
 	<file path="system/engine/action.php">
 		<operation error="skip">

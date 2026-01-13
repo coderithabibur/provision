@@ -1,9 +1,14 @@
 <?php
 class ModelToolImage extends Model {
 	public function resize($filename, $width, $height) {
-		if (!is_file(DIR_IMAGE . $filename)) {
-			return;
-		}
+        if (!is_file(DIR_IMAGE . $filename)) {
+            // $this->log->write('Image missing: ' . $filename);
+            return;
+        }
+
+        // Fix: Increase memory limit to prevent crash on large image resize
+        ini_set('memory_limit', '512M');
+        // $this->log->write('Resizing image: ' . $filename . ' to ' . $width . 'x' . $height);
 
 		$extension = pathinfo($filename, PATHINFO_EXTENSION);
 

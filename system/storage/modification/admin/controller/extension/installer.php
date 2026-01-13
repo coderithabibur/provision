@@ -310,15 +310,7 @@ class ControllerExtensionInstaller extends Controller {
 		}
 
 		// Check FTP status
-//karapuz (no_ftp.ocmod.xml) 
-		if (!empty($this->request->post['upload_without_ftp'])) {
-			$json = $this->copyUpload();
-			$this->response->addHeader('Content-Type: application/json');
-			$this->response->setOutput(json_encode($json));
-			return;			
-		}
-///karapuz (no_ftp.ocmod.xml) 
-		if (!$this->config->get('config_ftp_status')) {
+		if (false) {
 			$json['error'] = $this->language->get('error_ftp_status');
 		}
 
@@ -347,19 +339,15 @@ class ControllerExtensionInstaller extends Controller {
 			}
 
 			// Connect to the site via FTP
-			$connection = ftp_connect($this->config->get('config_ftp_hostname'), $this->config->get('config_ftp_port'));
+			$connection = false; /* ftp_connect($this->config->get('config_ftp_hostname'), $this->config->get('config_ftp_port')); */
 
-			if ($connection) {
-				$login = ftp_login($connection, $this->config->get('config_ftp_username'), $this->config->get('config_ftp_password'));
+			if (true) { /* if ($connection) { */
+				$login = true; /* ftp_login($connection, $this->config->get('config_ftp_username'), $this->config->get('config_ftp_password')); */
 
 				if ($login) {
-					if ($this->config->get('config_ftp_root')) {
-						$root = ftp_chdir($connection, $this->config->get('config_ftp_root'));
-					} else {
-						$root = ftp_chdir($connection, '/');
-					}
+					$root = true; /* ftp_chdir bypassed */
 
-					if ($root) {
+					if (true) { /* if ($root) { */
 						foreach ($files as $file) {
 							$destination = substr($file, strlen($directory));
 
@@ -383,7 +371,7 @@ class ControllerExtensionInstaller extends Controller {
 							}
 
 							if (is_dir($file)) {
-								$list = ftp_nlist($connection, substr($destination, 0, strrpos($destination, '/')));
+								$list = array(); /* $list = ftp_nlist($connection, substr($destination, 0, strrpos($destination, '/'))); */
 
 								// Basename all the directories because on some servers they don't return the fulll paths.
 								$list_data = array();
@@ -393,14 +381,20 @@ class ControllerExtensionInstaller extends Controller {
 								}
 
 								if (!in_array(basename($destination), $list_data)) {
-									if (!ftp_mkdir($connection, $destination)) {
+									
+      $root_path = dirname(DIR_SYSTEM) . '/';
+      if (!is_dir($root_path . $destination) && !mkdir($root_path . $destination, 0777, true)) {
+      
 										$json['error'] = sprintf($this->language->get('error_ftp_directory'), $destination);
 									}
 								}
 							}
 
 							if (is_file($file)) {
-								if (!ftp_put($connection, $destination, $file, FTP_BINARY)) {
+								
+      $root_path = dirname(DIR_SYSTEM) . '/';
+      if (!copy($file, $root_path . $destination)) {
+      
 									$json['error'] = sprintf($this->language->get('error_ftp_file'), $file);
 								}
 							}
@@ -412,7 +406,7 @@ class ControllerExtensionInstaller extends Controller {
 					$json['error'] = sprintf($this->language->get('error_ftp_login'), $this->config->get('config_ftp_username'));
 				}
 
-				ftp_close($connection);
+				// ftp_close($connection);
 			} else {
 				$json['error'] = sprintf($this->language->get('error_ftp_connection'), $this->config->get('config_ftp_hostname'), $this->config->get('config_ftp_port'));
 			}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+  <name>LocalCopy</name>
+  <code>localcopy</code>
+  <version>1.0</version>
+  <author>Antigravity</author>
+  <link>http://www.opencart.com</link>
+  <file path="admin/controller/extension/installer.php">
+    <operation>
+      <search><![CDATA[if (!$this->config->get('config_ftp_status')) {]]></search>
+      <add position="replace"><![CDATA[if (false) {]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[$connection = ftp_connect($this->config->get('config_ftp_hostname'), $this->config->get('config_ftp_port'));]]></search>
+      <add position="replace"><![CDATA[$connection = false; /* ftp_connect($this->config->get('config_ftp_hostname'), $this->config->get('config_ftp_port')); */]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[if ($connection) {]]></search>
+      <add position="replace"><![CDATA[if (true) { /* if ($connection) { */]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[$login = ftp_login($connection, $this->config->get('config_ftp_username'), $this->config->get('config_ftp_password'));]]></search>
+      <add position="replace"><![CDATA[$login = true; /* ftp_login($connection, $this->config->get('config_ftp_username'), $this->config->get('config_ftp_password')); */]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[if ($this->config->get('config_ftp_root')) {]]></search>
+      <add position="replace" offset="4"><![CDATA[$root = true; /* ftp_chdir bypassed */]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[if ($root) {]]></search>
+      <add position="replace"><![CDATA[if (true) { /* if ($root) { */]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[$list = ftp_nlist($connection, substr($destination, 0, strrpos($destination, '/')));]]></search>
+      <add position="replace"><![CDATA[$list = array(); /* $list = ftp_nlist($connection, substr($destination, 0, strrpos($destination, '/'))); */]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[if (!ftp_mkdir($connection, $destination)) {]]></search>
+      <add position="replace"><![CDATA[
+      $root_path = dirname(DIR_SYSTEM) . '/';
+      if (!is_dir($root_path . $destination) && !mkdir($root_path . $destination, 0777, true)) {
+      ]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[if (!ftp_put($connection, $destination, $file, FTP_BINARY)) {]]></search>
+      <add position="replace"><![CDATA[
+      $root_path = dirname(DIR_SYSTEM) . '/';
+      if (!copy($file, $root_path . $destination)) {
+      ]]></add>
+    </operation>
+    <operation>
+        <search><![CDATA[ftp_close($connection);]]></search>
+        <add position="replace"><![CDATA[// ftp_close($connection);]]></add>
+    </operation>
+  </file>
+</modification>

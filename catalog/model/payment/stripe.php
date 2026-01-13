@@ -1,51 +1,26 @@
 <?php
-class ModelPaymentStripe extends Model {
-	public function getMethod($address, $total) {
-		$this->load->language('payment/stripe');
+//==============================================================================
+// Stripe Payment Gateway Pro v2
+// 
+// Author: Clear Thinking, LLC
+// E-mail: johnathan@getclearthinking.com
+// Website: http://www.getclearthinking.com
+// 
+// All code within this file is copyright Clear Thinking, LLC.
+// You may not copy or reuse code within this file without written permission.
+//==============================================================================
 
-		$status = true;
-
-		// stripe does not allow payment for 0 amount
-		if($total <= 0) {
-			$status = false; 
-		}
-
-		$method_data = array();
-
-		if ($status) {
-			$method_data = array(
-				'code'       => 'stripe',
-				'title'      => $this->language->get('text_title'),
-				'terms'      => '',
-				'sort_order' => $this->config->get('stripe_sort_order')
-			);
-		}
-
-		return $method_data;
-	}
-
-	public function log($file, $line, $caption, $message){
-
-		if(!$this->config->get('payment_stripe_debug')){
-			return;
-		}
-
-		$iso_time = date('c');
-		$filename = 'stripe-'.strstr($iso_time, 'T', true).'.log';
+class ModelPaymentStripe extends Model {		
+	private $type = 'payment';
+	private $name = 'stripe';
 	
-		$log = new Log($filename);
-		$msg = "[" . $iso_time . "] ";
-		$msg .= "<" . $file . "> ";
-		$msg .= "#" . $line . "# ";
-		$msg .= "~" . $caption . "~ ";
-
-		if(is_array($message)){
-			$msg .= print_r($message, true);
-		} else {
-			$msg .= PHP_EOL . $message;
-		}
-
-		$msg .= PHP_EOL . PHP_EOL;		
-		$log->write($msg);
+	public function recurringPayments() {
+		return true;
+	}
+	
+	public function getMethod($address, $total = 0) {
+		$this->load->model('extension/' . $this->type . '/' . $this->name);
+		return $this->{'model_extension_' . $this->type . '_'. $this->name}->getMethod($address, $total);
 	}
 }
+?>

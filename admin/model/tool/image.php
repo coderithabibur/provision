@@ -4,6 +4,9 @@ class ModelToolImage extends Model {
 		if (!is_file(DIR_IMAGE . $filename)) {
 			return;
 		}
+        
+        // Fix: Increase memory limit to prevent crash on large image resize
+        ini_set('memory_limit', '512M');
 
 		$extension = pathinfo($filename, PATHINFO_EXTENSION);
 
