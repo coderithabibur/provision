@@ -1,4 +1,10 @@
 <?php
+// DEBUG: Log template loading
+$log_file = DIR_SYSTEM . 'storage/logs/stripe_debug.log';
+$log_msg = date('Y-m-d H:i:s') . " - TWIG Template Loaded\n";
+$log_msg .= "Payment Intent: " . (isset($payment_intent) ? print_r($payment_intent, true) : 'NOT SET') . "\n";
+file_put_contents($log_file, $log_msg, FILE_APPEND);
+
 //==============================================================================
 // Stripe Payment Gateway Pro v2025-10-09
 // 
@@ -132,13 +138,77 @@
 		<div id="payment-element"></div>
 	</form>
 	
+	<style>
+		/* --- Professional Stripe Popup Styling --- */
+
+		/* 1. Modal Container Polish */
+		#payment-popup .modal-content {
+			border-radius: 12px !important;
+			border: none !important;
+			box-shadow: 0 15px 35px rgba(0,0,0,0.2) !important;
+			overflow: hidden !important;
+		}
+
+		/* 2. Stripe Element Spacing */
+		#payment-element {
+			margin-bottom: 20px;
+		}
+
+		/* 3. Hide External Wallets/Link Buttons */
+		.p-LinkButton, .p-WalletButton, .p-Wallet { 
+			display: none !important; 
+		}
+
+		/* 4. Primary Button Styling (Orange Theme) */
+		#payment-popup .btn, 
+		#button-confirm, 
+		.btn-primary,
+		a.btn-primary,
+		button.btn-primary {
+			background-color: #FE7300 !important;
+			border: 1px solid #FE7300 !important;
+			color: #ffffff !important;
+			font-weight: 600 !important;
+			border-radius: 6px !important; /* Slightly rounded */
+			padding: 12px 24px !important;
+			font-size: 16px !important;
+			text-transform: uppercase !important;
+			letter-spacing: 0.5px !important;
+			transition: all 0.3s ease !important;
+			box-shadow: 0 4px 6px rgba(254, 115, 0, 0.2) !important;
+			width: 100%; /* Make full width for better mobile UX */
+			display: block;
+			text-align: center;
+		}
+
+		/* Hover State */
+		#payment-popup .btn:hover, 
+		#button-confirm:hover, 
+		.btn-primary:hover,
+		a.btn-primary:hover,
+		button.btn-primary:hover {
+			background-color: #e66800 !important;
+			border-color: #e66800 !important;
+			transform: translateY(-2px);
+			box-shadow: 0 6px 12px rgba(254, 115, 0, 0.3) !important;
+		}
+
+		/* Disabled State */
+		#payment-popup .btn:disabled, 
+		#button-confirm:disabled {
+			background-color: #ffdcb0 !important;
+			border-color: #ffdcb0 !important;
+			cursor: not-allowed;
+			transform: none !important;
+		}
+	</style>
 	<script>
 		var stripe;
 		var elements;
 		var paymentElement;
 		
 		$.getScript('https://js.stripe.com/v3/', function(data) {
-			stripe = Stripe('<?php echo $settings[$settings['transaction_mode'] . '_publishable_key']; ?>', {betas: ['server_side_confirmation_beta_1', 'link_default_integration_beta_1'], stripeAccount: '<?php echo $settings['account_id']; ?>', apiVersion: '2022-08-01;server_side_confirmation_beta=v1'});
+			stripe = Stripe('<?php echo $settings[$settings['transaction_mode'] . '_publishable_key']; ?>', {betas: ['server_side_confirmation_beta_1'], stripeAccount: '<?php echo $settings['account_id']; ?>', apiVersion: '2022-08-01;server_side_confirmation_beta=v1'});
 			
 			elements = stripe.elements({
 				appearance: {
@@ -156,7 +226,12 @@
 				locale: '<?php echo (substr($language, 0, 2) == 'zh') ? $language : substr($language, 0, 2); ?>',
 			});
 			
+			
 			paymentElement = elements.create('payment', {
+				wallets: {
+					applePay: 'never',
+					googlePay: 'never'
+				},
 				layout: {
 					type: '<?php echo ($settings['payment_form_style'] == 'tabs') ? 'tabs' : 'accordion'; ?>',
 					defaultCollapsed: <?php echo ($settings['payment_form_default'] == 'collapsed') ? 'true' : 'false'; ?>,

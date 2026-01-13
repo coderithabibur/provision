@@ -182,6 +182,7 @@
         <?php if ($reward) { ?>
         <p class="spl"><?php echo $text_reward; ?> <span><?php echo $reward; ?></span></p>
         <?php } ?>
+        <script id="payment-method-messaging-script" data-oc="2" src="catalog/view/javascript/stripe_messaging.js"></script>
         <p class="spl"><?php echo $text_stock; ?> <span><?php echo $stock; ?></span></p>
 
         <!-- Quantity & Add to Cart -->

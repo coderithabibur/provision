@@ -12,7 +12,7 @@
 
   html {
     overflow-x: hidden;
-}
+  }
 
   * {
     margin: 0;
@@ -746,9 +746,11 @@
     cursor: pointer;
     outline: none;
   }
-  .header-search-category option{
+
+  .header-search-category option {
     white-space: normal;
   }
+
   .header-search-category:focus {
     outline: none;
     background-color: #f0f0f0;
@@ -2279,7 +2281,7 @@
 
   .category-product-pagination {
     display: block !important;
-    margin-top: 30px !important;    
+    margin-top: 30px !important;
   }
 
   /* Video Section */
@@ -4288,17 +4290,18 @@
       top: 40px;
       width: 100%;
       padding-top: 0;
-  }
+    }
 
     .header-nav ul li a {
       padding: 15px 0;
       border-bottom: 1px solid #f5f5f5;
       color: #333;
     }
+
     .footer-bottom .container {
       flex-direction: column;
       gap: 15px;
-  }
+    }
 
     /* Mobile Trigger */
     .mobile-menu-trigger {
@@ -5871,4 +5874,12 @@
 
   .trustpilot-widget {
     min-width: 300px;
-}
+  }
+
+
+  a#button-confirm {
+    background: #fe7300 !important;
+    color: var(--white-color) !important;
+    padding: 12px 35px !important;
+    height: 50px;
+  }
