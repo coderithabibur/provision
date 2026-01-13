@@ -5882,4 +5882,30 @@
     color: var(--white-color) !important;
     padding: 12px 35px !important;
     height: 50px;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    background-image: none !important;
+    box-shadow: 0 4px 15px rgba(254, 115, 0, 0.3) !important;
+    border-radius: 8px !important;
+    border: none !important;
+  }
+
+  button#qc_confirm_order {
+    background: #fe7300 !important;
+    color: var(--white-color) !important;
+    padding: 12px 35px !important;
+    height: 50px;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    background-image: none !important;
+    box-shadow: 0 4px 15px rgba(254, 115, 0, 0.3) !important;
+    border-radius: 8px !important;
+    border: none !important;
+    text-transform: uppercase !important;
+  }
+
+  h4.panel-title .icon {
+    margin-right: 5px;
   }
