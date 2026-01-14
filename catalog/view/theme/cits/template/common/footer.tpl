@@ -100,7 +100,7 @@
           <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/discover.png">
           <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/mastercard.png">
           <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/american.png"> 
-          <img src="catalog/view/theme/cits/images/pp4.png">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/cits/images/pp4.jpg">
         </div>
       </div>
     </div>
