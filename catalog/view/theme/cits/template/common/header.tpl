@@ -35,6 +35,8 @@ if (!isset($search)) {
     rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" type="text/css" href="catalog/view/theme/cits/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="catalog/view/theme/cits/assets/css/responsive.css">
 
@@ -58,11 +60,11 @@ if (!isset($search)) {
     
 
     <script  src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
-    <script  src="catalog/view/theme/cits/js/bootstrap.min.js" type="text/javascript"></script>
-    <script  src="catalog/view/javascript/common.js" type="text/javascript"></script>
+    <script  src="catalog/view/theme/cits/js/bootstrap.min.js" type="text/javascript" defer></script>
+    <script  src="catalog/view/javascript/common.js" type="text/javascript" defer></script>
 
-    <script  src="catalog/view/theme/cits/js/core.js"></script>
-    <script  src="catalog/view/theme/cits/js/menu.js" type="text/javascript"></script>
+    <script  src="catalog/view/theme/cits/js/core.js" defer></script>
+    <script  src="catalog/view/theme/cits/js/menu.js" type="text/javascript" defer></script>
     
     <script>
     (function(w,d,t,r,u)
@@ -95,7 +97,11 @@ if (!isset($search)) {
     <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
     <?php } ?>
     <?php foreach ($scripts as $script) { ?>
+    <?php if (strpos($script, 'bganycombi.js') !== false) { ?>
+    <script src="<?php echo $script; ?>" type="text/javascript" defer></script>
+    <?php } else { ?>
     <script src="<?php echo $script; ?>" type="text/javascript"></script>
+    <?php } ?>
     <?php } ?>
     <?php foreach ($analytics as $analytic) { ?>
     <?php echo $analytic; ?>

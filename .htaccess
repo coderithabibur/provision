@@ -32,33 +32,38 @@ Header add Access-Control-Allow-Origin "*"
 Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
 Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
 
-<IfModule mod_headers.c>
-  <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css)$">
-    Header set Access-Control-Allow-Origin "*"
-  </FilesMatch>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/pdf "access plus 1 month"
+  ExpiresByType text/x-javascript "access plus 1 month"
+  ExpiresByType application/x-shockwave-flash "access plus 1 month"
+  ExpiresByType image/vnd.microsoft.icon "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/x-javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/otf "access plus 1 year"
 </IfModule>
 
-<FilesMatch "\.(gif|jpg|jpeg|png|GIF|JPG|JPEG|PNG)$">
-  ExpiresDefault A2592000
-  Header append Cache-Control "public"
+<FilesMatch "\.(gif|jpg|jpeg|png|webp|svg|ico|GIF|JPG|JPEG|PNG|WEBP|SVG|ICO)$">
+  Header set Cache-Control "public, max-age=31536000"
 </FilesMatch>
 
-<FilesMatch "\.(less|js|css|gz)$">
-  ExpiresDefault A2592000
-  Header append Cache-Control "proxy-revalidate"
+<FilesMatch "\.(js|css|woff|woff2|ttf|eot|otf)$">
+  Header set Cache-Control "public, max-age=2592000"
 </FilesMatch>
-
-<FilesMatch "\.(php)$">
-  ExpiresActive Off
-  Header set Cache-Control "private, no-cache, no-store, proxy-revalidate, no-transform"
-  Header set Pragma "no-cache"
-</FilesMatch>
-
-<IfModule mod_headers.c>
-  <FilesMatch "\.(less|js|css|xml|gz)$">
-    Header append Vary Accept-Encoding
-  </FilesMatch>
-</IfModule>
 
 # compress text, HTML, JavaScript, CSS, and XML
 AddOutputFilterByType DEFLATE text/plain

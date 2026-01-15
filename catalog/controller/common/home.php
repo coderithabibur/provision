@@ -74,6 +74,8 @@ class ControllerCommonHome extends Controller {
         $highlight_category_ids = array(115, 24, 164,); // e.g., LED, HID, Laser Driving Lights, Laser Light Bar
 
         // 2. Loop through your specific IDs and get the info for each one
+        // 2. Loop through your specific IDs and get the info for each one
+        $iteration_count = 0;
         foreach ($highlight_category_ids as $category_id) { 
             $category_info = $this->model_catalog_category->getCategory($category_id);
 
@@ -90,6 +92,12 @@ class ControllerCommonHome extends Controller {
                     $image_url = $this->model_tool_image->resize('placeholder.png', 500, 500);
                 } 
                 
+                // Preload the first image (LCP)
+                if ($iteration_count == 0) {
+                    $this->document->addLink($image_url, 'preload" as="image');
+                }
+                $iteration_count++;
+
                 $data['highlight_categories'][] = array(
                     'name'          => $category_info['name'],
                     'image'         => $image_url,
