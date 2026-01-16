@@ -192,7 +192,7 @@ if (!isset($search)) {
       <nav class="header-nav">
         <div class="mobile-menu-header">
           <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" alt="<?php echo $name; ?>"></a>
-          <button class="menu-close-btn"><i class="fa-solid fa-close"></i></button>
+          <button class="menu-close-btn" aria-label="Close Mobile Menu"><i class="fa-solid fa-close"></i></button>
         </div>
         <ul>
           <?php 
@@ -204,11 +204,12 @@ if (!isset($search)) {
           <li class="<?php echo ($route == 'product/category' || $path == '115') ? 'active' : ''; ?>"><a href="/index.php?route=product/category&path=115">shop</a></li>
           <li class="<?php echo ($info_id == '4') ? 'active' : ''; ?>"><a href="/index.php?route=information/information&information_id=4">about</a></li>
           <li class="<?php echo ($route == 'information/contact') ? 'active' : ''; ?>"><a href="/index.php?route=information/contact">contact</a></li>
-        <div class="mobile-category">
+        <li class="mobile-category">
+          <ul>
           <?php foreach ($categories as $category) { ?>
             <li><a href="<?php echo $category['href']; ?>">
                 <span>
-                  <img src="<?php echo $category['icon']; ?>" alt="<?php echo $category['name']; ?>">
+                  <img src="<?php echo $category['icon']; ?>" alt="">
                   <?php echo $category['name']; ?>
                 </span>
                 <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-down"></i><?php } ?></a>
@@ -232,7 +233,8 @@ if (!isset($search)) {
               <?php } ?>
             </li>
           <?php } ?>
-        </div>
+          </ul>
+        </li>
         </ul>
         <div class="mobile-nav-bottom">
           <div class="mobile-nav-account-info">
@@ -314,7 +316,7 @@ if (!isset($search)) {
             <li>
               <a href="<?php echo $category['href']; ?>" data-image="<?php echo $category['image']; ?>">
                 <span>                  
-                  <img src="<?php echo $category['icon']; ?>" alt="<?php echo $category['name']; ?>">                    
+                  <img src="<?php echo $category['icon']; ?>" alt="">                    
                   <?php echo $category['name']; ?>
                 </span>
                 <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-right"></i><?php } ?></a>
@@ -335,7 +337,7 @@ if (!isset($search)) {
                   <?php } ?>
                 </ul>
                 <div class="cat-submenu-image">
-                  <img src="<?php echo $category['image']; ?>" class="submenu-preview" alt="<?php echo $category['name']; ?>">
+                  <img src="<?php echo $category['image']; ?>" class="submenu-preview" alt="">
                 </div>
               </div>
               <?php } ?>
@@ -420,4 +422,5 @@ if (!isset($search)) {
 
 
   <!-- End Header -->
+  <main>
 

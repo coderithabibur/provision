@@ -1,4 +1,5 @@
 <?php echo $client_logos_section; ?>
+  </main>
   <!-- Footer Section -->
   <footer class="site-footer">
     
