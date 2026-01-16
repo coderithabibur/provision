@@ -5,6 +5,24 @@
 
 RewriteEngine On
 
+# AntiGravity: Serve WebP images if browser supports it and file exists
+<IfModule mod_rewrite.c>
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{REQUEST_FILENAME} (.*)\.(gif|jpg|jpeg|png)$
+  RewriteCond %{REQUEST_FILENAME}\.webp -f
+  RewriteRule ^(.*)\.(gif|jpg|jpeg|png)$ $1.$2.webp [L,T=image/webp]
+
+  # Alternate rule if extension is replaced instead of appended (depends on how we saved it)
+  # We saved as filename.jpg.webp or filename-100x100.webp?
+  # In model: substr(..., 0, strrpos(..., '.')) . '.webp'; -> filename-100x100.webp
+  # So request for filename-100x100.jpg should check for filename-100x100.webp
+  
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{REQUEST_FILENAME} (.*)\.(gif|jpg|jpeg|png)$
+  RewriteCond %{DOCUMENT_ROOT}/$1.webp -f
+  RewriteRule ^(.*)\.(gif|jpg|jpeg|png)$ $1.webp [L,T=image/webp]
+</IfModule>
+
 RewriteRule ^product-reviews\.php$ - [L]
 RewriteRule ^product-reviews\.xml$ /product-reviews.php [L,QSA,NC]
 

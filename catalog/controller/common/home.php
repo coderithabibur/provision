@@ -94,7 +94,7 @@ class ControllerCommonHome extends Controller {
                 
                 // Preload the first image (LCP)
                 if ($iteration_count == 0) {
-                    $this->document->addLink($image_url, 'preload" as="image');
+                    $this->document->addLink($image_url, 'preload" as="image" fetchpriority="high');
                 }
                 $iteration_count++;
 
