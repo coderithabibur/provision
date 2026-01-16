@@ -30,7 +30,8 @@ if (!isset($search)) {
     <meta name="keywords" content= "<?php echo $keywords; ?>" />
     <?php } ?>
     <meta name="msvalidate.01" content="63BF2CA10896D52F7D0E3239BF477F37" />
-    <link href="catalog/view/theme/cits/stylesheet/bootstrap.css" rel="stylesheet" media="screen" />
+    <link rel="preload" href="catalog/view/theme/cits/stylesheet/bootstrap.css" as="style" />
+    <link href="catalog/view/theme/cits/stylesheet/bootstrap.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
