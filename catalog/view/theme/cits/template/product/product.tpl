@@ -9,16 +9,16 @@
           <div class="swiper-wrapper">
             <?php if ($popup) { ?>
             <div class="swiper-slide">
-              <a href="<?php echo $popup; ?>" class="popup-link" title="<?php echo $heading_title; ?>">
+              <a href="<?php echo $popup; ?>" class="popup-link" title="<?php echo $heading_title; ?>" aria-label="View main product image">
                 <img src="<?php echo $popup; ?>" alt="<?php echo $heading_title; ?>" />
               </a>
             </div>
             <?php } ?>
 
             <?php if ($images) { ?>
-              <?php foreach ($images as $image) { ?>
+              <?php foreach ($images as $index => $image) { ?>
               <div class="swiper-slide">
-                <a href="<?php echo $image['popup']; ?>" class="popup-link" title="<?php echo $heading_title; ?>">
+                <a href="<?php echo $image['popup']; ?>" class="popup-link" title="<?php echo $heading_title; ?>" aria-label="View gallery image <?php echo $index + 1; ?>">
                   <img src="<?php echo $image['popup']; ?>" alt="<?php echo $heading_title; ?>" />
                 </a>
               </div>
@@ -74,6 +74,7 @@
                   <select 
                     name="option[<?php echo $option['product_option_id']; ?>]" 
                     class="form-control"
+                    aria-label="<?php echo $option['name']; ?>"
                     <?php if ($option['required']) { ?>required<?php } ?>>
                     <option value="">-- Select <?php echo $option['name']; ?> --</option>
                     <?php foreach ($option['product_option_value'] as $option_value) { ?>
@@ -122,6 +123,7 @@
                     type="text"
                     name="option[<?php echo $option['product_option_id']; ?>]"
                     class="form-control"
+                    aria-label="<?php echo $option['name']; ?>"
                     <?php if ($option['required']) { ?>required<?php } ?>>
                 <?php } ?>
 
@@ -130,6 +132,7 @@
                   <textarea
                     name="option[<?php echo $option['product_option_id']; ?>]"
                     class="form-control"
+                    aria-label="<?php echo $option['name']; ?>"
                     <?php if ($option['required']) { ?>required<?php } ?>></textarea>
                 <?php } ?>
 
@@ -163,9 +166,9 @@
               <div class="ratingBox">
                 <?php for ($i = 1; $i <= 5; $i++) { ?>
                 <?php if ($rating < $i) { ?>
-                <a href="" > <i class="fas fa-star"></i> </a>
+                <a href="" aria-label="Rate <?php echo $i; ?> out of 5 stars"> <i class="fas fa-star"></i> </a>
                 <?php } else { ?>
-                <a class="active" href="" ><i class="fas fa-star"></i></a>
+                <a class="active" href="" aria-label="Rate <?php echo $i; ?> out of 5 stars"><i class="fas fa-star"></i></a>
                 <?php } ?>
                 <?php } ?>
               </div>
@@ -190,9 +193,9 @@
           <div class="product-cart">
             <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
             <div class="quantity">
-              <button type="button" class="quantity-minus">-</button>
-              <input type="text" id="input-quantity" name="quantity" value="1">
-              <button type="button" class="quantity-plus">+</button>
+              <button type="button" class="quantity-minus" aria-label="Decrease quantity">-</button>
+              <input type="text" id="input-quantity" name="quantity" value="1" aria-label="Quantity">
+              <button type="button" class="quantity-plus" aria-label="Increase quantity">+</button>
             </div>            
             <button type="button" id="button-cart" class="add-to-cart">ADD TO CART</button>
           </div>
@@ -208,7 +211,7 @@
         <div class="secure-checkout">
           <p>Guarantee safe & secure checkout</p>
           <div class="cards">
-            <img src="/catalog/view/theme/cits/assets/images/payment-method.png">
+            <img src="/catalog/view/theme/cits/assets/images/payment-method.png" alt="Payment Methods">
           </div>
         </div>
 

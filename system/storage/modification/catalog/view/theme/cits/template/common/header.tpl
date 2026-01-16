@@ -23,16 +23,24 @@ if (!isset($search)) {
     <meta name="description" content="Pro-Vision, a leading supplier of LED and HID lighting solutions. Over 20 years of expertise in automotive light upgrades and fleet enhancements. Committed to delivering optimal lighting solutions at competitive prices." />
 <?php } elseif ($description) { ?>
     <meta name="description" content="<?php echo $description; ?>" />
+<?php } else { ?>
+    <meta name="description" content="<?php echo $title; ?>" />
 <?php } ?>
     <?php if ($keywords) { ?>
     <meta name="keywords" content= "<?php echo $keywords; ?>" />
     <?php } ?>
     <meta name="msvalidate.01" content="63BF2CA10896D52F7D0E3239BF477F37" />
     <link href="catalog/view/theme/cits/stylesheet/bootstrap.css" rel="stylesheet" media="screen" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    </noscript>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,11 +67,11 @@ if (!isset($search)) {
     
 
     <script  src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
-    <script  src="catalog/view/theme/cits/js/bootstrap.min.js" type="text/javascript" defer></script>
-    <script  src="catalog/view/javascript/common.js" type="text/javascript" defer></script>
+    <script  src="catalog/view/theme/cits/js/bootstrap.min.js" type="text/javascript"></script>
+    <script  src="catalog/view/javascript/common.js" type="text/javascript"></script>
 
-    <script  src="catalog/view/theme/cits/js/core.js" defer></script>
-    <script  src="catalog/view/theme/cits/js/menu.js" type="text/javascript" defer></script>
+    <script  src="catalog/view/theme/cits/js/core.js"></script>
+    <script  src="catalog/view/theme/cits/js/menu.js" type="text/javascript"></script>
     
     <script>
     (function(w,d,t,r,u)
@@ -86,9 +94,13 @@ if (!isset($search)) {
     
     
     <?php foreach ($styles as $style) { ?>
-    <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
-    <?php }
-    ?>
+        <?php if (strpos($style['href'], 'bganycombi.css') !== false) { ?>
+        <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="print" onload="this.media='all'" />
+        <noscript><link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="screen" /></noscript>
+        <?php } else { ?>
+        <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
+        <?php } ?>
+    <?php } ?>
     <?php $url= 'http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
     ?>
 
@@ -220,12 +232,12 @@ if (!isset($search)) {
   <header class="header-main">
     <div class="container header-inner">
       <div class="header-logo">
-        <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" alt="<?php echo $name; ?>"></a>
+        <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" alt="<?php echo $name; ?>" fetchpriority="high" width="230" height="42"></a>
       </div>
       <nav class="header-nav">
         <div class="mobile-menu-header">
           <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" alt="<?php echo $name; ?>"></a>
-          <button class="menu-close-btn"><i class="fa-solid fa-close"></i></button>
+          <button class="menu-close-btn" aria-label="Close Mobile Menu"><i class="fa-solid fa-close"></i></button>
         </div>
         <ul>
           <?php 
@@ -237,11 +249,12 @@ if (!isset($search)) {
           <li class="<?php echo ($route == 'product/category' || $path == '115') ? 'active' : ''; ?>"><a href="/index.php?route=product/category&path=115">shop</a></li>
           <li class="<?php echo ($info_id == '4') ? 'active' : ''; ?>"><a href="/index.php?route=information/information&information_id=4">about</a></li>
           <li class="<?php echo ($route == 'information/contact') ? 'active' : ''; ?>"><a href="/index.php?route=information/contact">contact</a></li>
-        <div class="mobile-category">
+        <li class="mobile-category">
+          <ul>
           <?php foreach ($categories as $category) { ?>
             <li><a href="<?php echo $category['href']; ?>">
                 <span>
-                  <img src="<?php echo $category['icon']; ?>">
+                  <img src="<?php echo $category['icon']; ?>" alt="">
                   <?php echo $category['name']; ?>
                 </span>
                 <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-down"></i><?php } ?></a>
@@ -265,7 +278,8 @@ if (!isset($search)) {
               <?php } ?>
             </li>
           <?php } ?>
-        </div>
+          </ul>
+        </li>
         </ul>
         <div class="mobile-nav-bottom">
           <div class="mobile-nav-account-info">
@@ -296,7 +310,7 @@ if (!isset($search)) {
       <!-- Right Side -->
       <div class="header-right">
         <div class="header-google-reviews">
-        	<a href="https://www.google.com/m/storepages?q=pro-vision-lighting.com&c=AU&hl=en-AU" target="_blank"><img src="/catalog/view/theme/cits/assets/images/google-reviews.png" /></a>
+        	<a href="https://www.google.com/m/storepages?q=pro-vision-lighting.com&c=AU&hl=en-AU" target="_blank"><img src="/catalog/view/theme/cits/assets/images/google-reviews.png" alt="Google Marchent Reviews" /></a>
         </div>
         <div class="header-reviews">          
           <!-- TrustBox script -->
@@ -310,7 +324,7 @@ if (!isset($search)) {
           <!-- End TrustBox widget -->
         </div>
         <div class="header-cart">
-          <button class="minicart-trigger"><i class="fa-solid fa-shopping-cart"></i></button>
+          <button class="minicart-trigger" aria-label="Open Cart"><i class="fa-solid fa-shopping-cart"></i></button>
           <div class="minicart just-count">
             <?php echo $cart; ?>
           </div>
@@ -326,7 +340,7 @@ if (!isset($search)) {
           </div>
 
         </div>
-        <button class="mobile-menu-trigger"><i class="fa-solid fa-bars"></i></button>
+        <button class="mobile-menu-trigger" aria-label="Open Mobile Menu"><i class="fa-solid fa-bars"></i></button>
       </div>
     </div>
     <div class="minicart">
@@ -347,7 +361,7 @@ if (!isset($search)) {
             <li>
               <a href="<?php echo $category['href']; ?>" data-image="<?php echo $category['image']; ?>">
                 <span>                  
-                  <img src="<?php echo $category['icon']; ?>">                    
+                  <img src="<?php echo $category['icon']; ?>" alt="">                    
                   <?php echo $category['name']; ?>
                 </span>
                 <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-right"></i><?php } ?></a>
@@ -368,7 +382,7 @@ if (!isset($search)) {
                   <?php } ?>
                 </ul>
                 <div class="cat-submenu-image">
-                  <img src="<?php echo $category['image']; ?>" class="submenu-preview">
+                  <img src="<?php echo $category['image']; ?>" class="submenu-preview" alt="">
                 </div>
               </div>
               <?php } ?>
@@ -384,7 +398,7 @@ if (!isset($search)) {
 
       <!-- Search Box -->
       <div class="header-search-box">
-          <select name="category_id" class="header-search-category" style="width:250px">
+          <select name="category_id" class="header-search-category" style="width:250px" aria-label="Select Category">
             <option value="0">All Categories</option>
             <?php foreach ($categories as $category_1) { ?>
             <?php if (isset($category_1['category_id'])) { ?>
@@ -421,7 +435,7 @@ if (!isset($search)) {
           <input type="text" name="search" value="<?php echo $search; ?>" placeholder="Search Products…" id="input-search" class="form-control" />
           
           <!-- <input type="button" value="Search" id="button-search2" class="yellowbtn" /> -->
-          <button type="button" value="Search" id="button-search2"><i class="fas fa-search"></i></button>  
+          <button type="button" value="Search" id="button-search2" aria-label="Search"><i class="fas fa-search"></i></button>  
       </div>
       
       <div class="header-phone">
@@ -453,4 +467,5 @@ if (!isset($search)) {
 
 
   <!-- End Header -->
+  <main>
 

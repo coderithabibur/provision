@@ -7,7 +7,7 @@
     <div class="sidebar-cart">
       <div class="sidebar-cart-top">
         <h3>Shopping Cart</h3> 
-        <button class="sidebar-cart-close">
+        <button class="sidebar-cart-close" aria-label="Close Cart">
           <i class="fas fa-times"></i>
         </button>
       </div>

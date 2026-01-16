@@ -1372,6 +1372,32 @@
     margin-right: 5px;
   }
 
+  .meta p span {
+    font-weight: 600;
+    color: var(--black-color);
+    margin-right: 5px;
+  }
+
+  .meta p a {
+    display: inline-block;
+    padding: 8px 10px;
+    margin: 2px;
+    background: #f1f1f1;
+    border-radius: 4px;
+    color: #333;
+    min-height: 44px;
+    /* A11y touch target */
+    min-width: 44px;
+    text-align: center;
+    line-height: 28px;
+    transition: 0.3s;
+  }
+
+  .meta p a:hover {
+    background: var(--brand-color);
+    color: #fff;
+  }
+
   .best-sellers-item-price del {
     color: #555;
   }
@@ -1618,7 +1644,7 @@
     display: inline-block;
     padding: 12px 35px;
     background-color: var(--brand-color);
-    color: var(--black-color);
+    color: var(--white-color);
     font-weight: 600;
     border-radius: 35px;
     text-transform: uppercase;
@@ -1680,7 +1706,6 @@
     padding: 12px 0;
     font-weight: 600;
     letter-spacing: 0.5px;
-    color: var(--black-color);
   }
 
   /* BOGO Section Polish */
@@ -2489,7 +2514,14 @@
     font-weight: 500;
   }
 
-  .ratingsAndReviews .reviews a:hover {
+  .ratingsAndReviews .ratingBox a {
+    min-width: 24px;
+    min-height: 24px;
+    display: inline-block;
+    padding: 2px;
+  }
+
+  .ratingBox a.active {
     color: var(--brand-color);
   }
 

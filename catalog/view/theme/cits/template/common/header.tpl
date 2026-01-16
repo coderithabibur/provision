@@ -66,12 +66,12 @@ if (!isset($search)) {
     </script>
     
 
-    <script  src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript" defer></script>
-    <script  src="catalog/view/theme/cits/js/bootstrap.min.js" type="text/javascript" defer></script>
-    <script  src="catalog/view/javascript/common.js" type="text/javascript" defer></script>
+    <script  src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script  src="catalog/view/theme/cits/js/bootstrap.min.js" type="text/javascript"></script>
+    <script  src="catalog/view/javascript/common.js" type="text/javascript"></script>
 
-    <script  src="catalog/view/theme/cits/js/core.js" defer></script>
-    <script  src="catalog/view/theme/cits/js/menu.js" type="text/javascript" defer></script>
+    <script  src="catalog/view/theme/cits/js/core.js"></script>
+    <script  src="catalog/view/theme/cits/js/menu.js" type="text/javascript"></script>
     
     <script>
     (function(w,d,t,r,u)
