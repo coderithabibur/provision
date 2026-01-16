@@ -37,11 +37,15 @@
     <!-- Footer Main -->
     <div class="footer-main">
       <div class="container footer-grid">
-        <div class="footer-about">
-          <a href="<?php echo $home; ?>" class="footer-logo">
-            <img src="catalog/view/theme/cits/assets/images/footer-logo.jpg" alt="<?php echo $name; ?>">
-          </a>
-          <p>Preferred supplier of lighting to professionals for more than 20 years.</p>
+        <div class="footer-about-content">
+        <?php if ($footer_logo) { ?>
+        <a href="<?php echo $home; ?>">
+          <img src="<?php echo $footer_logo; ?>" alt="<?php echo $name; ?>" class="img-responsive" width="230" height="70">
+        </a>
+        <?php } else { ?>
+          <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
+        <?php } ?>
+        <p><?php echo $name; ?> is a leading supplier of LED and HID lighting solutions. Over 20 years of expertise in automotive light upgrades and fleet enhancements.</p>
           <h2>Social Links</h2>
           <div class="footer-social">
             <ul>

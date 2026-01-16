@@ -50,15 +50,15 @@ if (!isset($search)) {
     
     <link rel="preload" href="catalog/view/theme/cits/assets/css/style.css" as="style">
     <link rel="stylesheet" type="text/css" href="catalog/view/theme/cits/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="catalog/view/theme/cits/assets/css/responsive.css">
-
+    
+    <style>
+    /* Inline Responsive CSS */
+    <?php echo file_get_contents('catalog/view/theme/cits/assets/css/responsive.css'); ?>
+    </style>
+    
     <!-- Google Tag Manager (Lazily Loaded in Footer) -->
     <script>window.dataLayer = window.dataLayer || [];</script>
     <!-- End Google Tag Manager -->
-    
-
-    <script  src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
-    <script  src="catalog/view/javascript/common.js" type="text/javascript"></script>
     
 
     
