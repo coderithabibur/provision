@@ -292,5 +292,7 @@ $('select[name=\'category_id\']').trigger('change');
   
   <?php echo $custom_footer_code; ?>
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 </body>
 </html>
