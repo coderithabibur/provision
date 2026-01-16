@@ -79,7 +79,7 @@
           </div>
 
           <div class="single-product-btn-group">
-            <button type="button" class="add-to-cart-btn" onclick="cart.add('<?php echo $product['product_id']; ?>');">add to cart</button>
+            <button type="button" class="add-to-cart-btn" aria-label="Add <?php echo $product['name']; ?> to cart" onclick="cart.add('<?php echo $product['product_id']; ?>');">add to cart</button>
           </div>
         </div>
       </div>

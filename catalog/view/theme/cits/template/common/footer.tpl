@@ -44,10 +44,10 @@
           <h2>Social Links</h2>
           <div class="footer-social">
             <ul>
-              <li><a href="<?php echo $facebook; ?>" target="_blank"><i aria-hidden="true" class="fab fa-facebook"></i></a></li>
-              <li><a href="<?php echo $youtube; ?>" target="_blank"><i class="fab fa-youtube-play" aria-hidden="true"></i></a></li>
-              <li><a href="<?php echo $blogger; ?>" target="_blank"><i class="fab fa-blogger-b"></i></a></li>              
-              <li><a href="<?php echo $instagram; ?>" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+              <li><a href="<?php echo $facebook; ?>" target="_blank" aria-label="Facebook"><i aria-hidden="true" class="fab fa-facebook"></i></a></li>
+              <li><a href="<?php echo $youtube; ?>" target="_blank" aria-label="YouTube"><i class="fab fa-youtube-play" aria-hidden="true"></i></a></li>
+              <li><a href="<?php echo $blogger; ?>" target="_blank" aria-label="Blogger"><i class="fab fa-blogger-b"></i></a></li>              
+              <li><a href="<?php echo $instagram; ?>" target="_blank" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
             </ul>
           </div>
         </div>

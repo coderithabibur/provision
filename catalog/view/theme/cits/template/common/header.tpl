@@ -23,6 +23,8 @@ if (!isset($search)) {
     <meta name="description" content="Pro-Vision, a leading supplier of LED and HID lighting solutions. Over 20 years of expertise in automotive light upgrades and fleet enhancements. Committed to delivering optimal lighting solutions at competitive prices." />
 <?php } elseif ($description) { ?>
     <meta name="description" content="<?php echo $description; ?>" />
+<?php } else { ?>
+    <meta name="description" content="<?php echo $title; ?>" />
 <?php } ?>
     <?php if ($keywords) { ?>
     <meta name="keywords" content= "<?php echo $keywords; ?>" />
@@ -206,7 +208,7 @@ if (!isset($search)) {
           <?php foreach ($categories as $category) { ?>
             <li><a href="<?php echo $category['href']; ?>">
                 <span>
-                  <img src="<?php echo $category['icon']; ?>">
+                  <img src="<?php echo $category['icon']; ?>" alt="<?php echo $category['name']; ?>">
                   <?php echo $category['name']; ?>
                 </span>
                 <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-down"></i><?php } ?></a>
@@ -275,7 +277,7 @@ if (!isset($search)) {
           <!-- End TrustBox widget -->
         </div>
         <div class="header-cart">
-          <button class="minicart-trigger"><i class="fa-solid fa-shopping-cart"></i></button>
+          <button class="minicart-trigger" aria-label="Open Cart"><i class="fa-solid fa-shopping-cart"></i></button>
           <div class="minicart just-count">
             <?php echo $cart; ?>
           </div>
@@ -291,7 +293,7 @@ if (!isset($search)) {
           </div>
 
         </div>
-        <button class="mobile-menu-trigger"><i class="fa-solid fa-bars"></i></button>
+        <button class="mobile-menu-trigger" aria-label="Open Mobile Menu"><i class="fa-solid fa-bars"></i></button>
       </div>
     </div>
     <div class="minicart">
@@ -312,7 +314,7 @@ if (!isset($search)) {
             <li>
               <a href="<?php echo $category['href']; ?>" data-image="<?php echo $category['image']; ?>">
                 <span>                  
-                  <img src="<?php echo $category['icon']; ?>">                    
+                  <img src="<?php echo $category['icon']; ?>" alt="<?php echo $category['name']; ?>">                    
                   <?php echo $category['name']; ?>
                 </span>
                 <?php if ($category['children']) { ?><i class="fa-solid fa-chevron-right"></i><?php } ?></a>
@@ -333,7 +335,7 @@ if (!isset($search)) {
                   <?php } ?>
                 </ul>
                 <div class="cat-submenu-image">
-                  <img src="<?php echo $category['image']; ?>" class="submenu-preview">
+                  <img src="<?php echo $category['image']; ?>" class="submenu-preview" alt="<?php echo $category['name']; ?>">
                 </div>
               </div>
               <?php } ?>
@@ -349,7 +351,7 @@ if (!isset($search)) {
 
       <!-- Search Box -->
       <div class="header-search-box">
-          <select name="category_id" class="header-search-category" style="width:250px">
+          <select name="category_id" class="header-search-category" style="width:250px" aria-label="Select Category">
             <option value="0">All Categories</option>
             <?php foreach ($categories as $category_1) { ?>
             <?php if (isset($category_1['category_id'])) { ?>
@@ -386,7 +388,7 @@ if (!isset($search)) {
           <input type="text" name="search" value="<?php echo $search; ?>" placeholder="Search Products…" id="input-search" class="form-control" />
           
           <!-- <input type="button" value="Search" id="button-search2" class="yellowbtn" /> -->
-          <button type="button" value="Search" id="button-search2"><i class="fas fa-search"></i></button>  
+          <button type="button" value="Search" id="button-search2" aria-label="Search"><i class="fas fa-search"></i></button>  
       </div>
       
       <div class="header-phone">
