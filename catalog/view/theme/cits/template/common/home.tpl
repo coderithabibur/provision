@@ -49,7 +49,7 @@
       <div class="single-product-item">
         <a href="<?php echo $product['href']; ?>">
           <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>"
-            title="<?php echo $product['name']; ?>">
+            title="<?php echo $product['name']; ?>" loading="lazy">
         </a>
         <div class="single-product-item-info">
           <h2><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h2>
@@ -122,9 +122,9 @@
         </div>
         <div class="single-buy-get-free">
           <div class="buy-get-free-images">
-            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>"></a>
+            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>" loading="lazy"></a>
             <div class="plus-sybol"><p>+</p></div>
-            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>"></a>
+            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>" loading="lazy"></a>
           </div>
           <h2><a href="<?php echo $offer['href']; ?>"><?php echo $offer['name']; ?></a></h2>
         </div>
@@ -135,6 +135,7 @@
 </section>
  
 <script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
   $(document).ready(function () {
     $('.category-filter').on('click', function (e) {
       e.preventDefault();
@@ -158,6 +159,7 @@
         }
       });
     });
+  });
   });
 </script>
 
