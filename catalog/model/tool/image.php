@@ -35,37 +35,28 @@ class ModelToolImage extends Model {
 				$image = new Image(DIR_IMAGE . $old_image);
 				$image->resize($width, $height);
 				$image->save(DIR_IMAGE . $new_image);
-                
-                // AntiGravity: Generate WebP version
-                $new_image_webp = substr($new_image, 0, strrpos($new_image, '.')) . '.webp';
-                if (!is_file(DIR_IMAGE . $new_image_webp) || (filectime(DIR_IMAGE . $old_image) > filectime(DIR_IMAGE . $new_image_webp))) {
-                    $image->save(DIR_IMAGE . $new_image_webp);
-                    if (is_file(DIR_IMAGE . $new_image_webp)) {
-                        @chmod(DIR_IMAGE . $new_image_webp, 0777); 
-                    }
-                }
-
-                if (is_file(DIR_IMAGE . $new_image)) {
-                    @chmod(DIR_IMAGE . $new_image, 0777); // FORCE FILE PERMISSIONS
-                }
 			} else {
 				copy(DIR_IMAGE . $old_image, DIR_IMAGE . $new_image);
-                
-                // AntiGravity: Generate WebP version for original size copy
-                $new_image_webp = substr($new_image, 0, strrpos($new_image, '.')) . '.webp';
-                if (!is_file(DIR_IMAGE . $new_image_webp) || (filectime(DIR_IMAGE . $old_image) > filectime(DIR_IMAGE . $new_image_webp))) {
-                     $image = new Image(DIR_IMAGE . $old_image);
-                     $image->save(DIR_IMAGE . $new_image_webp);
-                     if (is_file(DIR_IMAGE . $new_image_webp)) {
-                        @chmod(DIR_IMAGE . $new_image_webp, 0777); 
-                    }
-                }
-
-                if (is_file(DIR_IMAGE . $new_image)) {
-                    @chmod(DIR_IMAGE . $new_image, 0777); // FORCE FILE PERMISSIONS
-                }
 			}
+            
+            if (is_file(DIR_IMAGE . $new_image)) {
+                @chmod(DIR_IMAGE . $new_image, 0777); // FORCE FILE PERMISSIONS
+            }
 		}
+
+        // AntiGravity: INDEPENDENT WebP Check
+        // Check if WebP exists, if not (or if older than source), generate it.
+        // This runs REGARDLESS of whether the main cache file was just created or already existed.
+        $new_image_webp = substr($new_image, 0, strrpos($new_image, '.')) . '.webp';
+        if (!is_file(DIR_IMAGE . $new_image_webp) || (filectime(DIR_IMAGE . $old_image) > filectime(DIR_IMAGE . $new_image_webp))) {
+             // Only load image resource if we really need to (save memory)
+             $image = new Image(DIR_IMAGE . $old_image);
+             $image->resize($width, $height);
+             $image->save(DIR_IMAGE . $new_image_webp);
+             if (is_file(DIR_IMAGE . $new_image_webp)) {
+                @chmod(DIR_IMAGE . $new_image_webp, 0777); 
+            }
+        }
 
         // --- FIX: Fallback if cache generation failed ---
         if (!is_file(DIR_IMAGE . $new_image)) {

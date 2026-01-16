@@ -87,9 +87,10 @@ class ControllerCommonHome extends Controller {
                 $product_total = $this->model_catalog_product->getTotalProducts($filter_data);
      
                 if ($category_info['image'] && is_file(DIR_IMAGE . $category_info['image'])) { 
-                    $image_url = HTTP_SERVER . 'image/' . $category_info['image'];
+                    // Resize to 600x600 to trigger WebP generation and reduce LCP payload
+                    $image_url = $this->model_tool_image->resize($category_info['image'], 600, 600);
                 } else { 
-                    $image_url = $this->model_tool_image->resize('placeholder.png', 500, 500);
+                    $image_url = $this->model_tool_image->resize('placeholder.png', 600, 600);
                 } 
                 
                 // Preload the first image (LCP)
