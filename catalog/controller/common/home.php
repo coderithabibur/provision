@@ -214,9 +214,9 @@ class ControllerCommonHome extends Controller {
         $products_data = array();
         foreach ($results as $result) {
             if ($result['image']) {
-                $image = $this->model_tool_image->resize($result['image'], 450, 450);
+                $image = $this->model_tool_image->resize($result['image'], 300, 300);
             } else {
-                $image = $this->model_tool_image->resize('placeholder.png', 450, 450);
+                $image = $this->model_tool_image->resize('placeholder.png', 300, 300);
             }
             if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
                 $price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));

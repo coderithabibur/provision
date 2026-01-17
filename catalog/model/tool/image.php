@@ -52,7 +52,7 @@ class ModelToolImage extends Model {
              // Only load image resource if we really need to (save memory)
              $image = new Image(DIR_IMAGE . $old_image);
              $image->resize($width, $height);
-             $image->save(DIR_IMAGE . $new_image_webp, 70);
+             $image->save(DIR_IMAGE . $new_image_webp, 60);
              if (is_file(DIR_IMAGE . $new_image_webp)) {
                 @chmod(DIR_IMAGE . $new_image_webp, 0777); 
             }
