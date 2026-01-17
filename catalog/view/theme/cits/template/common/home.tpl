@@ -11,7 +11,11 @@
       <?php if ($data['highlight_categories']) { ?>
       <?php foreach($data['highlight_categories'] as $key => $category) { ?>
       <div class="single-highlights-item" style="position: relative; overflow: hidden;">
-        <img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" width="600" height="600" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;" <?php echo ($key == 0) ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
+        <picture style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;">
+           <source media="(max-width: 600px)" srcset="<?php echo $category['image_mobile']; ?>" width="320" height="320">
+           <source media="(min-width: 601px)" srcset="<?php echo $category['image']; ?>" width="600" height="600">
+           <img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" width="600" height="600" style="width: 100%; height: 100%; object-fit: cover;" <?php echo ($key == 0) ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
+        </picture>
         <div class="highlights-item-info" style="position: relative; z-index: 2;">
           <span><?php echo $category['product_total']; ?> products</span>
           <h2><?php echo $category['name']; ?></h2>
