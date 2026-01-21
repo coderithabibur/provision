@@ -36,8 +36,8 @@ if (!isset($search)) {
     <link rel="preload" href="catalog/view/theme/cits/assets/fonts/poppins/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="catalog/view/theme/cits/assets/fonts/poppins/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
     
-    <link rel="stylesheet" href="catalog/view/theme/cits/assets/css/swiper-bundle.min.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="catalog/view/theme/cits/assets/css/swiper-bundle.min.css" /></noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" /></noscript>
 
 
     

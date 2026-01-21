@@ -227,7 +227,7 @@ $('select[name=\'category_id\']').trigger('change');
   <script src="catalog/view/theme/cits/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="catalog/view/theme/cits/js/core.js"></script>
   <script src="catalog/view/theme/cits/js/menu.js" type="text/javascript"></script>
-  <script src="catalog/view/theme/cits/assets/js/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="catalog/view/theme/cits/assets/js/script.js?v=<?php echo time(); ?>"></script>
   
   <!-- AntiGravity: User Interaction Lazy Loader for Third-Party Scripts -->
@@ -292,7 +292,7 @@ $('select[name=\'category_id\']').trigger('change');
   
   <?php echo $custom_footer_code; ?>
   
-    <link rel="stylesheet" href="catalog/view/theme/cits/assets/css/fontawesome.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="catalog/view/theme/cits/assets/css/fontawesome.min.css"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 </body>
 </html>
