@@ -69,7 +69,7 @@ class Image {
 			} elseif ($extension == 'gif') {
 				imagegif($this->image, $file);
 			} elseif ($extension == 'webp') {
-				imagewebp($this->image, $file, $quality);
+				imagewebp($this->image, $file);
 			}
              
 			imagedestroy($this->image);
