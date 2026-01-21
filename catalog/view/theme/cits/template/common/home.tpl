@@ -9,9 +9,9 @@
   <div class="container">
     <div class="hightlights-content-area">
       <?php if ($data['highlight_categories']) { ?>
-      <?php foreach($data['highlight_categories'] as $key => $category) { ?>
+      <?php foreach($data['highlight_categories'] as $category) { ?>
       <div class="single-highlights-item" style="position: relative; overflow: hidden;">
-        <img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" width="600" height="600" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;" <?php echo ($key == 0) ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
+        <img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" width="600" height="600" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;">
         <div class="highlights-item-info" style="position: relative; z-index: 2;">
           <span><?php echo $category['product_total']; ?> products</span>
           <h2><?php echo $category['name']; ?></h2>

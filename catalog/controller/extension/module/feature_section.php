@@ -19,12 +19,11 @@ class ControllerExtensionModuleFeatureSection extends Controller {
                 });
             }
 
-            $this->load->model('tool/image');
             // Process each feature item for the template
             foreach ($features as $feature) {
                 if (!empty($feature['icon']) && is_file(DIR_IMAGE . $feature['icon'])) {
                     $data['features'][] = array( 
-                        'icon'        => $this->model_tool_image->resize($feature['icon'], 80, 80),
+                        'icon'        => HTTP_SERVER . 'image/' . $feature['icon'],
                         'title'       => $feature['title'],
                         'description' => $feature['description']
                     );

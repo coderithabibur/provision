@@ -23,7 +23,7 @@ class ControllerExtensionModuleClientLogos extends Controller {
             foreach ($logos as $logo) { 
                 if (is_file(DIR_IMAGE . $logo['image'])) {
                     $data['logos'][] = array( 
-                        'image' => $this->model_tool_image->resize($logo['image'], 130, 60), 
+                        'image' => HTTP_SERVER . 'image/' . $logo['image'], 
                         'link'  => $logo['link'],
                     );
                 } 
