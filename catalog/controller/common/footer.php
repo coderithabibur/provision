@@ -72,6 +72,14 @@ class ControllerCommonFooter extends Controller {
 
 		$data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 
+        // Resize Footer Logo
+        $this->load->model('tool/image');
+        if ($this->config->get('config_logo') && is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
+            $data['footer_logo'] = $this->model_tool_image->resize($this->config->get('config_logo'), 230, 70); // Aspect ratio preserved
+        } else {
+            $data['footer_logo'] = '';
+        }
+
 		// Custom Footer Codes Options
 		$this->load->model('setting/setting');
 		$custom_code_settings = $this->model_setting_setting->getSetting('module_custom_code');

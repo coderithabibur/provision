@@ -34,7 +34,7 @@ class ModelToolImage extends Model {
 			if ($width_orig != $width || $height_orig != $height) {
 				$image = new Image(DIR_IMAGE . $old_image);
 				$image->resize($width, $height);
-				$image->save(DIR_IMAGE . $new_image);
+				$image->save(DIR_IMAGE . $new_image, 75);
 			} else {
 				copy(DIR_IMAGE . $old_image, DIR_IMAGE . $new_image);
 			}
@@ -52,7 +52,7 @@ class ModelToolImage extends Model {
              // Only load image resource if we really need to (save memory)
              $image = new Image(DIR_IMAGE . $old_image);
              $image->resize($width, $height);
-             $image->save(DIR_IMAGE . $new_image_webp);
+             $image->save(DIR_IMAGE . $new_image_webp, 60);
              if (is_file(DIR_IMAGE . $new_image_webp)) {
                 @chmod(DIR_IMAGE . $new_image_webp, 0777); 
             }
@@ -78,7 +78,12 @@ class ModelToolImage extends Model {
         //     } else {
         //         return $this->config->get('config_cloudfront_url') . '/image/' . $new_image;
         //     }
-		// } else {
+        // Check if we should serve WebP
+        if (is_file(DIR_IMAGE . $new_image_webp)) {
+             $new_image = $new_image_webp; 
+        }
+
+        // } else {
             if ($this->request->server['HTTPS']) {
                 return $this->config->get('config_ssl') . 'image/' . $new_image;
             } else {

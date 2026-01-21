@@ -37,11 +37,15 @@
     <!-- Footer Main -->
     <div class="footer-main">
       <div class="container footer-grid">
-        <div class="footer-about">
-          <a href="<?php echo $home; ?>" class="footer-logo">
-            <img src="catalog/view/theme/cits/assets/images/footer-logo.jpg" alt="<?php echo $name; ?>">
-          </a>
-          <p>Preferred supplier of lighting to professionals for more than 20 years.</p>
+        <div class="footer-about-content">
+        <?php if ($footer_logo) { ?>
+        <a href="<?php echo $home; ?>">
+          <img src="<?php echo $footer_logo; ?>" alt="<?php echo $name; ?>" class="img-responsive" width="230" height="70">
+        </a>
+        <?php } else { ?>
+          <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
+        <?php } ?>
+        <p><?php echo $name; ?> is a leading supplier of LED and HID lighting solutions. Over 20 years of expertise in automotive light upgrades and fleet enhancements.</p>
           <h2>Social Links</h2>
           <div class="footer-social">
             <ul>
@@ -107,8 +111,9 @@
     </div>
   </footer>
 
-  <!-- Newsletter Script -->
+<!-- Newsletter Script -->
 <script type="text/javascript"><!--
+document.addEventListener("DOMContentLoaded", function() {
   $('#subscriber').bind('click', function() { <!-- 
     var email=$("#sub_email").val();
     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
@@ -155,9 +160,11 @@
         $('.category-sec .panel-group').slideToggle(700);
       });	
     }); 
+});
 </script>
 
 <script type="text/javascript"><!--
+document.addEventListener("DOMContentLoaded", function() {
 $('#button-search2').bind('click', function() {
   url = 'index.php?route=product/search';
 
@@ -212,13 +219,77 @@ $('select[name=\'category_id\']').on('change', function() {
 });
 
 $('select[name=\'category_id\']').trigger('change');
+});
 --></script>
 
+  <script src="catalog/view/theme/cits/assets/js/swiper-bundle.min.js" defer></script>
+  <script src="catalog/view/theme/cits/assets/js/script.js?v=<?php echo time(); ?>" defer></script>
   
-  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-  <script src="catalog/view/theme/cits/assets/js/script.js?v=<?php echo time(); ?>"></script>
+  <!-- AntiGravity: User Interaction Lazy Loader for Third-Party Scripts -->
+  <script>
+  function loadThirdPartyScripts() {
+      if (window.thirdPartyScriptsLoaded) return;
+      window.thirdPartyScriptsLoaded = true;
+
+      // 1. Google Tag Manager
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MPKDL3R');
+
+      // 2. GA4
+      var gtagScript = document.createElement('script');
+      gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0MZLPW6V1Z";
+      gtagScript.async = true;
+      document.body.appendChild(gtagScript);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0MZLPW6V1Z');
+
+      // 3. Bing Ads
+      (function(w,d,t,r,u) {
+          var f,n,i;
+          w[u]=w[u]||[],f=function() {
+              var o={ti:"134605428"};
+              o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
+          },
+          n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function() {
+              var s=this.readyState;
+              s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
+          },
+          i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)
+      })(window,document,"script","//bat.bing.com/bat.js","uetq");
+
+      // 4. Mailchimp
+      !function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/8f2ffea973282e9b7646fc605/dc91b8a5890542f9057383d0a.js");
+
+      // 5. Trustpilot (Optional - was blocking)
+       var tpScript = document.createElement('script');
+       tpScript.src = "//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
+       tpScript.async = true;
+       document.body.appendChild(tpScript);
+
+
+
+      console.log('Third-party scripts loaded via AntiGravity Lazy Loader');
+  }
+
+  // Trigger on user interaction or timeout
+  var userInteractionEvents = ["mousemove", "keydown", "touchstart", "scroll"];
+  userInteractionEvents.forEach(function(event) {
+      window.addEventListener(event, loadThirdPartyScripts, { once: true, passive: true });
+  });
+
+  // Fallback: Load after 4 seconds anyway (for bots or non-interactive users)
+  setTimeout(loadThirdPartyScripts, 4000);
+  </script>
   
   <?php echo $custom_footer_code; ?>
   
+    <link rel="stylesheet" href="catalog/view/theme/cits/assets/css/fontawesome.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="catalog/view/theme/cits/assets/css/fontawesome.min.css"></noscript>
 </body>
 </html>

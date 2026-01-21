@@ -9,9 +9,14 @@
   <div class="container">
     <div class="hightlights-content-area">
       <?php if ($data['highlight_categories']) { ?>
-      <?php foreach($data['highlight_categories'] as $category) { ?>
+      <?php $i_highlight = 0; foreach($data['highlight_categories'] as $key => $category) { ?>
       <div class="single-highlights-item" style="position: relative; overflow: hidden;">
-        <img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" width="600" height="600" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;">
+        <picture style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;">
+           <source media="(max-width: 600px)" srcset="<?php echo $category['image_mobile']; ?>" width="320" height="320">
+           <source media="(min-width: 601px)" srcset="<?php echo $category['image']; ?>" width="600" height="600">
+           <img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" width="600" height="600" style="width: 100%; height: 100%; object-fit: cover;" <?php echo ($i_highlight == 0) ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
+           <?php $i_highlight++; ?>
+        </picture>
         <div class="highlights-item-info" style="position: relative; z-index: 2;">
           <span><?php echo $category['product_total']; ?> products</span>
           <h2><?php echo $category['name']; ?></h2>
@@ -49,7 +54,7 @@
       <div class="single-product-item">
         <a href="<?php echo $product['href']; ?>">
           <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>"
-            title="<?php echo $product['name']; ?>">
+            title="<?php echo $product['name']; ?>" loading="lazy">
         </a>
         <div class="single-product-item-info">
           <h2><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h2>
@@ -122,9 +127,9 @@
         </div>
         <div class="single-buy-get-free">
           <div class="buy-get-free-images">
-            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>"></a>
+            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>" loading="lazy"></a>
             <div class="plus-sybol"><p>+</p></div>
-            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>"></a>
+            <a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['name']; ?>" loading="lazy"></a>
           </div>
           <h2><a href="<?php echo $offer['href']; ?>"><?php echo $offer['name']; ?></a></h2>
         </div>
@@ -135,6 +140,7 @@
 </section>
  
 <script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
   $(document).ready(function () {
     $('.category-filter').on('click', function (e) {
       e.preventDefault();
@@ -158,6 +164,7 @@
         }
       });
     });
+  });
   });
 </script>
 

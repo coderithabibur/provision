@@ -1,441 +1,160 @@
-<?php
-// DEBUG: Log template loading
-$log_file = DIR_SYSTEM . 'storage/logs/stripe_debug.log';
-$log_msg = date('Y-m-d H:i:s') . " - Stripe Template Loaded\n";
-$log_msg .= "Payment Intent: " . (isset($payment_intent) ? print_r($payment_intent, true) : 'NOT SET') . "\n";
-$log_msg .= "Client Secret: " . (isset($payment_intent['client_secret']) ? $payment_intent['client_secret'] : 'NOT FOUND') . "\n";
-$log_msg .= "Publishable Key: " . (isset($settings['publishable_key']) ? 'SET' : 'NOT SET') . "\n";
-file_put_contents($log_file, $log_msg, FILE_APPEND);
-
-//==============================================================================
-// Stripe Payment Gateway Pro v2025-10-09
-// 
-// Author: Clear Thinking, LLC
-// E-mail: johnathan@getclearthinking.com
-// Website: http://www.getclearthinking.com
-// 
-// All code within this file is copyright Clear Thinking, LLC.
-// You may not copy or reuse code within this file without written permission.
-//==============================================================================
-?>
-
-<?php if ($settings['transaction_mode'] == 'test') { ?>
-	<div style="background: #CC4B00; color: white; padding: 10px; text-align: center; width: 100%;">You are in <b>Test mode</b>. No real transactions will be processed.</div>
-<?php } ?>
-
-<?php if (!empty($settings['instructions_' . $language])) { ?>
-	<div id="payment-instructions"><?php echo html_entity_decode($settings['instructions_' . $language], ENT_QUOTES, 'UTF-8'); ?></div><br>
-<?php } ?>
-
-<?php if (!empty($settings['additional_css'])) { ?>
-	<style type="text/css">
-		#payment-buttons {
-			border: none;
-			margin: 10px 0;
-			text-align: right;
-		}
-		<?php echo $settings['additional_css']; ?>
-	</style>
-<?php } ?>
-
-<?php if ($use_stripe_checkout) { ?>
-	
-	<div id="payment"></div>
-	<script>
-		function confirmOrder() {
-			$.ajax({
-				type: 'POST',
-				url: 'index.php?route=<?php echo $settings['extension_route']; ?>/createCheckoutSession',
-				data: {},
-				dataType: 'json',
-				beforeSend: function() {
-					displayWait('<?php echo addslashes(html_entity_decode($settings['text_please_wait_' . $language], ENT_QUOTES, 'UTF-8')); ?>');
-				},
-				success: function(json) {
-					if (json.error_message) {
-						displayError(json.error_message);
-					} else {
-						$.getScript('https://js.stripe.com/v3', function() {
-							var stripe = Stripe(json.key, {stripeAccount: json.account_id});
-							
-							stripe.redirectToCheckout({
-								sessionId: json.session_id,
-							}).then(function(result) {
-								console.log(result.error.message);
-								alert(result.error.message);
-							});
-						});
-					}
-				},
-				error: function(xhr, status, error) {
-					alert(xhr.responseText ? xhr.responseText : error);
-				}
-			});
-		}
-	</script>
-	
-<?php } elseif ($use_popup) { ?>
-	
-	<div id="payment"></div>
-	<div id="payment-popup" class="modal fade" style="display: none; float: none;">
-		<div class="modal-dialog">
-			<div class="modal-content modal-body"></div>
+<link rel="stylesheet" type="text/css" href="<?php echo $store_url; ?>catalog/view/theme/default/stylesheet/stripe.css">
+<div class="payment-form-wrapper">
+	<?php if($test_mode) { ?>
+	<small class="text-info"><?php echo $text_debug; ?></small>
+	<?php } ?>
+	<form id="payment-form">
+		<div id="payment-request-button"></div>
+		<fieldset>
+			<legend class="card-only"><?php echo $text_pay_with_card; ?></legend>
+			<legend class="payment-request-available"><?php echo $text_or_pay_with_card; ?></legend>
+			<div class="container-stripe">
+				<!-- placeholder for Elements -->
+				<div id="card-element"></div>
+				<button type="button" id="button-confirm" class="buttons"><?php echo $button_submit_payment; ?></button>
+			</div>
+		</fieldset>
+		<div class="error-stripe" role="alert">
+			<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+				<path class="base" fill="#000" d="M8.5,17 C3.80557963,17 0,13.1944204 0,8.5 C0,3.80557963 3.80557963,0 8.5,0 C13.1944204,0 17,3.80557963 17,8.5 C17,13.1944204 13.1944204,17 8.5,17 Z"></path>
+				<path class="glyph" fill="#FFF" d="M8.5,7.29791847 L6.12604076,4.92395924 C5.79409512,4.59201359 5.25590488,4.59201359 4.92395924,4.92395924 C4.59201359,5.25590488 4.59201359,5.79409512 4.92395924,6.12604076 L7.29791847,8.5 L4.92395924,10.8739592 C4.59201359,11.2059049 4.59201359,11.7440951 4.92395924,12.0760408 C5.25590488,12.4079864 5.79409512,12.4079864 6.12604076,12.0760408 L8.5,9.70208153 L10.8739592,12.0760408 C11.2059049,12.4079864 11.7440951,12.4079864 12.0760408,12.0760408 C12.4079864,11.7440951 12.4079864,11.2059049 12.0760408,10.8739592 L9.70208153,8.5 L12.0760408,6.12604076 C12.4079864,5.79409512 12.4079864,5.25590488 12.0760408,4.92395924 C11.7440951,4.59201359 11.2059049,4.59201359 10.8739592,4.92395924 L8.5,7.29791847 L8.5,7.29791847 Z"></path>
+			</svg>
+			<span id="card-errors" class="message"></span>
+		</div>
+	</form>
+	<div class="success-stripe">
+		<div class="icon">
+			<svg width="84px" height="84px" viewBox="0 0 84 84" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+				<circle class="border" cx="42" cy="42" r="40" stroke-linecap="round" stroke-width="4" stroke="#000" fill="none"></circle>
+			</svg>
 		</div>
 	</div>
-	<div id="payment-buttons" class="buttons">
-		<a id="open-payment-popup" onclick="openPaymentPopup()" class="<?php echo $settings['button_class']; ?>" style="<?php echo $settings['button_styling']; ?>">
-			<?php echo $settings['popup_button_text_' . $language]; ?>
-		</a>
-	</div>
+</div>
+<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript">
+function initStripe() {
 	
-	<script>
-		function openPaymentPopup() {
-			$.ajax({
-				type: 'POST',
-				url: 'index.php?route=<?php echo $settings['extension_route']; ?>',
-				data: {load_popup: true},
-				beforeSend: function() {
-					$('#open-payment-popup').attr('disabled', 'disabled'). html('<?php echo addslashes(html_entity_decode($settings['text_please_wait_' . $language], ENT_QUOTES, 'UTF-8')); ?>');
-				},
-				success: function(data) {
-					$('#open-payment-popup').removeAttr('disabled').html('<?php echo addslashes(html_entity_decode($settings['popup_button_text_' . $language], ENT_QUOTES, 'UTF-8')); ?>');
-					$('#payment-popup .modal-content').html(data);
-					$('#payment-popup').modal('show');
-				},
-				error: function(xhr, status, error) {
-					alert(xhr.responseText ? xhr.responseText : error);
+	if (window.Stripe) {
+
+		var stripe = Stripe('<?php echo $stripe_public_key; ?>');
+		var elements = stripe.elements();
+
+		var style = {
+					base: {
+						color: "#32325D",
+						fontWeight: 500,
+						fontFamily: "Inter UI, Open Sans, Segoe UI, sans-serif",
+						fontSize: "15px",
+						fontSmoothing: "antialiased",
+						"::placeholder": {
+							color: "#CFD7DF"
+						}
+					},
+					invalid: {
+						 color: "#E25950"
+					}
+				};
+
+		var cardElement = elements.create('card', {style: style, hidePostalCode: true});
+		cardElement.mount('#card-element');
+		var cardButton = document.getElementById('button-confirm');
+
+		var billing_details = <?php echo json_encode($billing_details); ?>;
+        
+		cardButton.addEventListener('click', function(ev) {
+			$('.payment-form-wrapper').addClass('submitting');
+
+			stripe.createPaymentMethod({
+				type: 'card',
+				card: cardElement,
+				billing_details: billing_details
+			}).then(function(result){
+				if (result.error) {
+					// Show error in payment form
+					showErrorMessage(result.message);
+				} else {
+					// Send paymentMethod.id to your server (see Step 2)
+					$.ajax({
+						url: '<?php echo $action; ?>',
+						method: 'POST',
+						data: JSON.stringify({ payment_method_id: result.paymentMethod.id }),
+						success: function(response){
+							handleServerResponse(response);
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+							console.warn("Stripe App have encountered with some error.");
+							console.warn("Please see below the response your server sent.");
+							console.error(jqXHR.responseText);
+							console.error(textStatus, errorThrown);
+						}
+					});
 				}
+			}).catch(function(e){
+				logServerError(e);
 			});
-		}
-	</script>
-	
-<?php } else { ?>
-	
-	<style type="text/css">
-	 	/* Journal fixes */
-		#content .payment-stripe {
-			display: block !important;
-		}
-		.popup-checkout-payment .popup-container {
-			min-width: 360px !important;
-			width: 60% !important;
-		}
-		/* end */
-		#payment {
-			display: block;
-			padding: 25px;
-		}
-		.alert {
-			margin-top: 10px;
-		}
-		@media (max-width: 767px) {
-			#payment {
-				padding: 10px;
-			}
-		}
-		<?php echo $settings['additional_css']; ?>
-	</style>
-	
-	<form id="payment" class="form-horizontal">
-		<div id="payment-element"></div>
-	</form>
-	
-	<script>
-		var stripe;
-		var elements;
-		var paymentElement;
-		
-		$.getScript('https://js.stripe.com/v3/', function(data) {
-			stripe = Stripe('<?php echo $settings[$settings['transaction_mode'] . '_publishable_key']; ?>', {betas: ['server_side_confirmation_beta_1', 'link_default_integration_beta_1'], stripeAccount: '<?php echo $settings['account_id']; ?>', apiVersion: '2022-08-01;server_side_confirmation_beta=v1'});
-			
-			elements = stripe.elements({
-				appearance: {
-					theme: '<?php echo $settings['theme']; ?>',
-					labels: '<?php echo $settings['theme_labels']; ?>',
-					variables: {
-						<?php echo $settings['theme_variables']; ?>
-					},
-					rules: {
-						<?php echo $settings['theme_rules']; ?>
-					},
-				},
-				clientSecret: '<?php echo (!empty($payment_intent['client_secret'])) ? $payment_intent['client_secret'] : ''; ?>',
-				loader: 'always',
-				locale: '<?php echo (substr($language, 0, 2) == 'zh') ? $language : substr($language, 0, 2); ?>',
-			});
-			
-			paymentElement = elements.create('payment', {
-				layout: {
-					type: '<?php echo ($settings['payment_form_style'] == 'tabs') ? 'tabs' : 'accordion'; ?>',
-					defaultCollapsed: <?php echo ($settings['payment_form_default'] == 'collapsed') ? 'true' : 'false'; ?>,
-					radios: <?php echo (strpos($settings['payment_form_style'], 'radio')) ? 'true' : 'false'; ?>,
-					spacedAccordionItems: <?php echo ($settings['accordion_space_choices']) ? 'true' : 'false'; ?>,
-				},
-				defaultValues: {
-					card: {
-						network: ['cartes_bancaires', 'mastercard', 'visa'],
-					},
-					billingDetails: {
-						email: '<?php echo $order_info['email']; ?>',
-						name: '<?php echo $order_info['firstname'] . ' ' . $order_info['lastname']; ?>',
-						phone: '<?php echo $order_info['telephone']; ?>',
-						address: {
-							line1: '<?php echo $order_info['payment_address_1']; ?>',
-							line2: '<?php echo $order_info['payment_address_2']; ?>',
-							city: '<?php echo $order_info['payment_city']; ?>',
-							state: '<?php echo $order_info['payment_zone']; ?>',
-							country: '<?php echo $order_info['payment_iso_code_2']; ?>',
-							postal_code: '<?php echo $order_info['payment_postcode']; ?>',
-						},
-					},
-				},
-				/*
-				fields: {
-					billingDetails: {
-						address: {
-							country: 'never',
-						},
-					},
-				},
-				*/
-			});
-			
-			paymentElement.mount('#payment-element');
 		});
-		
-		function confirmOrder() {
-			$.ajax({
-				type: 'POST',
-				url: 'index.php?route=<?php echo $settings['extension_route']; ?>/updatePaymentIntent',
-				data: {},
-				dataType: 'json',
-				beforeSend: function() {
-					displayWait('<?php echo addslashes(html_entity_decode($settings['text_validating_payment_info_' . $language], ENT_QUOTES, 'UTF-8')); ?>');
-				},
-				success: function(json) {
-					if (json.error_message) {
-						console.log('confirmOrder: ' + json.error_message);
-						displayError(json.error_message);
+
+
+		var handleServerResponse = function(response) {
+
+			if(typeof response === "undefined") {
+				console.warn("Stripe App have encountered with some error. This error might not be caused by Stripe App. Such errors come when Stripe App receive unexpected JSON response from your server.");
+				console.warn("Please see below the response your server sent, whereas JSON was expected by Stripe App.");
+				console.error(response);
+				return;
+			}
+
+			if (response.error) {
+				// Show error from server on payment form
+				showErrorMessage(response.error);
+			} else if (response.requires_action) {
+				// Use Stripe.js to handle the required card action
+				stripe.handleCardAction(response.payment_intent_client_secret).then(function(result){
+					if (result.error) {
+						// Show error from Stripe.js in payment form
+						showErrorMessage(result.error.message);
 					} else {
-						stripe.updatePaymentIntent({
-							elements,
-							params: {
-								payment_method_data: {
-									billing_details: json.billing,
-								},
-								shipping: json.shipping,
-							}
-						}).then(function(result) {
-							if (result.error) {
-								console.log(result.error);
-								displayError(result.error.message);
-							} else {
-								confirmPaymentIntent();
+						// The card action has been handled
+						// The PaymentIntent can be confirmed again on the server
+						// Send paymentMethod.id to your server (see Step 2)
+						$.ajax({
+							url: '<?php echo $action; ?>',
+							method: 'POST',
+							data: JSON.stringify({ payment_intent_id: result.paymentIntent.id }),
+							success: function(response){
+								handleServerResponse(response);
+							},
+							error: function(jqXHR, textStatus, errorThrown) {
+								console.warn("Stripe App have encountered with some error.");
+								console.warn("Please see below the response your server sent.");
+								console.error(jqXHR.responseText);
+								console.error(textStatus, errorThrown);
 							}
 						});
 					}
-				},
-				error: function(xhr, status, error) {
-					displayError(xhr.responseText ? xhr.responseText : error);
-				}
-			});
+				}).catch(function(e){
+					logServerError(e);
+				});
+			} else {
+				// Show success message
+				window.location = response.success;
+			}
 		}
-		
-		function confirmPaymentIntent() {
-			$.ajax({
-				type: 'POST',
-				url: 'index.php?route=<?php echo $settings['extension_route']; ?>/confirmPaymentIntent',
-				data: {},
-				dataType: 'json',
-				beforeSend: function() {
-					displayWait('<?php echo addslashes(html_entity_decode($settings['text_processing_payment_' . $language], ENT_QUOTES, 'UTF-8')); ?>');
-				},
-				success: function(json) {
-					if (json.error_message) {
-						console.log('confirmPaymentIntent: ' + json.error_message);
-						displayError(json.error_message);
-					} else if (json.status == 'requires_action') {
-						if (json.payment_type == 'card') {
-							stripe.confirmCardPayment(json.client_secret).then(function(result) {
-								if (result.error) {
-									console.log(result.error);
-									displayError(result.error.message);
-								} else {
-									finalizePayment();
-								}
-							});
-						} else {
-							stripe.handleNextAction({
-								clientSecret: json.client_secret,
-							}).then(function(result) {
-								if (result.error) {
-									console.log(result.error);
-									displayError(result.error.message);
-								} else {
-									finalizePayment();
-								}
-							});
-						}
-					} else {
-						finalizePayment();
-					}
-				},
-				error: function(xhr, status, error) {
-					displayError(xhr.responseText ? xhr.responseText : error);
-				}
-			});
-		}
-		
-		function finalizePayment() {
-			$.ajax({
-				type: 'POST',
-				url: 'index.php?route=<?php echo $settings['extension_route']; ?>/finalizePayment',
-				data: {},
-				dataType: 'json',
-				beforeSend: function() {
-					displayWait('<?php echo addslashes(html_entity_decode($settings['text_finalizing_order_' . $language], ENT_QUOTES, 'UTF-8')); ?>');
-				},
-				success: function(json) {
-					if (json.error_message) {
-						console.log('finalizePayment: ' + json.error_message);
-						displayError(json.error_message);
-					} else if (json.client_secrets && json.payment_type == 'card') {
-						handleSubscriptions(json.client_secrets);
-					} else {
-						completeOrder();
-					}
-				},
-				error: function(xhr, status, error) {
-					displayError(xhr.responseText ? xhr.responseText : error);
-				}
-			});
-		}
-		
-		function handleSubscriptions(clientSecrets) {
-			stripe.confirmCardPayment(clientSecrets[0]).then(function(result) {
-				if (result.error) {
-					displayError(result.error.message);
-				} else if (clientSecrets[1]) {
-					stripe.confirmCardPayment(clientSecrets[1]).then(function(result) {
-						if (result.error) {
-							displayError(result.error.message);
-						} else if (clientSecrets[2]) {
-							stripe.confirmCardPayment(clientSecrets[2]).then(function(result) {
-								if (result.error) {
-									displayError(result.error.message);
-								} else if (clientSecrets[3]) {
-									stripe.confirmCardPayment(clientSecrets[3]).then(function(result) {
-										if (result.error) {
-											displayError(result.error.message);
-										} else if (clientSecrets[4]) {
-											stripe.confirmCardPayment(clientSecrets[4]).then(function(result) {
-												if (result.error) {
-													displayError(result.error.message);
-												} else {
-													completeOrder();
-												}
-											});
-										} else {
-											completeOrder();
-										}
-									});
-								} else {
-									completeOrder();
-								}
-							});
-						} else {
-							completeOrder();
-						}
-					});
-				} else {
-					completeOrder();
-				}
-			});
-		}
-		
-		function completeOrder() {
-			$.ajax({
-				type: 'POST',
-				url: 'index.php?route=<?php echo $settings['extension_route']; ?>/completeOrder',
-				data: {},
-				success: function(error) {
-					console.log(error);
-					if (error.trim()) {
-						completeWithError(error.trim());
-					} else {
-						location = '<?php echo $checkout_success_url; ?>';
-					}
-				},
-				error: function(xhr, status, error) {
-					completeWithError(xhr.responseText ? xhr.responseText : error);
-				}
-			});
-		}
-		
-		function completeWithError(errorMessage) {
-			$.ajax({
-				type: 'POST',
-				url: 'index.php?route=<?php echo $settings['extension_route']; ?>/completeWithError',
-				data: {error_message: errorMessage},
-				success: function(error) {
-					console.log(error);
-					if (error.trim()) {
-						triggerFatalError(error);
-					} else {
-						location = '<?php echo $checkout_success_url; ?>';
-					}
-				},
-				error: function(xhr, status, error) {
-					triggerFatalError(xhr.responseText ? xhr.responseText : error);
-				}
-			});
-		}
-		
-		function triggerFatalError(errorMessage) {
-			$('.alert').remove();
-			$('#payment').after('<div class="warning alert alert-danger"><i class="fa fa-exclamation-triangle"></i> <strong>Error:</strong> The system encountered a fatal error when trying to complete your order. Please do not resubmit your order. Instead, please <a target="_blank" href="index.php?route=information/contact">contact the store administrator</a> with your order number (#<?php echo $order_info['order_id']; ?>) and the following error message:<br><br>"' + errorMessage.trim() + '"</div>');
-		}
-	</script>
-	
-<?php } ?>
 
-<?php if ($use_stripe_checkout || !$use_popup) { ?>
-	<div id="payment-buttons" class="buttons">
-		<a id="button-confirm" onclick="confirmOrder()" class="<?php echo $settings['button_class']; ?>" style="<?php echo $settings['button_styling']; ?>">
-			<?php echo $settings['button_text_' . $language]; ?>
-		</a>
-	</div>
-	
-	<script>
-		// Common functions
-		<?php if ($settings['transaction_mode'] == 'live') { ?>
-			if (window.location.protocol != 'https:') {
-				displayError('You are in LIVE mode but are not on a secure (https) connection! Payment info is not secure!');
-			}
-		<?php } ?>
-		
-		<?php if ($error) { ?>
-			displayError('<?php echo addslashes($error); ?>');
-		<?php } ?>
-		
-		function displayWait(message) {
-			$('#button-confirm').removeAttr('onclick').attr('disabled', 'disabled');
-			$('.alert').remove();
-			$('#payment').after('<div class="alert alert-warning" style="display: none"><i class="fa fa-spinner fa-spin"></i> &nbsp; ' + message.trim() + '</div>');
-			$('.alert-warning').fadeIn();
+		var showErrorMessage = function(error) {
+			$(".payment-form-wrapper #card-errors").text(error);
+			$(".payment-form-wrapper .error-stripe").addClass("visible");
+			$('.payment-form-wrapper').removeClass('submitting');
 		}
-		
-		function displayError(message) {
-			// Journal fixes
-			if (typeof triggerLoadingOff == 'function') triggerLoadingOff();
-			$('.journal-loading-overlay').remove();
-			// end
-			$('.alert').remove();
-			$('#button-confirm').attr('onclick', 'confirmOrder()').removeAttr('disabled');
-			if (message) {
-				$('#payment').after('<div class="alert alert-danger" style="display: none"><i class="fa fa-exclamation-triangle"></i> &nbsp; ' + message.trim() + '</div>');
-				$('.alert-danger').fadeIn();
-			}
+
+		var logServerError = function(error){
+			console.warn("Stripe App have encountered with some error.");
+			console.error(error);
 		}
-	</script>
-<?php } ?>
+	} else {
+		 setTimeout(function() { initStripe(); }, 50);
+	}
+}
+
+initStripe();
+</script>

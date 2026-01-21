@@ -30,67 +30,43 @@ if (!isset($search)) {
     <meta name="keywords" content= "<?php echo $keywords; ?>" />
     <?php } ?>
     <meta name="msvalidate.01" content="63BF2CA10896D52F7D0E3239BF477F37" />
-    <link href="catalog/view/theme/cits/stylesheet/bootstrap.css" rel="stylesheet" media="screen" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
-    </noscript>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <link rel="preload" href="catalog/view/theme/cits/stylesheet/bootstrap.css" as="style" />
+    <link href="catalog/view/theme/cits/stylesheet/bootstrap.css" rel="stylesheet" />
+    <link rel="preload" href="catalog/view/theme/cits/assets/fonts/poppins/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="catalog/view/theme/cits/assets/fonts/poppins/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="catalog/view/theme/cits/assets/fonts/poppins/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <link rel="stylesheet" href="catalog/view/theme/cits/assets/css/swiper-bundle.min.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="catalog/view/theme/cits/assets/css/swiper-bundle.min.css" /></noscript>
+
+
     
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link rel="preload" href="catalog/view/theme/cits/assets/css/style.css" as="style">
     <link rel="stylesheet" type="text/css" href="catalog/view/theme/cits/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="catalog/view/theme/cits/assets/css/responsive.css">
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','GTM-MPKDL3R');</script>
-    <!-- End Google Tag Manager -->
     
+    <style>
+    /* Inline Responsive CSS */
+    <?php echo file_get_contents('catalog/view/theme/cits/assets/css/responsive.css'); ?>
+    </style>
     
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0MZLPW6V1Z"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-0MZLPW6V1Z');
-    </script>
-    
-
     <script  src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script  src="catalog/view/theme/cits/js/bootstrap.min.js" type="text/javascript"></script>
     <script  src="catalog/view/javascript/common.js" type="text/javascript"></script>
 
     <script  src="catalog/view/theme/cits/js/core.js"></script>
     <script  src="catalog/view/theme/cits/js/menu.js" type="text/javascript"></script>
+
     
-    <script>
-    (function(w,d,t,r,u)
-    {
-        var f,n,i;
-        w[u]=w[u]||[],f=function()
-        {
-            var o={ti:"134605428"};
-            o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
-        },
-        n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function()
-        {
-            var s=this.readyState;
-            s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
-        },
-        i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)
-    })
-    (window,document,"script","//bat.bing.com/bat.js","uetq");
-</script>
+    
+    <!-- Google Tag Manager (Lazily Loaded in Footer) -->
+    <script>window.dataLayer = window.dataLayer || [];</script>
+    <!-- End Google Tag Manager -->
+    
+
     
     
     <?php foreach ($styles as $style) { ?>
@@ -111,14 +87,14 @@ if (!isset($search)) {
     <?php if (strpos($script, 'bganycombi.js') !== false) { ?>
     <script src="<?php echo $script; ?>" type="text/javascript" defer></script>
     <?php } else { ?>
-    <script src="<?php echo $script; ?>" type="text/javascript"></script>
+    <script src="<?php echo $script; ?>" type="text/javascript" defer></script>
     <?php } ?>
     <?php } ?>
     <?php foreach ($analytics as $analytic) { ?>
     <?php echo $analytic; ?>
     <?php } ?>
 
-    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/8f2ffea973282e9b7646fc605/dc91b8a5890542f9057383d0a.js");</script>
+
 
 
 
@@ -269,7 +245,7 @@ if (!isset($search)) {
         </div>
         <div class="header-reviews">          
           <!-- TrustBox script -->
-          <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+
           <!-- End TrustBox script -->
 
           <!-- TrustBox widget - Micro Review Count -->
