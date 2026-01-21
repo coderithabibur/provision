@@ -89,24 +89,19 @@ class ControllerCommonHome extends Controller {
                 if ($category_info['image'] && is_file(DIR_IMAGE . $category_info['image'])) { 
                     // Resize to 600x600 to trigger WebP generation and reduce LCP payload
                     $image_url = $this->model_tool_image->resize($category_info['image'], 600, 600);
-                    // Mobile size
-                    $image_mobile = $this->model_tool_image->resize($category_info['image'], 320, 320); // 320px width for mobile
                 } else { 
                     $image_url = $this->model_tool_image->resize('placeholder.png', 600, 600);
-                    $image_mobile = $this->model_tool_image->resize('placeholder.png', 320, 320);
                 } 
                 
                 // Preload the first image (LCP)
                 if ($iteration_count == 0) {
-                    $this->document->addLink($image_url, 'preload" as="image" fetchpriority="high" media="(min-width: 600px)');
-                    $this->document->addLink($image_mobile, 'preload" as="image" fetchpriority="high" media="(max-width: 600px)');
+                    $this->document->addLink($image_url, 'preload" as="image" fetchpriority="high');
                 }
                 $iteration_count++;
 
                 $data['highlight_categories'][] = array(
                     'name'          => $category_info['name'],
                     'image'         => $image_url,
-                    'image_mobile'  => $image_mobile,
                     'product_total' => $product_total,
                     'href'          => $this->url->link('product/category', 'path=' . $category_info['category_id'])
                 );
