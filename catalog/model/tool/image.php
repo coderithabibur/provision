@@ -78,12 +78,7 @@ class ModelToolImage extends Model {
         //     } else {
         //         return $this->config->get('config_cloudfront_url') . '/image/' . $new_image;
         //     }
-        // Check if we should serve WebP
-        if (is_file(DIR_IMAGE . $new_image_webp)) {
-             $new_image = $new_image_webp; 
-        }
-
-        // } else {
+		// } else {
             if ($this->request->server['HTTPS']) {
                 return $this->config->get('config_ssl') . 'image/' . $new_image;
             } else {
