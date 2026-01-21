@@ -1,129 +1,89 @@
 <?php echo $header; ?>
-<section class="bannerOuter paddingless">
+<section class="category-product-area">
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="pageTitle"><h1>Product listing</h1></div>
-      </div>
+    <div class="category-title">
+      <h2><?php echo $heading_title; ?></h2>
     </div>
-  </div>
-</section>
-<section class="greyBg paddingtop30">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <ol class="breadcrumb">
-         <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-        <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+
+    <!-- ============================================= -->
+    <!-- === 1. DYNAMIC SUB-CATEGORY FILTER AREA === -->
+    <!-- ============================================= -->
+    <?php if ($sub_categories) { ?>
+    <div class="category-filter-area">
+      <ul> 
+        <li><button class="category-filter-btn active" data-categoryid="<?php echo $current_category_id; ?>">All <?php echo $heading_title; ?></button></li>
+         
+        <?php foreach ($sub_categories as $sub_category) { ?>
+          <li><button class="category-filter-btn" data-categoryid="<?php echo $sub_category['category_id']; ?>"><?php echo $sub_category['name']; ?></button></li>
         <?php } ?>
-        </ol>
-      </div>
+      </ul>
     </div>
-    <div class="row">
-    <?php echo $column_left; ?>
-      <?php if ($column_left && $column_right) { ?>
-    <?php $class = 'col-sm-6'; ?>
-    <?php } elseif ($column_left || $column_right) { ?>
-    <?php $class = 'col-md-9 col-sm-8 col-xs-12'; ?>
-    <?php } else { ?>
-    <?php $class = 'col-sm-12'; ?>
     <?php } ?>
-    <div class="<?php echo $class?>">
-      
-      <div id="content"><?php echo $content_top; ?>     
-    
-          <div class="row">
-          <div class="col-xs-12">
-            <div class="theading">
-              <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-6 full">
-                  <h2><?php echo $heading_title; ?></h2>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-6 full">
-                  <?php if ($products) { ?>
-                  <div class="selectBox">
-                    <label><?php echo $text_limit; ?></label>
-                    <div class="selectBG left">
-                      <select id="input-limit" onchange="location = this.value;">
-                          <?php foreach ($limits as $limits) { ?>
-                        <?php if ($limits['value'] == $limit) { ?>
-                        <option value="<?php echo $limits['href']; ?>" selected="selected"><?php echo $limits['text']; ?></option>
-                        <?php } else { ?>
-                        <option value="<?php echo $limits['href']; ?>"><?php echo $limits['text']; ?></option>
-                        <?php } ?>
-                        <?php } ?>
-                                              
-                      </select>
-                    </div>
+    <!-- ============================================= -->
+ 
+    <div class="category-product-grid"> 
+      <?php if ($products) { ?>
+        <?php foreach ($products as $product) { ?>
+          <div class="single-product-item">
+            <a href="<?php echo $product['href']; ?>">
+              <img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" />
+            </a>
+            <div class="single-product-item-info">
+              <h2><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h2>
+              <div class="best-sellers-item-price">
+                <?php if ($product['special']) { ?>
+                  <span><?php echo $product['special']; ?></span>
+                  <del><?php echo $product['price']; ?></del>
+                  <div class="save-price">
+                    <p>save 
+                      <?php 
+                        $old = floatval(strip_tags(preg_replace('/[^0-9.]/', '', $product['price'])));
+                        $new = floatval(strip_tags(preg_replace('/[^0-9.]/', '', $product['special'])));
+                        if ($old > 0) {
+                          echo round((($old - $new) / $old) * 100) . '%';
+                        }
+                      ?>
+                    </p>
                   </div>
-                  <div class="selectBox">
-                    <label><?php echo $text_sort; ?></label>
-                    <div class="selectBG">
-                      <select id="input-sort" onchange="location = this.value;">
-                      <?php foreach ($sorts as $sorts) { ?>
-                          <?php if ($sorts['value'] == $sort . '-' . $order) { ?>
-                          <option value="<?php echo $sorts['href']; ?>" selected="selected"><?php echo $sorts['text']; ?></option>
-                          <?php } else { ?>
-                          <option value="<?php echo $sorts['href']; ?>"><?php echo $sorts['text']; ?></option>
-                          <?php } ?>
-                          <?php } ?>  
-                      </select>
-                    </div>
-                  </div>
-                  <?php } ?>
-                </div>
+                <?php } else { ?>
+                  <span><?php echo $product['price']; ?></span>
+                <?php } ?>
+              </div>
+              <div class="single-product-reviews">
+                <ul>
+                  <li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li>
+                </ul>
+                <p><?php echo $product['reviews']; ?> Reviews</p>
+              </div>
+              <div class="single-product-btn-group">
+                <button onclick="cart.add('<?php echo $product['product_id']; ?>');">
+                  <?php echo $button_cart; ?>
+                </button>
               </div>
             </div>
           </div>
-        </div>     
-      <?php if ($products) { ?>   
-      <div class="row">
-      <?php if ($column_left && $column_right) { ?>
-    <?php $class = 'col-sm-6'; ?>
-    <?php } elseif ($column_left || $column_right) { ?>
-    <?php $class = 'col-md-4 col-sm-6 col-xs-6 full'; ?>
-    <?php } else { ?>
-    <?php $class = 'col-md-3 col-sm-6 col-xs-6 full'; ?>
-    <?php } ?>
-        <?php foreach ($products as $product) { ?>
-          <div class="<?php echo $class?>">
-          <div class="columnOuter">
-           <div class="column">
-             <div class="productThumb"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
-             <div class="desc"><div class="thead"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
-             <div class="cartBox">
-              <button class="yellowbtn btn-2 btn-2a" onclick="cart.add('<?php echo $product['product_id']; ?>');"><img src="catalog/view/theme/hidlighting/images/cart.png" alt=""><b><?php echo $button_cart; ?></b></button>
-               <?php if ($product['price']) { ?>
-               <p class="price">         
-                 <?php echo $product['price']; ?>        
-               </p>
-               <?php } ?>
-             </div>
-             </div>     
-           </div>
-         </div>
-         </div>
         <?php } ?>
-      </div>
-      <?php if($pagination){?>
-      <div class="row">
-          <div class="col-xs-12">
-            <div class="paginationOuter">
-              <?php echo $pagination; ?>
-            </div>
-          </div>
-        </div>      
-      <?php } } else { ?>
-      <p><?php echo $text_empty; ?></p>
+      <?php } else { ?>
+        <p><?php echo $text_empty; ?></p>
       <?php } ?>
-      <?php echo $content_bottom; ?></div>
-    <?php echo $column_right; ?></div>
-      
     </div>
-  
     
-    </div>   
+    <div class="pagination category-product-pagination">
+      <?php echo $pagination; ?>
+    </div>
+  </div>
 </section>
+
+<?php if ($description) { ?>
+<section class="category-info-area">
+  <div class="container">
+    <div class="category-content-area">
+      <?php echo $description; ?>
+    </div>
+  </div>
+</section>
+<?php } ?>
+
 
 			    <!--START - GOOGLE ANALYTICS ECOMMERCE TRACKING-->
 			        <?php if (isset($product_impression_script)) { echo $product_impression_script; } ?> 

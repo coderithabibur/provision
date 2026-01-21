@@ -1418,3 +1418,13 @@
 2026-01-16 11:46:12 - PHP Warning:  Undefined array key "path" in /Users/ashik/Herd/pro/system/storage/modification/catalog/controller/product/category.php on line 228
 2026-01-16 11:46:12 - PHP Warning:  Undefined array key "path" in /Users/ashik/Herd/pro/system/storage/modification/catalog/controller/product/category.php on line 228
 2026-01-16 11:46:12 - PHP Warning:  Undefined array key "path" in /Users/ashik/Herd/pro/system/storage/modification/catalog/controller/product/category.php on line 228
+2026-01-21 18:46:58 - PHP Warning:  rmdir(/Users/ashik/Herd/pro/system/storage/modification/catalog/controller): Directory not empty in /Users/ashik/Herd/pro/system/storage/modification/admin/controller/extension/modification.php on line 488
+2026-01-21 18:46:58 - PHP Warning:  rmdir(/Users/ashik/Herd/pro/system/storage/modification/catalog): Directory not empty in /Users/ashik/Herd/pro/system/storage/modification/admin/controller/extension/modification.php on line 488
+2026-01-21 18:47:00 - PHP Warning:  rmdir(/Users/ashik/Herd/pro/system/storage/modification/catalog/controller): Directory not empty in /Users/ashik/Herd/pro/admin/controller/extension/modification.php on line 105
+2026-01-21 18:47:00 - PHP Warning:  rmdir(/Users/ashik/Herd/pro/system/storage/modification/catalog): Directory not empty in /Users/ashik/Herd/pro/admin/controller/extension/modification.php on line 105
+2026-01-21 19:03:43 - PHP Warning:  rmdir(/Users/ashik/Herd/pro/system/storage/modification/catalog/controller): Directory not empty in /Users/ashik/Herd/pro/system/storage/modification/admin/controller/extension/modification.php on line 488
+2026-01-21 19:03:43 - PHP Warning:  rmdir(/Users/ashik/Herd/pro/system/storage/modification/catalog): Directory not empty in /Users/ashik/Herd/pro/system/storage/modification/admin/controller/extension/modification.php on line 488
+2026-01-21 19:03:46 - PHP Warning:  rmdir(/Users/ashik/Herd/pro/system/storage/modification/catalog/controller): Directory not empty in /Users/ashik/Herd/pro/admin/controller/extension/modification.php on line 481
+2026-01-21 19:03:46 - PHP Warning:  rmdir(/Users/ashik/Herd/pro/system/storage/modification/catalog): Directory not empty in /Users/ashik/Herd/pro/admin/controller/extension/modification.php on line 481
+2026-01-21 19:03:48 - PHP Warning:  rmdir(/Users/ashik/Herd/pro/system/storage/modification/catalog/controller): Directory not empty in /Users/ashik/Herd/pro/admin/controller/extension/modification.php on line 105
+2026-01-21 19:03:48 - PHP Warning:  rmdir(/Users/ashik/Herd/pro/system/storage/modification/catalog): Directory not empty in /Users/ashik/Herd/pro/admin/controller/extension/modification.php on line 105

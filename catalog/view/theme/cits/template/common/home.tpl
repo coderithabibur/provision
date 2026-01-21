@@ -140,32 +140,46 @@
 </section>
  
 <script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", function() {
-  $(document).ready(function () {
-    $('.category-filter').on('click', function (e) {
-      e.preventDefault();
-      var category_id = $(this).data('categoryid');
-      $('.category-filter').removeClass('active');
-      $(this).addClass('active');
+document.addEventListener("DOMContentLoaded", function() {
+    var filters = document.querySelectorAll('.category-filter');
+    var grid = document.querySelector('.best-seller-product-grid');
 
-      $.ajax({
-        url: 'index.php?route=common/home/getCategoryProducts&category_id=' + category_id,
-        type: 'get',
-        dataType: 'html',
-        beforeSend: function () {
-          $('.best-seller-product-grid').html(
-            '<span class="loader"></span>');
-        },
-        success: function (html) {
-          $('.best-seller-product-grid').html(html);
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-          alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-      });
-    });
-  });
-  });
+    if (filters.length > 0 && grid) {
+        Array.prototype.forEach.call(filters, function(filter) {
+            filter.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all
+                Array.prototype.forEach.call(filters, function(f) { f.classList.remove('active'); });
+                // Add active class to clicked
+                this.classList.add('active');
+
+                var category_id = this.getAttribute('data-categoryid');
+
+                // Show loader
+                grid.innerHTML = '<span class="loader"></span>';
+
+                // Fetch data
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', 'index.php?route=common/home/getCategoryProducts&category_id=' + category_id, true);
+                
+                xhr.onload = function() {
+                    if (this.status >= 200 && this.status < 400) {
+                        grid.innerHTML = this.responseText;
+                    } else {
+                        console.error('Server returned error');
+                    }
+                };
+
+                xhr.onerror = function() {
+                    console.error('Connection error');
+                };
+
+                xhr.send();
+            });
+        });
+    }
+});
 </script>
 
 <script type="application/ld+json">
