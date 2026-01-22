@@ -112,8 +112,8 @@
   </footer>
   
 <!-- Real jQuery (Moved to Footer) -->
-    <script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script> 
-    <script>
+    <script data-cfasync="false" src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script> 
+    <script data-cfasync="false">
     (function(){
       var q = window.q || [];
       window.q = null; // Clear queue
@@ -126,11 +126,11 @@
     })();
     </script>
 
-    <script  src="catalog/view/theme/cits/js/bootstrap.min.js" type="text/javascript"></script>
-    <script  src="catalog/view/javascript/common.js" type="text/javascript"></script>
+    <script data-cfasync="false" src="catalog/view/theme/cits/js/bootstrap.min.js" type="text/javascript"></script>
+    <script data-cfasync="false" src="catalog/view/javascript/common.js" type="text/javascript"></script>
 
-    <script  src="catalog/view/theme/cits/js/core.js"></script>
-    <script  src="catalog/view/theme/cits/js/menu.js" type="text/javascript"></script>
+    <script data-cfasync="false" src="catalog/view/theme/cits/js/core.js"></script>
+    <script data-cfasync="false" src="catalog/view/theme/cits/js/menu.js" type="text/javascript"></script>
 
 <!-- Newsletter Script -->
 <script type="text/javascript"><!--
@@ -243,7 +243,11 @@ $('select[name=\'category_id\']').trigger('change');
 });
 --></script>
 
+  <?php 
+  $route = isset($_GET['route']) ? $_GET['route'] : 'common/home';
+  if ($route == 'common/home' || $route == 'product/product') { ?>
   <script src="catalog/view/theme/cits/assets/js/swiper-bundle.min.js" defer></script>
+  <?php } ?>
   <script src="catalog/view/theme/cits/assets/js/script.js?v=<?php echo time(); ?>" defer></script>
   
   <!-- AntiGravity: User Interaction Lazy Loader for Third-Party Scripts -->
