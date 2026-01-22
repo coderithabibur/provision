@@ -100,12 +100,12 @@
       <div class="container">
         <p><?php echo $powered; ?></p>
         <div class="footer-payments"> 
-          <img src="<?php echo $image_url ?>/catalog/view/theme/cits/images/paypal.png" alt="paypal">
-          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/visa.png" alt="visa">
-          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/discover.png" alt="discover">
-          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/mastercard.png" alt="mastercard">
-          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/american.png" alt="american">
-          <img src="<?php echo $image_url ?>/catalog/view/theme/cits/images/pp4.jpg" alt="pp4">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/cits/images/paypal.png" alt="paypal" width="40" height="25">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/visa.png" alt="visa" width="40" height="25">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/discover.png" alt="discover" width="40" height="25">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/mastercard.png" alt="mastercard" width="40" height="25">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/american.png" alt="american" width="40" height="25">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/cits/images/pp4.jpg" alt="pp4" width="40" height="25">
         </div>
       </div>
     </div>

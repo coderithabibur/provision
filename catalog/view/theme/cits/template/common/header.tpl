@@ -67,7 +67,15 @@ if (!isset($search)) {
     </script>
  
     <?php foreach ($styles as $style) { ?>
-        <?php if (strpos($style['href'], 'bganycombi.css') !== false) { ?>
+        <?php 
+        // AntiGravity: Aggressive deferral for non-critical CSS
+        $defer_css = false;
+        if (strpos($style['href'], 'bganycombi.css') !== false) $defer_css = true;
+        if (strpos($style['href'], 'magnific-popup') !== false) $defer_css = true;
+        if (strpos($style['href'], 'datetimepicker') !== false) $defer_css = true;
+        if (strpos($style['href'], 'opencart') !== false) $defer_css = true; // Often not critical for ATF
+
+        if ($defer_css) { ?>
         <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="print" onload="this.media='all'" />
         <noscript><link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="screen" /></noscript>
         <?php } else { ?>
