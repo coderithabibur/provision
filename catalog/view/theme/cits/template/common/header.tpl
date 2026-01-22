@@ -51,7 +51,16 @@ if (!isset($search)) {
     <?php echo file_get_contents('catalog/view/theme/cits/assets/css/responsive.css'); ?>
     </style>
     
-    <script  src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+    window.q=[];
+    window.$=window.jQuery=function(f){
+      if(typeof f=='function')window.q.push(f);
+      // return window.$ to allow chaining like $(document).ready(...)
+      return window.$; 
+    };
+    window.$.ready=window.$;
+    window.$.fn={}; 
+    </script>
  
     <?php foreach ($styles as $style) { ?>
         <?php if (strpos($style['href'], 'bganycombi.css') !== false) { ?>

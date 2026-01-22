@@ -111,6 +111,21 @@
     </div>
   </footer>
   
+<!-- Real jQuery (Moved to Footer) -->
+    <script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script> 
+    <script>
+    (function(){
+      var q = window.q || [];
+      window.q = null; // Clear queue
+      // Hydrate
+      if(q.length) {
+          q.forEach(function(f){ 
+              try{ $(f) }catch(e){ console.error('Deferred execution failed', e) } 
+          });
+      }
+    })();
+    </script>
+
     <script  src="catalog/view/theme/cits/js/bootstrap.min.js" type="text/javascript"></script>
     <script  src="catalog/view/javascript/common.js" type="text/javascript"></script>
 

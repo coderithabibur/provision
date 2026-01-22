@@ -40,8 +40,6 @@ if (!isset($search)) {
     <noscript><link rel="stylesheet" href="catalog/view/theme/cits/assets/css/swiper-bundle.min.css" /></noscript>
 
 
-    
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
@@ -53,16 +51,17 @@ if (!isset($search)) {
     <?php echo file_get_contents('catalog/view/theme/cits/assets/css/responsive.css'); ?>
     </style>
     
-    <script  src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+    window.q=[];
+    window.$=window.jQuery=function(f){
+      if(typeof f=='function')window.q.push(f);
+      // return window.$ to allow chaining like $(document).ready(...)
+      return window.$; 
+    };
+    window.$.ready=window.$;
+    window.$.fn={}; 
+    </script>
  
-    
-    <!-- Google Tag Manager (Lazily Loaded in Footer) -->
-    <script>window.dataLayer = window.dataLayer || [];</script>
-    <!-- End Google Tag Manager -->
-    
-
-    
-    
     <?php foreach ($styles as $style) { ?>
         <?php if (strpos($style['href'], 'bganycombi.css') !== false) { ?>
         <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="print" onload="this.media='all'" />
