@@ -46,11 +46,11 @@
           <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
         <?php } ?>
         <p><?php echo $name; ?> is a leading supplier of LED and HID lighting solutions. Over 20 years of expertise in automotive light upgrades and fleet enhancements.</p>
-          <h2>Social Links</h2>
+          <h4 class="social-title">Social Links</h4>
           <div class="footer-social">
             <ul>
               <li><a href="<?php echo $facebook; ?>" target="_blank" aria-label="Facebook"><i aria-hidden="true" class="fab fa-facebook"></i></a></li>
-              <li><a href="<?php echo $youtube; ?>" target="_blank" aria-label="YouTube"><i class="fab fa-youtube-play" aria-hidden="true"></i></a></li>
+              <li><a href="<?php echo $youtube; ?>" target="_blank" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
               <li><a href="<?php echo $blogger; ?>" target="_blank" aria-label="Blogger"><i class="fab fa-blogger-b"></i></a></li>              
               <li><a href="<?php echo $instagram; ?>" target="_blank" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
             </ul>
@@ -100,7 +100,7 @@
       <div class="container">
         <p><?php echo $powered; ?></p>
         <div class="footer-payments"> 
-          <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/paypal.png" alt="paypal">
+          <img src="<?php echo $image_url ?>/catalog/view/theme/cits/images/paypal.png" alt="paypal">
           <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/visa.png" alt="visa">
           <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/discover.png" alt="discover">
           <img src="<?php echo $image_url ?>/catalog/view/theme/hidlighting/images/mastercard.png" alt="mastercard">
@@ -110,6 +110,12 @@
       </div>
     </div>
   </footer>
+  
+    <script  src="catalog/view/theme/cits/js/bootstrap.min.js" type="text/javascript"></script>
+    <script  src="catalog/view/javascript/common.js" type="text/javascript"></script>
+
+    <script  src="catalog/view/theme/cits/js/core.js"></script>
+    <script  src="catalog/view/theme/cits/js/menu.js" type="text/javascript"></script>
 
 <!-- Newsletter Script -->
 <script type="text/javascript"><!--
@@ -232,14 +238,14 @@ $('select[name=\'category_id\']').trigger('change');
       window.thirdPartyScriptsLoaded = true;
 
       // 1. Google Tag Manager
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      /* (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-MPKDL3R');
+      })(window,document,'script','dataLayer','GTM-MPKDL3R'); */
 
       // 2. GA4
-      var gtagScript = document.createElement('script');
+      /* var gtagScript = document.createElement('script');
       gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0MZLPW6V1Z";
       gtagScript.async = true;
       document.body.appendChild(gtagScript);
@@ -248,20 +254,20 @@ $('select[name=\'category_id\']').trigger('change');
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-0MZLPW6V1Z');
-
+      */
       // 3. Bing Ads
-      (function(w,d,t,r,u) {
-          var f,n,i;
-          w[u]=w[u]||[],f=function() {
-              var o={ti:"134605428"};
-              o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
-          },
-          n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function() {
-              var s=this.readyState;
-              s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
-          },
-          i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)
-      })(window,document,"script","//bat.bing.com/bat.js","uetq");
+      // (function(w,d,t,r,u) {
+      //     var f,n,i;
+      //     w[u]=w[u]||[],f=function() {
+      //         var o={ti:"134605428"};
+      //         o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
+      //     },
+      //     n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function() {
+      //         var s=this.readyState;
+      //         s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
+      //     },
+      //     i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)
+      // })(window,document,"script","//bat.bing.com/bat.js","uetq");
 
       // 4. Mailchimp
       !function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/8f2ffea973282e9b7646fc605/dc91b8a5890542f9057383d0a.js");
