@@ -211,7 +211,7 @@
         <div class="secure-checkout">
           <p>Guarantee safe & secure checkout</p>
           <div class="cards">
-            <img src="/catalog/view/theme/cits/assets/images/payment-method.png" alt="Payment Methods">
+            <img src="/catalog/view/theme/cits/assets/images/payment-method.png" alt="Payment Methods" width="489" height="88">
           </div>
         </div>
 

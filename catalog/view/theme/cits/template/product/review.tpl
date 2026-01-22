@@ -4,7 +4,7 @@
   <?php foreach ($reviews as $review) { ?>
   <div class="review-item">
     <div class="review-avatar">
-      <img src="catalog/view/theme/cits/assets/images/user.png" alt="<?php echo $review['author']; ?>">
+      <img src="catalog/view/theme/cits/assets/images/user.png" alt="<?php echo $review['author']; ?>" width="95" height="95">
     </div>
     <div class="review-content">
       <div class="review-rating">★★★★★</div>
