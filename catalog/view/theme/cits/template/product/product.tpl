@@ -10,7 +10,7 @@
             <?php if ($popup) { ?>
             <div class="swiper-slide">
               <a href="<?php echo $popup; ?>" class="popup-link" title="<?php echo $heading_title; ?>" aria-label="View main product image">
-                <img src="<?php echo $popup; ?>" alt="<?php echo $heading_title; ?>" />
+                <img src="<?php echo $popup; ?>" alt="<?php echo $heading_title; ?>" fetchpriority="high" width="800" height="800" />
               </a>
             </div>
             <?php } ?>
@@ -166,9 +166,9 @@
               <div class="ratingBox">
                 <?php for ($i = 1; $i <= 5; $i++) { ?>
                 <?php if ($rating < $i) { ?>
-                <a href="" aria-label="Rate <?php echo $i; ?> out of 5 stars"> <i class="fas fa-star"></i> </a>
+                <span class="star-icon" aria-label="<?php echo $i; ?> out of 5 stars"> <i class="fas fa-star"></i> </span>
                 <?php } else { ?>
-                <a class="active" href="" aria-label="Rate <?php echo $i; ?> out of 5 stars"><i class="fas fa-star"></i></a>
+                <span class="star-icon active" aria-label="<?php echo $i; ?> out of 5 stars"><i class="fas fa-star"></i></span>
                 <?php } ?>
                 <?php } ?>
               </div>
@@ -185,7 +185,7 @@
         <?php if ($reward) { ?>
         <p class="spl"><?php echo $text_reward; ?> <span><?php echo $reward; ?></span></p>
         <?php } ?>
-        <script id="payment-method-messaging-script" data-oc="2" src="catalog/view/javascript/stripe_messaging.js"></script>
+        <script id="payment-method-messaging-script" data-oc="2" src="catalog/view/javascript/stripe_messaging.js" defer></script>
         <p class="spl"><?php echo $text_stock; ?> <span><?php echo $stock; ?></span></p>
 
         <!-- Quantity & Add to Cart -->
@@ -758,6 +758,7 @@ $(document).ready(function() {
     });
     //--></script>
 <script type="text/javascript"><!--
+$(function() {
     $('#review').delegate('.pagination a', 'click', function(e) {
         e.preventDefault();
 
@@ -800,15 +801,17 @@ $(document).ready(function() {
             }
         });
     });
+});
+//--></script>
 
-    $(document).ready(function() {
-        $('.thumbnails').magnificPopup({
-            type:'image',
-            delegate: 'a',
-            gallery: {
-                enabled:true
-            }
-        });
+<script type="text/javascript"><!--
+$(function() {
+    $('.thumbnails').magnificPopup({
+        type:'image',
+        delegate: 'a',
+        gallery: {
+            enabled:true
+        }
     });
 
     (function() {
@@ -837,10 +840,12 @@ $(document).ready(function() {
         });
 
     }).call(this);
+
     $('.product-faq-form').on('click', function() {
         $('#section-product-question-form').hide();
     });
-</script>
+});
+//--></script>
 
 <script type="application/ld+json">
 {
